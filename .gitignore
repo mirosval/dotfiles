@@ -1,0 +1,9 @@
+config/nvim/plugged
+config/configstore
+config/direnv
+config/git
+config/gocode
+config/htop
+config/thefuck
+config/wireshark
+config/yarn
