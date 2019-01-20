@@ -12,6 +12,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'cloudhead/neovim-fuzzy'
 
+Plug 'tpope/vim-surround'
+
 Plug 'rust-lang/rust.vim'
 
 if executable("scalac")
