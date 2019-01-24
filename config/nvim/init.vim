@@ -39,3 +39,5 @@ set copyindent
 " UI
 set number
 set showmatch
+
+set clipboard+=unnamedplus
