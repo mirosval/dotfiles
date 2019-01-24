@@ -26,6 +26,9 @@ call plug#end()
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
 
+" Deoplete tab completion
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " fuzzy finder with ctrl-p
 nnoremap <C-p> :FuzzyOpen<CR>
 
