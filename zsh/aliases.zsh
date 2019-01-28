@@ -27,3 +27,8 @@ alias flush="dscacheutil -flushcache"
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
+mkcd ()
+{
+    mkdir -p -- "$1" && cd -P -- "$1"
+}
+
