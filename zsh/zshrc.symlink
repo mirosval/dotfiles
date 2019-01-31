@@ -1,0 +1,45 @@
+export DOTFILES=$HOME/.dotfiles
+export ZSH=$DOTFILES/zsh
+
+# display how long all tasks over 10 seconds take
+export REPORTTIME=10
+
+source $ZSH/utils.zsh
+source $ZSH/aliases.zsh
+source $ZSH/prompt.zsh
+source $ZSH/completion.zsh
+source $ZSH/colors.zsh
+source $ZSH/config.zsh
+source $ZSH/functions.zsh
+source $ZSH/git.zsh
+source $ZSH/autojump.zsh
+source $ZSH/direnv.zsh
+source $ZSH/ripgrep.zsh
+source $ZSH/fzf.zsh
+
+if [[ -a ~/.localrc ]]; then
+    source ~/.localrc
+fi
+
+# initialize autocomplete
+autoload -U compinit add-zsh-hook
+compinit
+
+for config ($ZSH/**/*completion.sh) source $config
+
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
+
+export PATH=/usr/local/bin:$PATH
+
+# add /usr/local/sbin
+if [[ -d /usr/local/sbin ]]; then
+    export PATH=/usr/local/sbin:$PATH
+fi
+
+# adding path directory for custom scripts
+export PATH=$DOTFILES/bin:$PATH
+
+# Base16 shell setup
+BASE16_SHELL=$DOTFILES/config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"

@@ -1,0 +1,17 @@
+## Type additions
+
+# add new types to search by
+--type-add
+style:*.{css,sass,less,stylus}
+
+--type-add
+pug:*.{pug,jade}
+
+--type-add
+tmpl:*.{html,hbs,pug}
+
+# ignore case
+--smart-case
+
+# follow symlinks
+--follow
