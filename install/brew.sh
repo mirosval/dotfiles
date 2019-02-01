@@ -48,9 +48,14 @@ cask_formulas = (
     the-unarchiver,
     typora,
     visual-studio-code,
+    font-hack-nerd-font,
+    zsh-syntax-highlighting,
+    zsh-autosuggestions,
 )
 
 echo "Installing Brew formulas"
+
+brew tap caskroom/fonts
 
 for formula in "${formulas[@]}"; do
     formula_name=$( echo "$formula" | awk '{print $1}' )
