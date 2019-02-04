@@ -5,52 +5,51 @@ if test ! "$( command -v brew )"; then
     ruby -e "$( curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install )"
 fi
     
-formulas = (
-    autojump,
-    ccat,
-    ctags,
-    direnv,
-    exa,
-    fd,
-    fzf,
-    fzy,
-    git,
-    git-lfs,
-    jenv,
-    jq,
-    neovim,
-    pipenv,
-    python3,
-    rustup-init,
-    sbt,
-    scalafmt,
-    thefuck,
-    tldr,
-    tmux,
-    tree,
-    watch,
+formulas=(
+    autojump
+    ccat
+    ctags
+    direnv
+    exa
+    fd
+    fzf
+    fzy
+    git
+    git-lfs
+    jenv
+    jq
+    neovim
+    pipenv
+    python3
+    rustup-init
+    sbt
+    thefuck
+    tldr
+    tmux
+    tree
+    watch
     wget
 )
 
-cask_formulas = (
-    alfred,
-    cyberduck,
-    flux,
-    fork,
-    hammerspoon,
-    java,
-    java8,
-    jetbrains-toolbox,
-    karabiner-elements,
-    quicklook-csv,
-    quicklook-json,
-    slack,
-    the-unarchiver,
-    typora,
-    visual-studio-code,
-    font-hack-nerd-font,
-    zsh-syntax-highlighting,
-    zsh-autosuggestions,
+cask_formulas=(
+    alfred
+    cyberduck
+    flux
+    fork
+    hammerspoon
+    java
+    java8
+    jetbrains-toolbox
+    karabiner-elements
+    quicklook-csv
+    quicklook-json
+    slack
+    the-unarchiver
+    typora
+    visual-studio-code
+    font-hack-nerd-font
+    zsh-syntax-highlighting
+    zsh-autosuggestions
 )
 
 echo "Installing Brew formulas"
@@ -66,9 +65,11 @@ for formula in "${formulas[@]}"; do
     fi
 done
 
+brew install --HEAD olafurpg/scalafmt/scalafmta
+
 echo "Installing Brew Cask formulas"
 
-for formula in "${formulas[@]}"; do
+for formula in "${cask_formulas[@]}"; do
     formula_name=$( echo "$formula" | awk '{print $1}' )
     if brew cask list "$formula_name" > /dev/null 2>&1; then
         echo "$formula_name already installed... skipping."
@@ -77,12 +78,12 @@ for formula in "${formulas[@]}"; do
     fi
 done
 
-# After the install, setup fzf
+# After the install setup fzf
 echo -e "\\n\\nRunning fzf install script..."
 echo "=============================="
 /usr/local/opt/fzf/install --all --no-bash --no-fish
 
-# after the install, install neovim python libraries
+# after the install install neovim python libraries
 echo -e "\\n\\nRunning Neovim Python install"
 echo "=============================="
 pip2 install --user neovim
