@@ -27,6 +27,9 @@ compinit
 
 for config ($ZSH/**/*completion.sh) source $config
 
+# Autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
@@ -40,10 +43,6 @@ fi
 # adding path directory for custom scripts
 export PATH=$DOTFILES/bin:$PATH
 
-# Base16 shell setup
-BASE16_SHELL=$DOTFILES/config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
 # Powerlevel
 POWERLEVEL9K_MODE='nerdfont-complete'
 source $DOTFILES/colors/powerlevel9k/powerlevel9k.zsh-theme
@@ -56,5 +55,8 @@ HOMEBREW_FOLDER="/usr/local/share"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+# iTerm Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# Fuzzy Finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
