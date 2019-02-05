@@ -85,26 +85,6 @@ call plug#begin('~/.config/nvim/plugged')
         set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
         set showbreak=↪
 
-        set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors
-        " switch cursor to line when in insert mode, and block when not
-        set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-        \,sm:block-blinkwait175-blinkoff150-blinkon175
-
-        if &term =~ '256color'
-            " disable background color erase
-            set t_ut=
-        endif
-
-        " enable 24 bit color support if supported
-        if (has("termguicolors"))
-            if (!(has("nvim")))
-                let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-                let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-            endif
-            set termguicolors
-        endif
-
         " highlight conflicts
         match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
