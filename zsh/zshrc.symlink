@@ -21,6 +21,10 @@ if [[ -a ~/.localrc ]]; then
     source ~/.localrc
 fi
 
+if [[ -a ~/.zprofile ]]; then
+    source ~/.zprofile
+fi
+
 # initialize autocomplete
 autoload -U compinit add-zsh-hook
 compinit
