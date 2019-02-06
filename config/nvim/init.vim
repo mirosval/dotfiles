@@ -120,4 +120,9 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " fuzzy finder with ctrl-p
 nnoremap <C-p> :FuzzyOpen<CR>
 
+" Map ctrl+move to move between split panels
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
