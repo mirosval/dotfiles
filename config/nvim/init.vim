@@ -9,12 +9,13 @@ call plug#begin('~/.config/nvim/plugged')
         set number
         set showmatch
 
-        set clipboard+=unnamedplus
         set history=1000
         set textwidth=120
 
         set backspace=indent,eol,start " make backspace behave in a sane manner
         set clipboard=unnamed
+
+        set scrolloff=30 " keep the cursor centered vertically
         
         if has('mouse')
             set mouse=a
@@ -90,9 +91,11 @@ call plug#begin('~/.config/nvim/plugged')
 
     " }}} Tabs and spaces
 
-    " Load colorschemes
-    Plug 'chriskempson/base16-vim'
-    Plug 'joshdick/onedark.vim'
+    Plug 'vim-scripts/scrollfix'
+
+    Plug 'kennykaye/vim-relativity'
+
+    Plug 'w0rp/ale'
 
     Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 
@@ -102,11 +105,16 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'tpope/vim-surround'
 
+    Plug 'vim-airline/vim-airline'
+
     Plug 'rust-lang/rust.vim'
 
     if executable("scalac")
         Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
     endif
+
+" Scrollfix in the middle
+let g:scrollfix = 50
 
 " Initialize plugin system
 call plug#end()
@@ -119,6 +127,9 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " fuzzy finder with ctrl-p
 nnoremap <C-p> :FuzzyOpen<CR>
+
+" Use Powerline font for airline
+let g:airline_powerline_fonts = 1
 
 " Map ctrl+move to move between split panels
 map <C-j> <C-W>j
