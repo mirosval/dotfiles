@@ -29,6 +29,10 @@ formulas=(
     tree
     watch
     wget
+    zsh
+    zsh-completions
+    zsh-syntax-highlighting
+    zsh-autosuggestions
 )
 
 cask_formulas=(
@@ -48,8 +52,6 @@ cask_formulas=(
     typora
     visual-studio-code
     font-hack-nerd-font
-    zsh-syntax-highlighting
-    zsh-autosuggestions
 )
 
 echo "Installing Brew formulas"
@@ -65,7 +67,7 @@ for formula in "${formulas[@]}"; do
     fi
 done
 
-brew install --HEAD olafurpg/scalafmt/scalafmta
+brew install --HEAD olafurpg/scalafmt/scalafmt
 
 echo "Installing Brew Cask formulas"
 

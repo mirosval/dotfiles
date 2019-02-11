@@ -97,6 +97,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'w0rp/ale'
 
+    Plug 'janko-m/vim-test'
+
     Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

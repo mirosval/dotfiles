@@ -44,13 +44,6 @@ fi
 # adding path directory for custom scripts
 export PATH=$DOTFILES/bin:$PATH
 
-# Powerlevel
-POWERLEVEL9K_MODE='nerdfont-complete'
-source $DOTFILES/colors/powerlevel9k/powerlevel9k.zsh-theme
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh dir vcs newline status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-
 # ZSH Syntax Highlighting and Autosuggestions
 HOMEBREW_FOLDER="/usr/local/share"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -59,3 +52,5 @@ source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
 # iTerm Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

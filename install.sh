@@ -8,7 +8,12 @@ ln -s $DOTFILES/.hammerspoon $HOME/.hammerspoon
 ln -s $DOTFILES/.ctags $HOME/.ctags
 ln -s $DOTFILES/git/ignore $HOME/.gitignore
 
-brew install neovim
+$DOTFILES/install/brew.sh
+$DOTFILES/install/osx.sh
+
+sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
+chsh -s $(which zsh)
+
 pip3 install neovim sexpdata websocket-client
 
 # Set up vim-plug for neovim
