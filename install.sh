@@ -4,7 +4,7 @@ DOTFILES=$HOME/.dotfiles
 
 ln -s $DOTFILES/config/nvim $HOME/.config/nvim
 ln -s $DOTFILES/config/karabiner $HOME/.config/karabiner
-ln -s $DOTFILES/.hammerspoon $HOME/.hammerspoon
+ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
 ln -s $DOTFILES/ctags.symlink $HOME/.ctags
 ln -s $DOTFILES/git/ignore $HOME/.gitignore
 
