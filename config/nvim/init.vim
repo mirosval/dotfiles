@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
         
         set autoread " detect when file is changed	
         set number
+        set relativenumber
         set showmatch
 
         set history=1000
@@ -91,9 +92,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " }}} Tabs and spaces
 
-    Plug 'vim-scripts/scrollfix'
-
-    Plug 'kennykaye/vim-relativity'
+    Plug 'nelstrom/vim-visual-star-search'
 
     Plug 'w0rp/ale'
 
@@ -114,9 +113,6 @@ call plug#begin('~/.config/nvim/plugged')
     if executable("scalac")
         Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
     endif
-
-" Scrollfix in the middle
-let g:scrollfix = 50
 
 " Initialize plugin system
 call plug#end()
