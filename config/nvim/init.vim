@@ -6,17 +6,15 @@ call plug#begin('~/.config/nvim/plugged')
     " General {{{
         
         set autoread " detect when file is changed	
-        set number
-        set relativenumber
         set showmatch
 
         set history=1000
         set textwidth=120
 
         set backspace=indent,eol,start " make backspace behave in a sane manner
-        set clipboard=unnamed
+        set clipboard+=unnamedplus
 
-        set scrolloff=30 " keep the cursor centered vertically
+        set scrolloff=20 " keep the cursor centered vertically
         
         if has('mouse')
             set mouse=a
@@ -42,6 +40,7 @@ call plug#begin('~/.config/nvim/plugged')
     " Appearance {{{
 
         set number " show line numbers
+        set relativenumber " Show relative line numbers
         set wrap " turn on line wrapping
         set wrapmargin=8 " wrap lines when coming within n characters from side
         set linebreak " set soft wrapping
@@ -50,7 +49,6 @@ call plug#begin('~/.config/nvim/plugged')
         set ttyfast " faster redrawing
         set diffopt+=vertical
         set laststatus=2 " show the satus line all the time
-        set so=7 " set 7 lines to the cursors - when moving vertical
         set wildmenu " enhanced command line completion
         set hidden " current buffer can be put into background
         set showcmd " show incomplete commands
@@ -60,7 +58,6 @@ call plug#begin('~/.config/nvim/plugged')
         set cmdheight=1 " command bar height
         set title " set terminal title
         set showmatch " show matching braces
-        set mat=2 " how many tenths of a second to blink
 
     " }}} Appearance
 
@@ -84,7 +81,7 @@ call plug#begin('~/.config/nvim/plugged')
 
         " toggle invisible characters
         set list
-        set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+        set listchars=tab:→\ ,trail:⋅,extends:❯,precedes:❮
         set showbreak=↪
 
         " highlight conflicts
@@ -97,8 +94,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'w0rp/ale'
 
     Plug 'janko-m/vim-test'
-
-    Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
