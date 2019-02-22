@@ -35,6 +35,10 @@ call plug#begin('~/.config/nvim/plugged')
         set t_vb=
         set tm=500
 
+        " scroll the viewport faster
+        nnoremap <C-e> 3<C-e>
+        nnoremap <C-y> 3<C-y>
+
     " }}} General
     
     " Appearance {{{
@@ -58,6 +62,11 @@ call plug#begin('~/.config/nvim/plugged')
         set cmdheight=1 " command bar height
         set title " set terminal title
         set showmatch " show matching braces
+
+        " switch cursor to line when in insert mode, and block when not
+        set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+        \,sm:block-blinkwait175-blinkoff150-blinkon175
 
     " }}} Appearance
 
