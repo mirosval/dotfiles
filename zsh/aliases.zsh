@@ -34,3 +34,9 @@ mkcd ()
 
 # Git
 alias gst="git status"
+
+# Restarts coreaudio, use when headphones don't work
+alias fix_audio='sudo pkill coreaudiod'
+
+# Docker-compose alias
+alias dc='docker-compose'
