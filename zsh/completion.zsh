@@ -6,3 +6,6 @@ zstyle ':completion:*' insert-tab pending
 
 # default to file completion
 zstyle ':completion:*' completer _expand _complete _files _correct _approximate
+
+# Kubernetes
+if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
