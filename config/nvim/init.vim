@@ -133,6 +133,9 @@ nnoremap <C-p> :FuzzyOpen<CR>
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
 
+" Ale
+let g:ale_sign_column_always = 1
+
 " Map ctrl+move to move between split panels
 map <C-j> <C-W>j
 map <C-k> <C-W>k
