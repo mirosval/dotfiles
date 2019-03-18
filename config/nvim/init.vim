@@ -14,7 +14,7 @@ call plug#begin('~/.config/nvim/plugged')
         set backspace=indent,eol,start " make backspace behave in a sane manner
         set clipboard+=unnamedplus
 
-        set scrolloff=20 " keep the cursor centered vertically
+        set scrolloff=15 " keep the cursor centered vertically
         
         if has('mouse')
             set mouse=a
