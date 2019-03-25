@@ -4,6 +4,10 @@ export ZSH=$DOTFILES/zsh
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
+# initialize autocomplete
+autoload -U compinit add-zsh-hook
+compinit
+
 source $ZSH/utils.zsh
 source $ZSH/aliases.zsh
 source $ZSH/prompt.zsh
@@ -24,10 +28,6 @@ fi
 if [[ -a ~/.zprofile ]]; then
     source ~/.zprofile
 fi
-
-# initialize autocomplete
-autoload -U compinit add-zsh-hook
-compinit
 
 for config ($ZSH/**/*completion.sh) source $config
 
