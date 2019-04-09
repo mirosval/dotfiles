@@ -114,6 +114,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'rust-lang/rust.vim'
 
+    Plug 'aonemd/kuroi.vim'
+
     if executable("scalac")
         Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
     endif
@@ -141,4 +143,9 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Colorscheme
+set termguicolors
+set background=dark
+colorscheme kuroi
 
