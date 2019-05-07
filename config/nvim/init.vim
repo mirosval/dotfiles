@@ -4,7 +4,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
     " General {{{
-        
+
         set autoread " detect when file is changed	
         set showmatch
 
@@ -15,7 +15,7 @@ call plug#begin('~/.config/nvim/plugged')
         set clipboard+=unnamedplus
 
         set scrolloff=15 " keep the cursor centered vertically
-        
+
         if has('mouse')
             set mouse=a
         endif
@@ -40,7 +40,7 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <C-y> 3<C-y>
 
     " }}} General
-    
+
     " Appearance {{{
 
         set number " show line numbers
@@ -104,6 +104,11 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'janko-m/vim-test'
 
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     Plug 'cloudhead/neovim-fuzzy'
@@ -112,16 +117,22 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'vim-airline/vim-airline'
 
-    Plug 'rust-lang/rust.vim'
-
     Plug 'aonemd/kuroi.vim'
-
-    if executable("scalac")
-        Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-    endif
 
 " Initialize plugin system
 call plug#end()
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ 'scala': ['metals-vim'],
+    \ }
+
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
