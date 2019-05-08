@@ -9,3 +9,6 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 
+# Make Intellij scroll when you hold down j
+defaults write com.jetbrains.intellij ApplePressAndHoldEnabled -bool false
+
