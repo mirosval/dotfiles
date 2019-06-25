@@ -56,3 +56,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval $(thefuck --alias)
+
+# Go
+export GOPATH=$HOME/work/go
+export PATH=$PATH:$GOPATH/bin
