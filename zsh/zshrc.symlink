@@ -4,6 +4,9 @@ export ZSH=$DOTFILES/zsh
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
+# Set Locale
+export LC_ALL=en_US.UTF-8
+
 # initialize autocomplete
 autoload -U compinit add-zsh-hook
 compinit
