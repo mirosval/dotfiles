@@ -129,6 +129,7 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['/usr/local/bin/pyls'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ 'scala': ['metals-vim'],
+    \ 'go': ['gopls'],
     \ }
 
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
