@@ -39,6 +39,10 @@ call plug#begin('~/.config/nvim/plugged')
         nnoremap <C-e> 3<C-e>
         nnoremap <C-y> 3<C-y>
 
+        " split in the correct direction
+        set splitright
+        set splitbelow
+
     " }}} General
 
     " Appearance {{{
