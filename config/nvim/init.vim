@@ -126,6 +126,8 @@ call plug#begin('~/.config/nvim/plugged')
 " Initialize plugin system
 call plug#end()
 
+let mapleader = ";"
+
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
@@ -136,6 +138,7 @@ let g:LanguageClient_serverCommands = {
     \ 'go': ['gopls'],
     \ }
 
+nnoremap <silent> <leader>; :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
