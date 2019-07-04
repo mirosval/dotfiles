@@ -129,13 +129,13 @@ call plug#begin('~/.config/nvim/plugged')
 " Initialize plugin system
 call plug#end()
 
-let mapleader = ";"
+let mapleader = "\\"
 
 " Expand to the current directory
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
+map <leader>ew :e %% <cr>
+map <leader>es :sp %% <cr>
+map <leader>ev :vsp %% <cr>
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
