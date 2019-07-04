@@ -29,6 +29,9 @@ call plug#begin('~/.config/nvim/plugged')
 
         set magic " Set magic on, for regex
 
+        " Replace
+        set inccommand=nosplit " Live editing preview of the substitute command
+
         " error bells
         set noerrorbells
         set visualbell
@@ -127,6 +130,12 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 let mapleader = ";"
+
+" Expand to the current directory
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
