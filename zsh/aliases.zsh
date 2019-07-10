@@ -3,6 +3,7 @@ alias zshconfig="code ~/.zshrc"
 
 alias k="k -h"
 alias l="exa -lah"
+alias v="nvim ."
 
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
 
@@ -43,3 +44,4 @@ alias dc='docker-compose'
 
 # K8s
 alias k8='kubectl'
+alias km='kubectl -n master'

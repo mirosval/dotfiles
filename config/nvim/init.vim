@@ -122,6 +122,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'tpope/vim-surround'
 
+    Plug 'tpope/vim-repeat'
+
     Plug 'vim-airline/vim-airline'
 
     Plug 'aonemd/kuroi.vim'
@@ -177,3 +179,5 @@ set termguicolors
 set background=dark
 colorscheme kuroi
 
+" enable vim-repeat
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
