@@ -8,8 +8,11 @@ export REPORTTIME=10
 export LC_ALL=en_US.UTF-8
 
 # initialize autocomplete
-autoload -U compinit add-zsh-hook
-compinit
+autoload -Uz compinit add-zsh-hook
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 source $ZSH/utils.zsh
 source $ZSH/aliases.zsh
