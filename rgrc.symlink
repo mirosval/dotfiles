@@ -1,17 +1,19 @@
 ## Type additions
+--max-columns=150
+--max-columns-preview
 
-# add new types to search by
+# web style
 --type-add
-style:*.{css,sass,less,stylus}
+web:*.{html,css,js}
 
---type-add
-pug:*.{pug,jade}
-
---type-add
-tmpl:*.{html,hbs,pug}
+--glob
+!.git/*
 
 # ignore case
 --smart-case
 
 # follow symlinks
 --follow
+
+# search also in hidden files
+--hidden
