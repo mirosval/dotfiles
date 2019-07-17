@@ -105,28 +105,23 @@ call plug#begin('~/.config/nvim/plugged')
 
     " }}} Tabs and spaces
 
-    Plug 'nelstrom/vim-visual-star-search'
-
-    Plug 'w0rp/ale'
-
-    Plug 'janko-m/vim-test'
-
+    Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
+    Plug 'romainl/vim-cool' " Stop matching after search is done.
+    Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
+    Plug 'scrooloose/nerdcommenter' " Quick comments.
+    Plug 'w0rp/ale' " Linters
+    Plug 'janko-m/vim-test' " Run test under cursor
+    " Language Server Plugin
     Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
         \ 'do': 'bash install.sh',
         \ }
-
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    Plug 'cloudhead/neovim-fuzzy'
-
-    Plug 'tpope/vim-surround'
-
-    Plug 'tpope/vim-repeat'
-
-    Plug 'vim-airline/vim-airline'
-
-    Plug 'aonemd/kuroi.vim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocompletions
+    Plug 'cloudhead/neovim-fuzzy' " Fuzzy finder / ctrl-p
+    Plug 'tpope/vim-surround' " Surround selection with string
+    Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
+    Plug 'vim-airline/vim-airline' " Bottom status line
+    Plug 'aonemd/kuroi.vim' " Color Scheme
 
 " Initialize plugin system
 call plug#end()
@@ -152,6 +147,10 @@ let g:LanguageClient_serverCommands = {
 nnoremap <silent> <leader>; :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+
+" NERDCommenter
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
