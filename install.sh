@@ -8,9 +8,11 @@ ln -s $DOTFILES/config/karabiner $HOME/.config/karabiner
 ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
 ln -s $DOTFILES/ctags.symlink $HOME/.ctags
 ln -s $DOTFILES/git/ignore $HOME/.gitignore
+ln -s $DOTFILES/tmux/tmux.conf.symlink $HOME/.tmux.conf
 
 $DOTFILES/install/brew.sh
 $DOTFILES/install/osx.sh
+$DOTFILES/install/tmux.sh
 
 sudo sh -c 'echo /usr/local/bin/zsh >> /etc/shells'
 chsh -s $(which zsh)

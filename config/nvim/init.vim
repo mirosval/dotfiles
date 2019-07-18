@@ -122,6 +122,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'vim-airline/vim-airline' " Bottom status line
     Plug 'aonemd/kuroi.vim' " Color Scheme
+    Plug 'tmux-plugins/vim-tmux'
+	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
 
 " Initialize plugin system
 call plug#end()
