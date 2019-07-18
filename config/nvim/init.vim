@@ -120,6 +120,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'cloudhead/neovim-fuzzy' " Fuzzy finder / ctrl-p
     Plug 'tpope/vim-surround' " Surround selection with string
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
+    Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'vim-airline/vim-airline' " Bottom status line
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'tmux-plugins/vim-tmux'

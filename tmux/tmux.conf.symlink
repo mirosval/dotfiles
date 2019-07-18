@@ -14,6 +14,9 @@ bind r source-file ~/.tmux.conf
 unbind ^A
 bind ^A select-pane -t :.+
 
+# Clear history
+bind C send-keys -R \; send-keys C-l \; clear-history \; send-keys
+
 # start windows numbering at 1
 set -g base-index 1
 # make pane numbering consistent with windows
@@ -26,8 +29,13 @@ set -g mouse on
 
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-pain-control'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'jimeh/tmux-themepack'
+
+# Resurrect vim too
+set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session'
 
 # Set the theme
 set -g @themepack 'powerline/block/cyan'
