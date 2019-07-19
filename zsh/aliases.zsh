@@ -28,6 +28,12 @@ alias flush="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
+# show lyrics for currently playing song
+lyrics ()
+{
+    golyrics-cli "$(~/.dotfiles/scripts/spotify_full.sh)"
+}
+
 mkcd ()
 {
     mkdir -p -- "$1" && cd -P -- "$1"
