@@ -7,7 +7,7 @@ fi
     
 formulas=(
     autojump
-    ccat
+    bat
     ctags
     direnv
     exa
@@ -20,6 +20,7 @@ formulas=(
     jq
     neovim
     pipenv
+    procs
     python3
     rustup-init
     sbt
