@@ -125,6 +125,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'tmux-plugins/vim-tmux'
 	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
+	Plug 'raichoo/purescript-vim'
 
 " Initialize plugin system
 call plug#end()
@@ -145,6 +146,7 @@ let g:LanguageClient_serverCommands = {
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ 'scala': ['metals-vim'],
     \ 'go': ['gopls'],
+    \ 'purescript': ['purescript-language-server'],
     \ }
 
 nnoremap <silent> <leader>; :call LanguageClient_contextMenu()<CR>
