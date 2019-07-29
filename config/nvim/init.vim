@@ -6,7 +6,6 @@ call plug#begin('~/.config/nvim/plugged')
     " General {{{
 
         set autoread " detect when file is changed	
-        set showmatch
 
         set history=1000
         set textwidth=120
@@ -57,7 +56,7 @@ call plug#begin('~/.config/nvim/plugged')
         set linebreak " set soft wrapping
         set showbreak=… " show ellipsis at breaking
         set autoindent " automatically set indent of new line
-        set ttyfast " faster redrawing
+        " set ttyfast " faster redrawing
         set diffopt+=vertical
         set laststatus=2 " show the satus line all the time
         set wildmenu " enhanced command line completion
@@ -108,7 +107,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
-    Plug 'scrooloose/nerdcommenter' " Quick comments.
     Plug 'w0rp/ale' " Linters
     Plug 'janko-m/vim-test' " Run test under cursor
     " Language Server Plugin
@@ -125,7 +123,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'tmux-plugins/vim-tmux'
 	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
-	Plug 'raichoo/purescript-vim'
+    Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
+    Plug 'tomtom/tcomment_vim' " Commant with gc
 
 " Initialize plugin system
 call plug#end()
@@ -146,7 +145,6 @@ let g:LanguageClient_serverCommands = {
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ 'scala': ['metals-vim'],
     \ 'go': ['gopls'],
-    \ 'purescript': ['purescript-language-server'],
     \ }
 
 nnoremap <silent> <leader>; :call LanguageClient_contextMenu()<CR>
@@ -177,6 +175,9 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Save with \w
+nnoremap <leader>w :w<cr>
 
 " Colorscheme
 set termguicolors
