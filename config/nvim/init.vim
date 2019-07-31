@@ -45,6 +45,11 @@ call plug#begin('~/.config/nvim/plugged')
         set splitright
         set splitbelow
 
+        " Disable backups, we have git
+        set nobackup
+        set noswapfile
+        set noundofile
+
     " }}} General
 
     " Appearance {{{
@@ -125,6 +130,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
     Plug 'tomtom/tcomment_vim' " Commant with gc
+    Plug 'tpope/vim-fugitive' " Git
 
 " Initialize plugin system
 call plug#end()
