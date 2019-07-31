@@ -147,9 +147,13 @@ let g:LanguageClient_serverCommands = {
     \ 'go': ['gopls'],
     \ }
 
+" Enable formatting with LanguageClient using gq
+set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+
 nnoremap <silent> <leader>; :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader> f :call LanguageClient#textDocument_formatting()<CR>
 
 " NERDCommenter
 " Align line-wise comment delimiters flush left instead of following code indentation
@@ -169,6 +173,7 @@ let g:airline_powerline_fonts = 1
 
 " Ale
 let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
 
 " Map ctrl+move to move between split panels
 map <C-j> <C-W>j
