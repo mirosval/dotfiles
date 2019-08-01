@@ -33,9 +33,10 @@ formulas=(
     wget
     xsv
     zsh
-    zsh-completions
-    zsh-syntax-highlighting
     zsh-autosuggestions
+    zsh-completions
+    zsh-navigation-tools
+    zsh-syntax-highlighting
 )
 
 cask_formulas=(

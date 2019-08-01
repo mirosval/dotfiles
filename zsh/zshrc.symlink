@@ -65,6 +65,9 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 eval $(thefuck --alias)
 
+# Navigation tools
+source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+
 # Go
 export GOPATH=$HOME/work/go
 export PATH=$PATH:$GOPATH/bin
