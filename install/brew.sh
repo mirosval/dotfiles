@@ -27,9 +27,11 @@ formulas=(
     thefuck
     tldr
     tmux
+    tokei
     tree
     watch
     wget
+    xsv
     zsh
     zsh-completions
     zsh-syntax-highlighting
@@ -38,26 +40,28 @@ formulas=(
 
 cask_formulas=(
     alfred
-    cyberduck
+    docker
     flux
+    homebrew/cask-fonts/font-hack-nerd-font
     fork
+    graphiql
     hammerspoon
+    iterm2
     java
     java8
     jetbrains-toolbox
     karabiner-elements
+    netnewswire
     quicklook-csv
     quicklook-json
     slack
+    spotify
+    tableplus
     the-unarchiver
-    typora
     visual-studio-code
-    font-hack-nerd-font
 )
 
 echo "Installing Brew formulas"
-
-brew tap caskroom/fonts
 
 for formula in "${formulas[@]}"; do
     formula_name=$( echo "$formula" | awk '{print $1}' )
