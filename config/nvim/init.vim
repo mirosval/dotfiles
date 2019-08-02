@@ -24,7 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
         set smartcase " case-sensitive if expresson contains a capital letter
         set hlsearch " highlight search results
         set incsearch " set incremental search, like modern browsers
-        set nolazyredraw " don't redraw while executing macros
 
         set magic " Set magic on, for regex
 
@@ -61,7 +60,7 @@ call plug#begin('~/.config/nvim/plugged')
         set linebreak " set soft wrapping
         set showbreak=… " show ellipsis at breaking
         set autoindent " automatically set indent of new line
-        " set ttyfast " faster redrawing
+        set ttyfast " faster redrawing
         set diffopt+=vertical
         set laststatus=2 " show the satus line all the time
         set wildmenu " enhanced command line completion
