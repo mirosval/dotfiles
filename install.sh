@@ -2,6 +2,7 @@
 
 DOTFILES=$HOME/.dotfiles
 
+ln -s $DOTFILES/config/alacritty $HOME/.config/alacritty
 ln -s $DOTFILES/config/nvim $HOME/.config/nvim
 ln -s $DOTFILES/config/nvim/init.vim $HOME/.ideavimrc
 ln -s $DOTFILES/config/karabiner $HOME/.config/karabiner

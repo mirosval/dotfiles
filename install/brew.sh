@@ -43,7 +43,7 @@ cask_formulas=(
     alfred
     docker
     flux
-    homebrew/cask-fonts/font-hack-nerd-font
+    font-hasklig-nerd-font
     fork
     graphiql
     hammerspoon
@@ -76,6 +76,8 @@ done
 brew install --HEAD olafurpg/scalafmt/scalafmt
 
 echo "Installing Brew Cask formulas"
+
+brew tap homebrew/cask-fonts
 
 for formula in "${cask_formulas[@]}"; do
     formula_name=$( echo "$formula" | awk '{print $1}' )
