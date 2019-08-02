@@ -193,6 +193,7 @@ nnoremap <leader>w :w<cr>
 set termguicolors
 set background=dark
 colorscheme kuroi
+highlight EndOfBuffer cterm=NONE gui=NONE
 
 " enable vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
