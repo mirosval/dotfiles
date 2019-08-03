@@ -18,6 +18,7 @@ formulas=(
     git-lfs
     jenv
     jq
+    neofetch
     neovim
     pipenv
     procs
