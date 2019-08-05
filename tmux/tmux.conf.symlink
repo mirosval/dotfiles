@@ -47,6 +47,6 @@ run '~/.tmux/plugins/tpm/tpm'
 
 # Status
 set -g status-left '#[fg=colour232,bg=colour39,bold] #S #[fg=colour39,bg=colour240,nobold]#[fg=colour233,bg=colour240] #(whoami) #[fg=colour240,bg=colour235]#[fg=colour240,bg=colour235] #I:#P #[fg=colour235,bg=colour233,nobold]'
-set -g status-right '#[fg=colour235,bg=colour233]#[fg=colour245,bg=colour235] %H:%M:%S #[fg=colour240,bg=colour235]#[fg=colour232,bg=colour240] %d-%b-%y #[fg=colour245,bg=colour240]#[fg=colour232,bg=colour245,bold] bat: #(~/.dotfiles/scripts/battery.sh)%% #[fg=colour230,bg=colour245,bold]#[fg=colour240,bg=colour230,bold]#(~/.dotfiles/scripts/spotify.sh)'
+set -g status-right '#[fg=colour235,bg=colour233]#[fg=colour245,bg=colour235] %H:%M:%S #[fg=colour240,bg=colour235]#[fg=colour232,bg=colour240] %d-%b-%y #[fg=colour245,bg=colour240]#[fg=colour232,bg=colour245,bold] bat: #(~/.dotfiles/scripts/battery.sh)% #[fg=colour230,bg=colour245,bold]#[fg=colour240,bg=colour230,bold]#(~/.dotfiles/scripts/spotify.sh)'
 set -g status-justify centre
 
