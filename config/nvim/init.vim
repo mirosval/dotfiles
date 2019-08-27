@@ -130,6 +130,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-fugitive' " Git
+    Plug 'vimwiki/vimwiki' " Personal wiki
 
 " Initialize plugin system
 call plug#end()
