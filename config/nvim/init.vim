@@ -111,7 +111,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
-    Plug 'w0rp/ale' " Linters
     Plug 'janko-m/vim-test' " Run test under cursor
     " Language Server Plugin
     Plug 'autozimu/LanguageClient-neovim', {
@@ -176,10 +175,6 @@ nnoremap <C-p> :FuzzyOpen<CR>
 
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
-
-" Ale
-let g:ale_sign_column_always = 1
-let g:ale_fix_on_save = 1
 
 " Map ctrl+move to move between split panels
 map <C-j> <C-W>j
