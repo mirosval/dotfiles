@@ -11,7 +11,6 @@ hs.hotkey.bind(hyper, "m", function() hs.application.launchOrFocus("Messages") e
 hs.hotkey.bind(hyper, "g", function() hs.application.launchOrFocus("Fork") end)
 hs.hotkey.bind(hyper, "s", function() hs.application.launchOrFocus("Slack") end)
 hs.hotkey.bind(hyper, "d", function() hs.application.launchOrFocus("Spotify") end)
-hs.hotkey.bind(hyper, "a", function() hs.application.launchOrFocus("Dash") end)
 
 hs.loadSpoon("MiroWindowsManager")
 
