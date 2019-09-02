@@ -25,6 +25,8 @@ There is an `install.sh` that you should be able to just run, but be sure to go 
 
 ### Tmux
 
+I use [TPM](https://github.com/tmux-plugins/tpm) for maintaining plugins, after you start tmux for the first time, you need to press `ctrl-a I` to install the plugins.
+
 Start with `tmux new -s work` or `tmux attach-session -t work` if you have an already running session.
 
 - `ctrl-a c` to create a new tab
