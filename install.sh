@@ -2,6 +2,9 @@
 
 DOTFILES=$HOME/.dotfiles
 
+mkdir -p $HOME/.config
+mkdir -p $HOME/.hammerspoon
+
 ln -s $DOTFILES/Brewfile $HOME/.Brewfile
 ln -s $DOTFILES/config/alacritty $HOME/.config/alacritty
 ln -s $DOTFILES/config/nvim $HOME/.config/nvim
@@ -11,6 +14,7 @@ ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
 ln -s $DOTFILES/ctags.symlink $HOME/.ctags
 ln -s $DOTFILES/git/ignore $HOME/.gitignore
 ln -s $DOTFILES/tmux/tmux.conf.symlink $HOME/.tmux.conf
+ln -s $DOTFILES/zsh/zshrc.symlink $HOME/.zshrc
 
 $DOTFILES/install/osx.sh
 $DOTFILES/install/tmux.sh
