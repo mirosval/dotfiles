@@ -52,3 +52,5 @@ alias dc='docker-compose'
 # K8s
 alias k8='kubectl'
 alias km='kubectl -n master'
+
+alias news='w3m https://news.ycombinator.com'
