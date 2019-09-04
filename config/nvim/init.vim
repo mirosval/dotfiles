@@ -130,6 +130,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-fugitive' " Git
     Plug 'vimwiki/vimwiki' " Personal wiki
+    Plug 'HerringtonDarkholme/yats.vim' " Typescript syntax files
 
 " Initialize plugin system
 call plug#end()
@@ -144,6 +145,7 @@ map <leader>ev :vsp %% <cr>
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['/usr/local/bin/pyls'],
