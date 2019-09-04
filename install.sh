@@ -39,6 +39,7 @@ if [[ "$SHELL" != "$zsh_path" ]]; then
 fi
 
 pip3 install neovim sexpdata websocket-client
+npm install -g neovim typescript javascript-typescript-langserver
 
 # Set up vim-plug for neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
