@@ -13,6 +13,7 @@ ln -s $DOTFILES/config/karabiner $HOME/.config/karabiner
 ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
 ln -s $DOTFILES/ctags.symlink $HOME/.ctags
 ln -s $DOTFILES/git/ignore $HOME/.gitignore
+ln -s $DOTFILES/rgrc.symlink $HOME/.rgrc
 ln -s $DOTFILES/tmux/tmux.conf.symlink $HOME/.tmux.conf
 ln -s $DOTFILES/zsh/zshrc.symlink $HOME/.zshrc
 

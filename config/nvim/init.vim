@@ -49,6 +49,9 @@ call plug#begin('~/.config/nvim/plugged')
         set noswapfile
         set noundofile
 
+        " Add FZF to the run path
+        set rtp+=/usr/local/opt/fzf
+
     " }}} General
 
     " Appearance {{{
@@ -118,7 +121,9 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'do': 'bash install.sh',
         \ }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocompletions
-    Plug 'cloudhead/neovim-fuzzy' " Fuzzy finder / ctrl-p
+    " Plug 'cloudhead/neovim-fuzzy' " Fuzzy finder / ctrl-p
+    " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy finder / ctrl-p
+    Plug 'junegunn/fzf.vim' " Fuzzy finder / ctrl-p
     Plug 'tpope/vim-surround' " Surround selection with string
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
@@ -173,7 +178,7 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " fuzzy finder with ctrl-p
-nnoremap <C-p> :FuzzyOpen<CR>
+nnoremap <C-p> :Files<CR>
 
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
