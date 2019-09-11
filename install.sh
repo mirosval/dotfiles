@@ -41,7 +41,7 @@ if [[ "$SHELL" != "$zsh_path" ]]; then
     echo "default shell changed to $zsh_path"
 fi
 
-pip3 install neovim sexpdata websocket-client 'python-language-server[all]'
+pip3 install neovim sexpdata websocket-client 'python-language-server[all]' pyls-isort
 npm install -g neovim typescript javascript-typescript-langserver
 
 # Set up vim-plug for neovim
