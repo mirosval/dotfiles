@@ -7,12 +7,14 @@ mkdir -p $HOME/.hammerspoon
 
 ln -s $DOTFILES/Brewfile $HOME/.Brewfile
 ln -s $DOTFILES/config/alacritty $HOME/.config/alacritty
+ln -s $DOTFILES/config/flake8 $HOME/.config/flake8
+ln -s $DOTFILES/config/karabiner $HOME/.config/karabiner
 ln -s $DOTFILES/config/nvim $HOME/.config/nvim
 ln -s $DOTFILES/config/nvim/init.vim $HOME/.ideavimrc
-ln -s $DOTFILES/config/karabiner $HOME/.config/karabiner
-ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
+ln -s $DOTFILES/config/pycodestyle $HOME/.config/pycodestyle
 ln -s $DOTFILES/ctags.symlink $HOME/.ctags
 ln -s $DOTFILES/git/ignore $HOME/.gitignore
+ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
 ln -s $DOTFILES/rgrc.symlink $HOME/.rgrc
 ln -s $DOTFILES/tmux/tmux.conf.symlink $HOME/.tmux.conf
 ln -s $DOTFILES/zsh/zshrc.symlink $HOME/.zshrc
@@ -39,7 +41,7 @@ if [[ "$SHELL" != "$zsh_path" ]]; then
     echo "default shell changed to $zsh_path"
 fi
 
-pip3 install neovim sexpdata websocket-client
+pip3 install neovim sexpdata websocket-client 'python-language-server[all]'
 npm install -g neovim typescript javascript-typescript-langserver
 
 # Set up vim-plug for neovim
