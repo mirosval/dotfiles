@@ -43,6 +43,7 @@ brew "ripgrep"
 brew "rustup-init"
 brew "sbt"
 brew "sd"
+brew "starship"
 brew "terraform@0.11", link: true
 brew "thefuck"
 brew "tldr"

@@ -27,7 +27,6 @@ source $ZSH/autojump.zsh
 source $ZSH/direnv.zsh
 source $ZSH/ripgrep.zsh
 source $ZSH/fzf.zsh
-source $ZSH/tmux.zsh
 
 if [[ -a ~/.localrc ]]; then
     source ~/.localrc
@@ -56,10 +55,6 @@ export PATH=$DOTFILES/bin:$PATH
 HOMEBREW_FOLDER="/usr/local/share"
 source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-# iTerm Integration
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
