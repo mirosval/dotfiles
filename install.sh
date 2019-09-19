@@ -12,6 +12,7 @@ ln -s $DOTFILES/config/karabiner $HOME/.config/karabiner
 ln -s $DOTFILES/config/nvim $HOME/.config/nvim
 ln -s $DOTFILES/config/nvim/init.vim $HOME/.ideavimrc
 ln -s $DOTFILES/config/pycodestyle $HOME/.config/pycodestyle
+ln -s $DOTFILES/config/starship.toml $HOME/.config/starship.toml
 ln -s $DOTFILES/ctags.symlink $HOME/.ctags
 ln -s $DOTFILES/git/ignore $HOME/.gitignore
 ln -s $DOTFILES/hammerspoon $HOME/.hammerspoon
