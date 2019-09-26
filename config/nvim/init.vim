@@ -134,6 +134,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-fugitive' " Git
     Plug 'vimwiki/vimwiki' " Personal wiki
     Plug 'HerringtonDarkholme/yats.vim' " Typescript syntax files
+    Plug 'mattn/emmet-vim' " Emmet for html/css completions
 
 " Initialize plugin system
 call plug#end()
@@ -180,6 +181,10 @@ nnoremap <C-p> :Files<CR>
 
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
+
+" Use Ctrl+Z as Emmet Prefix
+let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_mode='n'    "only enable normal mode functions.
 
 " Map ctrl+move to move between split panels
 map <C-j> <C-W>j
