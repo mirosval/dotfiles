@@ -41,7 +41,7 @@ for config ($ZSH/**/*completion.sh) source $config
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
 
-export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
@@ -62,6 +62,9 @@ eval $(thefuck --alias)
 
 # Navigation tools
 source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+
+# Python
+eval "$(pyenv init -)"
 
 # Go
 export GOPATH=$HOME/work/go
