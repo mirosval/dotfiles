@@ -10,6 +10,23 @@ bind C-a send-prefix
 unbind r
 bind r source-file ~/.tmux.conf
 
+# Fix copy-paste
+# Don't copy on mouse release
+unbind -T copy-mode-vi             MouseDragEnd1Pane
+# Selection keybind
+bind   -T copy-mode-vi v   send -X begin-selection
+# Toggle selection mode
+bind   -T copy-mode-vi C-v send -X rectangle-toggle
+# Copy to clipboard
+bind   -T copy-mode-vi y   send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X clear-selection 
+
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X clear-selection
+
+# Copy to clipboard
+bind -T copy-mode-vi y send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X clear-selection 
+
+bind-key -T copy-mode MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
 # quick pane cycling
 unbind ^A
 bind ^A select-pane -t :.+
