@@ -70,6 +70,10 @@ eval "$(pyenv init -)"
 export GOPATH=$HOME/work/go
 export PATH=$PATH:$GOPATH/bin
 
+# Java
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
