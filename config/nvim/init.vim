@@ -111,6 +111,12 @@ call plug#begin('~/.config/nvim/plugged')
 
     " }}} Tabs and spaces
 
+    " IDEA {{{
+    if !has('nvim')
+        set ideajoin " allows ctrl+j in idea
+    endif
+    " }}}
+
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.

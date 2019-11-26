@@ -3,7 +3,7 @@ hyper = {"ctrl", "alt", "cmd", "shift"}
 hs.hotkey.bind(hyper, "v", function() hs.eventtap.keyStrokes(hs.pasteboard.getContents()) end)
 hs.hotkey.bind(hyper, "a", function() hs.application.launchOrFocus("Alacritty") end)
 hs.hotkey.bind(hyper, "q", function() hs.application.launchOrFocus("GraphiQL") end)
-hs.hotkey.bind(hyper, "e", function() hs.application.launchOrFocus("IntelliJ IDEA Ultimate") end)
+hs.hotkey.bind(hyper, "e", function() hs.application.launchOrFocus("IntelliJ IDEA CE") end)
 hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("TablePlus") end)
 hs.hotkey.bind(hyper, "b", function() hs.application.launchOrFocus("Firefox") end)
 hs.hotkey.bind(hyper, "c", function() hs.application.launchOrFocus("Visual Studio Code") end)
