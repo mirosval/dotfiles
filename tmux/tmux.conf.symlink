@@ -67,26 +67,25 @@ set -g @themepack 'powerline/block/cyan'
 run '~/.tmux/plugins/tpm/tpm'
 
 # Status
-local BG1="colour255"
-local BG2="colour250"
-local BG3="colour245"
-local BG4="colour240"
-local BG5="colour245"
+BG1="colour255"
+BG2="colour250"
+BG3="colour245"
+BG4="colour240"
+BG5="colour245"
 
-local home="#[fg=colour232,bg=$BG1,bold] #S"
-local user="#[fg=$BG1,bg=$BG2,nobold]#[fg=0,bg=$BG2] #(whoami)"
-local panels="#[fg=$BG2,bg=$BG3]#[fg=0,bg=$BG3] #I:#P"
-local datetime="#[fg=$BG3,bg=$BG4]#[fg=0,bg=$BG4] %b %d %H:%M:%S"
-local end="#[fg=$BG4,bg=colour233,nobold]"
+home="#[fg=colour232,bg=$BG1,bold] #S"
+user="#[fg=$BG1,bg=$BG2,nobold]#[fg=0,bg=$BG2] #(whoami)"
+panels="#[fg=$BG2,bg=$BG3]#[fg=0,bg=$BG3] #I:#P"
+datetime="#[fg=$BG3,bg=$BG4]#[fg=0,bg=$BG4] %b %d %H:%M:%S"
+end="#[fg=$BG4,bg=colour233,nobold]"
 
 set -g status-left-length 100
 set -g status-left "$home $user $panels $datetime $end"
 
-local net_speed="#[fg=$BG3,bg=colour233]#[fg=0,bg=$BG3] #($TMUX_PLUGIN_MANAGER_PATH/tmux-net-speed/scripts/net_speed.sh)"
-local battery="#[fg=$BG2,bg=$BG3]#[fg=0,bg=$BG2] bat: #(~/.dotfiles/scripts/battery.sh)%% "
-local spotify="#[fg=$BG1,bg=$BG2,bold]#[fg=colour0,bg=$BG1]#(~/.dotfiles/scripts/spotify.sh)"
+net_speed="#[fg=$BG3,bg=colour233]#[fg=0,bg=$BG3] #($TMUX_PLUGIN_MANAGER_PATH/tmux-net-speed/scripts/net_speed.sh)"
+battery="#[fg=$BG2,bg=$BG3]#[fg=0,bg=$BG2] bat: #(~/.dotfiles/scripts/battery.sh)%% "
+spotify="#[fg=$BG1,bg=$BG2,bold]#[fg=colour0,bg=$BG1]#(~/.dotfiles/scripts/spotify.sh)"
 
 set -g status-right "$net_speed $battery $spotify"
 
 set -g status-justify centre
-
