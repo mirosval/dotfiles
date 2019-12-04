@@ -153,6 +153,7 @@ map <leader>ew :e %% <cr>
 map <leader>es :sp %% <cr>
 map <leader>ev :vsp %% <cr>
 
+let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
