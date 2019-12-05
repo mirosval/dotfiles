@@ -59,7 +59,8 @@ npm install -g \
     neovim \
     typescript \
     javascript-typescript-langserver \
-    dockerfile-language-server-nodejs
+    dockerfile-language-server-nodejs \
+    vscode-json-languageserver
 
 # Set up vim-plug for neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \

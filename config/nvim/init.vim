@@ -155,15 +155,16 @@ map <leader>ev :vsp %% <cr>
 
 let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'dockerfile': ['docker-langserver', '--stdio'],
-    \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'go': ['gopls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'json': ['vscode-json-languageserver', '--stdio'],
     \ 'python': ['/usr/local/bin/pyls'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'scala': ['metals-vim'],
-    \ 'go': ['gopls'],
+    \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ }
 
 " Enable formatting with LanguageClient using gq
