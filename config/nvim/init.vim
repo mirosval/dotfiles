@@ -133,14 +133,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'vim-airline/vim-airline' " Bottom status line
     Plug 'aonemd/kuroi.vim' " Color Scheme
-    Plug 'tmux-plugins/vim-tmux'
 	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-fugitive' " Git
     Plug 'vimwiki/vimwiki' " Personal wiki
-    Plug 'HerringtonDarkholme/yats.vim' " Typescript syntax files
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
+    Plug 'sheerun/vim-polyglot' " Additional language support
 
 " Initialize plugin system
 call plug#end()
@@ -160,6 +159,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'json': ['vscode-json-languageserver', '--stdio'],
+    \ 'kotlin': ['~/work/kotlin-language-server/server/build/install/server/bin/kotlin-language-server'],
     \ 'python': ['/usr/local/bin/pyls'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
