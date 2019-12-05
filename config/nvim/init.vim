@@ -164,6 +164,7 @@ let g:LanguageClient_serverCommands = {
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'scala': ['metals-vim'],
+    \ 'sh': ['bash-language-server', 'start'],
     \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ }
 
