@@ -55,7 +55,11 @@ pyenv exec python -m pip install \
     'python-language-server[all]' \
     pyls-isort 
 
-npm install -g neovim typescript javascript-typescript-langserver
+npm install -g \
+    neovim \
+    typescript \
+    javascript-typescript-langserver \
+    dockerfile-language-server-nodejs
 
 # Set up vim-plug for neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
