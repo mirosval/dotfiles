@@ -166,6 +166,7 @@ let g:LanguageClient_serverCommands = {
     \ 'scala': ['metals-vim'],
     \ 'sh': ['bash-language-server', 'start'],
     \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'yaml': ['yaml-language-server', '--stdio'],
     \ }
 
 " Enable formatting with LanguageClient using gq
