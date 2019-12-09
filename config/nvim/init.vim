@@ -111,12 +111,6 @@ call plug#begin('~/.config/nvim/plugged')
 
     " }}} Tabs and spaces
 
-    " IDEA {{{
-    if !has('nvim')
-        set ideajoin " allows ctrl+j in idea
-    endif
-    " }}}
-
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
@@ -229,3 +223,13 @@ endfunction
 
 " Find the alternate file for the current path and open it
 nnoremap <leader>. :w<cr>:call AltCommand(expand('%'), ':e')<cr>
+
+" IDEA {{{
+if !has('nvim')
+    set ideajoin " allows ctrl+j in idea
+    set surround " emulates vim-surround in idea
+    map gd :action GotoDeclaration<CR>
+    map K :action QuickJavaDoc<CR>
+endif
+" }}}
+
