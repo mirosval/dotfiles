@@ -52,6 +52,8 @@ call plug#begin('~/.config/nvim/plugged')
         " Add FZF to the run path
         set rtp+=/usr/local/opt/fzf
 
+        " Prevent deoplete from opening buffers on completion
+        set completeopt="menu"
     " }}} General
 
     " Appearance {{{
