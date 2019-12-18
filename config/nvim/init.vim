@@ -179,6 +179,9 @@ let g:NERDDefaultAlign = 'left'
 
 " Use deoplete
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option({
+\   'camel_case': v:true,
+\ })
 
 " Deoplete tab completion
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
