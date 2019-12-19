@@ -22,3 +22,7 @@ spoon.MiroWindowsManager:bindHotkeys({
   left = {hyper, "h"},
   fullscreen = {hyper, "f"}
 })
+
+hs.caffeinate.set("displayIdle", true, true)
+hs.loadSpoon("Caffeine")
+spoon.Caffeine:start()
