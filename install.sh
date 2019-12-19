@@ -64,6 +64,9 @@ npm install -g \
     bash-language-server \
     yaml-language-server
 
+# Go
+go install "github.com/juliosueiras/terraform-lsp"
+
 # Set up vim-plug for neovim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
