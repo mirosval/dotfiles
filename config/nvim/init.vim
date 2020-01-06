@@ -49,9 +49,6 @@ call plug#begin('~/.config/nvim/plugged')
         set noswapfile
         set noundofile
 
-        " Add FZF to the run path
-        set rtp+=/usr/local/opt/fzf
-
         " Prevent deoplete from opening buffers on completion
         set completeopt="menu"
     " }}} General
@@ -113,29 +110,29 @@ call plug#begin('~/.config/nvim/plugged')
 
     " }}} Tabs and spaces
 
-    Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
-    Plug 'romainl/vim-cool' " Stop matching after search is done.
-    Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
-    Plug 'janko-m/vim-test' " Run test under cursor
     " Language Server Plugin
     Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
         \ 'do': 'bash install.sh',
         \ }
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocompletions
-    Plug 'junegunn/fzf.vim' " Fuzzy finder / ctrl-p
-    Plug 'tpope/vim-surround' " Surround selection with string
-    Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
-    Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
-    Plug 'vim-airline/vim-airline' " Bottom status line
-    Plug 'aonemd/kuroi.vim' " Color Scheme
 	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocompletions
+    Plug 'aonemd/kuroi.vim' " Color Scheme
+    Plug 'janko-m/vim-test' " Run test under cursor
+    Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
+    Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') } " Ctrl+p
+    Plug 'mattn/emmet-vim' " Emmet for html/css completions
+    Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
+    Plug 'romainl/vim-cool' " Stop matching after search is done.
+    Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-fugitive' " Git
+    Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
+    Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
+    Plug 'tpope/vim-surround' " Surround selection with string
+    Plug 'vim-airline/vim-airline' " Bottom status line
     Plug 'vimwiki/vimwiki' " Personal wiki
-    Plug 'mattn/emmet-vim' " Emmet for html/css completions
-    Plug 'sheerun/vim-polyglot' " Additional language support
 
 " Initialize plugin system
 call plug#end()
@@ -173,6 +170,10 @@ nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader> f :call LanguageClient#textDocument_formatting()<CR>
 
+" Clap
+nnoremap <C-p> :Clap files<CR>
+nnoremap <C-n> :Clap<CR>
+
 " NERDCommenter
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
@@ -185,9 +186,6 @@ call deoplete#custom#option({
 
 " Deoplete tab completion
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" fuzzy finder with ctrl-p
-nnoremap <C-p> :Files<CR>
 
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
