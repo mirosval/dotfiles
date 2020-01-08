@@ -10,6 +10,7 @@ call plug#begin('~/.config/nvim/plugged')
         \ }
 	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocompletions
+    Plug 'SirVer/ultisnips' " Snippets
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'janko-m/vim-test' " Run test under cursor
     Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
