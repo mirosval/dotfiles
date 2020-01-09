@@ -77,3 +77,9 @@ eval "$(jenv init -)"
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+# Broot
+broot_path="$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
+if [[ -a $broot_path ]] ; then
+    source $broot_path
+fi
