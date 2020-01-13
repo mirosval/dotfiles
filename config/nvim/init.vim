@@ -8,10 +8,10 @@ call plug#begin('~/.config/nvim/plugged')
         \ 'branch': 'next',
         \ 'do': 'bash install.sh',
         \ }
-	Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocompletions
     Plug 'SirVer/ultisnips' " Snippets
     Plug 'aonemd/kuroi.vim' " Color Scheme
+    Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'janko-m/vim-test' " Run test under cursor
     Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
@@ -19,6 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'romainl/vim-cool' " Stop matching after search is done.
+    Plug 'sbdchd/neoformat' " Auto formatting
     Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-fugitive' " Git
@@ -169,11 +170,13 @@ set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 nnoremap <silent> <leader>; :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <leader> f :call LanguageClient#textDocument_formatting()<CR>
 
 " Clap
+let g:clap_provider_grep_delay = 0
+let g:clap_provider_grep_blink = [0, 0]
 nnoremap <C-p> :Clap files<CR>
-nnoremap <C-n> :Clap<CR>
+nnoremap <leader>fs :Clap grep ++query=<cword><CR>
+nnoremap <leader>ff :Clap<CR>
 
 " NERDCommenter
 " Align line-wise comment delimiters flush left instead of following code indentation
@@ -237,3 +240,17 @@ if !has('nvim')
 endif
 " }}}
 
+
+let g:neoformat_try_formatprg = 1
+
+" Language Specific Settings {{{
+autocmd FileType javascript setlocal formatprg=prettier
+autocmd FileType typescript setlocal formatprg=prettier
+
+autocmd BufWritePre *.go Neoformat
+autocmd BufWritePre *.js Neoformat
+autocmd BufWritePre *.py Neoformat
+autocmd BufWritePre *.rs Neoformat
+autocmd BufWritePre *.scala Neoformat
+autocmd BufWritePre *.ts Neoformat
+" }}}
