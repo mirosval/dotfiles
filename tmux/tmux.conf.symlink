@@ -52,7 +52,6 @@ set -g @plugin 'tmux-plugins/tmux-pain-control'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'jimeh/tmux-themepack'
-set -g @plugin 'mirosval/tmux-net-speed'
 
 # Resurrect vim too
 set -g @resurrect-strategy-vim 'session'
@@ -85,7 +84,7 @@ end="#[fg=$BG4,bg=colour233,nobold]"
 set -g status-left-length 100
 set -g status-left "$home $user $panels $datetime $end"
 
-net_speed="#[fg=$BG3,bg=colour233]#[fg=0,bg=$BG3] #($TMUX_PLUGIN_MANAGER_PATH/tmux-net-speed/scripts/net_speed.sh)"
+net_speed="#[fg=$BG3,bg=colour233]#[fg=0,bg=$BG3] #(diffmetrik --metric download) #(diffmetrik --metric upload)"
 battery="#[fg=$BG2,bg=$BG3]#[fg=0,bg=$BG2] bat: #(~/.dotfiles/scripts/battery.sh)%% "
 spotify="#[fg=$BG1,bg=$BG2,bold]#[fg=colour0,bg=$BG1]#(~/.dotfiles/scripts/spotify.sh)"
 
