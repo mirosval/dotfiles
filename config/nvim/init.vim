@@ -146,6 +146,7 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 map <leader>ew :e %% <cr>
 map <leader>es :sp %% <cr>
 map <leader>ev :vsp %% <cr>
+map <leader>m :Gdiffsplit!<cr>
 
 let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_serverCommands = {
@@ -244,8 +245,9 @@ endif
 let g:neoformat_try_formatprg = 1
 
 " Language Specific Settings {{{
-autocmd FileType javascript setlocal formatprg=prettier
-autocmd FileType typescript setlocal formatprg=prettier
+autocmd FileType javascript setlocal formatprg=yarn\ --silent\ prettier\ --tab-width\ 4\ --print-width\ 100
+autocmd FileType typescript setlocal formatprg=yarn\ --silent\ prettier\ --tab-width\ 4\ --print-width\ 100
+autocmd FileType typescriptreact setlocal formatprg=yarn\ --silent\ prettier\ --tab-width\ 4\ --print-width\ 100
 
 autocmd BufWritePre *.go Neoformat
 autocmd BufWritePre *.js Neoformat
