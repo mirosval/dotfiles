@@ -192,6 +192,11 @@ call deoplete#custom#option({
 " Deoplete tab completion
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
 
