@@ -44,7 +44,8 @@ local function prewarmLunchBuddy()
 end
 
 local function notifyLunch()
-    if (os.date("%A") ~= "Saturday" and os.date("%A") ~= "Sunday") then
+    weekday = tonumber(os.date("%w"))
+    if (weekday > 0 and weekday < 6) then
         local notification = hs.notify.new(openLunchBuddy)
         notification:title("Lunch!")
         notification:withdrawAfter(30)
@@ -52,6 +53,6 @@ local function notifyLunch()
     end
 end
 
-hs.timer.doAt("10:40:00", "1d", prewarmLunchBuddy)
-hs.timer.doAt("10:59:10", "1d", notifyLunch)
+hs.timer.doAt("10:40", "1d", prewarmLunchBuddy)
+hs.timer.doAt("10:59", "1d", notifyLunch)
 

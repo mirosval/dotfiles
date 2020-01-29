@@ -152,8 +152,8 @@ let g:LanguageClient_hoverPreview = 'always'
 let g:LanguageClient_serverCommands = {
     \ 'dockerfile': ['docker-langserver', '--stdio'],
     \ 'go': ['gopls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'json': ['vscode-json-languageserver', '--stdio'],
     \ 'kotlin': ['~/work/kotlin-language-server/server/build/install/server/bin/kotlin-language-server'],
     \ 'python': ['/usr/local/bin/pyls'],
@@ -161,9 +161,21 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'scala': ['metals-vim'],
     \ 'sh': ['bash-language-server', 'start'],
-    \ 'typescript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'typescript.tsx': ['javascript-typescript-stdio'],
+    \ 'typescriptreact': ['javascript-typescript-stdio'],
     \ 'yaml': ['yaml-language-server', '--stdio'],
     \ }
+
+let g:LanguageClient_rootMarkers = {
+    \ 'javascript': ['jsconfig.json'],
+    \ 'typescript': ['tsconfig.json'],
+    \ }
+
+let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_virtualTextPrefix = ''
+let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
+let g:LanguageClient_serverStderr = expand('~/.local/share/nvim/LanguageServer.log')
 
 " Enable formatting with LanguageClient using gq
 set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
@@ -176,8 +188,10 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 let g:clap_provider_grep_delay = 0
 let g:clap_provider_grep_blink = [0, 0]
 nnoremap <C-p> :Clap files<CR>
-nnoremap <leader>fs :Clap grep ++query=<cword><CR>
 nnoremap <leader>ff :Clap<CR>
+nnoremap <leader>fg :Clap grep<CR>
+nnoremap <leader>fb :Clap buffers<CR>
+nnoremap <leader>fs :Clap grep ++query=<cword><CR>
 
 " NERDCommenter
 " Align line-wise comment delimiters flush left instead of following code indentation
@@ -255,9 +269,9 @@ autocmd FileType typescript setlocal formatprg=yarn\ --silent\ prettier\ --tab-w
 autocmd FileType typescriptreact setlocal formatprg=yarn\ --silent\ prettier\ --tab-width\ 4\ --print-width\ 100
 
 autocmd BufWritePre *.go Neoformat
-autocmd BufWritePre *.js Neoformat
+" autocmd BufWritePre *.js Neoformat
 autocmd BufWritePre *.py Neoformat
 autocmd BufWritePre *.rs Neoformat
 autocmd BufWritePre *.scala Neoformat
-autocmd BufWritePre *.ts Neoformat
+" autocmd BufWritePre *.ts Neoformat
 " }}}
