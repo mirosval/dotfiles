@@ -3,13 +3,6 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
-    " Language Server Plugin
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Autocompletions
-    Plug 'SirVer/ultisnips' " Snippets
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'janko-m/vim-test' " Run test under cursor
@@ -18,8 +11,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') } " Ctrl+p
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
+    Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
+    Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " CoC TypeScript support
+    Plug 'fannheyward/coc-rust-analyzer' " CoC Rust support
+    Plug 'puremourning/vimspector' " Debugging in vim
     Plug 'romainl/vim-cool' " Stop matching after search is done.
-    Plug 'sbdchd/neoformat' " Auto formatting
     Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-fugitive' " Git
@@ -75,11 +71,21 @@ call plug#end()
 
     " Disable backups, we have git
     set nobackup
+    set nowritebackup
     set noswapfile
     set noundofile
 
     " Prevent deoplete from opening buffers on completion
     set completeopt="menu"
+
+    " Update faster
+    set updatetime=300
+
+    " don't give |ins-completion-menu| messages.
+    set shortmess+=c
+
+    " Always show signcolumns
+    set signcolumn=yes
 " }}} General
 
 " Appearance {{{
@@ -100,7 +106,7 @@ call plug#end()
     set noshowmode " don't show which mode disabled for PowerLine
     set wildmode=list:longest " complete files like a shell
     set shell=$SHELL
-    set cmdheight=1 " command bar height
+    set cmdheight=2 " command bar height
     set title " set terminal title
     set showmatch " show matching braces
 
@@ -148,41 +154,115 @@ map <leader>es :sp %% <cr>
 map <leader>ev :vsp %% <cr>
 map <leader>m :Gdiffsplit!<cr>
 
-let g:LanguageClient_hoverPreview = 'always'
-let g:LanguageClient_serverCommands = {
-    \ 'dockerfile': ['docker-langserver', '--stdio'],
-    \ 'go': ['gopls'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'json': ['vscode-json-languageserver', '--stdio'],
-    \ 'kotlin': ['~/work/kotlin-language-server/server/build/install/server/bin/kotlin-language-server'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'scala': ['metals-vim'],
-    \ 'sh': ['bash-language-server', 'start'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'typescript.tsx': ['javascript-typescript-stdio'],
-    \ 'typescriptreact': ['javascript-typescript-stdio'],
-    \ 'yaml': ['yaml-language-server', '--stdio'],
-    \ }
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-let g:LanguageClient_rootMarkers = {
-    \ 'javascript': ['jsconfig.json'],
-    \ 'typescript': ['tsconfig.json'],
-    \ }
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-let g:LanguageClient_loggingLevel = 'INFO'
-let g:LanguageClient_virtualTextPrefix = ''
-let g:LanguageClient_loggingFile =  expand('~/.local/share/nvim/LanguageClient.log')
-let g:LanguageClient_serverStderr = expand('~/.local/share/nvim/LanguageServer.log')
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
-" Enable formatting with LanguageClient using gq
-set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use `complete_info` if your vim support it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
-nnoremap <silent> <leader>; :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Create mappings for function text object, requires document symbols feature of languageserver.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Clap
 let g:clap_provider_grep_delay = 0
@@ -196,20 +276,6 @@ nnoremap <leader>fs :Clap grep ++query=<cword><CR>
 " NERDCommenter
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
-
-" Use deoplete
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option({
-\   'camel_case': v:true,
-\ })
-
-" Deoplete tab completion
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger="<s-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
@@ -258,20 +324,4 @@ if !has('nvim')
     map gd :action GotoDeclaration<CR>
     map K :action QuickJavaDoc<CR>
 endif
-" }}}
-
-
-let g:neoformat_try_formatprg = 1
-
-" Language Specific Settings {{{
-autocmd FileType javascript setlocal formatprg=yarn\ --silent\ prettier\ --tab-width\ 4\ --print-width\ 100
-autocmd FileType typescript setlocal formatprg=yarn\ --silent\ prettier\ --tab-width\ 4\ --print-width\ 100
-autocmd FileType typescriptreact setlocal formatprg=yarn\ --silent\ prettier\ --tab-width\ 4\ --print-width\ 100
-
-autocmd BufWritePre *.go Neoformat
-" autocmd BufWritePre *.js Neoformat
-autocmd BufWritePre *.py Neoformat
-autocmd BufWritePre *.rs Neoformat
-autocmd BufWritePre *.scala Neoformat
-" autocmd BufWritePre *.ts Neoformat
 " }}}
