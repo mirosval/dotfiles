@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround' " Surround selection with string
     Plug 'vim-airline/vim-airline' " Bottom status line
     Plug 'vimwiki/vimwiki' " Personal wiki
+    Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
 
 " Initialize plugin system
 call plug#end()
@@ -153,6 +154,10 @@ map <leader>ew :e %% <cr>
 map <leader>es :sp %% <cr>
 map <leader>ev :vsp %% <cr>
 map <leader>m :Gdiffsplit!<cr>
+
+vnoremap CK :Kebab<cr>
+vnoremap CS :Snek<cr>
+vnoremap CC :Camel<cr>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
