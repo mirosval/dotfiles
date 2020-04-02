@@ -8,7 +8,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'janko-m/vim-test' " Run test under cursor
     Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
-    Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') } " Ctrl+p
+    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Ctrl+p
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
@@ -271,7 +271,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " Clap
 let g:clap_provider_grep_delay = 0
 let g:clap_provider_grep_blink = [0, 0]
-nnoremap <C-p> :Clap files<CR>
+let g:clap_provider_grep_opts = '--hidden'
+nnoremap <C-p> :Clap files --hidden<CR>
 nnoremap <leader>ff :Clap<CR>
 nnoremap <leader>fg :Clap grep<CR>
 nnoremap <leader>fb :Clap buffers<CR>
