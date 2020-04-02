@@ -13,7 +13,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
     Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " CoC TypeScript support
-    Plug 'fannheyward/coc-rust-analyzer' " CoC Rust support
     Plug 'puremourning/vimspector' " Debugging in vim
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'sheerun/vim-polyglot' " Additional language support
@@ -215,7 +214,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType typescript,json,rust setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end

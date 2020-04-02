@@ -6,5 +6,12 @@
             "initializationOptions": {}
         }
     },
-    "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "scss", "Markdown"]
+    "coc.preferences.formatOnSaveFiletypes": [
+        "Markdown",
+        "javascript", 
+        "rust", 
+        "scss", 
+        "typescript", 
+        "typescriptreact"
+    ]
 }
