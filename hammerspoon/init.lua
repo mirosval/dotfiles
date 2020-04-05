@@ -26,33 +26,3 @@ spoon.MiroWindowsManager:bindHotkeys({
 hs.caffeinate.set("displayIdle", true, true)
 hs.loadSpoon("Caffeine")
 spoon.Caffeine:start()
-
-local function openLunchBuddy()
-    -- This is almost good, but Firefox will always open a NEW tab instead of reusing exisitng
-    hs.urlevent.openURL("https://lunch-buddy.jimdo-platform.net/app/")
-end
-
-local function prewarmLunchBuddy()
-    if hs.wifi.currentNetwork() == "jimdo-guest" then
-        local notification = hs.notify.new(openLunchBuddy)
-        notification:title("You're on jimdo-guest!")
-        notification:informativeText("LunchBuddy will not work!")
-        notification:withdrawAfter(300)
-        notification:send()
-    end
-    openLunchBuddy()
-end
-
-local function notifyLunch()
-    weekday = tonumber(os.date("%w"))
-    if (weekday > 0 and weekday < 6) then
-        local notification = hs.notify.new(openLunchBuddy)
-        notification:title("Lunch!")
-        notification:withdrawAfter(30)
-        notification:send()
-    end
-end
-
-hs.timer.doAt("10:40", "1d", prewarmLunchBuddy)
-hs.timer.doAt("10:59", "1d", notifyLunch)
-
