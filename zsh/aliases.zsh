@@ -4,7 +4,7 @@ alias zshconfig="code ~/.zshrc"
 alias l="exa -lah"
 alias lg="exa -lah --git"
 
-alias v="nvim ."
+alias v="nvim . && clear"
 
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
 
