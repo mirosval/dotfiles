@@ -11,8 +11,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Ctrl+p
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
-    Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
     Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " CoC TypeScript support
+    Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
+    Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
     Plug 'puremourning/vimspector' " Debugging in vim
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'sheerun/vim-polyglot' " Additional language support
@@ -23,7 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround' " Surround selection with string
     Plug 'vim-airline/vim-airline' " Bottom status line
     Plug 'vimwiki/vimwiki' " Personal wiki
-    Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
 
 " Initialize plugin system
 call plug#end()
@@ -267,6 +267,14 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" Coc Actions
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " Clap
 let g:clap_provider_grep_delay = 0
