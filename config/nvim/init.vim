@@ -311,6 +311,7 @@ set termguicolors
 set background=dark
 colorscheme kuroi
 highlight EndOfBuffer cterm=NONE gui=NONE
+highlight LineNr ctermfg=Grey guifg=Grey
 
 " enable vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
