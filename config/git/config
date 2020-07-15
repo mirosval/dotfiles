@@ -1,0 +1,11 @@
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[core]
+	excludesfile = ~/.config/git/ignore
+[user]
+	name = Miroslav Zoricak
+	email = miroslav.zoricak@gmail.com
+[github]
+    user = mirosval
+[pull]
+    ff = only

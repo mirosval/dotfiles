@@ -54,6 +54,3 @@ go install "github.com/juliosueiras/terraform-lsp"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Make Git use SSH Keys over HTTPS
-git config --global url."git@github.com:".insteadOf "https://github.com/"
-git config --global core.excludesfile '~/.gitignore'
