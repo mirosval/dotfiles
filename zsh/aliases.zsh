@@ -48,6 +48,8 @@ alias fix_audio='sudo pkill coreaudiod'
 
 # Docker-compose alias
 alias dc='docker-compose'
+alias dcu='docker-compose up'
+alias dcd='docker-compose down'
 
 # K8s
 alias k8='kubectl'
