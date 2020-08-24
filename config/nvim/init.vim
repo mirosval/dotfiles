@@ -23,7 +23,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-surround' " Surround selection with string
     Plug 'vim-airline/vim-airline' " Bottom status line
-    Plug 'vimwiki/vimwiki' " Personal wiki
 
 " Initialize plugin system
 call plug#end()
