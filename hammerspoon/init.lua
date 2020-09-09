@@ -12,6 +12,7 @@ hs.hotkey.bind(hyper, "q", function() hs.application.launchOrFocus("GraphiQL") e
 hs.hotkey.bind(hyper, "s", function() hs.application.launchOrFocus("Slack") end)
 hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("TablePlus") end)
 hs.hotkey.bind(hyper, "v", function() hs.application.launchOrFocus("Visual Studio Code") end)
+hs.hotkey.bind(hyper, "z", function() hs.application.launchOrFocus("Discord") end)
 
 hs.loadSpoon("MiroWindowsManager")
 
