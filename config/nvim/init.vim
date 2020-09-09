@@ -10,6 +10,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Ctrl+p
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
+    Plug 'mhinz/vim-signify'
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " CoC TypeScript support
     Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
@@ -279,7 +280,7 @@ nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<C
 let g:clap_provider_grep_delay = 0
 let g:clap_provider_grep_blink = [0, 0]
 let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --hidden -g "!.git/"'
-nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --exclude '.git' --exclude 'target'<CR>
+nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --no-ignore --exclude '.git' --exclude 'target'<CR>
 nnoremap <leader>ff :Clap<CR>
 nnoremap <leader>fg :Clap grep<CR>
 nnoremap <leader>fb :Clap buffers<CR>
