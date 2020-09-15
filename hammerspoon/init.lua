@@ -1,22 +1,26 @@
 hyper = {"ctrl", "alt", "cmd", "shift"}
 
-hs.hotkey.bind(hyper, "a", function() hs.application.launchOrFocus("Alacritty") end)
-hs.hotkey.bind(hyper, "b", function() hs.application.launchOrFocus("Firefox") end)
-hs.hotkey.bind(hyper, "c", function() hs.application.launchOrFocus("Calendar") end)
-hs.hotkey.bind(hyper, "d", function() hs.application.launchOrFocus("Spotify") end)
-hs.hotkey.bind(hyper, "e", function() hs.application.launchOrFocus("IntelliJ IDEA CE") end)
-hs.hotkey.bind(hyper, "g", function() hs.application.launchOrFocus("Fork") end)
-hs.hotkey.bind(hyper, "m", function() hs.application.launchOrFocus("Messages") end)
-hs.hotkey.bind(hyper, "n", function() hs.application.launchOrFocus("Notion") end)
-hs.hotkey.bind(hyper, "q", function() hs.application.launchOrFocus("GraphiQL") end)
-hs.hotkey.bind(hyper, "s", function() hs.application.launchOrFocus("Slack") end)
-hs.hotkey.bind(hyper, "t", function() hs.application.launchOrFocus("TablePlus") end)
-hs.hotkey.bind(hyper, "v", function() hs.application.launchOrFocus("Visual Studio Code") end)
-hs.hotkey.bind(hyper, "z", function() hs.application.launchOrFocus("Discord") end)
+function focus(key, app)
+  hs.hotkey.bind(hyper, key, function() hs.application.launchOrFocus(app) end)
+end
+
+focus("a", "Alacritty")
+focus("b", "Firefox")
+focus("c", "Calendar")
+focus("d", "Spotify")
+focus("e", "IntelliJ IDEA CE")
+focus("g", "Fork")
+focus("m", "Messages")
+focus("n", "Notion")
+focus("q", "GraphiQL")
+focus("s", "Slack")
+focus("t", "TablePlus")
+focus("v", "Visual Studio Code")
+focus("z", "Discord")
 
 hs.loadSpoon("MiroWindowsManager")
 
-hs.window.animationDuration = 0.1
+hs.window.animationDuration = 0
 spoon.MiroWindowsManager:bindHotkeys({
   up = {hyper, "k"},
   right = {hyper, "l"},
@@ -24,6 +28,29 @@ spoon.MiroWindowsManager:bindHotkeys({
   left = {hyper, "h"},
   fullscreen = {hyper, "f"}
 })
+
+function moveWindow(where)
+  if hs.window.focusedWindow() then
+    local w = hs.window.frontmostWindow()
+    print(w)
+    if (where == "east") then w:moveOneScreenEast(false, true, 0)
+    elseif (where == "west") then w:moveOneScreenWest(false, true, 0)
+    elseif (where == "south") then w:moveOneScreenSouth(false, true, 0)
+    elseif (where == "north") then w:moveOneScreenNorth(false, true, 0)
+    end
+  end
+end
+
+function move(key, where)
+  hs.hotkey.bind(hyper, key, function() moveWindow(where) end)
+end
+
+-- The following functions bind hyper+{yuio} to move active window
+-- to an adjacent screen 
+move("y", "west")
+move("u", "south")
+move("i", "north")
+move("o", "east")
 
 hs.caffeinate.set("displayIdle", true, true)
 hs.loadSpoon("Caffeine")
