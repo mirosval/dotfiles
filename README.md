@@ -70,6 +70,10 @@ I use [LanguageClient](https://github.com/autozimu/LanguageClient-neovim) for ta
 - `caps-lock-k` Move window to the top
 - `caps-lock-l` Move window to the right
 - `caps-lock-f` Maximize window, repeat to cycle through sizes
+- `caps-lock-y` Move window one screen west
+- `caps-lock-u` Move window one screen south
+- `caps-lock-i` Move window one screen north
+- `caps-lock-o` Move window one screen east
 
 ### Karabiner
 
