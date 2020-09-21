@@ -32,12 +32,13 @@ spoon.MiroWindowsManager:bindHotkeys({
 function moveWindow(where)
   if hs.window.focusedWindow() then
     local w = hs.window.frontmostWindow()
-    print(w)
-    if (where == "east") then w:moveOneScreenEast(false, true, 0)
-    elseif (where == "west") then w:moveOneScreenWest(false, true, 0)
-    elseif (where == "south") then w:moveOneScreenSouth(false, true, 0)
-    elseif (where == "north") then w:moveOneScreenNorth(false, true, 0)
+    local s = hs.screen.mainScreen()
+    if (where == "east") then s = s:toEast()
+    elseif (where == "west") then s = s:toWest()
+    elseif (where == "south") then s = s:toSouth()
+    elseif (where == "north") then s = s:toNorth()
     end
+    w:moveToScreen(s)
   end
 end
 
