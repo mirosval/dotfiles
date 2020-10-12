@@ -1,9 +1,11 @@
 {
     "languageserver": {
         "terraform": {
-            "command": "terraform-lsp",
-            "filetypes": ["terraform"],
-            "initializationOptions": {}
+            "command": "terraform-ls",
+            "args": ["serve"],
+            "filetypes": ["terraform", "tf"],
+            "initializationOptions": {},
+            "settings": {}
         }
     },
     "coc.preferences.formatOnSaveFiletypes": [
