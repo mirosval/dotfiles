@@ -40,8 +40,19 @@ mkcd ()
     mkdir -p -- "$1" && cd -P -- "$1"
 }
 
+# Cargo
+alias cb="cargo build"
+alias ct="cargo test"
+alias cr="cargo run"
+alias ctn="cargo test -- --nocapture"
+alias cwc="cargo watch -c -x 'check'"
+alias cwct="cargo watch -c -x 'check' -x 'test -- --nocapture'"
+alias cwctr="cargo watch -c -x 'check' -x 'test -- --nocapture' -x 'run'"
+
 # Git
 alias gst="git status"
+alias gm="git checkout master"
+alias gf="git pull --ff --no-rebase"
 
 # Restarts coreaudio, use when headphones don't work
 alias fix_audio='sudo pkill coreaudiod'
@@ -56,3 +67,6 @@ alias k8='kubectl'
 alias km='kubectl -n master'
 
 alias news='w3m https://news.ycombinator.com'
+
+# Julia
+alias jp='julia --project=.'
