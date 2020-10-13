@@ -225,20 +225,10 @@ if !has('nvim')
 endif
 " }}}
 
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
-lua <<EOF
-
-local nvim_lsp = require'nvim_lsp'
-
--- attach completion and diag on setup
-local on_attach = function(client) 
-    require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
-end
-
-nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
-
-EOF
+lua require 'lsp_config';
 
 " Trigger completion with <Tab>
 inoremap <silent><expr> <TAB>
@@ -252,7 +242,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Code navigation shortcuts
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -260,7 +250,7 @@ nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gde   <cmd>lua vim.lsp.buf.declaration()<CR>
 
 " Visualize diagnostics
 let g:diagnostic_enable_virtual_text = 1
