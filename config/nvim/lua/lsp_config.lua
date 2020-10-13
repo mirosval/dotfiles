@@ -1,9 +1,30 @@
+local lsp_status = require'lsp-status'
+
+local kind_labels_mt = {__index = function(_, k) return k end}
+local kind_labels = {}
+setmetatable(kind_labels, kind_labels_mt)
+
+lsp_status.register_progress()
+lsp_status.config({
+  kind_labels = kind_labels,
+  indicator_errors = "?",
+  indicator_warnings = "!",
+  indicator_info = "i",
+  indicator_hint = "Ý",
+  -- the default is a wide codepoint which breaks absolute and relative
+  -- line counts if placed before airline's Z section
+  status_symbol = "",
+})
+
 local nvim_lsp = require'nvim_lsp'
+local completion = require'completion'
+local diagnostic = require'diagnostic'
 
 -- attach completion and diag on setup
 local on_attach = function(client) 
-    require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
+    lsp_status.on_attach(client)
+    completion.on_attach(client)
+    diagnostic.on_attach(client)
 end
 
 -- :LspInstall cssls
@@ -97,7 +118,10 @@ nvim_lsp.metals.setup({ on_attach=on_attach })
 nvim_lsp.pyls.setup({ on_attach=on_attach })
 
 -- LspInstall rust_analyzer
-nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+nvim_lsp.rust_analyzer.setup({ 
+    on_attach=on_attach,
+    capabilities = lsp_status.capabilities
+})
 
 -- LspInstall terraformls
 nvim_lsp.terraformls.setup({ on_attach=on_attach })

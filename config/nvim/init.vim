@@ -28,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tjdevries/lsp_extensions.nvim' " Extensions to built-in LSP, for example, providing type inlay hints
     Plug 'nvim-lua/completion-nvim' " Autocompletion framework for built-in LSP
     Plug 'nvim-lua/diagnostic-nvim' " Diagnostic navigation and settings for built-in LSP
+    Plug 'nvim-lua/lsp-status.nvim' " Status messages for nvim
 
 " Initialize plugin system
 call plug#end()
@@ -230,6 +231,15 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
 lua require 'lsp_config';
 
+function! LspStatus() abort
+  let status = luaeval('require("lsp-status").status()')
+  return trim(status)
+endfunction
+call airline#parts#define_function('lsp_status', 'LspStatus')
+call airline#parts#define_condition('lsp_status', 'luaeval("#vim.lsp.buf_get_clients() > 0")')
+let g:airline#extensions#nvimlsp#enabled = 0
+let g:airline_section_warning = airline#section#create_right(['lsp_status'])
+
 " Trigger completion with <Tab>
 inoremap <silent><expr> <TAB>
   \ pumvisible() ? "\<C-n>" :
@@ -242,15 +252,16 @@ function! s:check_back_space() abort
 endfunction
 
 " Code navigation shortcuts
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gde   <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k>       <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <leader>d   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0          <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW          <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gde         <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> ga          <cmd>lua vim.lsp.buf.code_action()<CR>
 
 " Visualize diagnostics
 let g:diagnostic_enable_virtual_text = 1
