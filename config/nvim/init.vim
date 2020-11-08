@@ -158,12 +158,26 @@ vnoremap CK :Kebab<cr>
 vnoremap CS :Snek<cr>
 vnoremap CC :Camel<cr>
 
+let g:coc_global_extensions = [
+    \'coc-css', 
+    \'coc-emmet', 
+    \'coc-eslint', 
+    \'coc-html', 
+    \'coc-json', 
+    \'coc-prettier', 
+    \'coc-python', 
+    \'coc-react-refactor', 
+    \'coc-rust-analyzer',
+    \'coc-tsserver',
+    \'coc-yaml'
+    \]
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -282,7 +296,7 @@ let g:clap_provider_grep_blink = [0, 0]
 let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --hidden -g "!.git/"'
 nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --no-ignore --exclude '.git' --exclude 'target' --exclude '.cache' --exclude 'node_modules' --exclude 'dist'<CR>
 nnoremap <leader>ff :Clap<CR>
-nnoremap <leader>fg :Clap grep<CR>
+nnoremap <leader>fg :Clap grep2<CR>
 nnoremap <leader>fb :Clap buffers<CR>
 nnoremap <leader>fs :Clap grep ++query=<cword><CR>
 
@@ -294,14 +308,14 @@ let g:NERDDefaultAlign = 'left'
 let g:airline_powerline_fonts = 1
 
 " Use Ctrl+Z as Emmet Prefix
-let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_leader_key='<c-y>'
 let g:user_emmet_mode='n'    "only enable normal mode functions.
 
 " Map ctrl+move to move between split panels
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 " Save with \w
 nnoremap <leader>w :w<cr>
@@ -341,3 +355,4 @@ if !has('nvim')
     map K :action QuickJavaDoc<CR>
 endif
 " }}}
+

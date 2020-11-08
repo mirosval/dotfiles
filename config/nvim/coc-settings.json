@@ -6,6 +6,11 @@
             "filetypes": ["terraform", "tf"],
             "initializationOptions": {},
             "settings": {}
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod"],
+            "filetypes": ["go"]
         }
     },
     "coc.preferences.formatOnSaveFiletypes": [
@@ -15,5 +20,19 @@
         "scss", 
         "typescript", 
         "typescriptreact"
-    ]
+    ],
+    "eslint.filetypes": [
+        "Markdown",
+        "javascript", 
+        "rust", 
+        "scss", 
+        "typescript", 
+        "typescriptreact"
+    ],
+    "eslint.autoFixOnSave": true,
+    "diagnostic.virtualText": true,
+    "codeLens.enable": true,
+    "yaml.schemas": {
+        "kubernetes": "/*.yaml"
+    }
 }
