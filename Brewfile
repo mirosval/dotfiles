@@ -1,7 +1,9 @@
 tap "coursier/formulas"
 tap "derailed/k9s"
+tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
@@ -11,17 +13,20 @@ tap "olafurpg/scalafmt"
 tap "saulpw/vd"
 tap "scalacenter/bloop"
 tap "uptech/oss"
+tap "weaveworks/tap"
 cask "adoptopenjdk"
 # Shell extension to jump to frequently used directories
 brew "autojump"
 # Use AWS IAM credentials to authenticate to Kubernetes
 brew "aws-iam-authenticator"
-# Interpreted, interactive, object-oriented programming language
-brew "python"
 # Official Amazon AWS command-line interface
 brew "awscli"
+# Terminal bandwidth utilization tool
+brew "bandwhich"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Cross-platform make
+brew "cmake"
 # Configurable talking characters in ASCII art
 brew "cowsay"
 # Reimplementation of ctags(1)
@@ -40,13 +45,17 @@ brew "fd"
 brew "fortune"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU debugger
+brew "gdb"
+# GitHub command-line tool
+brew "gh"
 # Distributed revision control system
 brew "git"
 # Git extension for versioning large files
 brew "git-lfs"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# The Haskell Tool Stack
+# Cross-platform program for developing Haskell projects
 brew "haskell-stack"
 # File format designed to store large amounts of data
 brew "hdf5"
@@ -56,6 +65,8 @@ brew "hexyl"
 brew "hyperkit", link: false
 # LLVM's OpenMP runtime library
 brew "libomp"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
 # Manage your Java environment
 brew "jenv"
 # Lightweight and flexible command-line JSON processor
@@ -64,18 +75,32 @@ brew "jq"
 brew "kubernetes-cli"
 # Postgres C API library
 brew "libpq"
+# Library for USB device access
+brew "libusb"
+# Vorbis General Audio Compression Codec
+brew "libvorbis"
 # Rainbows and unicorns in your console!
 brew "lolcat"
+# Package manager for the Lua programming language
+brew "luarocks"
+# Development kit for the Java programming language
+brew "openjdk"
 # Java-based project management
 brew "maven"
+# Open source relational database management system
+brew "mysql"
+# Open source relational database management system
+brew "mysql-client"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Ambitious Vim-fork focused on extensibility and agility
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 # Platform built on V8 to build network applications
 brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Python dependency management tool
 brew "pipenv"
 # Object-relational database system
@@ -84,19 +109,23 @@ brew "postgresql"
 brew "procs"
 # Python version management
 brew "pyenv"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
 # File browser
 brew "ranger"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# The Rust toolchain installer
+# Experimental Rust compiler front-end for IDEs
+brew "rust-analyzer"
+# Rust toolchain installer
 brew "rustup-init"
 # Build tool for Scala projects
 brew "sbt"
 # Intuitive find & replace CLI
 brew "sd"
-# The cross-shell prompt for astronauts
+# Cross-shell prompt for astronauts
 brew "starship"
 # Tool to build, change, and version infrastructure
 brew "terraform@0.11", link: true
@@ -118,10 +147,16 @@ brew "w3m"
 brew "watch"
 # Execute commands when watched files change
 brew "watchexec"
+# Watch files and take action when they change
+brew "watchman"
 # Internet file retriever
 brew "wget"
 # Fast CSV toolkit written in Rust
 brew "xsv"
+# JavaScript package manager
+brew "yarn"
+# General-purpose lossless data-compression library
+brew "zlib"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh
@@ -136,15 +171,19 @@ brew "zsh-syntax-highlighting"
 brew "coursier/formulas/coursier"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
+# Terraform Language Server
+brew "hashicorp/tap/terraform-ls"
 # Experimental Scala Compiler
 brew "lampepfl/brew/dotty"
 brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
 # Terminal utility for exploring and arranging tabular data
 brew "saulpw/vd/visidata"
-# Bloop is a build server to compile, test and run Scala fast
+# Installs the Bloop CLI for Bloop, a build server to compile, test and run Scala fast
 brew "scalacenter/bloop/bloop"
 # command-line utility to find alternate file
 brew "uptech/oss/alt"
+# The official CLI for Amazon EKS
+brew "weaveworks/tap/eksctl"
 cask "adoptopenjdk11"
 cask "adoptopenjdk12"
 cask "adoptopenjdk8"
@@ -155,20 +194,27 @@ cask "discord"
 cask "docker"
 cask "flux"
 cask "font-hasklig-nerd-font"
+cask "font-juliamono"
 cask "fork"
 cask "google-chrome-dev"
 cask "graphiql"
 cask "hammerspoon"
+cask "handbrake"
 cask "ipynb-quicklook"
 cask "java"
 cask "jetbrains-toolbox"
+cask "julia"
 cask "karabiner-elements"
 cask "netnewswire"
+cask "notion"
 cask "quicklook-csv"
 cask "quicklook-json"
 cask "slack"
 cask "spotify"
+cask "steam"
 cask "tableplus"
 cask "the-unarchiver"
 cask "tunnelblick"
 cask "visual-studio-code"
+cask "vlc"
+cask "zsa-wally"
