@@ -320,15 +320,6 @@ nnoremap <C-l> <C-W>l
 " Save with \w
 nnoremap <leader>w :w<cr>
 
-" Colorscheme
-set termguicolors
-set background=dark
-colorscheme kuroi
-highlight EndOfBuffer cterm=NONE gui=NONE
-highlight LineNr guifg=Grey
-highlight Cursor guifg=white guibg=red
-highlight iCursor guifg=white guibg=red
-
 " enable vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
@@ -356,3 +347,13 @@ if !has('nvim')
 endif
 " }}}
 
+" Colorscheme
+set termguicolors
+set background=dark
+colorscheme kuroi
+highlight EndOfBuffer cterm=NONE gui=NONE
+highlight LineNr guifg=Grey
+highlight Cursor guifg=white guibg=red
+highlight iCursor guifg=white guibg=red
+highlight MatchParen cterm=underline ctermbg=black ctermfg=red
+highlight MatchParen gui=underline guibg=black guifg=red
