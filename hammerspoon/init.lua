@@ -15,7 +15,7 @@ focus("n", "Notion")
 focus("q", "GraphiQL")
 focus("r", "Google Chrome")
 focus("s", "Slack")
-focus("t", "TablePlus")
+focus("t", "DataGrip")
 focus("v", "Visual Studio Code")
 focus("z", "Discord")
 
