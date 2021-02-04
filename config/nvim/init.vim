@@ -120,7 +120,9 @@ call plug#end()
 " Tabs and Spaces {{{
 
     set shiftwidth=4 " indent using >
-    set tabstop=4 " number of visual spaces per tab
+    " number of visual spaces per tab this should remain at 8
+    " https://www.reddit.com/r/vim/wiki/tabstop
+    set tabstop=8 
     set softtabstop=4 " edit as if the tabs are 4 characters wide
     set expandtab
     set smarttab
@@ -149,10 +151,10 @@ let mapleader = "\\"
 
 " Expand to the current directory
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %% <cr>
-map <leader>es :sp %% <cr>
-map <leader>ev :vsp %% <cr>
-map <leader>m :Gdiffsplit!<cr>
+noremap <leader>ew :e %% <cr>
+noremap <leader>es :sp %% <cr>
+noremap <leader>ev :vsp %% <cr>
+noremap <leader>m :Gdiffsplit!<cr>
 
 vnoremap CK :Kebab<cr>
 vnoremap CS :Snek<cr>
@@ -195,19 +197,19 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
+function! s:show_documentation() abort
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
@@ -215,15 +217,18 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup highlightgroup
+    autocmd!
+    " Highlight symbol under cursor on CursorHold
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup end
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xnoremap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -234,23 +239,23 @@ augroup mygroup
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xnoremap <leader>a  <Plug>(coc-codeaction-selected)
+nnoremap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
+nnoremap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nnoremap <leader>qf  <Plug>(coc-fix-current)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
+xnoremap if <Plug>(coc-funcobj-i)
+xnoremap af <Plug>(coc-funcobj-a)
+onoremap if <Plug>(coc-funcobj-i)
+onoremap af <Plug>(coc-funcobj-a)
 
 " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+nnoremap <silent> <TAB> <Plug>(coc-range-select)
+xnoremap <silent> <TAB> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -287,14 +292,14 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+xnoremap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nnoremap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " Clap
 let g:clap_provider_grep_delay = 0
 let g:clap_provider_grep_blink = [0, 0]
 let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --hidden -g "!.git/"'
-nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --no-ignore --exclude '.git' --exclude 'target' --exclude '.cache' --exclude 'node_modules' --exclude 'dist'<CR>
+nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --no-ignore --exclude '.git' --exclude 'target' --exclude '.cache' --exclude 'node_modules' --exclude 'dist' --exclude '.mypy_cache'<CR>
 nnoremap <leader>ff :Clap<CR>
 nnoremap <leader>fg :Clap grep2<CR>
 nnoremap <leader>fb :Clap buffers<CR>
@@ -306,6 +311,7 @@ let g:NERDDefaultAlign = 'left'
 
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
 
 " Use Ctrl+Z as Emmet Prefix
 let g:user_emmet_leader_key='<c-y>'
@@ -326,7 +332,7 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 " Enable Alt
 " Run a given vim command on the results of alt from a given path.
 " See usage below.
-function! AltCommand(path, vim_command)
+function! AltCommand(path, vim_command) abort
   let l:alternate = system("alt " . a:path)
   if empty(l:alternate)
     echo "No alternate file for " . a:path . " exists!"
@@ -349,11 +355,14 @@ endif
 
 " Colorscheme
 set termguicolors
-set background=dark
+" set background=dark
+augroup Highlights
+    autocmd!
+    autocmd ColorScheme * highlight EndOfBuffer cterm=NONE gui=NONE
+                      \ | highlight LineNr guifg=Grey
+                      \ | highlight Cursor guifg=white guibg=red
+                      \ | highlight iCursor guifg=white guibg=red
+                      \ | highlight MatchParen cterm=underline ctermbg=black ctermfg=red
+                      \ | highlight MatchParen gui=underline guibg=black guifg=red
+augroup end
 colorscheme kuroi
-highlight EndOfBuffer cterm=NONE gui=NONE
-highlight LineNr guifg=Grey
-highlight Cursor guifg=white guibg=red
-highlight iCursor guifg=white guibg=red
-highlight MatchParen cterm=underline ctermbg=black ctermfg=red
-highlight MatchParen gui=underline guibg=black guifg=red
