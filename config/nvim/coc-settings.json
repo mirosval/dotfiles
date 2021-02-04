@@ -16,6 +16,7 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "Markdown",
         "javascript", 
+        "python", 
         "rust", 
         "scss", 
         "typescript", 
@@ -24,7 +25,6 @@
     "eslint.filetypes": [
         "Markdown",
         "javascript", 
-        "rust", 
         "scss", 
         "typescript", 
         "typescriptreact"
@@ -34,5 +34,13 @@
     "codeLens.enable": true,
     "yaml.schemas": {
         "kubernetes": "/*.yaml"
-    }
+    },
+    "python.poetryPath": "poetry",
+    "python.venvPath": "~/Library/Caches/pypoetry/virtualenvs/",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "black"
 }
+
