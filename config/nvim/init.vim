@@ -302,20 +302,25 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 EOF
 
-nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-nnoremap <silent><leader>ca :Lspsaga code_action<CR>
-vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent>gh :Lspsaga lsp_finder<CR>
+nnoremap <silent><leader>ac :Lspsaga code_action<CR>
+vnoremap <silent><leader>ac :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent>K :Lspsaga hover_doc<CR>
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>
-nnoremap <silent> gs :Lspsaga signature_help<CR>
-nnoremap <silent>gr :Lspsaga rename<CR>
-nnoremap <silent> gd :Lspsaga preview_definition<CR>
+nnoremap <silent>gs :Lspsaga signature_help<CR>
+nnoremap <silent>rn :Lspsaga rename<CR>
+nnoremap <silent>gd :Lspsaga preview_definition<CR>
 nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
 nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
+
+augroup Formatting
+    autocmd!
+    autocmd BufWritePre *.rs,*.ts,*.tsx,*.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+augroup end
 
 " nvim-compe
 inoremap <silent><expr> <C-Space> compe#complete()
