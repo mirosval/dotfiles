@@ -322,6 +322,12 @@ augroup Formatting
     autocmd BufWritePre *.rs,*.ts,*.tsx,*.py lua vim.lsp.buf.formatting_sync(nil, 1000)
 augroup end
 
+" disable completion in vim-clap floating window
+augroup Compe_Clap
+    autocmd!
+    autocmd FileType clap_input call compe#setup({'enabled': v:false}, 0)
+augroup end
+
 " nvim-compe
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
