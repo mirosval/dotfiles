@@ -10,6 +10,7 @@ fi
 config_dirs=(
     ".config"
     ".config/alacritty"
+    ".config/fd"
     ".config/git"
     ".config/karabiner"
     ".config/nvim"
