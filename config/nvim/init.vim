@@ -167,7 +167,7 @@ filetype plugin indent on
 let g:clap_provider_grep_delay = 0
 let g:clap_provider_grep_blink = [0, 0]
 let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --hidden -g "!.git/"'
-nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --no-ignore --exclude '.git' --exclude 'target' --exclude '.cache' --exclude 'node_modules' --exclude 'dist' --exclude '.mypy_cache'<CR>
+nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --no-ignore-vcs<CR>
 nnoremap <leader>ff :Clap<CR>
 nnoremap <leader>fg :Clap grep2<CR>
 nnoremap <leader>fb :Clap buffers<CR>

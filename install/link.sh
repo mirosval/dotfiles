@@ -10,6 +10,7 @@ fi
 config_dirs=(
     ".config"
     ".config/alacritty"
+    ".config/fd"
     ".config/git"
     ".config/karabiner"
     ".config/nvim"
@@ -31,6 +32,7 @@ done
 links=(
     "Brewfile .Brewfile"
     "config/alacritty/alacritty.yml .config/alacritty/alacritty.yml"
+    "config/fd/ignore .config/fd/ignore"
     "config/flake8 .config/flake8"
     "config/git/config .config/git/config"
     "config/git/ignore .config/git/ignore"
