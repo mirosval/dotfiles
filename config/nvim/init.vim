@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'hrsh7th/nvim-compe'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Ctrl+p
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'mhinz/vim-signify'
