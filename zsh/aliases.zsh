@@ -53,6 +53,7 @@ alias cwctr="cargo watch -c -x 'check' -x 'test -- --nocapture' -x 'run'"
 alias gst="git status"
 alias gm="git checkout master"
 alias gf="git pull --ff --no-rebase"
+alias ghopen="gh repo view --web"
 
 # Restarts coreaudio, use when headphones don't work
 alias fix_audio='sudo pkill coreaudiod'

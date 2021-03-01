@@ -39,12 +39,14 @@ pyenv exec python -m pip install \
     pyls-isort 
 
 npm install -g \
+    bash-language-server \
+    dockerfile-language-server-nodejs \
+    javascript-typescript-langserver \
     neovim \
     typescript \
-    javascript-typescript-langserver \
-    dockerfile-language-server-nodejs \
+    vscode-css-languageserver-bin \
+    vscode-html-languageserver-bin \
     vscode-json-languageserver \
-    bash-language-server \
     yaml-language-server
 
 # Go

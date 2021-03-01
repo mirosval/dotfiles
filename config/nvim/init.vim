@@ -3,19 +3,21 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
+    " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " CoC TypeScript support
+    " Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
-    Plug 'janko-m/vim-test' " Run test under cursor
-    Plug 'jiangmiao/auto-pairs' " Insert or delete brackets, parens, quotes in pair.
+    Plug 'glepnir/lspsaga.nvim'
+    Plug 'hrsh7th/nvim-compe'
+    Plug 'hrsh7th/vim-vsnip'
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Ctrl+p
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'mhinz/vim-signify'
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
-    Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " CoC TypeScript support
-    Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
+    Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
-    Plug 'puremourning/vimspector' " Debugging in vim
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'tomtom/tcomment_vim' " Commant with gc
@@ -75,8 +77,7 @@ call plug#end()
     set noswapfile
     set noundofile
 
-    " Prevent deoplete from opening buffers on completion
-    set completeopt="menu"
+    set completeopt=menuone,noselect
 
     " Update faster
     set updatetime=300
@@ -97,16 +98,15 @@ call plug#end()
     set linebreak " set soft wrapping
     set showbreak=… " show ellipsis at breaking
     set autoindent " automatically set indent of new line
-    set ttyfast " faster redrawing
     set diffopt+=vertical
     set laststatus=2 " show the satus line all the time
     set wildmenu " enhanced command line completion
-    set hidden " current buffer can be put into background
+    " set hidden " current buffer can be put into background
     set showcmd " show incomplete commands
     set noshowmode " don't show which mode disabled for PowerLine
     set wildmode=list:longest " complete files like a shell
     set shell=$SHELL
-    set cmdheight=2 " command bar height
+    set cmdheight=1 " command bar height
     set title " set terminal title
     set showmatch " show matching braces
 
@@ -160,140 +160,8 @@ vnoremap CK :Kebab<cr>
 vnoremap CS :Snek<cr>
 vnoremap CC :Camel<cr>
 
-let g:coc_global_extensions = [
-    \'coc-css', 
-    \'coc-emmet', 
-    \'coc-eslint', 
-    \'coc-html', 
-    \'coc-json', 
-    \'coc-prettier', 
-    \'coc-python', 
-    \'coc-react-refactor', 
-    \'coc-rust-analyzer',
-    \'coc-tsserver',
-    \'coc-yaml'
-    \]
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nnoremap <silent> [g <Plug>(coc-diagnostic-prev)
-nnoremap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nnoremap <silent> gd <Plug>(coc-definition)
-nnoremap <silent> gy <Plug>(coc-type-definition)
-nnoremap <silent> gi <Plug>(coc-implementation)
-nnoremap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation() abort
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-augroup highlightgroup
-    autocmd!
-    " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-augroup end
-
-" Remap for rename current word
-nnoremap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xnoremap <leader>f  <Plug>(coc-format-selected)
-nnoremap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json,rust setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xnoremap <leader>a  <Plug>(coc-codeaction-selected)
-nnoremap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nnoremap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nnoremap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xnoremap if <Plug>(coc-funcobj-i)
-xnoremap af <Plug>(coc-funcobj-a)
-onoremap if <Plug>(coc-funcobj-i)
-onoremap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nnoremap <silent> <TAB> <Plug>(coc-range-select)
-xnoremap <silent> <TAB> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-" Coc Actions
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xnoremap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nnoremap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+syntax enable
+filetype plugin indent on
 
 " Clap
 let g:clap_provider_grep_delay = 0
@@ -329,18 +197,6 @@ nnoremap <leader>w :w<cr>
 " enable vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
-" Enable Alt
-" Run a given vim command on the results of alt from a given path.
-" See usage below.
-function! AltCommand(path, vim_command) abort
-  let l:alternate = system("alt " . a:path)
-  if empty(l:alternate)
-    echo "No alternate file for " . a:path . " exists!"
-  else
-    exec a:vim_command . " " . l:alternate
-  endif
-endfunction
-
 " Find the alternate file for the current path and open it
 nnoremap <leader>. :w<cr>:call AltCommand(expand('%'), ':e')<cr>
 
@@ -353,7 +209,133 @@ if !has('nvim')
 endif
 " }}}
 
-" Colorscheme
+" LSP Saga
+lua << EOF
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.rust_analyzer.setup{
+    capabilities = capabilities
+}
+
+require'lspconfig'.jsonls.setup {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        end
+      }
+    }
+}
+
+require'lspconfig'.pyright.setup{}
+
+require'lspconfig'.terraformls.setup{}
+
+require'lspconfig'.tsserver.setup{}
+
+require'lspconfig'.vimls.setup{}
+
+require'lspconfig'.metals.setup{}
+
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
+
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    vsnip = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    spell = true;
+    tags = true;
+    snippets_nvim = true;
+    treesitter = true;
+  };
+}
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  else
+    return t "<Tab>"
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+    return t "<Plug>(vsnip-jump-prev)"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+EOF
+
+nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>
+nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
+nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent><leader>ac :Lspsaga code_action<CR>
+nnoremap <silent>K :Lspsaga hover_doc<CR>
+nnoremap <silent>gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent>gh :Lspsaga lsp_finder<CR>
+nnoremap <silent>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent>gpd :Lspsaga preview_definition<CR>
+nnoremap <silent>gs :Lspsaga signature_help<CR>
+nnoremap <silent>rn :Lspsaga rename<CR>
+tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
+vnoremap <silent><leader>ac :<C-U>Lspsaga range_code_action<CR>
+
+augroup Formatting
+    autocmd!
+    autocmd BufWritePre *.rs,*.ts,*.tsx,*.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+augroup end
+
+" disable completion in vim-clap floating window
+augroup Compe_Clap
+    autocmd!
+    autocmd FileType clap_input call compe#setup({'enabled': v:false}, 0)
+augroup end
+
+" nvim-compe
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+
 set termguicolors
 " set background=dark
 augroup Highlights

@@ -1,6 +1,11 @@
+.DS_Store
 .cache
 .git
+.idea
 .mypy_cache
+.terragrunt-cache
+.venv
 dist
 node_modules
 target
+venv
