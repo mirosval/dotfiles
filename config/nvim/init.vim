@@ -76,7 +76,7 @@ call plug#end()
     set noswapfile
     set noundofile
 
-    set completeopt=menu,menuone,noselect
+    set completeopt=menuone,noselect
 
     " Update faster
     set updatetime=300
@@ -97,16 +97,15 @@ call plug#end()
     set linebreak " set soft wrapping
     set showbreak=… " show ellipsis at breaking
     set autoindent " automatically set indent of new line
-    set ttyfast " faster redrawing
     set diffopt+=vertical
     set laststatus=2 " show the satus line all the time
     set wildmenu " enhanced command line completion
-    set hidden " current buffer can be put into background
+    " set hidden " current buffer can be put into background
     set showcmd " show incomplete commands
     set noshowmode " don't show which mode disabled for PowerLine
     set wildmode=list:longest " complete files like a shell
     set shell=$SHELL
-    set cmdheight=2 " command bar height
+    set cmdheight=1 " command bar height
     set title " set terminal title
     set showmatch " show matching braces
 
@@ -302,20 +301,23 @@ vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 EOF
 
-nnoremap <silent>gh :Lspsaga lsp_finder<CR>
-nnoremap <silent><leader>ac :Lspsaga code_action<CR>
-vnoremap <silent><leader>ac :<C-U>Lspsaga range_code_action<CR>
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-nnoremap <silent> <C-f> <cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>
+nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>
-nnoremap <silent>gs :Lspsaga signature_help<CR>
-nnoremap <silent>rn :Lspsaga rename<CR>
-nnoremap <silent>gd :Lspsaga preview_definition<CR>
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>
 nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
 nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
+nnoremap <silent><leader>ac :Lspsaga code_action<CR>
+nnoremap <silent>K :Lspsaga hover_doc<CR>
+nnoremap <silent>gD <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent>gh :Lspsaga lsp_finder<CR>
+nnoremap <silent>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent>gpd :Lspsaga preview_definition<CR>
+nnoremap <silent>gs :Lspsaga signature_help<CR>
+nnoremap <silent>rn :Lspsaga rename<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
+vnoremap <silent><leader>ac :<C-U>Lspsaga range_code_action<CR>
 
 augroup Formatting
     autocmd!
