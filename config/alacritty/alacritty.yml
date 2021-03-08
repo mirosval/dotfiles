@@ -102,11 +102,11 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    # family: "Hasklug Nerd Font"
-    family: "JuliaMono"
+    family: "Hasklug Nerd Font"
+    # family: "JuliaMono"
 
     # The `style` can be specified to pick a specific face.
-    style: Light
+    style: Medium
 
   # Bold font face
   bold:
@@ -114,10 +114,10 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: "JuliaMono"
+    family: "Hasklug Nerd Font"
 
     # The `style` can be specified to pick a specific face.
-    style: Medium
+    style: Bold
 
   # Italic font face
   italic:
@@ -125,10 +125,10 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: "JuliaMono"
+    family: "Hasklug Nerd Font"
 
     # The `style` can be specified to pick a specific face.
-    style: Light Italic
+    style: Medium Italic
 
   # Point size
   size: 12.0
