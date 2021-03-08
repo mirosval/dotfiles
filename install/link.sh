@@ -14,6 +14,8 @@ config_dirs=(
     ".config/git"
     ".config/karabiner"
     ".config/nvim"
+    ".config/nvim/after"
+    ".config/nvim/after/ftplugin"
     ".hammerspoon"
 )
 
@@ -37,6 +39,7 @@ links=(
     "config/git/config .config/git/config"
     "config/git/ignore .config/git/ignore"
     "config/karabiner/karabiner.json .config/karabiner/karabiner.json"
+    "config/nvim/after/ftplugin/netrw.vim .config/nvim/after/ftplugin/netrw.vim"
     "config/pycodestyle .config/pycodestyle"
     "config/starship.toml .config/starship.toml"
     "ctags.symlink .ctags"
