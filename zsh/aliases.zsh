@@ -1,4 +1,3 @@
-
 alias zshconfig="code ~/.zshrc"
 
 alias l="exa -lah"
@@ -40,6 +39,9 @@ mkcd ()
     mkdir -p -- "$1" && cd -P -- "$1"
 }
 
+# Brew
+alias buc="brew upgrade && brew cleanup"
+
 # Cargo
 alias cb="cargo build"
 alias ct="cargo test"
@@ -50,10 +52,12 @@ alias cwct="cargo watch -c -x 'check' -x 'test -- --nocapture'"
 alias cwctr="cargo watch -c -x 'check' -x 'test -- --nocapture' -x 'run'"
 
 # Git
-alias gst="git status"
-alias gm="git checkout master"
 alias gf="git pull --ff --no-rebase"
 alias ghopen="gh repo view --web"
+alias gm="git checkout master"
+alias gpl="git pull"
+alias gps="git push"
+alias gst="git status"
 
 # Restarts coreaudio, use when headphones don't work
 alias fix_audio='sudo pkill coreaudiod'
