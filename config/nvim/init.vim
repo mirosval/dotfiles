@@ -3,6 +3,7 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
+    Plug 'Yggdroot/indentLine' " Indent line guide 
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'glepnir/lspsaga.nvim'
@@ -10,8 +11,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'hrsh7th/vim-vsnip'
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
     Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'lewis6991/gitsigns.nvim' " gitgutter replacement
+    Plug 'lukas-reineke/indent-blankline.nvim' " Indent line guide also on blank lines
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
-    Plug 'mhinz/vim-signify'
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
@@ -22,11 +24,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'tomtom/tcomment_vim' " Commant with gc
-    Plug 'tpope/vim-fugitive' " Git
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-surround' " Surround selection with string
     Plug 'vim-airline/vim-airline' " Bottom status line
+    Plug 'windwp/nvim-autopairs' " Pair parentheses
 
 " Initialize plugin system
 call plug#end()
@@ -200,6 +202,19 @@ if !has('nvim')
 endif
 " }}}
 
+set termguicolors
+" set background=dark
+augroup Highlights
+    autocmd!
+    autocmd ColorScheme * highlight EndOfBuffer cterm=NONE gui=NONE
+                      \ | highlight LineNr guifg=Grey
+                      \ | highlight Cursor guifg=white guibg=red
+                      \ | highlight iCursor guifg=white guibg=red
+                      \ | highlight MatchParen cterm=underline ctermbg=black ctermfg=red
+                      \ | highlight MatchParen gui=underline guibg=black guifg=red
+augroup end
+colorscheme kuroi
+
 " LSP Saga
 lua << EOF
 
@@ -337,15 +352,3 @@ inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 
-set termguicolors
-" set background=dark
-augroup Highlights
-    autocmd!
-    autocmd ColorScheme * highlight EndOfBuffer cterm=NONE gui=NONE
-                      \ | highlight LineNr guifg=Grey
-                      \ | highlight Cursor guifg=white guibg=red
-                      \ | highlight iCursor guifg=white guibg=red
-                      \ | highlight MatchParen cterm=underline ctermbg=black ctermfg=red
-                      \ | highlight MatchParen gui=underline guibg=black guifg=red
-augroup end
-colorscheme kuroi
