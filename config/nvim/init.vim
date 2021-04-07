@@ -3,8 +3,6 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
-    " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'} " CoC TypeScript support
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'} " Language Server Suport
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'glepnir/lspsaga.nvim'
@@ -12,12 +10,15 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'hrsh7th/vim-vsnip'
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
     Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' } " Ctrl+p
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'mhinz/vim-signify'
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'tomtom/tcomment_vim' " Commant with gc
@@ -163,16 +164,6 @@ vnoremap CC :Camel<cr>
 syntax enable
 filetype plugin indent on
 
-" Clap
-let g:clap_provider_grep_delay = 0
-let g:clap_provider_grep_blink = [0, 0]
-let g:clap_provider_grep_opts = '--with-filename --no-heading --vimgrep --hidden -g "!.git/"'
-nnoremap <C-p> :Clap files ++finder=fd --type f --hidden --no-ignore-vcs<CR>
-nnoremap <leader>ff :Clap<CR>
-nnoremap <leader>fg :Clap grep2<CR>
-nnoremap <leader>fb :Clap buffers<CR>
-nnoremap <leader>fs :Clap grep ++query=<cword><CR>
-
 " NERDCommenter
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
@@ -264,7 +255,7 @@ require'compe'.setup {
     nvim_lua = true;
     spell = true;
     tags = true;
-    snippets_nvim = true;
+    snippets_nvim = false;
     treesitter = true;
   };
 }
@@ -300,6 +291,16 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
+require('telescope').setup{
+  defaults = {
+    file_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+  }
+}
+
+require('nvim-autopairs').setup()
+
+require('gitsigns').setup()
+
 EOF
 
 nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
@@ -308,27 +309,27 @@ nnoremap <silent> <C-f> <cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<
 nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
 nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent><leader>ac :Lspsaga code_action<CR>
+nnoremap <silent><leader>ac <cmd>Telescope lsp_code_actions<CR>
+vnoremap <silent><leader>ac :<C-U>Telescope lsp_range_code_actions<CR>
 nnoremap <silent>K :Lspsaga hover_doc<CR>
 nnoremap <silent>gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent>gh :Lspsaga lsp_finder<CR>
+nnoremap <silent>gr :Telescope lsp_references<CR>
 nnoremap <silent>gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent>gpd :Lspsaga preview_definition<CR>
 nnoremap <silent>gs :Lspsaga signature_help<CR>
 nnoremap <silent>rn :Lspsaga rename<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
-vnoremap <silent><leader>ac :<C-U>Lspsaga range_code_action<CR>
+
+nnoremap <C-p> <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fd <cmd>Telescope lsp_document_symbols<CR>
+nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols<CR>
 
 augroup Formatting
     autocmd!
-    autocmd BufWritePre *.rs,*.ts,*.tsx,*.py lua vim.lsp.buf.formatting_sync(nil, 1000)
-augroup end
-
-" disable completion in vim-clap floating window
-augroup Compe_Clap
-    autocmd!
-    autocmd FileType clap_input call compe#setup({'enabled': v:false}, 0)
+    autocmd BufWritePre *.rs,*.ts,*.tsx,*.js,*.jsx,*.py lua vim.lsp.buf.formatting_sync(nil, 1000)
 augroup end
 
 " nvim-compe
