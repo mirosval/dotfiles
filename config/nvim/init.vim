@@ -22,7 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'romainl/vim-cool' " Stop matching after search is done.
-    Plug 'sheerun/vim-polyglot' " Additional language support
+    " Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
@@ -248,6 +248,18 @@ require'lspconfig'.metals.setup{}
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
 
+require'nvim-treesitter.configs'.setup{
+    highlight = {
+        enable = true
+    },
+    incremental_selection = {
+        enable = true
+    },
+    indent = {
+        enable = true
+    },
+}
+
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
@@ -344,7 +356,7 @@ nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols<CR>
 
 augroup Formatting
     autocmd!
-    autocmd BufWritePre *.rs,*.ts,*.tsx,*.js,*.jsx,*.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+    autocmd BufWritePre *.rs,*.ts,*.tsx,*.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
 augroup end
 
 " nvim-compe
@@ -352,3 +364,6 @@ inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 
+" use treesitter for folds
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
