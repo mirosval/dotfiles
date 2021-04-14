@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     " Plug 'sheerun/vim-polyglot' " Additional language support
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'sainnhe/sonokai'
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
@@ -213,7 +215,14 @@ augroup Highlights
                       \ | highlight MatchParen cterm=underline ctermbg=black ctermfg=red
                       \ | highlight MatchParen gui=underline guibg=black guifg=red
 augroup end
-colorscheme kuroi
+"colorscheme kuroi
+
+" The configuration options should be placed before `colorscheme sonokai`.
+let g:sonokai_style = 'atlantis'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
+
 
 " LSP Saga
 lua << EOF
