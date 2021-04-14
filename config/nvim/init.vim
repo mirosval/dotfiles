@@ -3,10 +3,13 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
+    " Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'Yggdroot/indentLine' " Indent line guide 
     Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'glepnir/lspsaga.nvim'
+    Plug 'hashivim/vim-terraform'
+    Plug 'hoob3rt/lualine.nvim'
     Plug 'hrsh7th/nvim-compe'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
@@ -17,19 +20,18 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
+    Plug 'nvim-lua/lsp-status.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'romainl/vim-cool' " Stop matching after search is done.
-    " Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/sonokai'
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-surround' " Surround selection with string
-    Plug 'vim-airline/vim-airline' " Bottom status line
     Plug 'windwp/nvim-autopairs' " Pair parentheses
 
 " Initialize plugin system
@@ -223,15 +225,64 @@ let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 colorscheme sonokai
 
+" Statusline
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
 
 " LSP Saga
 lua << EOF
 
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
 
 require'lspconfig'.rust_analyzer.setup{
-    capabilities = capabilities
+    capabilities = capabilities,
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.jsonls.setup {
+    commands = {
+      Format = {
+        function()
+          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+        end
+      }
+    },
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.diagnosticls.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.dockerls.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.gopls.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.graphql.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.html.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.jdtls.setup{
+    on_attach = lsp_status.on_attach
 }
 
 require'lspconfig'.jsonls.setup {
@@ -244,15 +295,37 @@ require'lspconfig'.jsonls.setup {
     }
 }
 
-require'lspconfig'.pyright.setup{}
+require'lspconfig'.kotlin_language_server.setup{
+    on_attach = lsp_status.on_attach
+}
 
-require'lspconfig'.terraformls.setup{}
+require'lspconfig'.sqlls.setup{
+    on_attach = lsp_status.on_attach
+}
 
-require'lspconfig'.tsserver.setup{}
+require'lspconfig'.yamlls.setup{
+    on_attach = lsp_status.on_attach
+}
 
-require'lspconfig'.vimls.setup{}
+require'lspconfig'.pyright.setup{
+    on_attach = lsp_status.on_attach
+}
 
-require'lspconfig'.metals.setup{}
+require'lspconfig'.terraformls.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.tsserver.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.vimls.setup{
+    on_attach = lsp_status.on_attach
+}
+
+require'lspconfig'.metals.setup{
+    on_attach = lsp_status.on_attach
+}
 
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
@@ -337,6 +410,12 @@ require('nvim-autopairs').setup()
 
 require('gitsigns').setup()
 
+local function lsp_status_segment()
+    return lsp_status.status()
+end
+
+require('lualine').setup()
+
 EOF
 
 nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
@@ -376,3 +455,4 @@ inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 " use treesitter for folds
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+
