@@ -437,7 +437,7 @@ nnoremap <silent>gs :Lspsaga signature_help<CR>
 nnoremap <silent>rn :Lspsaga rename<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
-nnoremap <C-p> <cmd>Telescope find_files<CR>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files({ hidden = true })<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fd <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols<CR>
