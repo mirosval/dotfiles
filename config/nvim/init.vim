@@ -414,7 +414,14 @@ local function lsp_status_segment()
     return lsp_status.status()
 end
 
-require('lualine').setup()
+require('lualine').setup{
+    options = {
+        theme = 'auto'
+    },
+    sections = {
+        lualine_c = { 'filename', 'diff' }
+    }
+}
 
 EOF
 
