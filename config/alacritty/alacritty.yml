@@ -182,7 +182,9 @@ colors:
     white: "0xe1e3e4"
 
   bright:
-    black: "0x181a1c"
+    # black: "0x181a1c" # the original black was used for zsh completions 
+    # but it was so dark it was not readable
+    black: "0x636b73"
     red: "0xff6578"
     green: "0x9dd274"
     yellow: "0xeacb64"
