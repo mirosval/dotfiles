@@ -5,8 +5,8 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'Yggdroot/indentLine' " Indent line guide 
-    Plug 'aonemd/kuroi.vim' " Color Scheme
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
+    Plug 'folke/lsp-trouble.nvim' " LSP Diagnostics
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hashivim/vim-terraform'
     Plug 'hoob3rt/lualine.nvim'
@@ -16,6 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lewis6991/gitsigns.nvim' " gitgutter replacement
     Plug 'lukas-reineke/indent-blankline.nvim' " Indent line guide also on blank lines
+    Plug 'marko-cerovac/material.nvim'
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
@@ -25,6 +26,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'ray-x/lsp_signature.nvim' " Function signatures
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/sonokai'
@@ -207,18 +209,6 @@ endif
 " }}}
 
 set termguicolors
-" set background=dark
-augroup Highlights
-    autocmd!
-    autocmd ColorScheme * highlight EndOfBuffer cterm=NONE gui=NONE
-                      \ | highlight LineNr guifg=Grey
-                      \ | highlight Cursor guifg=white guibg=red
-                      \ | highlight iCursor guifg=white guibg=red
-                      \ | highlight MatchParen cterm=underline ctermbg=black ctermfg=red
-                      \ | highlight MatchParen gui=underline guibg=black guifg=red
-augroup end
-"colorscheme kuroi
-
 " The configuration options should be placed before `colorscheme sonokai`.
 let g:sonokai_style = 'atlantis'
 let g:sonokai_enable_italic = 1
@@ -237,168 +227,13 @@ endfunction
 " LSP Saga
 lua << EOF
 
-local lsp_status = require('lsp-status')
-lsp_status.register_progress()
-
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilities)
-
-require'lspconfig'.rust_analyzer.setup{
-    capabilities = capabilities,
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.jsonls.setup {
-    commands = {
-      Format = {
-        function()
-          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-        end
-      }
-    },
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.diagnosticls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.dockerls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.gopls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.graphql.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.html.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.jdtls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.jsonls.setup {
-    commands = {
-      Format = {
-        function()
-          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-        end
-      }
-    }
-}
-
-require'lspconfig'.kotlin_language_server.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.sqlls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.yamlls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.pyright.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.terraformls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.tsserver.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.vimls.setup{
-    on_attach = lsp_status.on_attach
-}
-
-require'lspconfig'.metals.setup{
-    on_attach = lsp_status.on_attach
-}
+require'lsp_config'
+require'treesitter'
+require'compe_config'
 
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
 
-require'nvim-treesitter.configs'.setup{
-    highlight = {
-        enable = true
-    },
-    incremental_selection = {
-        enable = true
-    },
-    indent = {
-        enable = true
-    },
-}
-
-require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    vsnip = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    spell = true;
-    tags = true;
-    snippets_nvim = false;
-    treesitter = true;
-  };
-}
-
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
--- Use (s-)tab to:
---- move to prev/next item in completion menuone
---- jump to prev/next snippet's placeholder
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
-  else
-    return t "<Tab>"
-  end
-end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
-  else
-    return t "<S-Tab>"
-  end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 require('telescope').setup{
   defaults = {
@@ -411,7 +246,7 @@ require('nvim-autopairs').setup()
 require('gitsigns').setup()
 
 local function lsp_status_segment()
-    return lsp_status.status()
+    return require'lsp-status'.status()
 end
 
 require('lualine').setup{
@@ -419,8 +254,12 @@ require('lualine').setup{
         theme = 'auto'
     },
     sections = {
-        lualine_c = { 'filename', 'diff' }
+        lualine_c = { 'filename', 'diff' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype', lsp_status_segment }
     }
+}
+
+require("trouble").setup {
 }
 
 EOF
@@ -448,6 +287,14 @@ nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files({ hidden = true 
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fd <cmd>Telescope lsp_document_symbols<CR>
 nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols<CR>
+
+" Trouble
+nnoremap <leader>xx <cmd>LspTroubleToggle<cr>
+nnoremap <leader>xw <cmd>LspTroubleToggle lsp_workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>LspTroubleToggle lsp_document_diagnostics<cr>
+nnoremap <leader>xq <cmd>LspTroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>LspTroubleToggle loclist<cr>
+nnoremap gR <cmd>LspTroubleToggle lsp_references<cr>
 
 augroup Formatting
     autocmd!
