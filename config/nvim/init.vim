@@ -3,7 +3,6 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
-    " Plug 'sheerun/vim-polyglot' " Additional language support
     Plug 'Yggdroot/indentLine' " Indent line guide 
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'folke/lsp-trouble.nvim' " LSP Diagnostics
@@ -16,7 +15,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lewis6991/gitsigns.nvim' " gitgutter replacement
     Plug 'lukas-reineke/indent-blankline.nvim' " Indent line guide also on blank lines
-    Plug 'marko-cerovac/material.nvim'
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
@@ -237,7 +235,7 @@ saga.init_lsp_saga()
 
 require('telescope').setup{
   defaults = {
-    file_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
   }
 }
 
@@ -305,6 +303,8 @@ augroup end
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " use treesitter for folds
 set foldmethod=expr
