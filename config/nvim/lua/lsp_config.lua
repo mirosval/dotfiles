@@ -37,10 +37,10 @@ lsp_config.jsonls.setup {
     on_attach = on_attach
 }
 
-lsp_config.diagnosticls.setup{
-    capabilities = capabilities,
-    on_attach = on_attach
-}
+-- lsp_config.diagnosticls.setup{
+--     capabilities = capabilities,
+--     on_attach = on_attach
+-- }
 
 lsp_config.dockerls.setup{
     capabilities = capabilities,
@@ -83,11 +83,6 @@ lsp_config.jsonls.setup {
 --     on_attach = on_attach
 -- }
 
--- lsp_config.sqlls.setup{
---     capabilities = capabilities,
---     on_attach = on_attach
--- }
-
 lsp_config.yamlls.setup{
     capabilities = capabilities,
     on_attach = on_attach
@@ -95,7 +90,15 @@ lsp_config.yamlls.setup{
 
 lsp_config.pyright.setup{
     capabilities = capabilities,
-    on_attach = on_attach
+    on_attach = on_attach,
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+            }
+        }
+    }
 }
 
 lsp_config.terraformls.setup{
