@@ -17,6 +17,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lewis6991/gitsigns.nvim' " gitgutter replacement
     Plug 'lukas-reineke/indent-blankline.nvim' " Indent line guide also on blank lines
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
+    Plug 'monsonjeremy/onedark.nvim'
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
@@ -29,7 +30,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ray-x/lsp_signature.nvim' " Function signatures
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
-    Plug 'sainnhe/sonokai'
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
@@ -209,11 +209,7 @@ endif
 " }}}
 
 set termguicolors
-" The configuration options should be placed before `colorscheme sonokai`.
-let g:sonokai_style = 'atlantis'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai
+colorscheme onedark
 
 " Statusline
 function! LspStatus() abort
@@ -251,7 +247,7 @@ end
 
 require('lualine').setup{
     options = {
-        theme = 'auto'
+        theme = 'onedark'
     },
     sections = {
         lualine_c = { 'filename', 'diff' },
