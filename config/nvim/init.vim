@@ -3,6 +3,7 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
+    Plug 'folke/tokyonight.nvim'
     Plug 'Yggdroot/indentLine' " Indent line guide 
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'folke/lsp-trouble.nvim' " LSP Diagnostics
@@ -209,7 +210,8 @@ endif
 " }}}
 
 set termguicolors
-colorscheme onedark
+let g:tokyonight_style = 'night'
+colorscheme tokyonight
 
 " Statusline
 function! LspStatus() abort
@@ -247,7 +249,7 @@ end
 
 require('lualine').setup{
     options = {
-        theme = 'onedark'
+        theme = 'tokyonight'
     },
     sections = {
         lualine_c = { 'filename', 'diff' },
@@ -308,3 +310,9 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
