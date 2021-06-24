@@ -18,7 +18,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lewis6991/gitsigns.nvim' " gitgutter replacement
     Plug 'lukas-reineke/indent-blankline.nvim' " Indent line guide also on blank lines
     Plug 'mattn/emmet-vim' " Emmet for html/css completions
-    Plug 'monsonjeremy/onedark.nvim'
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
