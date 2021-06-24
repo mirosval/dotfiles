@@ -54,7 +54,7 @@ alias cwctr="cargo watch -c -x 'check' -x 'test -- --nocapture' -x 'run'"
 # Git
 alias gf="git pull --ff --no-rebase"
 alias ghopen="gh repo view --web"
-alias gm="git checkout master"
+alias gm="git checkout master || git checkout main"
 alias gpl="git pull"
 alias gps="git push"
 alias gst="git status"
