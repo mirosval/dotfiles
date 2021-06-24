@@ -1,11 +1,31 @@
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
+
 [core]
-	excludesfile = ~/.config/git/ignore
+    excludesfile = ~/.config/git/ignore
+
 [user]
-	name = Miroslav Zoricak
-	email = miroslav.zoricak@gmail.com
+    name = Miroslav Zoricak
+    email = miroslav.zoricak@gmail.com
+
 [github]
     user = mirosval
+
 [pull]
     ff = only
+
+[pager]
+    diff = delta
+    log = delta
+    reflow = delta
+    show = delta
+
+[delta]
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    syntax-theme = Monokai Extended
+    navigate = true
+    line-numbers = true
+
+[interactive]
+    diffFilter = delta --color-only
