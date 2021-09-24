@@ -3,10 +3,10 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
-    Plug 'folke/tokyonight.nvim'
     Plug 'Yggdroot/indentLine' " Indent line guide 
     Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
     Plug 'folke/lsp-trouble.nvim' " LSP Diagnostics
+    Plug 'folke/tokyonight.nvim'
     Plug 'glepnir/lspsaga.nvim'
     Plug 'hashivim/vim-terraform'
     Plug 'hoob3rt/lualine.nvim'
@@ -30,6 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ray-x/lsp_signature.nvim' " Function signatures
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
+    Plug 'scalameta/nvim-metals' " Scala LSP
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
@@ -93,6 +94,7 @@ call plug#end()
 
     " don't give |ins-completion-menu| messages.
     set shortmess+=c
+    set shortmess-=F
 
     " Always show signcolumns
     set signcolumn=yes
@@ -110,7 +112,7 @@ call plug#end()
     set diffopt+=vertical
     set laststatus=2 " show the satus line all the time
     set wildmenu " enhanced command line completion
-    " set hidden " current buffer can be put into background
+    set hidden " current buffer can be put into background
     set showcmd " show incomplete commands
     set noshowmode " don't show which mode disabled for PowerLine
     set wildmode=list:longest " complete files like a shell
@@ -271,10 +273,12 @@ nnoremap <silent><leader>ac <cmd>Telescope lsp_code_actions<CR>
 vnoremap <silent><leader>ac :<C-U>Telescope lsp_range_code_actions<CR>
 nnoremap <silent>K :Lspsaga hover_doc<CR>
 nnoremap <silent>gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent>gd :Telescope lsp_definitions<CR>
 nnoremap <silent>gh :Lspsaga lsp_finder<CR>
 nnoremap <silent>gr :Telescope lsp_references<CR>
-nnoremap <silent>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent>gi :Telescope lsp_implementations<CR>
 nnoremap <silent>gpd :Lspsaga preview_definition<CR>
 nnoremap <silent>gs :Lspsaga signature_help<CR>
 nnoremap <silent>rn :Lspsaga rename<CR>
@@ -283,7 +287,7 @@ tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
 nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files({ hidden = true })<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
 nnoremap <leader>fd <cmd>Telescope lsp_document_symbols<CR>
-nnoremap <leader>fw <cmd>Telescope lsp_workspace_symbols<CR>
+nnoremap <leader>fw <cmd>Telescope lsp_dyncamic_workspace_symbols<CR>
 
 " Trouble
 nnoremap <leader>xx <cmd>LspTroubleToggle<cr>
@@ -315,3 +319,8 @@ function! SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+augroup lsp
+    au!
+    au FileType scala,sbt lua require("metals").initialize_or_attach({})
+augroup end
