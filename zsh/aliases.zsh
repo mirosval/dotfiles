@@ -5,6 +5,8 @@ alias lg="exa -lah --git"
 
 alias v="nvim . && clear"
 
+alias c="clear ; tmux clear-history ; clear"
+
 alias did="vim +'normal Go' +'r!date' ~/did.txt"
 
 # use nvim, but don't make me think about it
