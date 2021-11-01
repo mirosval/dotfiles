@@ -1,5 +1,6 @@
 tap "coursier/formulas"
 tap "derailed/k9s"
+tap "fishtown-analytics/dbt"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -14,7 +15,8 @@ tap "saulpw/vd"
 tap "scalacenter/bloop"
 tap "uptech/oss"
 tap "weaveworks/tap"
-cask "adoptopenjdk"
+# Engine for large-scale data processing
+brew "apache-spark"
 # Shell extension to jump to frequently used directories
 brew "autojump"
 # Use AWS IAM credentials to authenticate to Kubernetes
@@ -25,6 +27,10 @@ brew "awscli"
 brew "bandwhich"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Development kit for the Java programming language
+brew "openjdk"
+# Remove large files or passwords from Git history like git-filter-branch
+brew "bfg"
 # Cross-platform make
 brew "cmake"
 # Configurable talking characters in ASCII art
@@ -41,6 +47,10 @@ brew "exa"
 brew "exercism"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# Download assets from a commit, branch, or tag of GitHub repositories
+brew "fetch"
+# Collection of reusable C++ library artifacts developed at Facebook
+brew "folly"
 # Infamous electronic fortune-cookie generator
 brew "fortune"
 # Command-line fuzzy finder written in Go
@@ -51,10 +61,16 @@ brew "gdb"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Git extension for versioning large files
 brew "git-lfs"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# GNU grep, egrep and fgrep
+brew "grep"
 # Cross-platform program for developing Haskell projects
 brew "haskell-stack"
 # File format designed to store large amounts of data
@@ -63,6 +79,8 @@ brew "hdf5"
 brew "hexyl"
 # Toolkit for embedding hypervisor capabilities in your application
 brew "hyperkit", link: false
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.8"
 # LLVM's OpenMP runtime library
 brew "libomp"
 # Tools and libraries to manipulate images in many formats
@@ -71,8 +89,14 @@ brew "imagemagick"
 brew "jenv"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Generic command-line non-JVM Apache Kafka producer and consumer
+brew "kcat"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
+# Template-free customization of Kubernetes YAML manifests
+brew "kustomize"
+# Linear Algebra PACKage
+brew "lapack"
 # Postgres C API library
 brew "libpq"
 # Library for USB device access
@@ -81,24 +105,26 @@ brew "libusb"
 brew "libvorbis"
 # Rainbows and unicorns in your console!
 brew "lolcat"
+# Just-In-Time Compiler (JIT) for the Lua programming language
+brew "luajit", args: ["HEAD"]
 # Package manager for the Lua programming language
 brew "luarocks"
-# Development kit for the Java programming language
-brew "openjdk"
+# Bare libuv bindings for lua
+brew "luv"
 # Java-based project management
 brew "maven"
-# Open source relational database management system
-brew "mysql"
 # Open source relational database management system
 brew "mysql-client"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Ambitious Vim-fork focused on extensibility and agility
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 # Platform built on V8 to build network applications
 brew "node"
 # Manage multiple Node.js versions
 brew "nvm"
+# Optimized BLAS library
+brew "openblas"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Python dependency management tool
@@ -111,8 +137,6 @@ brew "procs"
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
-# File browser
-brew "ranger"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Search tool like grep and The Silver Searcher
@@ -125,11 +149,17 @@ brew "rustup-init"
 brew "sbt"
 # Intuitive find & replace CLI
 brew "sd"
+# SMART hard drive monitoring
+brew "smartmontools"
+# Proxy server that works as a poor man's VPN
+brew "sshuttle"
 # Cross-shell prompt for astronauts
 brew "starship"
-# Tool to build, change, and version infrastructure
-brew "terraform@0.11", link: true
-# Programatically correct mistyped console commands
+# Terraform version manager inspired by rbenv
+brew "tfenv"
+# Terragrunt version manager inspired by tfenv
+brew "tgenv"
+# Programmatically correct mistyped console commands
 brew "thefuck"
 # Framework for scalable cross-language services development
 brew "thrift"
@@ -137,10 +167,16 @@ brew "thrift"
 brew "tldr"
 # Terminal multiplexer
 brew "tmux"
+# Tmux session manager. Built on libtmux
+brew "tmuxp"
 # Program that allows you to count code, quickly
 brew "tokei"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Tool for creating isolated virtual python environments
+brew "virtualenv"
+# JavaScript toolchain manager for reproducible environments
+brew "volta"
 # Pager/text based browser
 brew "w3m"
 # Executes a program periodically, showing output fullscreen
@@ -151,10 +187,14 @@ brew "watchexec"
 brew "watchman"
 # Internet file retriever
 brew "wget"
+# Friendly and fast tool for sending HTTP requests
+brew "xh"
 # Fast CSV toolkit written in Rust
 brew "xsv"
 # JavaScript package manager
 brew "yarn"
+# Process YAML documents from the CLI
+brew "yq"
 # General-purpose lossless data-compression library
 brew "zlib"
 # UNIX shell (command interpreter)
@@ -167,10 +207,12 @@ brew "zsh-completions"
 brew "zsh-navigation-tools"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-# Coursier launcher.
+# Launcher for Coursier
 brew "coursier/formulas/coursier"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
+# Data build tool
+brew "fishtown-analytics/dbt/dbt"
 # Terraform Language Server
 brew "hashicorp/tap/terraform-ls"
 # Experimental Scala Compiler
@@ -180,41 +222,87 @@ brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
 brew "saulpw/vd/visidata"
 # Installs the Bloop CLI for Bloop, a build server to compile, test and run Scala fast
 brew "scalacenter/bloop/bloop"
-# command-line utility to find alternate file
+# Command-line utility to find alternate file
 brew "uptech/oss/alt"
 # The official CLI for Amazon EKS
 brew "weaveworks/tap/eksctl"
-cask "adoptopenjdk11"
-cask "adoptopenjdk12"
-cask "adoptopenjdk8"
+# View, print, and comment on PDF documents
+cask "adobe-acrobat-reader"
+# GPU-accelerated terminal emulator
 cask "alacritty"
+# Web browser focusing on privacy
+cask "brave-browser"
+# Utility that prevents the system from going to sleep
 cask "caffeine"
+# Server and cloud storage browser
 cask "cyberduck"
+# Voice and text chat software
 cask "discord"
+# App to build and share containerized applications and microservices
 cask "docker"
+# Web browser
+cask "firefox-developer-edition"
+# Screen color temperature controller
 cask "flux"
+cask "font-devicons"
 cask "font-hasklig-nerd-font"
-cask "font-juliamono"
+# GIT client
 cask "fork"
+# Web browser
 cask "google-chrome-dev"
+# Light, Electron-based Wrapper around GraphiQL
 cask "graphiql"
+# Desktop automation application
 cask "hammerspoon"
+# Open-source video transcoder
 cask "handbrake"
 cask "ipynb-quicklook"
+# Decentralised instant messenger and softphone
+cask "jami"
 cask "java"
+# JetBrains tools manager
 cask "jetbrains-toolbox"
+# Programming language for technical computing
 cask "julia"
+# Keyboard customizer
 cask "karabiner-elements"
+# Open-source keystroke visualizer
+cask "keycastr"
+# Kubernetes IDE
+cask "lens"
+# Full TeX Live distribution with GUI applications
+cask "mactex"
+# Free and open-source RSS reader
 cask "netnewswire"
+# Tool to scan and monitor the network
+cask "network-radar"
+# App to write, plan, collaborate, and get organized
 cask "notion"
 cask "quicklook-csv"
 cask "quicklook-json"
+# Control your tools with a few keystrokes
+cask "raycast"
+# Team communication and collaboration software
 cask "slack"
+# Music streaming service
 cask "spotify"
+# Video game digital distribution service
 cask "steam"
+# Native GUI tool for relational databases
 cask "tableplus"
+# JDK from the Eclipse Foundation (Adoptium)
+cask "temurin"
+# Unpacks archive files
 cask "the-unarchiver"
+# Free and open-source OpenVPN client
 cask "tunnelblick"
+# Open-source code editor
 cask "visual-studio-code"
+# All-in-One Java Troubleshooting Tool
+cask "visualvm"
+# Multimedia player
 cask "vlc"
+# Video communication and virtual meeting platform
+cask "zoom"
+# Flash tool for ZSA keyboards
 cask "zsa-wally"
