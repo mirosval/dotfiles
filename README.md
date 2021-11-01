@@ -29,18 +29,23 @@ I use [TPM](https://github.com/tmux-plugins/tpm) for maintaining plugins, after 
 
 Start with `tmux new -s work` or `tmux attach-session -t work` if you have an already running session.
 
-- `ctrl-a c` to create a new tab
-- `ctrl-a -` to split vertically
-- `ctrl-a |` to split horizontally
-- `ctrl-a x` to close a panel
-- `ctrl-a ,` to rename a tab
-- `ctrl-a C` to clear the screen
+Use [tmuxp](https://github.com/tmux-python/tmuxp) to either freeze `tmuxp freeze` or load sessions `tmuxp load
+<sessio_name>` or `tl <sessio_name>`.
+
+Use `Prefix+s` to switch between running sessions using fzf.
+
+- `ctrl-b c` to create a new tab
+- `ctrl-b -` to split vertically
+- `ctrl-b |` to split horizontally
+- `ctrl-b x` to close a panel
+- `ctrl-b ,` to rename a tab
+- `ctrl-b C` to clear the screen
 - `ctrl-k/j/k/l` to navigate between panels
-- `ctrl-a 1/2/3...` to switch to a different tab
+- `ctrl-b 1/2/3...` to switch to a different tab
 
 ### NVim
 
-I use [LanguageClient](https://github.com/autozimu/LanguageClient-neovim) for talking to the LSP Servers.
+I use neovim built in LSP for talking to the LSP Servers.
 
 - `ctrl-k/j/k/l` to navigate between panels
 - `\w` save

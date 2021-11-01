@@ -1,0 +1,8 @@
+session_name: dotfiles
+windows:
+  - window_name: dotfiles
+    layout: even-horizontal
+    shell_command_before: cd ~/.dotfiles
+    panes:
+      - nvim
+      - blank

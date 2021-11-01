@@ -4,13 +4,15 @@
 call plug#begin('~/.config/nvim/plugged')
 
     Plug 'Yggdroot/indentLine' " Indent line guide 
-    Plug 'christoomey/vim-tmux-navigator' " Unify keyboard navigation between vim and tmux
+    Plug 'alexghergh/nvim-tmux-navigation' " Unify keyboard navigation between vim and tmux
     Plug 'folke/lsp-trouble.nvim' " LSP Diagnostics
     Plug 'folke/tokyonight.nvim'
-    Plug 'glepnir/lspsaga.nvim'
     Plug 'hashivim/vim-terraform'
     Plug 'hoob3rt/lualine.nvim'
-    Plug 'hrsh7th/nvim-compe'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-vsnip'
+    Plug 'hrsh7th/nvim-cmp'
     Plug 'hrsh7th/vim-vsnip'
     Plug 'justinmk/vim-sneak' " Navigate with s{char}{char} and ;/,
     Plug 'kosayoda/nvim-lightbulb'
@@ -31,6 +33,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
     Plug 'scalameta/nvim-metals' " Scala LSP
+    Plug 'tami5/lspsaga.nvim'
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
@@ -87,7 +90,7 @@ call plug#end()
     set noswapfile
     set noundofile
 
-    set completeopt=menuone,noselect
+    set completeopt=menu,menuone,noselect
 
     " Update faster
     set updatetime=300
@@ -186,12 +189,6 @@ let g:airline_skip_empty_sections = 1
 let g:user_emmet_leader_key='<c-y>'
 let g:user_emmet_mode='n'    "only enable normal mode functions.
 
-" Map ctrl+move to move between split panels
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
-
 " Save with \w
 nnoremap <leader>w :w<cr>
 
@@ -228,7 +225,7 @@ lua << EOF
 
 require'lsp_config'
 require'treesitter'
-require'compe_config'
+require'nvim_cmp_config'
 
 local saga = require 'lspsaga'
 saga.init_lsp_saga()
@@ -302,12 +299,11 @@ augroup Formatting
     autocmd BufWritePre *.rs,*.ts,*.tsx,*.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
 augroup end
 
-" nvim-compe
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+" Tmux navigation
+nnoremap <silent> <C-h> :lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<cr>
+nnoremap <silent> <C-j> :lua require'nvim-tmux-navigation'.NvimTmuxNavigateDown()<cr>
+nnoremap <silent> <C-k> :lua require'nvim-tmux-navigation'.NvimTmuxNavigateUp()<cr>
+nnoremap <silent> <C-l> :lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<cr>
 
 " use treesitter for folds
 set foldmethod=expr

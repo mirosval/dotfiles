@@ -1,1 +1,1 @@
-nnoremap <buffer> <C-l> :TmuxNavigateRight<cr>
+nnoremap <buffer> <C-l> :lua require'nvim-tmux-navigation'.NvimTmuxNavigateRight()<cr>

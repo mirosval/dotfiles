@@ -16,6 +16,7 @@ config_dirs=(
     ".config/nvim"
     ".config/nvim/after"
     ".config/nvim/after/ftplugin"
+    ".config/tmuxp"
     ".hammerspoon"
 )
 
@@ -42,6 +43,7 @@ links=(
     "config/nvim/after/ftplugin/netrw.vim .config/nvim/after/ftplugin/netrw.vim"
     "config/pycodestyle .config/pycodestyle"
     "config/starship.toml .config/starship.toml"
+    "config/tmuxp/dotfiles.yaml .config/tmuxp/dotfiles.yaml"
     "ctags.symlink .ctags"
     "hammerspoon .hammerspoon"
     "rgrc.symlink .rgrc"

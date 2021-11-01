@@ -66,6 +66,9 @@ alias gpl="git pull"
 alias gps="git push"
 alias gst="git status"
 
+# tmuxp
+alias tl="tmuxp load --yes"
+
 # Restarts coreaudio, use when headphones don't work
 alias fix_audio='sudo pkill coreaudiod'
 
