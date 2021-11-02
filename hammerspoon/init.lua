@@ -17,6 +17,7 @@ focus("r", "Google Chrome")
 focus("s", "Slack")
 focus("t", "DataGrip")
 focus("v", "Visual Studio Code")
+focus("w", "Lens")
 focus("z", "Discord")
 
 hs.loadSpoon("MiroWindowsManager")
