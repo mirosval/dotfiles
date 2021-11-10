@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     Plug 'Yggdroot/indentLine' " Indent line guide 
     Plug 'alexghergh/nvim-tmux-navigation' " Unify keyboard navigation between vim and tmux
+    Plug 'arkav/lualine-lsp-progress'
     Plug 'folke/lsp-trouble.nvim' " LSP Diagnostics
     Plug 'folke/tokyonight.nvim'
     Plug 'hashivim/vim-terraform'
@@ -33,11 +34,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
     Plug 'scalameta/nvim-metals' " Scala LSP
-    Plug 'tami5/lspsaga.nvim'
     Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-surround' " Surround selection with string
+    Plug 'weilbith/nvim-code-action-menu' " LSP Code Actions
     Plug 'windwp/nvim-autopairs' " Pair parentheses
 
 " Initialize plugin system
@@ -220,16 +221,11 @@ function! LspStatus() abort
   return ''
 endfunction
 
-" LSP Saga
 lua << EOF
 
 require'lsp_config'
 require'treesitter'
 require'nvim_cmp_config'
-
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
-
 
 require('telescope').setup{
   defaults = {
@@ -241,17 +237,19 @@ require('nvim-autopairs').setup()
 
 require('gitsigns').setup()
 
-local function lsp_status_segment()
-    return require'lsp-status'.status()
-end
+local lsp_progress = {
+    'lsp_progress',
+    display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' }},
+    spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' }
+}
 
 require('lualine').setup{
     options = {
         theme = 'tokyonight'
     },
     sections = {
-        lualine_c = { 'filename', 'diff' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype', lsp_status_segment }
+        lualine_c = { 'filename', 'diff', lsp_progress },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' }
     }
 }
 
@@ -260,26 +258,19 @@ require("trouble").setup {
 
 EOF
 
-nnoremap <silent> <A-d> :Lspsaga open_floaterm<CR>
-nnoremap <silent> <C-b> <cmd>lua require('lspsaga.hover').smart_scroll_hover(-1)<CR>
-nnoremap <silent> <C-f> <cmd>lua require('lspsaga.hover').smart_scroll_hover(1)<CR>
-nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
-nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
-nnoremap <silent><leader>ac <cmd>Telescope lsp_code_actions<CR>
-vnoremap <silent><leader>ac :<C-U>Telescope lsp_range_code_actions<CR>
-nnoremap <silent>K :Lspsaga hover_doc<CR>
+nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent><leader>ac <cmd>CodeActionMenu<CR>
+vnoremap <silent><leader>ac :<C-U>CodeActionMenu<CR>
+nnoremap <silent>K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent>gD <cmd>lua vim.lsp.buf.declaration()<CR>
 " nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent>gd :Telescope lsp_definitions<CR>
-nnoremap <silent>gh :Lspsaga lsp_finder<CR>
 nnoremap <silent>gr :Telescope lsp_references<CR>
 " nnoremap <silent>gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent>gi :Telescope lsp_implementations<CR>
-nnoremap <silent>gpd :Lspsaga preview_definition<CR>
-nnoremap <silent>gs :Lspsaga signature_help<CR>
-nnoremap <silent>rn :Lspsaga rename<CR>
-tnoremap <silent> <A-d> <C-\><C-n>:Lspsaga close_floaterm<CR>
+nnoremap <silent>gs <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent>rn <cmd>lua vim.lsp.buf.rename()<CR>
 
 nnoremap <C-p> <cmd>lua require('telescope.builtin').find_files({ hidden = true })<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<CR>
@@ -319,4 +310,9 @@ endfunc
 augroup lsp
     au!
     au FileType scala,sbt lua require("metals").initialize_or_attach({})
+augroup end
+
+augroup bulb
+    autocmd!
+    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 augroup end
