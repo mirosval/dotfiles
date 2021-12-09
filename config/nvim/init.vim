@@ -34,12 +34,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
     Plug 'scalameta/nvim-metals' " Scala LSP
-    Plug 'tomtom/tcomment_vim' " Commant with gc
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-surround' " Surround selection with string
-    Plug 'weilbith/nvim-code-action-menu' " LSP Code Actions
+    " Plug 'weilbith/nvim-code-action-menu' " LSP Code Actions
     Plug 'windwp/nvim-autopairs' " Pair parentheses
+    Plug 'numToStr/Comment.nvim' " Comment with gc or gb
 
 " Initialize plugin system
 call plug#end()
@@ -178,10 +178,6 @@ vnoremap CC :Camel<cr>
 syntax enable
 filetype plugin indent on
 
-" NERDCommenter
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
@@ -223,6 +219,7 @@ endfunction
 
 lua << EOF
 
+require('Comment').setup()
 require'lsp_config'
 require'treesitter'
 require'nvim_cmp_config'
@@ -260,8 +257,10 @@ EOF
 
 nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <silent><leader>ac <cmd>CodeActionMenu<CR>
-vnoremap <silent><leader>ac :<C-U>CodeActionMenu<CR>
+" nnoremap <silent><leader>ac <cmd>CodeActionMenu<CR>
+" vnoremap <silent><leader>ac :<C-U>CodeActionMenu<CR>
+nnoremap <silent><leader>ac <cmd>Telescope lsp_code_actions<CR>
+vnoremap <silent><leader>ac :<C-U>Telescope lsp_range_code_actions<CR>
 nnoremap <silent>K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent>gD <cmd>lua vim.lsp.buf.declaration()<CR>
 " nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
