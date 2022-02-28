@@ -20,7 +20,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'lewis6991/gitsigns.nvim' " gitgutter replacement
     Plug 'lukas-reineke/indent-blankline.nvim' " Indent line guide also on blank lines
-    Plug 'mattn/emmet-vim' " Emmet for html/css completions
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
@@ -181,10 +180,6 @@ filetype plugin indent on
 " Use Powerline font for airline
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
-
-" Use Ctrl+Z as Emmet Prefix
-let g:user_emmet_leader_key='<c-y>'
-let g:user_emmet_mode='n'    "only enable normal mode functions.
 
 " Save with \w
 nnoremap <leader>w :w<cr>

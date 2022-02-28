@@ -1,4 +1,5 @@
 local lsp_config = require('lspconfig')
+local configs = require('lspconfig.configs')
 local lsp_signature = require('lsp_signature')
 local lsp_status = require('lsp-status')
 lsp_status.register_progress()
@@ -123,3 +124,36 @@ lsp_config.vimls.setup{
 --     capabilities = capabilities,
 --     on_attach = on_attach
 -- }
+if not configs.ls_emmet then
+  configs.ls_emmet = {
+    default_config = {
+      cmd = { 'ls_emmet', '--stdio' };
+      filetypes = {
+        'html',
+        'css',
+        'scss',
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'haml',
+        'xml',
+        'xsl',
+        'pug',
+        'slim',
+        'sass',
+        'stylus',
+        'less',
+        'sss',
+        'hbs',
+        'handlebars',
+      };
+      root_dir = function(fname)
+        return vim.loop.cwd()
+      end;
+      settings = {};
+    };
+  }
+end
+
+lsp_config.ls_emmet.setup { capabilities = capabilities }
