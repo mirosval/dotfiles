@@ -112,7 +112,11 @@ lsp_config.terraformls.setup{
 
 lsp_config.tsserver.setup{
     capabilities = capabilities,
-    on_attach = on_attach
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end
 }
 
 lsp_config.vimls.setup{
@@ -156,4 +160,16 @@ if not configs.ls_emmet then
   }
 end
 
-lsp_config.ls_emmet.setup { capabilities = capabilities }
+lsp_config.ls_emmet.setup { 
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+    end
+}
+
+lsp_config.eslint.setup { 
+    capabilities = capabilities,
+    on_attach = on_attach
+}

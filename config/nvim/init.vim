@@ -281,7 +281,8 @@ nnoremap gR <cmd>LspTroubleToggle lsp_references<cr>
 
 augroup Formatting
     autocmd!
-    autocmd BufWritePre *.rs,*.ts,*.tsx,*.js,*.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
+    autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_seq_sync()
+    autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx EslintFixAll
 augroup end
 
 " Tmux navigation
