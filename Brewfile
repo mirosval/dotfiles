@@ -1,6 +1,6 @@
 tap "coursier/formulas"
+tap "dbt-labs/dbt"
 tap "derailed/k9s"
-tap "fishtown-analytics/dbt"
 tap "hashicorp/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -39,18 +39,20 @@ brew "cowsay"
 brew "ctags"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Tool for exploring each layer in a docker image
+brew "dive"
 # Docker Machine driver for hyperkit
 brew "docker-machine-driver-hyperkit"
 # Modern replacement for 'ls'
 brew "exa"
 # Command-line tool to interact with exercism.io
 brew "exercism"
+# Collection of reusable C++ library artifacts developed at Facebook
+brew "folly"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Download assets from a commit, branch, or tag of GitHub repositories
 brew "fetch"
-# Collection of reusable C++ library artifacts developed at Facebook
-brew "folly"
 # Infamous electronic fortune-cookie generator
 brew "fortune"
 # Command-line fuzzy finder written in Go
@@ -115,6 +117,10 @@ brew "luv"
 brew "maven"
 # Open source relational database management system
 brew "mysql-client"
+# Open source relational database management system
+brew "mysql@5.7"
+# Interactive cheatsheet tool for the command-line
+brew "navi"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -169,6 +175,8 @@ brew "tldr"
 brew "tmux"
 # Tmux session manager. Built on libtmux
 brew "tmuxp"
+# Tool for running tasks in containers
+brew "toast"
 # Program that allows you to count code, quickly
 brew "tokei"
 # Display directories as trees (with optional color/HTML output)
@@ -191,6 +199,8 @@ brew "wget"
 brew "xh"
 # Fast CSV toolkit written in Rust
 brew "xsv"
+# Linter for YAML files
+brew "yamllint"
 # JavaScript package manager
 brew "yarn"
 # Process YAML documents from the CLI
@@ -209,10 +219,12 @@ brew "zsh-navigation-tools"
 brew "zsh-syntax-highlighting"
 # Launcher for Coursier
 brew "coursier/formulas/coursier"
+# Redshift adapter plugin for dbt
+brew "dbt-labs/dbt/dbt-redshift"
+# dbt-redshift contains all of the code enabling dbt to work with Redshift
+brew "dbt-labs/dbt/dbt-redshift@1.0.0", link: false
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "derailed/k9s/k9s"
-# Data build tool
-brew "fishtown-analytics/dbt/dbt"
 # Terraform Language Server
 brew "hashicorp/tap/terraform-ls"
 # Experimental Scala Compiler
@@ -272,6 +284,8 @@ cask "keycastr"
 cask "lens"
 # Full TeX Live distribution with GUI applications
 cask "mactex"
+# Self-contained Python driver for communicating with MySQL servers
+cask "mysql-connector-python"
 # Free and open-source RSS reader
 cask "netnewswire"
 # Tool to scan and monitor the network
@@ -292,6 +306,10 @@ cask "steam"
 cask "tableplus"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
+# JDK from the Eclipse Foundation (Adoptium)
+cask "temurin11"
+# JDK from the Eclipse Foundation (Adoptium)
+cask "temurin8"
 # Unpacks archive files
 cask "the-unarchiver"
 # Free and open-source OpenVPN client
