@@ -3,6 +3,7 @@
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.config/nvim/plugged')
 
+    Plug 'HallerPatrick/py_lsp.nvim' " fix for Python Pyright LSP
     Plug 'Yggdroot/indentLine' " Indent line guide 
     Plug 'alexghergh/nvim-tmux-navigation' " Unify keyboard navigation between vim and tmux
     Plug 'arkav/lualine-lsp-progress'
@@ -23,9 +24,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nelstrom/vim-visual-star-search' " Use * to search for word under cursor
     Plug 'neovim/nvim-lspconfig' " Collection of common configurations for the Nvim LSP client
     Plug 'nicwest/vim-camelsnek' " Camel case to Snek case or Kebab case
+    Plug 'numToStr/Comment.nvim' " Comment with gc or gb
     Plug 'nvim-lua/lsp-status.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-telescope/telescope-ui-select.nvim' " Use nvim ui.select for telescope (code actions)
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'rafamadriz/friendly-snippets' " Snippet presets for vsnip
@@ -33,12 +36,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
     Plug 'scalameta/nvim-metals' " Scala LSP
+    Plug 'tpope/vim-fugitive' " Git support
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-surround' " Surround selection with string
-    " Plug 'weilbith/nvim-code-action-menu' " LSP Code Actions
     Plug 'windwp/nvim-autopairs' " Pair parentheses
-    Plug 'numToStr/Comment.nvim' " Comment with gc or gb
 
 " Initialize plugin system
 call plug#end()
@@ -159,6 +161,10 @@ call plug#end()
     " highlight conflicts
     match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+    let g:vim_json_conceal=0
+    let g:markdown_syntax_conceal=0
+
+
 " }}} Tabs and spaces
 
 let mapleader = "\\"
@@ -220,10 +226,17 @@ require'treesitter'
 require'nvim_cmp_config'
 
 require('telescope').setup{
-  defaults = {
-    file_sorter =  require'telescope.sorters'.get_fzy_sorter,
-  }
+    defaults = {
+        file_sorter =  require'telescope.sorters'.get_fzy_sorter,
+    },
+    extensions = {
+        ["ui-select"] = {
+
+        }
+    }
 }
+
+require('telescope').load_extension("ui-select")
 
 require('nvim-autopairs').setup()
 
@@ -254,8 +267,8 @@ nnoremap <silent> [e <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " nnoremap <silent><leader>ac <cmd>CodeActionMenu<CR>
 " vnoremap <silent><leader>ac :<C-U>CodeActionMenu<CR>
-nnoremap <silent><leader>ac <cmd>Telescope lsp_code_actions<CR>
-vnoremap <silent><leader>ac :<C-U>Telescope lsp_range_code_actions<CR>
+nnoremap <silent><leader>ac <cmd>lua vim.lsp.buf.code_action()<CR>
+vnoremap <silent><leader>ac :<C-U>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent>K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent>gD <cmd>lua vim.lsp.buf.declaration()<CR>
 " nnoremap <silent>gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -285,6 +298,11 @@ augroup Formatting
     autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx EslintFixAll
 augroup end
 
+augroup Indent
+    autocmd!
+    autocmd Filetype html,css,javascript,javascriptreact,typescript,typescriptreact setlocal shiftwidth=2 softtabstop=2 expandtab
+augroup end
+
 " Tmux navigation
 nnoremap <silent> <C-h> :lua require'nvim-tmux-navigation'.NvimTmuxNavigateLeft()<cr>
 nnoremap <silent> <C-j> :lua require'nvim-tmux-navigation'.NvimTmuxNavigateDown()<cr>
@@ -311,3 +329,7 @@ augroup bulb
     autocmd!
     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 augroup end
+
+let g:vim_json_conceal=0
+let g:markdown_syntax_conceal=0
+

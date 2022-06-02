@@ -92,17 +92,21 @@ lsp_config.yamlls.setup{
     on_attach = on_attach
 }
 
-lsp_config.pyright.setup{
-    capabilities = capabilities,
-    on_attach = on_attach,
-    settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-            }
-        }
-    }
+-- https://github.com/microsoft/pyright
+-- lsp_config.pyright.setup{
+--     capabilities = capabilities,
+--     on_attach = on_attach,
+--     settings = {
+--         python = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 useLibraryCodeForTypes = true,
+--             }
+--         }
+--     }
+-- }
+require'py_lsp'.setup{
+
 }
 
 lsp_config.terraformls.setup{

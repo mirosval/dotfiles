@@ -1,14 +1,20 @@
 hyper = {"ctrl", "alt", "cmd", "shift"}
 
 function focus(key, app)
-  hs.hotkey.bind(hyper, key, function() hs.application.launchOrFocus(app) end)
+  hs.hotkey.bind(hyper, key, function() 
+    hs.application.launchOrFocus(app) 
+    -- The selected application is not frontmost, but this 
+    -- only brings the first window to the front, we want 
+    -- all the windows in the front
+    hs.application.frontmostApplication():setFrontmost(true)
+  end)
 end
 
 focus("a", "Alacritty")
 focus("b", "Firefox")
 focus("c", "Calendar")
 focus("d", "Spotify")
-focus("e", "IntelliJ IDEA CE")
+focus("e", "IntelliJ IDEA")
 focus("g", "Fork")
 focus("m", "Messages")
 focus("n", "Notion")
