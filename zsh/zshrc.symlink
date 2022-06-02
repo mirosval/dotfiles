@@ -91,3 +91,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Created by `pipx` on 2021-06-29 08:52:00
 export PATH="$PATH:/Users/miroslav/Library/Python/3.9/bin"
+
+# navi 
+eval "$(navi widget zsh)"

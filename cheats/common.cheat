@@ -1,0 +1,16 @@
+% git
+
+# Displays the current status of a git repository aaaaaa
+git status
+
+% gh
+
+# Opens a new PR
+gh pr create --web
+
+% kill
+
+# Selects and kill -9 process
+kill -9 <pid>
+
+$ pid: ps aux --- --column 2

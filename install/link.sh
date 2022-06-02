@@ -84,5 +84,6 @@ done
 echo "Linking nvim init.vim to .ideavimrc"
 ln -s "$DOTFILES/config/nvim/init.vim" "$HOME/.ideavimrc"
 
-
+echo "Linking navi cheatsheets"
+ln -s "$DOTFILES/cheats" "$(navi info cheats-path)/mirosval"
 
