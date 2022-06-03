@@ -14,3 +14,8 @@ gh pr create --web
 kill -9 <pid>
 
 $ pid: ps aux --- --column 2
+
+% network
+
+# List Processes running on port
+lsof -i :<port>
