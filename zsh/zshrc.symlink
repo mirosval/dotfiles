@@ -1,6 +1,8 @@
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
 
+export DISABLE_AUTO_TITLE='true'
+
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
