@@ -103,6 +103,8 @@ call plug#end()
 
     " Always show signcolumns
     set signcolumn=yes
+
+    set lazyredraw
 " }}} General
 
 " Appearance {{{
