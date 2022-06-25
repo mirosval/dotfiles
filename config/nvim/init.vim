@@ -36,6 +36,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'romainl/vim-cool' " Stop matching after search is done.
     Plug 'ryanoasis/vim-devicons'
     Plug 'scalameta/nvim-metals' " Scala LSP
+    Plug 'simrat39/rust-tools.nvim'
     Plug 'tpope/vim-fugitive' " Git support
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
@@ -262,6 +263,8 @@ require('lualine').setup{
 
 require("trouble").setup {
 }
+
+require('rust-tools').setup({})
 
 EOF
 
