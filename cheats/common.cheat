@@ -19,3 +19,22 @@ $ pid: ps aux --- --column 2
 
 # List Processes running on port
 lsof -i :<port>
+
+% ripgrep
+
+# Ripgrep by plain fixed string instead of a regular expression
+rg --fixed-strings '<search_term>'
+
+% k9s
+
+# launch k9s
+k9s --context <context>
+
+$ context: kubectl config get-contexts --- --column 2
+
+% aws
+
+# aws sso login
+aws sso login --profile <profile>
+
+$ profile: aws configure list-profiles
