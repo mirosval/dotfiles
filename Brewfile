@@ -9,12 +9,15 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "jimdo/wonderland", "git@github.com:Jimdo/homebrew-wonderland.git"
 tap "lampepfl/brew"
 tap "olafurpg/scalafmt"
 tap "saulpw/vd"
 tap "scalacenter/bloop"
 tap "uptech/oss"
 tap "weaveworks/tap"
+# Development kit for the Java programming language
+brew "openjdk"
 # Engine for large-scale data processing
 brew "apache-spark"
 # Shell extension to jump to frequently used directories
@@ -27,8 +30,6 @@ brew "awscli"
 brew "bandwhich"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Development kit for the Java programming language
-brew "openjdk"
 # Remove large files or passwords from Git history like git-filter-branch
 brew "bfg"
 # Cross-platform make
@@ -137,6 +138,8 @@ brew "pandoc"
 brew "pipenv"
 # Object-relational database system
 brew "postgresql"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
 # Modern replacement for ps written by Rust
 brew "procs"
 # Python version management
@@ -227,6 +230,8 @@ brew "dbt-labs/dbt/dbt-redshift@1.0.0", link: false
 brew "derailed/k9s/k9s"
 # Terraform Language Server
 brew "hashicorp/tap/terraform-ls"
+# The Wonderland 2 command-line tool
+brew "jimdo/wonderland/wl2"
 # Experimental Scala Compiler
 brew "lampepfl/brew/dotty"
 brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]

@@ -1,3 +1,8 @@
+% brew
+
+# Dump installed apps into a reusable Brewfile
+brew bundle dump --force --describe
+
 % git
 
 # Displays the current status of a git repository aaaaaa
