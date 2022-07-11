@@ -166,7 +166,8 @@ call plug#end()
 
     let g:vim_json_conceal=0
     let g:markdown_syntax_conceal=0
-
+    let g:loaded_perl_provider = 0
+    let g:loaded_ruby_provider = 0
 
 " }}} Tabs and spaces
 
@@ -222,6 +223,7 @@ function! LspStatus() abort
 endfunction
 
 lua << EOF
+
 
 require('Comment').setup()
 require'lsp_config'

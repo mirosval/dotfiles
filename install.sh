@@ -41,9 +41,12 @@ pyenv exec python -m pip install \
 npm install -g \
     bash-language-server \
     dockerfile-language-server-nodejs \
+    eslint \
     javascript-typescript-langserver \
+    ls_emmet \
     neovim \
     typescript \
+    typescript-language-server \
     vscode-langservers-extracted \
     yaml-language-server
 
@@ -54,3 +57,6 @@ go install "github.com/juliosueiras/terraform-lsp"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Fix tmux colors
+/opt/homebrew/Cellar/ncurses/6.3/bin/infocmp -x tmux-256color > tmux/tmux-256color.src
+sudo /usr/bin/tic -x tmux/tmux-256color.src
