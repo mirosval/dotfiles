@@ -18,6 +18,8 @@ config_dirs=(
     ".config/nvim/after/ftplugin"
     ".config/tmuxp"
     ".hammerspoon"
+    ".hammerspoon/Spoons"
+    ".config/k9s"
 )
 
 echo "Creating Directories"
@@ -45,7 +47,10 @@ links=(
     "config/starship.toml .config/starship.toml"
     "config/tmuxp/dotfiles.yaml .config/tmuxp/dotfiles.yaml"
     "ctags.symlink .ctags"
-    "hammerspoon .hammerspoon"
+    "config/k9s/views.yml .config/k9s/views.yml"
+    "hammerspoon/init.lua .hammerspoon/init.lua"
+    "hammerspoon/Spoons/Caffeine.spoon .hammerspoon/Spoons/Caffeine.spoon"
+    "hammerspoon/Spoons/MiroWindowsManager.spoon .hammerspoon/Spoons/MiroWindowsManager.spoon"
     "rgrc.symlink .rgrc"
     "tmux/tmux.conf.symlink .tmux.conf"
     "zsh/zshrc.symlink .zshrc"
