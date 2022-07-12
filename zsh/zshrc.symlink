@@ -54,16 +54,15 @@ fi
 export PATH=$DOTFILES/bin:$PATH
 
 # ZSH Syntax Highlighting and Autosuggestions
-HOMEBREW_FOLDER="/usr/local/share"
-source "$HOMEBREW_FOLDER/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOMEBREW_FOLDER/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval $(thefuck --alias)
 
 # Navigation tools
-source /usr/local/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+source "$HOMEBREW_PREFIX/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh"
 
 # Python
 eval "$(pyenv init -)"
