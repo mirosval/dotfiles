@@ -1,7 +1,9 @@
 session_name: dotfiles
 windows:
   - window_name: dotfiles
-    layout: even-horizontal
+    layout: main-vertical
+    options:
+      main-pane-width: 50%
     shell_command_before: cd ~/.dotfiles
     panes:
       - nvim

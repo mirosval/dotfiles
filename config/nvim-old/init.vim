@@ -41,6 +41,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-obsession' " Session management, to work with tmux resurrect
     Plug 'tpope/vim-repeat' " Repeat select commands (vim-surround) with .
     Plug 'tpope/vim-surround' " Surround selection with string
+    Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'williamboman/mason.nvim'
     Plug 'windwp/nvim-autopairs' " Pair parentheses
 
 " Initialize plugin system
@@ -224,7 +226,8 @@ endfunction
 
 lua << EOF
 
-
+require("mason").setup()
+require("mason-lspconfig").setup()
 require('Comment').setup()
 require'lsp_config'
 require'treesitter'
@@ -266,7 +269,6 @@ require('lualine').setup{
 require("trouble").setup {
 }
 
-require('rust-tools').setup({})
 
 EOF
 
@@ -298,12 +300,6 @@ nnoremap <leader>xd <cmd>LspTroubleToggle lsp_document_diagnostics<cr>
 nnoremap <leader>xq <cmd>LspTroubleToggle quickfix<cr>
 nnoremap <leader>xl <cmd>LspTroubleToggle loclist<cr>
 nnoremap gR <cmd>LspTroubleToggle lsp_references<cr>
-
-augroup Formatting
-    autocmd!
-    autocmd BufWritePre *.rs lua vim.lsp.buf.formatting_seq_sync()
-    autocmd BufWritePre *.ts,*.tsx,*.js,*.jsx EslintFixAll
-augroup end
 
 augroup Indent
     autocmd!

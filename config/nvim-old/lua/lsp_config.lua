@@ -2,6 +2,8 @@ local lsp_config = require('lspconfig')
 local configs = require('lspconfig.configs')
 local lsp_signature = require('lsp_signature')
 local lsp_status = require('lsp-status')
+local rust_tools = require('rust-tools')
+local py_lsp = require('py_lsp')
 lsp_status.register_progress()
 
 
@@ -19,15 +21,30 @@ capabilities = vim.tbl_extend('keep', capabilities or {}, lsp_status.capabilitie
 -- nvim-cmp integration
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local on_attach = function(client, bufnr)
     lsp_status.on_attach(client, bufnr)
     lsp_signature.on_attach(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                vim.lsp.buf.formatting_sync()
+                vim.cmd(':EslintFixAll')
+            end,
+        })
+    end
 end
 
-lsp_config.rust_analyzer.setup{
-    capabilities = capabilities,
-    on_attach = on_attach
-}
+rust_tools.setup({
+    server = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+})
 
 lsp_config.jsonls.setup {
     capabilities = capabilities,
@@ -41,35 +58,15 @@ lsp_config.jsonls.setup {
     on_attach = on_attach
 }
 
--- lsp_config.diagnosticls.setup{
---     capabilities = capabilities,
---     on_attach = on_attach
--- }
-
 lsp_config.dockerls.setup{
     capabilities = capabilities,
     on_attach = on_attach
 }
 
--- lsp_config.gopls.setup{
---     capabilities = capabilities,
---     on_attach = on_attach
--- }
-
--- lsp_config.graphql.setup{
---     capabilities = capabilities,
---     on_attach = on_attach
--- }
-
 lsp_config.html.setup{
     capabilities = capabilities,
     on_attach = on_attach
 }
-
--- lsp_config.jdtls.setup{
---     capabilities = capabilities,
---     on_attach = on_attach
--- }
 
 lsp_config.jsonls.setup {
     capabilities = capabilities,
@@ -82,31 +79,14 @@ lsp_config.jsonls.setup {
     }
 }
 
--- lsp_config.kotlin_language_server.setup{
---     capabilities = capabilities,
---     on_attach = on_attach
--- }
-
 lsp_config.yamlls.setup{
     capabilities = capabilities,
     on_attach = on_attach
 }
 
--- https://github.com/microsoft/pyright
--- lsp_config.pyright.setup{
---     capabilities = capabilities,
---     on_attach = on_attach,
---     settings = {
---         python = {
---             analysis = {
---                 autoSearchPaths = true,
---                 useLibraryCodeForTypes = true,
---             }
---         }
---     }
--- }
-require'py_lsp'.setup{
-
+py_lsp.setup{ 
+    capabilities = capabilities,
+    on_attach = on_attach
 }
 
 lsp_config.terraformls.setup{
@@ -128,10 +108,6 @@ lsp_config.vimls.setup{
     on_attach = on_attach
 }
 
--- lsp_config.metals.setup{
---     capabilities = capabilities,
---     on_attach = on_attach
--- }
 if not configs.ls_emmet then
   configs.ls_emmet = {
     default_config = {
