@@ -16,8 +16,14 @@ return require('packer').startup(function(use)
 
   use 'neovim/nvim-lspconfig' -- LSP Configurations 
   use 'simrat39/rust-tools.nvim' -- Rust Support
-  use 'williamboman/mason-lspconfig.nvim' -- mason lspconfig integration
-  use 'williamboman/mason.nvim' -- mason is used to ensure LSPs are installed
+  use {
+    'williamboman/mason.nvim', -- mason is used to ensure LSPs are installed
+    config = function() require("mason").setup() end
+  }
+  use {
+    'williamboman/mason-lspconfig.nvim', -- mason lspconfig integration
+    config = function() require("mason-lspconfig").setup() end
+  }
   use 'hrsh7th/nvim-cmp' -- code completions
   use 'hrsh7th/cmp-nvim-lsp' -- LSP as source for code completions
   use 'hrsh7th/cmp-nvim-lua'
@@ -85,7 +91,18 @@ return require('packer').startup(function(use)
     config = function() require('plugs.lualine_setup') end
   }
   use 'arkav/lualine-lsp-progress'
-
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config = function() require('plugs.null_ls_setup') end
+  }
+  use {
+    'lewis6991/gitsigns.nvim',
+    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

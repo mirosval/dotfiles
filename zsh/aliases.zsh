@@ -54,18 +54,12 @@ alias cwct="cargo watch -c -x 'check' -x 'test -- --nocapture'"
 alias cwctr="cargo watch -c -x 'check' -x 'test -- --nocapture' -x 'run'"
 
 # Git
-alias gf="git pull --ff --no-rebase"
-alias ghv="gh repo view --web"
-alias ghprc="gh pr create --fill --web"
-alias ghprv="gh pr view --web"
-alias gm="git checkout master || git checkout main"
-alias gc="git commit"
-alias gca="git commit -a"
-alias gcam="git commit -am"
-alias gco="git checkout"
-alias gcob="git checkout -b"
 alias gpl="git pull"
 alias gps="git push"
+alias gpr="git push && gh pr create --fill --web"
+alias gb="git checkout -b"
+alias ghv="gh repo view --web"
+alias gm="git checkout master || git checkout main"
 alias gst="git status"
 
 # tmuxp

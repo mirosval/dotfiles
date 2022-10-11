@@ -59,6 +59,7 @@ links=(
     "config/nvim/lua/plugs/todo_comments_setup.lua .config/nvim/lua/plugs/todo_comments_setup.lua"
     "config/nvim/lua/plugs/text_case_setup.lua .config/nvim/lua/plugs/text_case_setup.lua"
     "config/nvim/lua/plugs/lualine_setup.lua .config/nvim/lua/plugs/lualine_setup.lua"
+    "config/nvim/lua/plugs/null_ls_setup.lua .config/nvim/lua/plugs/null_ls_setup.lua"
     "config/pycodestyle .config/pycodestyle"
     "config/starship.toml .config/starship.toml"
     "config/tmuxp/dotfiles.yaml .config/tmuxp/dotfiles.yaml"

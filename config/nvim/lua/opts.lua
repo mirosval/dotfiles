@@ -1,6 +1,10 @@
 local o = vim.opt
 local g = vim.g
 
+o.swapfile = false
+o.backup = false
+o.writebackup = false
+
 --Set completeopt to have a better completion experience
 -- :help completeopt
 -- menuone: popup even when there's only one match
