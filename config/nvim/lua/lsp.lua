@@ -23,7 +23,6 @@ local function format(client, bufnr)
 end
 
 function lsp.on_attach(client, bufnr)
-  require("aerial").on_attach(client, bufnr)
   format(client, bufnr)
 end
 

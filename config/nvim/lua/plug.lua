@@ -14,7 +14,7 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'neovim/nvim-lspconfig' -- LSP Configurations 
+  use 'neovim/nvim-lspconfig' -- LSP Configurations
   use 'simrat39/rust-tools.nvim' -- Rust Support
   use {
     'williamboman/mason.nvim', -- mason is used to ensure LSPs are installed
@@ -74,14 +74,14 @@ return require('packer').startup(function(use)
   use {
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function() require("nvim-surround").setup({}) end 
+    config = function() require("nvim-surround").setup({}) end
   }
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
   use "justinmk/vim-sneak"
-  use { 
+  use {
     "johmsalas/text-case.nvim",
     config = function() require('plugs.text_case_setup') end
   }
@@ -90,7 +90,7 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function() require('plugs.lualine_setup') end
   }
-  use 'arkav/lualine-lsp-progress'
+  -- use 'arkav/lualine-lsp-progress'
   use {
     'jose-elias-alvarez/null-ls.nvim',
     requires = { {'nvim-lua/plenary.nvim'} },
