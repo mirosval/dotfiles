@@ -43,3 +43,8 @@ $ context: kubectl config get-contexts --- --column 2
 aws sso login --profile <profile>
 
 $ profile: aws configure list-profiles
+
+% system
+
+# Print $PATH in lines
+echo $PATH | awk -F ':' '{split($0, lines)} END { for (line in lines)  print lines[line]}'
