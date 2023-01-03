@@ -107,22 +107,22 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects',
     requires = { { 'nvim-treesitter/nvim-treesitter' } }
   }
-  -- use { -- colorscheme
-  --   'folke/tokyonight.nvim',
-  --   config = function()
-  --     -- colorscheme
-  --     vim.opt.background = "dark"
-  --     vim.g.tokyonight_style = "night"
-  --     vim.cmd[[colorscheme tokyonight]]
-  --   end
-  -- }
-  use {
-    'nyoom-engineering/oxocarbon.nvim',
+  use { -- colorscheme
+    'folke/tokyonight.nvim',
     config = function()
-      vim.opt.background = "dark" -- set this to dark or light
-      vim.cmd("colorscheme oxocarbon")
+      -- colorscheme
+      vim.opt.background = "dark"
+      vim.g.tokyonight_style = "night"
+      vim.cmd[[colorscheme tokyonight]]
     end
   }
+  -- use {
+  --   'nyoom-engineering/oxocarbon.nvim',
+  --   config = function()
+  --     vim.opt.background = "dark" -- set this to dark or light
+  --     vim.cmd("colorscheme oxocarbon")
+  --   end
+  -- }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
