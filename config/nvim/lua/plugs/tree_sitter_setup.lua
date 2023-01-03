@@ -1,10 +1,11 @@
 -- Treesitter Plugin Setup 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { 
-    "lua", 
-    "rust", 
+  ensure_installed = {
+    "lua",
+    "rust",
+    "sql",
     "toml",
-    "yaml"
+    "yaml",
   },
   autopairs = {
     enable = true

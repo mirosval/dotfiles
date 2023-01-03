@@ -45,15 +45,6 @@ return require('packer').startup(function(use)
     'alexghergh/nvim-tmux-navigation',
     config = function() require('plugs.tmux_setup') end
   }
-  use { -- colorscheme
-    'folke/tokyonight.nvim',
-    config = function()
-      -- colorscheme
-      vim.opt.background = "dark"
-      vim.g.tokyonight_style = "night"
-      vim.cmd[[colorscheme tokyonight]]
-    end
-  }
   use {
     'stevearc/aerial.nvim',
     config = function() require('plugs.aerial_setup') end
@@ -101,6 +92,35 @@ return require('packer').startup(function(use)
     -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
     config = function()
       require('gitsigns').setup()
+    end
+  }
+  use {
+    'LhKipp/nvim-nu',
+    config = function()
+      require('nu').setup({})
+    end
+  }
+  use {
+    'f-person/git-blame.nvim'
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    requires = { { 'nvim-treesitter/nvim-treesitter' } }
+  }
+  -- use { -- colorscheme
+  --   'folke/tokyonight.nvim',
+  --   config = function()
+  --     -- colorscheme
+  --     vim.opt.background = "dark"
+  --     vim.g.tokyonight_style = "night"
+  --     vim.cmd[[colorscheme tokyonight]]
+  --   end
+  -- }
+  use {
+    'nyoom-engineering/oxocarbon.nvim',
+    config = function()
+      vim.opt.background = "dark" -- set this to dark or light
+      vim.cmd("colorscheme oxocarbon")
     end
   }
   -- Automatically set up your configuration after cloning packer.nvim

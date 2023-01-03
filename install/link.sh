@@ -105,7 +105,7 @@ for file in $linkables ; do
 done
 
 echo "Linking nvim init.vim to .ideavimrc"
-ln -s "$DOTFILES/config/nvim/init.vim" "$HOME/.ideavimrc"
+ln -s "$DOTFILES/config/ideavimrc.vim" "$HOME/.ideavimrc"
 
 echo "Linking navi cheatsheets"
 NAVI_CHEATS_PATH="$(navi info cheats-path)/mirosval/common.cheat"
