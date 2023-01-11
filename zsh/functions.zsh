@@ -17,3 +17,16 @@ function digga() {
     dig +nocmd "$1" any +multiline +noall +answer
 }
 
+# This function creates the pyrightconfig.json file for the current directory
+# it only works if the current directory is a poetry project
+#
+# The purpose of these settings is to make the pyright LSP in neovim work with
+# the installed dependencies in the poetry project
+function pyright_venv() {
+    jq \
+      --null-input \
+      --arg venv "$(basename $(poetry env info -p))" \
+      --arg venvPath "$(dirname $(poetry env info -p))" \
+      '{ "venv": $venv, "venvPath": $venvPath }' \
+      > pyrightconfig.json
+}

@@ -28,6 +28,8 @@ end
 
 function lsp.setup()
   require'lspconfig'.tsserver.setup({})
+  require'lspconfig'.pyright.setup({})
+
   nmap("[e", vim.diagnostic.goto_prev)
   nmap("]e", vim.diagnostic.goto_next)
   nmap("<Leader>ac", vim.lsp.buf.code_action)
