@@ -1,4 +1,4 @@
 # Direnv
-eval "$($HOMEBREW_PREFIX/bin/direnv hook zsh)"
+eval "$($(brew --prefix)/bin/direnv hook zsh)"
 
 
