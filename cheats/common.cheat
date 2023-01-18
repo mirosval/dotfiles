@@ -25,6 +25,9 @@ $ pid: ps aux --- --column 2
 # List Processes running on port
 lsof -i :<port>
 
+# Flush DNS Cache
+sudo killall -HUP mDNSResponder
+
 % ripgrep
 
 # Ripgrep by plain fixed string instead of a regular expression
@@ -48,3 +51,14 @@ $ profile: aws configure list-profiles
 
 # Print $PATH in lines
 echo $PATH | awk -F ':' '{split($0, lines)} END { for (line in lines)  print lines[line]}'
+
+% ffmpeg
+
+# Merge multiple videos in one
+ffmpeg -f concat -i videos.txt -c:a copy -c:v copy out.mp4
+
+# List all MP4 files in the current folder into videos.txt file in the format for ffmpeg convert
+fd -g '*.mp4' | awk -v quote="'" '{ print "file " quote $1 quote }' > videos.txt
+
+# Speed up video by 10x, drop audio
+ffmpeg -i merged.mp4 -an -filter:v "setpts=0.1*PTS" out.mp4
