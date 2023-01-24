@@ -33,7 +33,7 @@ function lsp.setup()
   nmap("[e", vim.diagnostic.goto_prev)
   nmap("]e", vim.diagnostic.goto_next)
   nmap("<Leader>ac", vim.lsp.buf.code_action)
-  -- nmap("<Leader>ac", vim.lsp.buf.code_action) -- TODO: Add code range support
+  nmap("<Leader>rn", vim.lsp.buf.rename)
   nmap("K", vim.lsp.buf.hover)
   nmap("gd", vim.lsp.buf.definition)
 end
