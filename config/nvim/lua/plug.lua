@@ -116,10 +116,14 @@ return require('packer').startup(function(use)
       vim.cmd[[colorscheme tokyonight]]
     end
   }
-  use {
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
-  }
+  -- use {
+  --   'glacambre/firenvim',
+  --   run = function() vim.fn['firenvim#install'](0) end
+  -- }
+  -- use {
+  --   'subnut/nvim-ghost.nvim',
+  --   run = ':call nvim_ghost#installer#install()'
+  -- }
   -- use {
   --   'nyoom-engineering/oxocarbon.nvim',
   --   config = function()
