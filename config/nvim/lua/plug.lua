@@ -116,21 +116,6 @@ return require('packer').startup(function(use)
       vim.cmd[[colorscheme tokyonight]]
     end
   }
-  -- use {
-  --   'glacambre/firenvim',
-  --   run = function() vim.fn['firenvim#install'](0) end
-  -- }
-  -- use {
-  --   'subnut/nvim-ghost.nvim',
-  --   run = ':call nvim_ghost#installer#install()'
-  -- }
-  -- use {
-  --   'nyoom-engineering/oxocarbon.nvim',
-  --   config = function()
-  --     vim.opt.background = "dark" -- set this to dark or light
-  --     vim.cmd("colorscheme oxocarbon")
-  --   end
-  -- }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
