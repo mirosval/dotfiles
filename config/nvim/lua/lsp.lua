@@ -12,8 +12,8 @@ local function format(client, bufnr)
       buffer = bufnr,
       callback = function()
         vim.lsp.buf.format({
-          filter = function(client)
-            return client.name ~= "tsserver"
+          filter = function(filter_client)
+            return filter_client.name ~= "tsserver"
           end,
           bufnr = bufnr,
         })

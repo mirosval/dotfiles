@@ -57,3 +57,4 @@ nmap('<Leader>ew', ':e %%<CR>') -- edit file
 nmap('<Leader>es', ':sp %%<CR>') -- split file
 nmap('<Leader>ev', ':vsp %%<CR>') -- vertical split file
 
+-- nmap('<Leader>o', ':Other<CR>') -- Alternative files
