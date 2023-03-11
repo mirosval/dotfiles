@@ -2,3 +2,4 @@ config/nvim/plugged
 config/nvim/.netrwhist
 .DS_Store
 Brewfile.lock.json
+result

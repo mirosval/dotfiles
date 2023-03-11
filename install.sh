@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Install nix
+if ! command -v <the_command> &> /dev/null
+then
+    echo "installing nix"
+    curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
+      | sh -s -- install
+fi
+
+nix run . switch -- --flake .
+exec ${SHELL} -l
+
+
+# OLD
 DOTFILES=$HOME/.dotfiles
 
 $DOTFILES/install/link.sh
