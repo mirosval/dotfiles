@@ -16,6 +16,7 @@
           imports = [
             ./modules/home.nix
             ./modules/cli.nix
+            ./modules/nvim
             ./modules/zsh
           ];
       };
