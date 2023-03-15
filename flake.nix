@@ -14,9 +14,10 @@
       home-common = {lib, ...}: {
           programs.home-manager.enable = true;
           imports = [
-            ./modules/home.nix
             ./modules/cli.nix
+            ./modules/home.nix
             ./modules/nvim
+            ./modules/tmux
             ./modules/zsh
           ];
       };

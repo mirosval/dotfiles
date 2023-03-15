@@ -1,7 +1,7 @@
 -- general vim options
 require('opts')
 -- load/install plugins
-require('plug')
+--require('plug')
 -- neovim diagnostics
 require('diag')
 -- neovim lsp
