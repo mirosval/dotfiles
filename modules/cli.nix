@@ -7,8 +7,10 @@
     bat
     jq
     tokei
+    wget
 
     # terminal
+    tree
     direnv
     starship
     zsh-syntax-highlighting

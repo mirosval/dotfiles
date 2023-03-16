@@ -6,6 +6,33 @@
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
       nvim-cmp
+      cmp-nvim-lsp
+      cmp-nvim-lua
+      cmp-nvim-lsp-signature-help
+      cmp-vsnip
+      cmp-path
+      cmp-buffer
+      cmp-treesitter
+      vim-vsnip
+      plenary-nvim
+      aerial-nvim
+      vim-tmux-navigator
+      todo-comments-nvim
+      indent-blankline-nvim
+      nvim-autopairs
+      nvim-comment
+      nvim-surround
+      vim-sneak
+      text-case-nvim
+      lualine-nvim
+      nvim-web-devicons
+      null-ls-nvim
+      lualine-lsp-progress
+      gitsigns-nvim
+      nvim-nu
+      git-blame-nvim
+      tokyonight-nvim
+
       rust-tools-nvim
       (nvim-treesitter.withPlugins (plugins: with plugins; [
       	tree-sitter-bash
