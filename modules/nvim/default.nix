@@ -51,10 +51,42 @@
       ]))
       telescope-nvim
     ];
-    extraConfig = ''
-      luafile ${builtins.toString ./init.lua}
-    '';
+    extraPackages = with pkgs; [
+      nodePackages.bash-language-server
+      shellcheck
+
+      nodePackages.dockerfile-language-server-nodejs
+      nodePackages.vscode-langservers-extracted
+      nodePackages.typescript-language-server
+      
+      luaformatter
+      lua-language-server
+      lua54Packages.luacheck
+
+      deadnix
+      statix
+      nil
+
+      terraform-lsp
+
+      # TOML
+      taplo-cli
+
+      nodePackages.yaml-language-server
+      yamllint
+    ];
+    # extraConfig = ''
+    #   luafile ${builtins.toString ./init.lua}
+    # '';
   };
+
+  home.packages = with pkgs; [
+    python3Packages.isort
+    python3Packages.flake8
+    nodePackages.pyright
+    black
+    mypy
+  ];
 
   xdg.configFile = {
     "nvim/lua" = {
