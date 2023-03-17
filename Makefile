@@ -4,4 +4,4 @@ install:
 
 .PHONY: switch
 switch:
-	nix run . switch -- --flake .
+	nix --show-trace run . switch -- --flake .
