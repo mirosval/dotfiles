@@ -2,17 +2,18 @@
 {
   home.packages = with pkgs; [
     # tools
+    jq
     ripgrep
     sd
-    bat
-    jq
     tokei
     wget
 
     # terminal
-    tree
+    bat
     direnv
+    exa
     starship
+    tree
     zsh-syntax-highlighting
 
     # silly
