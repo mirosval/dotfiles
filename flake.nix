@@ -10,34 +10,31 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }: rec {
-      overlays = {
-        libtmux = import ./overlays/libtmux.nix;
-      };
-      home-common = {lib, ...}: {
-        nixpkgs.overlays = [
-          overlays.libtmux
+    overlays = {
+      libtmux = import ./overlays/libtmux.nix;
+    };
+    home-common = {lib, ...}: {
+      nixpkgs.overlays = [
+        overlays.libtmux
+      ];
+      programs.home-manager.enable = true;
+      imports = [
+        ./modules/cli.nix
+        ./modules/home.nix
+        ./modules/nvim
+        ./modules/tmux
+        ./modules/zsh
+      ];
+    };
+    system = "aarch64-darwin";
+    defaultPackage.${system} = home-manager.defaultPackage.${system};
+    homeConfigurations = {
+      "mirosval" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          home-common
         ];
-
-        programs.home-manager.enable = true;
-
-        imports = [
-          ./modules/cli.nix
-          ./modules/home.nix
-          ./modules/nvim
-          ./modules/tmux
-          ./modules/zsh
-        ];
-      };
-      system = "aarch64-darwin";
-      defaultPackage.${system} = home-manager.defaultPackage.${system};
-
-      homeConfigurations = {
-        "mirosval" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          modules = [
-            home-common
-          ];
-        };
       };
     };
+  };
 }

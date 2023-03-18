@@ -40,6 +40,7 @@
       	tree-sitter-dockerfile
       	tree-sitter-json
       	tree-sitter-lua
+      	tree-sitter-make
       	tree-sitter-nix
       	tree-sitter-python
       	tree-sitter-regex
