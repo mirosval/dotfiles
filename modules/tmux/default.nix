@@ -1,5 +1,18 @@
 { pkgs, ... }: 
-{
+let
+  tokyo-night = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "tokyo-night";
+    version = "unstable-2023-01-03";
+    src = pkgs.fetchFromGitHub {
+      owner = "janoamaral";
+      repo = "tokyo-night-tmux";
+      rev = "26617ca796c150e2db381b165a63e6d08694be94";
+      # nix-prefetch-url --type sha256 --unpack https://github.com/janoamaral/tokyo-night-tmux/archive/refs/heads/master.zip
+      sha256 = "1qjg54x4wdr6fbqr3ralqchq83cr2xs498wfk1f2b53fxmv5idj2";
+    };
+  };
+
+in {
   programs.tmux = {
     enable = true;
     clock24 = true;
@@ -19,6 +32,7 @@
       vim-tmux-navigator
       sensible
       pain-control
+      tokyo-night
     ];
   };
 
