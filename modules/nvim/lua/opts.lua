@@ -14,7 +14,7 @@ o.writebackup = false
 -- updatetime: set updatetime for CursorHold
 o.completeopt = {'menuone', 'noselect', 'noinsert'}
 o.shortmess = vim.opt.shortmess + { c = true}
-vim.api.nvim_set_option('updatetime', 300) 
+vim.api.nvim_set_option('updatetime', 300)
 
 o.autoread = true
 o.clipboard:append('unnamed')
@@ -37,7 +37,7 @@ o.number = true
 o.relativenumber = true
 
 -- tabs and spaces
-o.shiftwidth = 2 -- indent using > number of visual spaces per tab 
+o.shiftwidth = 2 -- indent using > number of visual spaces per tab
 o.tabstop = 8 -- this should remain at 8 https://www.reddit.com/r/vim/wiki/tabstop
 o.softtabstop = 2 -- edit as if the tabs are 4 characters wide
 o.expandtab = true
@@ -48,13 +48,3 @@ o.shiftround = true
 
 -- keymaps
 g.mapleader = "\\"
-
-local lib = require('lib')
-local nmap = lib.nmap
-
-nmap('<Leader>w', ':write<CR>') -- save file
-nmap('<Leader>ew', ':e %%<CR>') -- edit file
-nmap('<Leader>es', ':sp %%<CR>') -- split file
-nmap('<Leader>ev', ':vsp %%<CR>') -- vertical split file
-
--- nmap('<Leader>o', ':Other<CR>') -- Alternative files

@@ -32,6 +32,8 @@
       nvim-nu
       git-blame-nvim
       tokyonight-nvim
+      legendary-nvim
+      dressing-nvim
 
       rust-tools-nvim
       (nvim-treesitter.withPlugins (plugins: with plugins; [

@@ -1,7 +1,7 @@
-tmux_nav = require('nvim-tmux-navigation')
+local tmux_nav = require('nvim-tmux-navigation')
 
-function nav(direction)
-  m = {
+local function nav(direction)
+  local m = {
     up = tmux_nav.NvimTmuxNavigateUp,
     down = tmux_nav.NvimTmuxNavigateDown,
     left = tmux_nav.NvimTmuxNavigateLeft,
