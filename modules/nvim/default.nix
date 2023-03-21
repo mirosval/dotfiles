@@ -16,7 +16,7 @@
       vim-vsnip
       plenary-nvim
       aerial-nvim
-      vim-tmux-navigator
+      Navigator-nvim
       todo-comments-nvim
       indent-blankline-nvim
       nvim-autopairs
