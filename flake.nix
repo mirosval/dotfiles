@@ -22,6 +22,7 @@
         ./modules/cli.nix
         ./modules/home.nix
         ./modules/nvim
+        ./modules/rg
         ./modules/tmux
         ./modules/zsh
       ];
