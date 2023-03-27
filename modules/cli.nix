@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     # tools
     jq
-    ripgrep
     sd
     tokei
     wget
