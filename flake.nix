@@ -25,6 +25,7 @@
         ./modules/home.nix
         ./modules/nvim
         ./modules/rg
+        ./modules/starship
         ./modules/tmux
         ./modules/zsh
       ];
