@@ -27,6 +27,7 @@
         ./modules/rg
         ./modules/starship
         ./modules/tmux
+        ./modules/zoxide
         ./modules/zsh
       ];
     };
