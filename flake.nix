@@ -19,6 +19,7 @@
       ];
       programs.home-manager.enable = true;
       imports = [
+        ./modules/alacritty
         ./modules/cli.nix
         ./modules/direnv
         ./modules/fd
