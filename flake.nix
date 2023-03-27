@@ -20,6 +20,7 @@
       programs.home-manager.enable = true;
       imports = [
         ./modules/cli.nix
+        ./modules/direnv
         ./modules/fd
         ./modules/home.nix
         ./modules/nvim
