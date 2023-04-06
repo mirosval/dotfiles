@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # fonts
+    nerdfonts
+
     # tools
     jq
     sd

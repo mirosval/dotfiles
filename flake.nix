@@ -3,13 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    darwin.url = "github:lnl7/nix-darwin";
   };
 
-  outputs = { nixpkgs, home-manager, ... }: rec {
+  outputs = { nixpkgs, home-manager, darwin, ... }: rec {
     overlays = {
       libtmux = import ./overlays/libtmux.nix;
     };
