@@ -21,6 +21,7 @@
         ./modules/cli.nix
         ./modules/direnv
         ./modules/fd
+        ./modules/fzf
         ./modules/home.nix
         ./modules/nvim
         ./modules/rg
