@@ -10,10 +10,10 @@ legendary.setup({
     {'<leader>es', ':sp %%<CR>', description = 'Split horizontally'},
     {'<leader>ev', ':vsp %%<CR>', description = 'Split vertically'},
     -- Tmux Navigator
-    {'<C-h>', ':NavigatorLeft<CR>', description = 'Tmux select pane to the left'},
-    {'<C-j>', ':NavigatorDown<CR>', description = 'Tmux select pane to the bottom'},
-    {'<C-k>', ':NavigatorUp<CR>', description = 'Tmux select pane to the top'},
-    {'<C-l>', ':NavigatorRight<CR>', description = 'Tmux select pane to the right'},
+    {'<C-h>', ':NavigatorLeft<CR>', description = 'Tmux select pane to the left', opts = { silent = true }},
+    {'<C-j>', ':NavigatorDown<CR>', description = 'Tmux select pane to the bottom', opts = { silent = true }},
+    {'<C-k>', ':NavigatorUp<CR>', description = 'Tmux select pane to the top', opts = { silent = true }},
+    {'<C-l>', ':NavigatorRight<CR>', description = 'Tmux select pane to the right', opts = { silent = true }},
     -- Telescope
     {'<C-p>', ':Telescope find_files<CR>', description = 'Search file names'},
     {'<leader>fg', ':Telescope live_grep<CR>', description = 'Search inside files'},
