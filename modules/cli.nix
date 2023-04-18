@@ -12,7 +12,6 @@
 
     # terminal
     bat
-    direnv
     exa
     starship
     tree
