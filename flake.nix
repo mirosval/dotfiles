@@ -22,6 +22,7 @@
         ./modules/direnv
         ./modules/fd
         ./modules/fzf
+        ./modules/git
         ./modules/home.nix
         ./modules/nvim
         ./modules/rg
