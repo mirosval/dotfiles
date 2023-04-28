@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    # TLS Certificates
+    cacert
+
     # fonts
     nerdfonts
 
@@ -16,6 +19,9 @@
     starship
     tree
     zsh-syntax-highlighting
+
+    # nix
+    nix-du
 
     # silly
     cowsay

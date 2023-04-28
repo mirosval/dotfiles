@@ -40,15 +40,18 @@
       	tree-sitter-bash
       	tree-sitter-css
       	tree-sitter-dockerfile
+      	tree-sitter-hcl
       	tree-sitter-json
       	tree-sitter-lua
       	tree-sitter-make
+      	tree-sitter-markdown
       	tree-sitter-nix
       	tree-sitter-python
       	tree-sitter-regex
       	tree-sitter-rust
       	tree-sitter-sql
       	tree-sitter-toml
+      	tree-sitter-tsx
       	tree-sitter-typescript
       	tree-sitter-yaml
       ]))
