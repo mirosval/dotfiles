@@ -5,9 +5,10 @@
     cacert
 
     # fonts
-    nerdfonts
+    (nerdfonts.override { fonts = [ "Hasklig" ]; })
 
     # tools
+    graphviz
     jq
     sd
     tokei
