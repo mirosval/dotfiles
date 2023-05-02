@@ -4,7 +4,12 @@ clean:
 
 .PHONY: install
 install:
-	./install.sh
+	curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix \
+	| sh -s -- install
+
+.PHONY: uninstall
+uninstall:
+	/nix/nix-installer uninstall
 
 .PHONY: switch
 switch:
