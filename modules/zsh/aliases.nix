@@ -8,6 +8,8 @@
 
   c="clear ; tmux clear-history ; clear";
 
+  j="z";
+
   did="vim +'normal Go' +'r!date' ~/did.txt";
 
   # use nvim, but don't make me think about it
