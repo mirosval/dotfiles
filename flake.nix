@@ -24,6 +24,7 @@
         ./modules/fzf
         ./modules/git
         ./modules/home.nix
+        ./modules/navi
         ./modules/nvim
         ./modules/rg
         ./modules/starship

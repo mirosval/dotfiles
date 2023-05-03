@@ -9,6 +9,7 @@
     initExtraBeforeCompInit = ''
       ${builtins.readFile ./session_variables.zsh}
       ${builtins.readFile ./functions.zsh}
+      ${builtins.readFile ./navi.zsh}
       ${if pkgs.stdenv.isDarwin then builtins.readFile ./session_variables.mac.zsh else ""}
     '';
   };
