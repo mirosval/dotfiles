@@ -68,7 +68,7 @@
           }
           home-manager.darwinModules.home-manager 
           {
-            nixpkgs = nixpkgsConfig;
+            nixpkgs = nixpkgs;
             users.users."mirosval".home = "/Users/mirosval";
             home-manager = {
               useGlobalPkgs = true;
