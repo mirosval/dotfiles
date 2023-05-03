@@ -23,6 +23,7 @@
         ./modules/fd
         ./modules/fzf
         ./modules/git
+        ./modules/hammerspoon
         ./modules/home.nix
         ./modules/navi
         ./modules/nvim
