@@ -8,6 +8,7 @@
     (nerdfonts.override { fonts = [ "Hasklig" ]; })
 
     # tools
+    ffmpeg
     graphviz
     jq
     sd
