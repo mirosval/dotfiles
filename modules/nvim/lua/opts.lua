@@ -48,3 +48,8 @@ o.shiftround = true
 
 -- keymaps
 g.mapleader = "\\"
+
+-- folds
+o.foldmethod = "indent"
+o.foldlevel = 99
+o.foldlevelstart = 99
