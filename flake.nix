@@ -2,9 +2,15 @@
   description = "Miro's dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    darwin.url = "github:lnl7/nix-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/release-23.05";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, darwin, ... }: rec {
@@ -38,7 +44,7 @@
     defaultPackage.${system} = home-manager.defaultPackage.${system};
     homeConfigurations = {
       "mirosval" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = (import nixpkgs) { inherit system; };
         modules = [
           home-common
         ];
