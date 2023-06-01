@@ -17,3 +17,11 @@ windows:
       - nvim
       - make dev
       - make expand
+  - window_name: liminal
+    layout: main-vertical
+    options:
+      main-pane-width: 50%
+    shell_command_before: cd ~/Projekty/liminal
+    panes:
+      - nvim
+      - make dev
