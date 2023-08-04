@@ -16,6 +16,7 @@
       github.user = "mirosval";
       pull.ff = "only";
       push.autoSetupRemote = "true";
+      init.defaultBranch = "main";
     };
 
     ignores = [
