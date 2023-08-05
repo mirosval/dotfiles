@@ -17,11 +17,11 @@ windows:
       - nvim
       - make dev
       - make expand
-  - window_name: liminal
+  - window_name: e3e
     layout: main-vertical
     options:
       main-pane-width: 50%
-    shell_command_before: cd ~/Projekty/liminal
+    shell_command_before: cd ~/Projekty/e3e
     panes:
       - nvim
       - make dev

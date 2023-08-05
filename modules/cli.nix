@@ -21,6 +21,7 @@
     starship
     tree
     zsh-syntax-highlighting
+    visidata
 
     # nix
     nix-du
