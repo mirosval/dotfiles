@@ -20,6 +20,7 @@
     exa
     tree
     zsh-syntax-highlighting
+    visidata
 
     # nix
     nix-du

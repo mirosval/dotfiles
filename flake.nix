@@ -17,11 +17,14 @@
     overlays = {
       libtmux = import ./overlays/libtmux.nix;
     };
-    nixpkgsConfig = {
-      config = {
-        allowUnfree = true;
+    home-common = {lib, ...}: {
+      nixpkgs = {
+        config = {
+          allowUnfree = true;
+          allowUnfreePredicate = (_: true);
+        };
       };
-      overlays = [
+      nixpkgs.overlays = [
         overlays.libtmux
       ];
     };
