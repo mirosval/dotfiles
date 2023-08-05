@@ -25,6 +25,11 @@
         {
           devShells.default = mkShell {
             buildInputs = [ rustToolchain ];
+            packages = [
+              cargo-watch
+              rust-analyzer
+              xh
+            ];
           };
         }
       );
