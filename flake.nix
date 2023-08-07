@@ -2,9 +2,9 @@
   description = "Miro's dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
@@ -13,71 +13,52 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, darwin, ... }: rec {
-    overlays = {
-      libtmux = import ./overlays/libtmux.nix;
-    };
-    home-common = {lib, ...}: {
-      nixpkgs = {
+  outputs = inputs@{ self, nixpkgs, home-manager, darwin, ... }:
+    let
+      overlays = {
+        libtmux = import ./overlays/libtmux.nix;
+      };
+      nixpkgs = with inputs; {
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
         };
+        overlays = [
+          overlays.libtmux
+        ];
       };
-      nixpkgs.overlays = [
-        overlays.libtmux
-      ];
-    };
-    home-common = {lib, ...}: {
-      programs.home-manager.enable = true;
-      imports = [
-        ./modules/alacritty
-        ./modules/cli.nix
-        ./modules/direnv
-        ./modules/fd
-        ./modules/fzf
-        ./modules/git
-        ./modules/hammerspoon
-        ./modules/home.nix
-        ./modules/navi
-        ./modules/nvim
-        ./modules/rg
-        ./modules/starship
-        ./modules/tmux
-        ./modules/zoxide
-        ./modules/zsh
-      ];
-    };
-    system = "aarch64-darwin";
-    #defaultPackage.${system} = home-manager.defaultPackage.${system};
-    #homeConfigurations = {
-    #  "mirosval" = home-manager.lib.homeManagerConfiguration {
-    #    pkgs = nixpkgs.legacyPackages.${system};
-    #    modules = [
-    #      home-common
-    #    ];
-    #  };
-    #};
-    defaultPackage.${system} = darwin.defaultPackage.${system};
-    darwinConfigurations = rec {
-      mirosval = darwin.lib.darwinSystem {
-        system = system;
+      homeManagerConfig = {
+        imports = [
+          ./modules/alacritty
+          ./modules/cli.nix
+          ./modules/direnv
+          ./modules/fd
+          ./modules/fzf
+          ./modules/git
+          ./modules/hammerspoon
+          ./modules/home.nix
+          ./modules/navi
+          ./modules/nvim
+          ./modules/rg
+          ./modules/starship
+          ./modules/tmux
+          ./modules/zoxide
+          ./modules/zsh
+        ];
+      };
+    in {
+      darwinConfigurations.mirosval = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
         modules = [
-          {
-            services.nix-daemon.enable = true;
-          }
-          home-manager.darwinModules.home-manager 
+          ./hosts/mirosval/default.nix
+          home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgs;
             users.users."mirosval".home = "/Users/mirosval";
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users."mirosval" = home-common;
-            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.mirosval = homeManagerConfig;
           }
         ];
       };
     };
-  };
 }
