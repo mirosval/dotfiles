@@ -84,6 +84,22 @@ I use neovim built in LSP for talking to the LSP Servers.
 
 - Remap `caps-lock` to `esc` when pressed shortly and to `hyper` when long-pressed.
 
+Troubleshooting:
+
+When  you get messages like:
+
+```text
+[2023-08-07 22:07:41.565] [error] [console_user_server] grabber_client connect_failed: Connection refused
+```
+
+and you have checked that the relevant Input Monitoring options in the Settings are turned on, try: 
+```shell
+/Applications/.Nix-Karabiner/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager deactivate
+/Applications/.Nix-Karabiner/.Karabiner-VirtualHIDDevice-Manager.app/Contents/MacOS/Karabiner-VirtualHIDDevice-Manager activate
+```
+
+this should re-request the approval of the virtual keyboard device.
+
 ### Rust utils
 
 I use Rust re-implementations of many standard utilities.
