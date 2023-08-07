@@ -11,9 +11,17 @@ install:
 uninstall:
 	/nix/nix-installer uninstall
 
+.PHONY: build
+build:
+	nix --show-trace build .#darwinConfigurations.mirosval.system
+
 .PHONY: switch
 switch:
 	nix --show-trace run . switch -- --flake .
+
+.PHONY: darwin-switch
+darwin-switch: build
+	result/sw/bin/darwin-rebuild switch --flake .#mirosval
 
 .PHONY: update
 update:

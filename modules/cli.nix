@@ -18,7 +18,6 @@
     # terminal
     bat
     exa
-    starship
     tree
     zsh-syntax-highlighting
     visidata
