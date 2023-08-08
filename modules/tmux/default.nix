@@ -74,6 +74,7 @@
     tmuxp
     fzf
     reattach-to-user-namespace
+    pam-reattach # Touch ID in tmux
   ];
 
   xdg.configFile = {

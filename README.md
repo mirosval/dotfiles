@@ -2,14 +2,14 @@
 
 ![A screenshort of the setup](screenshot.png)
 
-My dotfiles are optimized to use the mouse as little as possible and to make navigating the terminal as pleasant as possible on macOS.
+My dotfiles are optimized to use the mouse as little as possible and to make navigating the terminal as pleasant as possible on macOS. Relying on Nix, the philosophy is to only have "general" tools installed machine-wide and install project-specific tools using that project's flake.
 
 Highlights:
 
+* [Nix](https://nixos.org/), [nix-darwin](https://github.com/LnL7/nix-darwin) and [home-manager](https://github.com/nix-community/home-manager)
 * [Alacritty](https://github.com/jwilm/alacritty)
-* [Hasklug Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hasklig)
+* [Hasklig](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hasklig)
 * Tmux + Neovim integration (navigate using `ctrl-hjkl` between tmux/nvim panels)
-* Brewfile
 * [Karabiner](https://pqrs.org/osx/karabiner/) and [Hammerspoon](https://www.hammerspoon.org/) (map `caps-lock` to `esc`, move/resize windows, quick shortcuts)
 
 ## Contents
@@ -19,18 +19,22 @@ Highlights:
 
 ## Installation
 
-There is an `install.sh` that you should be able to just run, but be sure to go through it and review what you actually want, because it is pretty aggressive and not so well tested.
+```shell
+make install
+make darwin-switch
+```
 
 ## Usage
 
 ### Tmux
 
-I use [TPM](https://github.com/tmux-plugins/tpm) for maintaining plugins, after you start tmux for the first time, you need to press `ctrl-a I` to install the plugins.
+To start a tmux session:
 
-Start with `tmux new -s work` or `tmux attach-session -t work` if you have an already running session.
+```shell
+tl dot
+```
 
-Use [tmuxp](https://github.com/tmux-python/tmuxp) to either freeze `tmuxp freeze` or load sessions `tmuxp load
-<sessio_name>` or `tl <sessio_name>`.
+`tl` is an alias for tmuxp load (defined in `modules/zsh/aliases.nix`), `dot` stands for dotfiles session config file located at `modules/tmux/tmuxp/dot.yaml`.
 
 Use `Prefix+s` to switch between running sessions using fzf.
 
@@ -40,14 +44,15 @@ Use `Prefix+s` to switch between running sessions using fzf.
 - `ctrl-b x` to close a panel
 - `ctrl-b ,` to rename a tab
 - `ctrl-b C` to clear the screen
-- `ctrl-k/j/k/l` to navigate between panels
+- `ctrl-k/j/k/l` to navigate between panels (also works with neovim)
 - `ctrl-b 1/2/3...` to switch to a different tab
 
-### NVim
+### Neovim
 
 I use neovim built in LSP for talking to the LSP Servers.
 
 - `ctrl-k/j/k/l` to navigate between panels
+- `\a` LSP Code Action
 - `\w` save
 - `\ew` open current directory viewer
 - `\es` open current directory viewer in vertical split
@@ -60,16 +65,19 @@ I use neovim built in LSP for talking to the LSP Servers.
 
 ### Hammerspoon
 
-- `caps-lock-w` Alacritty
-- `caps-lock-q` GraphiQL
-- `caps-lock-e` IntelliJ IDEA Ultimate
-- `caps-lock-t` TablePlus
+Used for window management, caffeine replacement (prevents machine going to sleep), etc.
+
+- `caps-lock-a` Alacritty
 - `caps-lock-b` Firefox
-- `caps-lock-c` Visual Studio Code
-- `caps-lock-m` Messages
-- `caps-lock-g` Fork
-- `caps-lock-s` Slack
+- `caps-lock-c` Calendar
 - `caps-lock-d` Spotify
+- `caps-lock-e` IntelliJ IDEA
+- `caps-lock-g` Fork
+- `caps-lock-m` Messages
+- `caps-lock-m` Google Chrome
+- `caps-lock-s` Slack
+- `caps-lock-t` DataGrip
+- `caps-lock-v` Visual Studio Code
 - `caps-lock-h` Move window to the left
 - `caps-lock-j` Move window to the bottom
 - `caps-lock-k` Move window to the top
@@ -100,7 +108,7 @@ and you have checked that the relevant Input Monitoring options in the Settings 
 
 this should re-request the approval of the virtual keyboard device.
 
-### Rust utils
+### Notable utils
 
 I use Rust re-implementations of many standard utilities.
 
@@ -112,3 +120,7 @@ I use Rust re-implementations of many standard utilities.
 - [sd](https://github.com/chmln/sd) replacement for `sed`
 - [tokei](https://github.com/XAMPPRocky/tokei) for counting lines of code
 - [xsv](https://github.com/BurntSushi/xsv) csv manipulation similar to jq
+
+Other interesting tools:
+
+- [navi](https://github.com/denisidoro/navi) ctrl-r triggers parametric cheat sheet search (defined in `modules/navi/cheats/common.cheat`)
