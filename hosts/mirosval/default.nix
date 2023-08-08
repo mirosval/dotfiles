@@ -13,6 +13,8 @@
     "fork"
     "google-chrome"
     "hammerspoon"
+    "iina"
+    "logseq"
     "quicklook-csv"
     "quicklook-json"
     "raycast"
@@ -27,10 +29,6 @@
   networking = {
     computerName = "Miro Home MBP";
     hostName = "mirosval";
-    dns = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
   };
 
   programs.zsh.enable = true;

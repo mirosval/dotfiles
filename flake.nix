@@ -37,6 +37,7 @@
           ./modules/git
           ./modules/hammerspoon
           ./modules/home.nix
+          ./modules/karabiner
           ./modules/navi
           ./modules/nvim
           ./modules/rg
