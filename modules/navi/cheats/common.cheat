@@ -62,3 +62,10 @@ fd -g '*.mp4' | awk -v quote="'" '{ print "file " quote $1 quote }' > videos.txt
 
 # Speed up video by 10x, drop audio
 ffmpeg -i merged.mp4 -an -filter:v "setpts=0.1*PTS" out.mp4
+
+% nix
+
+# Initialize new nix project from flake template
+nix flake --show-trace init -t "github:mirosval/dotfiles?dir=templates#<template>"
+
+$ template: ls -1 -F $HOME/.dotfiles/templates | grep '/$' | sed -e 's|/$||' | sort
