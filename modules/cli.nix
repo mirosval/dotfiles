@@ -17,7 +17,7 @@
 
     # terminal
     bat
-    exa
+    eza
     tree
     zsh-syntax-highlighting
     visidata

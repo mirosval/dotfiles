@@ -1,8 +1,8 @@
 {
   zshconfig="code ~/.zshrc";
 
-  l="exa -lah";
-  lg="exa -lah --git";
+  l="eza -lah";
+  lg="eza -lah --git";
 
   v="nvim . && clear";
 

@@ -113,7 +113,7 @@ this should re-request the approval of the virtual keyboard device.
 I use Rust re-implementations of many standard utilities.
 
 - [bat](https://github.com/sharkdp/bat) like `cat` but prettier
-- [exa](https://github.com/ogham/exa) replacement for `ls`
+- [eza](https://github.com/eza-community/eza) replacement for `ls`
 - [fd](https://github.com/sharkdp/fd) replacement for `find`
 - [procs](https://github.com/dalance/procs) replacement for `ps`
 - [ripgrep](https://github.com/BurntSushi/ripgrep) replacement for `ag`
