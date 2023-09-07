@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,6 +59,7 @@
             users.users."mirosval".home = "/Users/mirosval";
             home-manager.useGlobalPkgs = true;
             home-manager.users.mirosval = homeManagerConfig;
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
       };

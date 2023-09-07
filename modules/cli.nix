@@ -1,4 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
+in
 {
   home.packages = with pkgs; [
     # TLS Certificates
@@ -17,7 +23,7 @@
 
     # terminal
     bat
-    eza
+    unstable.eza
     tree
     zsh-syntax-highlighting
     visidata
