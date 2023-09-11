@@ -19,6 +19,7 @@
       "raycast"
       "spotify"
       "steam"
+      "tableplus"
       "the-unarchiver"
       "tunnelblick"
       "visual-studio-code"
