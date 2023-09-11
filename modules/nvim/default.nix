@@ -1,9 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+  };
+in
 {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
+    plugins = with unstable.vimPlugins; [
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp
@@ -57,7 +63,7 @@
       ]))
       telescope-nvim
     ];
-    extraPackages = with pkgs; [
+    extraPackages = with unstable; [
       nodePackages.bash-language-server
       shellcheck
 
@@ -86,12 +92,13 @@
     # '';
   };
 
-  home.packages = with pkgs; [
+  home.packages = with unstable; [
     python3Packages.isort
     python3Packages.flake8
     nodePackages.pyright
     black
     mypy
+    nixd
   ];
 
   xdg.configFile = {

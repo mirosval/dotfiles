@@ -14,12 +14,13 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, darwin, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, ... }:
     let
       overlays = {
         libtmux = import ./overlays/libtmux.nix;
       };
       nixpkgs = with inputs; {
+        system = "aarch64-darwin";
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
@@ -49,6 +50,18 @@
         ];
       };
     in {
+#      nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
+#        system = "aarch64-linux";
+#        modules = [
+#          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+#          ({config, ...}: {
+#            nixpkgs.buildPlatform = "aarch64-darwin";
+#            nixpkgs.hostPlatform = "aarch64-linux";
+#            #config.system.stateVersion = "23.05";
+#          })
+#        ];
+#        specialArgs = { inherit inputs nixpkgs; };
+#      };
       darwinConfigurations.mirosval = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
