@@ -50,18 +50,17 @@
         ];
       };
     in {
-#      nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
-#        system = "aarch64-linux";
-#        modules = [
-#          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-#          ({config, ...}: {
-#            nixpkgs.buildPlatform = "aarch64-darwin";
-#            nixpkgs.hostPlatform = "aarch64-linux";
-#            #config.system.stateVersion = "23.05";
-#          })
-#        ];
-#        specialArgs = { inherit inputs nixpkgs; };
-#      };
+      nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          ({config, ...}: {
+            config.system.stateVersion = "23.05";
+          })
+          ./hosts/butters
+        ];
+        specialArgs = { inherit inputs nixpkgs; };
+      };
       darwinConfigurations.mirosval = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
