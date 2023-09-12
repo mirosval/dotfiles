@@ -13,6 +13,13 @@ git status
 # Opens a new PR
 gh pr create --web
 
+% docker
+
+# Opens logs of a container
+docker logs -f <container>
+
+$ container: docker ps --- --column 1
+
 % kill
 
 # Selects and kill -9 process
