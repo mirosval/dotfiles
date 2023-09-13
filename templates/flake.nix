@@ -15,6 +15,11 @@
         description = "Basic Python project with poetry";
       };
 
+      nextjs = {
+        path = ./nextjs;
+        description = "Basic Next.js project with Typescript and Tailwind";
+      };
+
     };
   };
 }
