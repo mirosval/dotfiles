@@ -68,12 +68,13 @@
             config.system.stateVersion = "23.05";
           })
           ./hosts/butters/configuration.nix
-	  home-manager.nixosModules.home-manager
-	  {
+          #./hosts/butters/services
+          home-manager.nixosModules.home-manager
+          {
             users.users.miro.home = "/home/miro";
-	    home-manager.users.miro = homeManagerConfig;
+            home-manager.users.miro = homeManagerConfig;
             home-manager.extraSpecialArgs = { inherit inputs; };
-	  }
+          }
         ];
         specialArgs = { inherit inputs nixpkgs; };
       };

@@ -104,6 +104,7 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    tailscale
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -116,6 +117,8 @@
   programs.zsh.enable = true;
 
   # List services that you want to enable:
+
+  services.tailscale.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
