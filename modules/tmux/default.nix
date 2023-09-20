@@ -74,7 +74,7 @@
     tmuxp
     fzf
   ] ++ (
-    if pkgs.system == "aarch64-darwin" then 
+    if pkgs.stdenv.isDarwin then 
       [
         pkgs.reattach-to-user-namespace
         pam-reattach # Touch ID in tmux

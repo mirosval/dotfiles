@@ -1,16 +1,17 @@
+{ pkgs, ... }:
 {
   programs.alacritty = {
     enable = true;
     settings = {
       window = {
-        decorations = "buttonless";
-        startup_mode = "SimpleFullscreen";
+        decorations = if pkgs.stdenv.isDarwin then "buttonless" else "None";
+        startup_mode = if pkgs.stdenv.isDarwin then "SimpleFullscreen" else "Fullscreen";
       };
       font = {
         size = 10;
         normal = {
           family = "Hasklug Nerd Font";
-          style = "Light";
+          style = if pkgs.stdenv.isDarwin then "Light" else "Regular";
         };
         bold = {
           family = "Hasklug Nerd Font";
@@ -57,7 +58,11 @@
         ];
       };
       key_bindings = [
-        { key = "F"; mods = "Command|Control"; action = "ToggleSimpleFullscreen"; }
+        { 
+          key = "F"; 
+          mods = "Command|Control"; 
+          action = if pkgs.stdenv.isDarwin then "ToggleSimpleFullscreen" else "ToggleFullscreen"; 
+        }
       ];
     };
   };
