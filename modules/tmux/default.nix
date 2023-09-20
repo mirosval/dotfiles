@@ -73,9 +73,15 @@
   home.packages = with pkgs; [
     tmuxp
     fzf
-    reattach-to-user-namespace
-    pam-reattach # Touch ID in tmux
-  ];
+  ] ++ (
+    if pkgs.system == "aarch64-darwin" then 
+      [
+        pkgs.reattach-to-user-namespace
+        pam-reattach # Touch ID in tmux
+      ] 
+    else 
+      []
+  );
 
   xdg.configFile = {
     "tmuxp/dot.yaml".source = ./tmuxp/dot.yaml;

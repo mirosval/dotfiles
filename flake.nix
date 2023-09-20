@@ -50,14 +50,30 @@
         ];
       };
     in {
-      nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
+      nixosConfigurations.jimmy = nixpkgs-unstable.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
           ({config, ...}: {
             config.system.stateVersion = "23.05";
           })
-          ./hosts/butters
+          ./hosts/jimmy
+        ];
+        specialArgs = { inherit inputs nixpkgs; };
+      };
+      nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ({config, ...}: {
+            config.system.stateVersion = "23.05";
+          })
+          ./hosts/butters/configuration.nix
+	  home-manager.nixosModules.home-manager
+	  {
+            users.users.miro.home = "/home/miro";
+	    home-manager.users.miro = homeManagerConfig;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+	  }
         ];
         specialArgs = { inherit inputs nixpkgs; };
       };

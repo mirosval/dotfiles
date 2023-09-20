@@ -19,6 +19,10 @@ build:
 switch:
 	nix --show-trace run . switch -- --flake .
 
+.PHONY: butters-switch
+butters-switch:
+	nixos-rebuild switch --flake .#butters
+
 .PHONY: darwin-switch
 darwin-switch: build
 	result/sw/bin/darwin-rebuild switch --flake .#mirosval
