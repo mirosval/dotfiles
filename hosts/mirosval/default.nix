@@ -20,6 +20,7 @@
       "spotify"
       "steam"
       "tableplus"
+      "tailscale"
       "the-unarchiver"
       "tunnelblick"
       "visual-studio-code"
