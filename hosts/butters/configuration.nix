@@ -47,18 +47,20 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  programs.hyprland.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+#  # Enable the X11 windowing system.
+#  services.xserver.enable = true;
+#
+#  # Enable the GNOME Desktop Environment.
+#  services.xserver.displayManager.gdm.enable = true;
+#  services.xserver.desktopManager.gnome.enable = true;
+#
+#  # Configure keymap in X11
+#  services.xserver = {
+#    layout = "us";
+#    xkbVariant = "";
+#  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -137,4 +139,14 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings = {
+        dns_enabled = true;
+      };
+    };
+    oci-containers.backend = "podman";
+  };
 }

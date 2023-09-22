@@ -12,9 +12,10 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, hyprland, ... }:
     let
       overlays = {
         libtmux = import ./overlays/libtmux.nix;
@@ -63,16 +64,23 @@
       };
       nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit hyprland; };
         modules = [
           ({config, ...}: {
             config.system.stateVersion = "23.05";
           })
           ./hosts/butters/configuration.nix
+          hyprland.nixosModules.default
           #./hosts/butters/services
           home-manager.nixosModules.home-manager
           {
             users.users.miro.home = "/home/miro";
-            home-manager.users.miro = homeManagerConfig;
+            home-manager.users.miro = {
+              imports = homeManagerConfig.imports ++ [
+                hyprland.homeManagerModules.default
+                ./modules/hyprland
+              ];
+            };
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
