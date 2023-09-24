@@ -23,10 +23,11 @@ in
 
     # terminal
     bat
-    unstable.eza
+    unstable.tailscale
     tree
-    zsh-syntax-highlighting
+    unstable.eza
     visidata
+    zsh-syntax-highlighting
 
     # nix
     nix-du

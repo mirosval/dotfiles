@@ -100,6 +100,11 @@
     #  thunderbird
     ];
     shell = pkgs.zsh;
+    openssh = {
+      authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICPX5bttjOGNx4ukR2xIjLPhX/4VEHuKX285Mh5CpclX miro@butters"
+      ];
+    };
   };
 
   # Allow unfree packages

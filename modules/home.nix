@@ -39,6 +39,15 @@
             "PreferredAuthentications" = "publickey";
           };
         };
+        butters = {
+          hostname = "butters";
+          user = "miro";
+          identityFile = "~/.ssh/butters_id_ed25519";
+          extraOptions = {
+            "StrictHostKeyChecking" = "accept-new";
+            "PreferredAuthentications" = "publickey";
+          };
+        };
       };
     };
   };
