@@ -2,9 +2,14 @@
 {
   virtualisation.oci-containers.containers = {
     homer = {
-      image = "b4bz/homer";
       autoStart = true;
-      ports = ["127.0.0.1:4000:8080"];
+      image = "ghcr.io/bastienwirtz/homer";
+      ports = [
+        "8080:8080"
+      ];
+      volumes = [
+        "${toString ./.}/assets:/www/assets"
+      ];
     };
   };
 }

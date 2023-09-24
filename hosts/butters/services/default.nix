@@ -1,3 +1,5 @@
-[
-  ./homer
-]
+{ ... }: {
+  imports = [
+    ./homer
+  ];
+}
