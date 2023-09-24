@@ -85,6 +85,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Enable thunderbolt
+  services.hardware.bolt.enable = true;
+  services.fwupd.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.miro = {
     isNormalUser = true;
@@ -120,16 +124,26 @@
 
   # List services that you want to enable:
 
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    extraUpFlags = ["--ssh"];
+  };
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  networking.firewall = {
+    enable = true;
+    trustedInterfaces = ["tailscale0"];
+    allowedUDPPorts = [ config.services.tailscale.port ];
+    allowedTCPPorts = [22];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
