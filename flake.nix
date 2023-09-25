@@ -62,6 +62,17 @@
         ];
         specialArgs = { inherit inputs nixpkgs; };
       };
+      nixosConfigurations.leon = nixpkgs-unstable.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          ({config, ...}: {
+            config.system.stateVersion = "23.05";
+          })
+          ./hosts/leon
+        ];
+        specialArgs = { inherit inputs nixpkgs; };
+      };
       nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit hyprland; };

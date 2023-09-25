@@ -87,5 +87,9 @@ builder-ping:
 	nix store ping --store ssh://builder
 
 .PHONY: butters-image
-butters-image:
-	nix build -vv .#nixosConfigurations.butters.config.system.build.sdImage
+jimmy-image:
+	nix build -vv .#nixosConfigurations.jimmy.config.system.build.sdImage
+
+.PHONY: leon-image
+leon-image:
+	nix build -vv .#nixosConfigurations.leon.config.system.build.sdImage

@@ -36,7 +36,8 @@ The configuration needed to register the container as a builder along with the c
 ### Use the builder to create the image
 
 ```shell
-make butters-image
+make jimmy-image
+make leon-image
 ```
 
 Which runs `nix build` for the top level derivation for `butters` in the flake. This produces an image located at `result/sd-image/nixos-sd-image-<date>-aarch64-linux.img.zst`.
