@@ -5,32 +5,25 @@
     enable = true;
     brews = [ ];
     casks = [
-      "discord"
       "docker"
       "firefox"
       "flux"
       "fork"
       "google-chrome"
       "hammerspoon"
-      "iina"
-      "logseq"
       "quicklook-csv"
       "quicklook-json"
       "raycast"
       "spotify"
-      "steam"
-      "tableplus"
-      "tailscale"
       "the-unarchiver"
       "tunnelblick"
       "visual-studio-code"
-      "vlc"
     ];
   };
 
   networking = {
-    computerName = "Miro Home MBP";
-    hostName = "mirosval";
+    computerName = "Miroslavs Work MBP";
+    hostName = "jimbo";
   };
 
   nix = {

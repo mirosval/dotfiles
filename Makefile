@@ -11,9 +11,13 @@ install:
 uninstall:
 	/nix/nix-installer uninstall
 
-.PHONY: build
-build:
-	nix --show-trace build .#darwinConfigurations.mirosval.system
+.PHONY: mirosval-build
+mirosval-build:
+	nix --show-trace --extra-experimental-features "nix-command flakes" build .#darwinConfigurations.mirosval.system
+
+.PHONY: jimbo-build
+jimbo-build:
+	nix --show-trace --extra-experimental-features "nix-command flakes" build .#darwinConfigurations.jimbo.system
 
 .PHONY: switch
 switch:
@@ -24,8 +28,12 @@ butters-switch:
 	nixos-rebuild switch --flake .#butters
 
 .PHONY: darwin-switch
-darwin-switch: build
+darwin-switch: mirosval-build
 	result/sw/bin/darwin-rebuild switch --flake .#mirosval
+
+.PHONY: jimbo-switch
+jimbo-switch: jimbo-build
+	result/sw/bin/darwin-rebuild switch --flake .#jimbo
 
 .PHONY: update
 update:

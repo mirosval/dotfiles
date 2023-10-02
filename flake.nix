@@ -111,5 +111,19 @@
           }
         ];
       };
+      darwinConfigurations.jimbo = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./hosts/jimbo/default.nix
+          home-manager.darwinModules.home-manager
+          {
+            nixpkgs = nixpkgs;
+            users.users."mirosval".home = "/Users/mirosval";
+            home-manager.useGlobalPkgs = true;
+            home-manager.users.mirosval = homeManagerConfig;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
+        ];
+      };
     };
 }
