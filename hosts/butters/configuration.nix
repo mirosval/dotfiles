@@ -33,8 +33,10 @@
     unmanaged = [
       "tailscale*"
       "wl*"
-      "ve-+"
-      "vb-+"
+      "mv-+"
+    ];
+    insertNameservers = [
+      "1.1.1.1"
     ];
   };
 
@@ -199,13 +201,6 @@
     ];
   };
 
-  networking.nat = {
-    enable = true;
-    internalInterfaces = [
-      "ve-lan-dns"
-    ];
-    externalInterface = "br0";
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
