@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.05-darwin";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     darwin = {
@@ -13,9 +13,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    # This pattern is because the repo is private
+    # it relies on git being configured with gh auth setup-git
+    secrets.url = "git+https://github.com/mirosval/secrets.git?ref=main";
+    agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, hyprland, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, hyprland, agenix, secrets, ... }:
     let
       overlays = {
         libtmux = import ./overlays/libtmux.nix;
@@ -78,11 +82,16 @@
         specialArgs = { inherit hyprland; };
         modules = [
           ({config, ...}: {
-            config.system.stateVersion = "23.05";
+            config.system.stateVersion = "23.11";
           })
           ./hosts/butters/configuration.nix
           hyprland.nixosModules.default
-          #./hosts/butters/services
+          ./hosts/butters/services
+          agenix.nixosModules.default 
+          secrets.nixosModules.secrets
+          {
+            secrets.enable = true;
+          }
           home-manager.nixosModules.home-manager
           {
             users.users.miro.home = "/home/miro";

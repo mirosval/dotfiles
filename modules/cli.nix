@@ -14,6 +14,7 @@ in
     (nerdfonts.override { fonts = [ "Hasklig" ]; })
 
     # tools
+    dig
     ffmpeg
     graphviz
     jq

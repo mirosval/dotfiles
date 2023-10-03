@@ -5,10 +5,14 @@
       autoStart = true;
       image = "ghcr.io/bastienwirtz/homer";
       ports = [
-        "8080:8080"
+        "8081:8080"
       ];
       volumes = [
         "${toString ./.}/assets:/www/assets"
+      ];
+      extraOptions = [
+        "--name=homer"
+        "--hostname=homer"
       ];
     };
   };

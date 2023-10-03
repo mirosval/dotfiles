@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -28,7 +28,43 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    unmanaged = [
+      "tailscale*"
+      "wl*"
+      "ve-+"
+      "vb-+"
+    ];
+  };
+
+  networking.macvlans.mv-enp2s0-host = {
+    interface = "enp2s0";
+    mode = "bridge";
+  };
+  networking.interfaces.mv-enp2s0-host = {
+    ipv4.addresses = [
+      {
+        address = "192.168.1.214";
+        prefixLength = 24;
+      }
+    ];
+  };
+  
+  # silly fix for the service failing on nixos rebuild
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -69,7 +105,10 @@
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    sudo.wheelNeedsPassword = false;
+  };
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -147,8 +186,25 @@
   networking.firewall = {
     enable = true;
     trustedInterfaces = ["tailscale0"];
-    allowedUDPPorts = [ config.services.tailscale.port ];
-    allowedTCPPorts = [22];
+    allowedUDPPorts = [ 
+      config.services.tailscale.port
+      53    # DNS (blocky) 
+    ];
+    allowedTCPPorts = [
+      22    # SSH
+      80    # HTTP (Traefik)
+      443   # HTTPS (Traefik)
+      4000  # DoH (blocky)
+      8080  # Traefik management
+    ];
+  };
+
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [
+      "ve-lan-dns"
+    ];
+    externalInterface = "br0";
   };
 
   # This value determines the NixOS release from which the default
@@ -157,6 +213,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
 }

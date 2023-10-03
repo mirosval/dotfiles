@@ -76,3 +76,13 @@ ffmpeg -i merged.mp4 -an -filter:v "setpts=0.1*PTS" out.mp4
 nix flake --show-trace init -t "github:mirosval/dotfiles?dir=templates#<template>"
 
 $ template: ls -1 -F $HOME/.dotfiles/templates | grep '/$' | sed -e 's|/$||' | sort
+
+% systemd
+
+# Follow systemd unit or service logs
+journalctl --follow -exu <unit>
+
+# Show systemd unit or service definition
+systemctl cat <unit>
+
+$ unit: systemctl list-units --no-pager --full --quiet
