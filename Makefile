@@ -27,8 +27,8 @@ switch:
 butters-switch:
 	nixos-rebuild switch --show-trace --flake .#butters
 
-.PHONY: darwin-switch
-darwin-switch: mirosval-build
+.PHONY: mirosval-switch
+mirosval-switch: mirosval-build
 	result/sw/bin/darwin-rebuild switch --flake .#mirosval
 
 .PHONY: jimbo-switch
