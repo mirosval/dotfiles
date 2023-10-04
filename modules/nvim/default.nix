@@ -3,6 +3,27 @@ let
   unstable = import inputs.nixpkgs-unstable {
     system = pkgs.system;
     config.allowUnfree = true;
+    overlays = [
+      (self: super: 
+        let
+          none-ls-nvim = super.vimUtils.buildVimPlugin {
+            pname = "none-ls.nvim";
+            version = "2023-10-01";
+            src = pkgs.fetchFromGitHub {
+              owner = "nvimtools";
+              repo = "none-ls.nvim";
+              rev = "f39f627bbdfb33cc4ae4a95b4708e7dba7b9aafc";
+              sha256 = "1qh9bdxhs0c5mxyyv3dkmiyr03qi8g4rsbjcgzkprk4v5pz04g1v";
+            };
+          };
+        in 
+        {
+          vimPlugins = super.vimPlugins // {
+            inherit none-ls-nvim;
+          };
+        }
+      )
+    ];
   };
 in
 {
@@ -10,36 +31,36 @@ in
     enable = true;
     defaultEditor = true;
     plugins = with unstable.vimPlugins; [
-      nvim-lspconfig
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-nvim-lua
-      cmp-nvim-lsp-signature-help
-      cmp-vsnip
-      cmp-path
-      cmp-buffer
-      cmp-treesitter
-      vim-vsnip
-      plenary-nvim
-      aerial-nvim
       Navigator-nvim
-      todo-comments-nvim
-      indent-blankline-nvim
-      nvim-autopairs
-      nvim-comment
-      nvim-surround
-      vim-sneak
-      text-case-nvim
-      lualine-nvim
-      nvim-web-devicons
-      null-ls-nvim
-      lualine-lsp-progress
-      gitsigns-nvim
-      nvim-nu
-      git-blame-nvim
-      tokyonight-nvim
-      legendary-nvim
+      aerial-nvim
+      cmp-buffer
+      cmp-nvim-lsp
+      cmp-nvim-lsp-signature-help
+      cmp-nvim-lua
+      cmp-path
+      cmp-treesitter
+      cmp-vsnip
       dressing-nvim
+      git-blame-nvim
+      gitsigns-nvim
+      indent-blankline-nvim
+      legendary-nvim
+      lualine-lsp-progress
+      lualine-nvim
+      none-ls-nvim
+      nvim-autopairs
+      nvim-cmp
+      nvim-comment
+      nvim-lspconfig
+      nvim-nu
+      nvim-surround
+      nvim-web-devicons
+      plenary-nvim
+      text-case-nvim
+      todo-comments-nvim
+      tokyonight-nvim
+      vim-sneak
+      vim-vsnip
 
       rust-tools-nvim
       (nvim-treesitter.withPlugins (plugins: with plugins; [
@@ -98,7 +119,8 @@ in
     nodePackages.pyright
     black
     mypy
-    nixd
+    rnix-lsp
+    nixpkgs-fmt
   ];
 
   xdg.configFile = {

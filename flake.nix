@@ -54,12 +54,13 @@
           ./modules/zsh
         ];
       };
-    in {
+    in
+    {
       nixosConfigurations.jimmy = nixpkgs-unstable.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          ({config, ...}: {
+          ({ config, ... }: {
             config.system.stateVersion = "23.05";
           })
           ./hosts/jimmy
@@ -70,7 +71,7 @@
         system = "aarch64-linux";
         modules = [
           "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          ({config, ...}: {
+          ({ config, ... }: {
             config.system.stateVersion = "23.05";
           })
           ./hosts/leon
@@ -81,13 +82,13 @@
         system = "x86_64-linux";
         specialArgs = { inherit hyprland; };
         modules = [
-          ({config, ...}: {
+          ({ config, ... }: {
             config.system.stateVersion = "23.11";
           })
           ./hosts/butters/configuration.nix
           hyprland.nixosModules.default
           ./hosts/butters/services
-          agenix.nixosModules.default 
+          agenix.nixosModules.default
           secrets.nixosModules.secrets
           {
             secrets.enable = true;
