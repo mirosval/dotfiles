@@ -21,37 +21,8 @@
   };
 
   networking.hostName = "butters"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager = {
-    enable = false;
-    unmanaged = [
-      "tailscale*"
-      "wl*"
-    ];
-    insertNameservers = [
-      "1.1.1.1"
-    ];
-  };
+  networking.networkmanager.enable = false;
   networking.useNetworkd = true;
-  #networking.interfaces.enp2s0.ipv4.addresses = lib.mkForce [];
-  #networking.macvlans.mv-enp2s0-host = {
-  #  interface = "enp2s0";
-  #  mode = "bridge";
-  #};
-  #networking.interfaces.mv-enp2s0-host = {
-  #  ipv4.addresses = [
-  #    {
-  #      address = "192.168.1.214";
-  #      prefixLength = 24;
-  #    }
-  #  ];
-  #};
   systemd.network = {
     enable = true;
     networks = {
@@ -63,7 +34,6 @@
   };
   
   # silly fix for the service failing on nixos rebuild
-  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   systemd.network.wait-online.enable = lib.mkForce false;
 
   nix = {
