@@ -12,6 +12,7 @@
       "fork"
       "google-chrome"
       "hammerspoon"
+      "handbrake"
       "iina"
       "logseq"
       "quicklook-csv"
