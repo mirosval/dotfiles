@@ -22,7 +22,7 @@
   "....."="cd ../../../..";
 
   # IP addresses
-  ip="dig +short myip.opendns.com @resolver1.opendns.com";
+  my_ip="dig +short myip.opendns.com @resolver1.opendns.com";
   localip="ipconfig getifaddr en1";
   ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'";
 
