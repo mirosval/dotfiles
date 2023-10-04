@@ -29,32 +29,42 @@
 
   # Enable networking
   networking.networkmanager = {
-    enable = true;
+    enable = false;
     unmanaged = [
       "tailscale*"
       "wl*"
-      "mv-+"
     ];
     insertNameservers = [
       "1.1.1.1"
     ];
   };
-
-  networking.macvlans.mv-enp2s0-host = {
-    interface = "enp2s0";
-    mode = "bridge";
-  };
-  networking.interfaces.mv-enp2s0-host = {
-    ipv4.addresses = [
-      {
-        address = "192.168.1.214";
-        prefixLength = 24;
-      }
-    ];
+  networking.useNetworkd = true;
+  #networking.interfaces.enp2s0.ipv4.addresses = lib.mkForce [];
+  #networking.macvlans.mv-enp2s0-host = {
+  #  interface = "enp2s0";
+  #  mode = "bridge";
+  #};
+  #networking.interfaces.mv-enp2s0-host = {
+  #  ipv4.addresses = [
+  #    {
+  #      address = "192.168.1.214";
+  #      prefixLength = 24;
+  #    }
+  #  ];
+  #};
+  systemd.network = {
+    enable = true;
+    networks = {
+      "40-enp2s0" = {
+        matchConfig.Name = "enp2s0";
+        networkConfig.DHCP = "yes";
+      };
+    };
   };
   
   # silly fix for the service failing on nixos rebuild
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.network.wait-online.enable = lib.mkForce false;
 
   nix = {
     gc = {

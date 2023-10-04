@@ -1,7 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
-    ./blocky
-    ./dnsmasq
+    #./blocky
     ./homer
     ./lan_dns
     ./traefik

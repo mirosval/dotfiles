@@ -4,13 +4,14 @@
     autoStart = true;
     ephemeral = true;
     macvlans = ["enp2s0"];
+    privateNetwork = false;
     #extraFlags = ["-U"]; # private user namespace
     config = {config, pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         lshw
         dig
+        nmap
       ];
-      environment.etc."resolv.conf".text = "";
       environment.etc."unbound/rpz.home.arpa".text = ''
         $ORIGIN rpz.home.arpa.
 
@@ -21,13 +22,13 @@
       '';
       services.unbound = {
         enable = true;
+        resolveLocalQueries = false;
         settings = {
           server = {
             verbosity = 3;
             module-config = ''"respip validator iterator"'';
             interface = [
-              "127.0.0.1"
-              "::1"
+              "mv-enp2s0"
             ];
             access-control = [
               "127.0.0.0/8 allow"
@@ -37,10 +38,6 @@
               ''"home.arpa." nodefault''
               ''"1.168.192.in-addr.arpa" nodefault''
             ];
-            #local-data = [
-            #  ''"dash CNAME butters.home.arpa."''
-            #  ''"nas CNAME cartman.home.arpa."''
-            #];
             private-domain = ''"home.arpa."'';
             domain-insecure = ''"home.arpa."'';
           };
@@ -61,38 +58,27 @@
           };
         };
       };
-#      services.dnsmasq = {
-#        enable = true;
-#        resolveLocalQueries = false;
-#        settings = {
-#          #domain-needed = true;
-#          #bogus-priv = true;
-#          no-hosts = true;
-#          no-resolv = true;
-#          server = [
-#            "192.168.1.1"
-#          ];
-#          expand-hosts = false;
-#          cname = [
-#            "dash,butters"
-#            "nas,cartman"
-#          ];
-#          port = 53;
-#          log-dhcp = true;
-#          log-queries = true;
-#          dns-loop-detect = true;
-#        };
-#      };
       networking = {
-        hostName = "lan-dns";
-        interfaces."mv-enp2s0" = {
-          useDHCP = true;
-        };
-        resolvconf.enable = false;
+        useDHCP = false;
+        useNetworkd = true;
         useHostResolvConf = false;
-        firewall.allowedUDPPorts = [ 53 ];
-        search = [];
-        nameservers = [];
+        firewall = {
+          enable = true;
+          interfaces."mv-enp2s0".allowedUDPPorts = [53];
+        };
+      };
+      systemd.network = {
+        enable = true;
+        networks = {
+          "40-mv-enp2s0" = {
+            matchConfig.Name = "mv-enp2s0";
+            address = [
+              "192.168.1.3/24"
+            ];
+            networkConfig.DHCP = "yes";
+            dhcpV4Config.ClientIdentifier = "mac";
+          };
+        };
       };
     };
   };
