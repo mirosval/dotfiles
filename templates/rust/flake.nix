@@ -26,6 +26,8 @@
           devShells.default = mkShell {
             buildInputs = [ rustToolchain ];
             packages = [
+              cargo-outdated
+              cargo-udeps
               cargo-watch
               rust-analyzer
               xh
