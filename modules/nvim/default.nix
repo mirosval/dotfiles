@@ -4,7 +4,7 @@ let
     system = pkgs.system;
     config.allowUnfree = true;
     overlays = [
-      (self: super: 
+      (self: super:
         let
           none-ls-nvim = super.vimUtils.buildVimPlugin {
             pname = "none-ls.nvim";
@@ -16,7 +16,7 @@ let
               sha256 = "1qh9bdxhs0c5mxyyv3dkmiyr03qi8g4rsbjcgzkprk4v5pz04g1v";
             };
           };
-        in 
+        in
         {
           vimPlugins = super.vimPlugins // {
             inherit none-ls-nvim;
@@ -40,6 +40,7 @@ in
       cmp-path
       cmp-treesitter
       cmp-vsnip
+      comment-nvim
       dressing-nvim
       git-blame-nvim
       gitsigns-nvim
@@ -50,7 +51,6 @@ in
       none-ls-nvim
       nvim-autopairs
       nvim-cmp
-      nvim-comment
       nvim-lspconfig
       nvim-nu
       nvim-surround
@@ -64,23 +64,23 @@ in
 
       rust-tools-nvim
       (nvim-treesitter.withPlugins (plugins: with plugins; [
-      	tree-sitter-bash
-      	tree-sitter-css
-      	tree-sitter-dockerfile
-      	tree-sitter-hcl
-      	tree-sitter-json
-      	tree-sitter-lua
-      	tree-sitter-make
-      	tree-sitter-markdown
-      	tree-sitter-nix
-      	tree-sitter-python
-      	tree-sitter-regex
-      	tree-sitter-rust
-      	tree-sitter-sql
-      	tree-sitter-toml
-      	tree-sitter-tsx
-      	tree-sitter-typescript
-      	tree-sitter-yaml
+        tree-sitter-bash
+        tree-sitter-css
+        tree-sitter-dockerfile
+        tree-sitter-hcl
+        tree-sitter-json
+        tree-sitter-lua
+        tree-sitter-make
+        tree-sitter-markdown
+        tree-sitter-nix
+        tree-sitter-python
+        tree-sitter-regex
+        tree-sitter-rust
+        tree-sitter-sql
+        tree-sitter-toml
+        tree-sitter-tsx
+        tree-sitter-typescript
+        tree-sitter-yaml
       ]))
       telescope-nvim
     ];
@@ -91,7 +91,7 @@ in
       nodePackages.dockerfile-language-server-nodejs
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript-language-server
-      
+
       luaformatter
       lua-language-server
       lua54Packages.luacheck

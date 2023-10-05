@@ -9,7 +9,7 @@ require('plugs.lualine_setup')
 require('plugs.null_ls_setup')
 require("nvim-surround").setup({})
 require("nvim-autopairs").setup {}
-require('nvim_comment').setup()
+require('Comment').setup()
 require('gitsigns').setup()
 require('nu').setup({})
 -- colorscheme
