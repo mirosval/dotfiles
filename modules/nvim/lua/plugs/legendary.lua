@@ -68,5 +68,22 @@ legendary.setup({
     { ']t', todo.jump_next, description = 'Next TODO' },
     { '[t', todo.jump_prev, description = 'Prev TODO' },
     { '<leader>t', ':TodoTelescope<cr>', description = 'TODO Telescope' }
+  },
+  autocmds = {
+    {
+      name = "LspFormatting",
+      clear = true,
+      {
+        'BufWritePre',
+        function()
+          vim.lsp.buf.format({
+            filter = function(filter_client)
+              -- Remove tsserver from LSPs available for formatting
+              return filter_client.name ~= "tsserver"
+            end
+          })
+        end
+      }
+    }
   }
 })
