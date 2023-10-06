@@ -6,6 +6,7 @@ let
   };
 in
 {
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     # TLS Certificates
     cacert
