@@ -21,114 +21,36 @@
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, hyprland, agenix, secrets, ... }:
     let
+      stateVersion = "23.05";
       overlays = {
         libtmux = import ./overlays/libtmux.nix;
       };
-      nixpkgs = with inputs; {
-        system = "aarch64-darwin";
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
-        overlays = [
-          overlays.libtmux
-        ];
-      };
-      homeManagerConfig = import ./home {
-        pkgs = nixpkgs;
-        inherit inputs;
+      lib = import ./lib {
+        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager hyprland secrets agenix;
       };
     in
     {
-      homeConfigurations.jimbo = home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages."aarch64-darwin";
-        modules = [
-          ./home
-          {
-            home.username = "mirosval";
-            home.homeDirectory = "/Users/mirosval";
-          }
-        ];
-        extraSpecialArgs = { inherit inputs; };
-      };
-      nixosConfigurations.jimmy = nixpkgs-unstable.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          ({ config, ... }: {
-            config.system.stateVersion = "23.05";
-          })
-          ./hosts/jimmy
-        ];
-        specialArgs = { inherit inputs nixpkgs; };
-      };
-      nixosConfigurations.leon = nixpkgs-unstable.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-          ({ config, ... }: {
-            config.system.stateVersion = "23.05";
-          })
-          ./hosts/leon
-        ];
-        specialArgs = { inherit inputs nixpkgs; };
-      };
-      nixosConfigurations.butters = nixpkgs-unstable.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit hyprland; };
-        modules = [
-          ({ config, ... }: {
-            config.system.stateVersion = "23.11";
-          })
-          ./hosts/butters/configuration.nix
-          hyprland.nixosModules.default
-          ./hosts/butters/services
-          agenix.nixosModules.default
-          secrets.nixosModules.secrets
-          {
-            secrets.enable = true;
-          }
-          home-manager.nixosModules.home-manager
-          {
-            users.users.miro.home = "/home/miro";
-            home-manager.users.miro = homeManagerConfig // {
-              imports = [
-                hyprland.homeManagerModules.default
-                ./home/hyprland
-              ];
-            };
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-        ];
-        specialArgs = { inherit inputs nixpkgs; };
-      };
-      darwinConfigurations.mirosval = darwin.lib.darwinSystem {
+      homeConfigurations.jimbo = lib.homeConfiguration {
         system = "aarch64-darwin";
-        modules = [
-          ./hosts/mirosval/default.nix
-          home-manager.darwinModules.home-manager
-          {
-            nixpkgs = nixpkgs;
-            users.users."mirosval".home = "/Users/mirosval";
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.mirosval = homeManagerConfig;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-        ];
+        user = "mirosval";
       };
-      darwinConfigurations.jimbo = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          ./hosts/jimbo/default.nix
-          home-manager.darwinModules.home-manager
-          {
-            nixpkgs = nixpkgs;
-            users.users."mirosval".home = "/Users/mirosval";
-            home-manager.useGlobalPkgs = true;
-            home-manager.users.mirosval = homeManagerConfig;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-        ];
+      nixosConfigurations.jimmy = lib.raspberryImage {
+        host = "jimmy";
+      };
+      nixosConfigurations.leon = lib.raspberryImage {
+        host = "leon";
+      };
+      nixosConfigurations.butters = lib.linuxSystem {
+        host = "butters";
+        user = "miro";
+      };
+      darwinConfigurations.mirosval = lib.darwinSystem {
+        host = "Miro Home MBP";
+        user = "mirosval";
+      };
+      darwinConfigurations.jimbo = lib.darwinSystem {
+        host = "Miro Work MBP";
+        user = "mirosval";
       };
     };
 }
