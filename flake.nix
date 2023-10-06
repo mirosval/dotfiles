@@ -34,27 +34,10 @@
           overlays.libtmux
         ];
       };
-      homeManagerConfig = import ./home;
-      # {
-      #   imports = [
-      #     ./home/alacritty
-      #     ./home/cli.nix
-      #     ./home/direnv
-      #     ./home/fd
-      #     ./home/fzf
-      #     ./home/git
-      #     ./home/hammerspoon
-      #     ./home/home.nix
-      #     ./home/karabiner
-      #     ./home/navi
-      #     ./home/nvim
-      #     ./home/rg
-      #     ./home/starship
-      #     ./home/tmux
-      #     ./home/zoxide
-      #     ./home/zsh
-      #   ];
-      # };
+      homeManagerConfig = import ./home {
+        pkgs = nixpkgs;
+        inherit inputs;
+      };
     in
     {
       homeConfigurations.jimbo = home-manager.lib.homeManagerConfiguration {
@@ -108,10 +91,10 @@
           home-manager.nixosModules.home-manager
           {
             users.users.miro.home = "/home/miro";
-            home-manager.users.miro = {
-              imports = homeManagerConfig.imports ++ [
+            home-manager.users.miro = homeManagerConfig // {
+              imports = [
                 hyprland.homeManagerModules.default
-                ./modules/hyprland
+                ./home/hyprland
               ];
             };
             home-manager.extraSpecialArgs = { inherit inputs; };
