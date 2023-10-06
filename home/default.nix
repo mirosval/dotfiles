@@ -1,5 +1,22 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.stateVersion = "23.05";
+  imports = [
+    ./alacritty
+    ./cli.nix
+    ./direnv
+    ./fd
+    ./fzf
+    ./git
+    ./hammerspoon
+    ./karabiner
+    ./navi
+    ./nvim
+    ./rg
+    ./starship
+    ./tmux
+    ./zoxide
+    ./zsh
+  ];
   programs = {
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
@@ -9,26 +26,6 @@
       enable = true;
       serverAliveInterval = 60;
       matchBlocks = {
-#        "github.com" = {
-#          hostname = "github.com";
-#          user = "git";
-#          identityFile = "~/.ssh/github_ed25519";
-#          extraOptions = {
-#            "AddKeysToAgent" = "yes";
-#            "UseKeychain" = "yes";
-#            "PreferredAuthentications" = "publickey";
-#          };
-#        };
-#        "pihole.local" = {
-#          hostname = "pihole.local";
-#          user = "pi";
-#          identityFile = "~/.ssh/pihole";
-#          extraOptions = {
-#            "AddKeysToAgent" = "yes";
-#            "UseKeychain" = "yes";
-#            "PreferredAuthentications" = "publickey";
-#          };
-#        };
         builder = {
           hostname = "127.0.0.1";
           user = "root";

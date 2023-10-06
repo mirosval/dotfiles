@@ -34,50 +34,36 @@
           overlays.libtmux
         ];
       };
-      homeManagerConfig = {
-        imports = [
-          ./home/alacritty
-          ./home/cli.nix
-          ./home/direnv
-          ./home/fd
-          ./home/fzf
-          ./home/git
-          ./home/hammerspoon
-          ./home/home.nix
-          ./home/karabiner
-          ./home/navi
-          ./home/nvim
-          ./home/rg
-          ./home/starship
-          ./home/tmux
-          ./home/zoxide
-          ./home/zsh
-        ];
-      };
+      homeManagerConfig = import ./home;
+      # {
+      #   imports = [
+      #     ./home/alacritty
+      #     ./home/cli.nix
+      #     ./home/direnv
+      #     ./home/fd
+      #     ./home/fzf
+      #     ./home/git
+      #     ./home/hammerspoon
+      #     ./home/home.nix
+      #     ./home/karabiner
+      #     ./home/navi
+      #     ./home/nvim
+      #     ./home/rg
+      #     ./home/starship
+      #     ./home/tmux
+      #     ./home/zoxide
+      #     ./home/zsh
+      #   ];
+      # };
     in
     {
       homeConfigurations.jimbo = home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages."aarch64-darwin";
         modules = [
-          ./home/alacritty
-          ./home/cli.nix
-          ./home/direnv
-          ./home/fd
-          ./home/fzf
-          ./home/git
-          ./home/hammerspoon
-          ./home/home.nix
-          ./home/karabiner
-          ./home/navi
-          ./home/nvim
-          ./home/rg
-          ./home/starship
-          ./home/tmux
-          ./home/zoxide
-          ./home/zsh
+          ./home
           {
             home.username = "mirosval";
-            home.homeDirectory = "/users/mirosval";
+            home.homeDirectory = "/Users/mirosval";
           }
         ];
         extraSpecialArgs = { inherit inputs; };
