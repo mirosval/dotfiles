@@ -56,6 +56,32 @@
       };
     in
     {
+      homeConfigurations.jimbo = home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages."aarch64-darwin";
+        modules = [
+          ./modules/alacritty
+          ./modules/cli.nix
+          ./modules/direnv
+          ./modules/fd
+          ./modules/fzf
+          ./modules/git
+          ./modules/hammerspoon
+          ./modules/home.nix
+          ./modules/karabiner
+          ./modules/navi
+          ./modules/nvim
+          ./modules/rg
+          ./modules/starship
+          ./modules/tmux
+          ./modules/zoxide
+          ./modules/zsh
+          {
+            home.username = "mirosval";
+            home.homeDirectory = "/users/mirosval";
+          }
+        ];
+        extraSpecialArgs = { inherit inputs; };
+      };
       nixosConfigurations.jimmy = nixpkgs-unstable.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [

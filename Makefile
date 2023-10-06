@@ -1,3 +1,13 @@
+ENSURE_FLAKES = --extra-experimental-features "nix-command flakes"
+
+guard-%:
+	@ if [ "${${*}}" = "" ]; then \
+                echo "Environment variable $* not set"; \
+                exit 1; \
+        fi
+
+print-%  : ; @echo $*=$($*)
+
 .PHONY: clean
 clean:
 	rm -f du.png
@@ -11,14 +21,6 @@ install:
 uninstall:
 	/nix/nix-installer uninstall
 
-.PHONY: mirosval-build
-mirosval-build:
-	nix --show-trace --extra-experimental-features "nix-command flakes" build .#darwinConfigurations.mirosval.system
-
-.PHONY: jimbo-build
-jimbo-build:
-	nix --show-trace --extra-experimental-features "nix-command flakes" build .#darwinConfigurations.jimbo.system
-
 .PHONY: switch
 switch:
 	nix --show-trace run . switch -- --flake .
@@ -27,13 +29,15 @@ switch:
 butters-switch:
 	nixos-rebuild switch --show-trace --flake .#butters
 
-.PHONY: mirosval-switch
-mirosval-switch: mirosval-build
-	result/sw/bin/darwin-rebuild switch --flake .#mirosval
+.PHONY: darwin-switch
+darwin-switch: guard-HOST
+	nix --show-trace $(ENSURE_FLAKES) build .#darwinConfigurations.$(HOST).system
+	result/sw/bin/darwin-rebuild switch --flake .#$(HOST)
 
-.PHONY: jimbo-switch
-jimbo-switch: jimbo-build
-	result/sw/bin/darwin-rebuild switch --flake .#jimbo
+.PHONY: home-switch
+home-switch: guard-HOST
+	nix --show-trace $(ENSURE_FLAKES) build .#homeConfigurations.$(HOST).activationPackage
+	result/activate
 
 .PHONY: update
 update:
