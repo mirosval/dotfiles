@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, hyprland, secrets, agenix }:
+{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, secrets, agenix }:
 let
   homeManagerConfig = import ../home {
     pkgs = nixpkgs;
@@ -6,9 +6,9 @@ let
   };
 in
 {
-  homeConfiguration = { system, user }:
+  homeConfiguration = { system, host, user }:
     home-manager.lib.homeManagerConfiguration {
-      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs { inherit system; };
       modules = [
         ../home
         {
@@ -21,9 +21,9 @@ in
       };
     };
 
-  raspberryImage = { host }:
+  raspberryImage = { system, host, user }:
     nixpkgs-unstable.lib.nixosSystem {
-      system = "aarch64-linux";
+      inherit system;
       modules = [
         "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
         ({ config, ... }: {
@@ -34,9 +34,9 @@ in
       specialArgs = { inherit inputs; };
     };
 
-  darwinSystem = { host, user }:
+  darwinSystem = { system, host, user }:
     darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
+      inherit system;
       modules = [
         (../hosts + "/${user}")
         home-manager.darwinModules.home-manager
@@ -48,16 +48,14 @@ in
       ];
     };
 
-  linuxSystem = { host, user }:
+  linuxSystem = { system, host, user }:
     nixpkgs-unstable.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit hyprland; };
+      inherit system;
       modules = [
         ({ config, ... }: {
           config.system.stateVersion = "23.11";
         })
         (../hosts + "/${host}/configuration.nix")
-        hyprland.nixosModules.default
         (../hosts + "/${host}/services")
         agenix.nixosModules.default
         secrets.nixosModules.secrets
@@ -67,12 +65,7 @@ in
         home-manager.nixosModules.home-manager
         {
           users.users."${user}".home = "/home/${user}";
-          home-manager.users."${user}" = homeManagerConfig // {
-            imports = [
-              hyprland.homeManagerModules.default
-              ../home/hyprland
-            ];
-          };
+          home-manager.users."${user}" = homeManagerConfig;
           home-manager.extraSpecialArgs = { inherit inputs; };
         }
       ];

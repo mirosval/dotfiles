@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./virtualisation.nix
     ];
@@ -32,7 +33,7 @@
       };
     };
   };
-  
+
   # silly fix for the service failing on nixos rebuild
   systemd.network.wait-online.enable = lib.mkForce false;
 
@@ -66,20 +67,18 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  programs.hyprland.enable = true;
-
-#  # Enable the X11 windowing system.
-#  services.xserver.enable = true;
-#
-#  # Enable the GNOME Desktop Environment.
-#  services.xserver.displayManager.gdm.enable = true;
-#  services.xserver.desktopManager.gnome.enable = true;
-#
-#  # Configure keymap in X11
-#  services.xserver = {
-#    layout = "us";
-#    xkbVariant = "";
-#  };
+  #  # Enable the X11 windowing system.
+  #  services.xserver.enable = true;
+  #
+  #  # Enable the GNOME Desktop Environment.
+  #  services.xserver.displayManager.gdm.enable = true;
+  #  services.xserver.desktopManager.gnome.enable = true;
+  #
+  #  # Configure keymap in X11
+  #  services.xserver = {
+  #    layout = "us";
+  #    xkbVariant = "";
+  #  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -119,7 +118,7 @@
     packages = with pkgs; [
       gnumake
       firefox
-    #  thunderbird
+      #  thunderbird
     ];
     shell = pkgs.zsh;
     openssh = {
@@ -135,8 +134,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
     tailscale
   ];
 
@@ -153,7 +152,7 @@
 
   services.tailscale = {
     enable = true;
-    extraUpFlags = ["--ssh"];
+    extraUpFlags = [ "--ssh" ];
   };
 
   # Enable the OpenSSH daemon.
@@ -167,17 +166,17 @@
 
   networking.firewall = {
     enable = true;
-    trustedInterfaces = ["tailscale0"];
-    allowedUDPPorts = [ 
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [
       config.services.tailscale.port
-      53    # DNS (blocky) 
+      53 # DNS (blocky) 
     ];
     allowedTCPPorts = [
-      22    # SSH
-      80    # HTTP (Traefik)
-      443   # HTTPS (Traefik)
-      4000  # DoH (blocky)
-      8080  # Traefik management
+      22 # SSH
+      80 # HTTP (Traefik)
+      443 # HTTPS (Traefik)
+      4000 # DoH (blocky)
+      8080 # Traefik management
     ];
   };
 

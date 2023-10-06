@@ -12,40 +12,47 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland";
     # This pattern is because the repo is private
     # it relies on git being configured with gh auth setup-git
     secrets.url = "git+https://github.com/mirosval/secrets.git?ref=main";
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, hyprland, agenix, secrets, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, agenix, secrets, ... }:
     let
       stateVersion = "23.05";
       lib = import ./lib {
-        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager hyprland secrets agenix;
+        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager secrets agenix;
       };
     in
     {
       homeConfigurations.jimbo = lib.homeConfiguration {
         system = "aarch64-darwin";
+        host = "jimbo";
         user = "mirosval";
       };
       nixosConfigurations.jimmy = lib.raspberryImage {
+        system = "aarch64-linux";
         host = "jimmy";
+        user = "miro";
       };
       nixosConfigurations.leon = lib.raspberryImage {
+        system = "aarch64-linux";
         host = "leon";
+        user = "miro";
       };
       nixosConfigurations.butters = lib.linuxSystem {
+        system = "x86_64-linux";
         host = "butters";
         user = "miro";
       };
       darwinConfigurations.mirosval = lib.darwinSystem {
+        system = "aarch64-darwin";
         host = "Miro Home MBP";
         user = "mirosval";
       };
       darwinConfigurations.jimbo = lib.darwinSystem {
+        system = "aarch64-darwin";
         host = "Miro Work MBP";
         user = "mirosval";
       };
