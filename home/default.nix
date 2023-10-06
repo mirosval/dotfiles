@@ -17,6 +17,14 @@
     ./zoxide
     ./zsh
   ];
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+    overlays = [
+      (import ../overlays/libtmux.nix)
+    ];
+  };
   programs = {
     direnv.enable = true;
     direnv.nix-direnv.enable = true;

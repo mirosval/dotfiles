@@ -22,9 +22,6 @@
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, hyprland, agenix, secrets, ... }:
     let
       stateVersion = "23.05";
-      overlays = {
-        libtmux = import ./overlays/libtmux.nix;
-      };
       lib = import ./lib {
         inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager hyprland secrets agenix;
       };

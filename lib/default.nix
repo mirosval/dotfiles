@@ -31,19 +31,17 @@ in
         })
         (../hosts + "/${host}")
       ];
-      specialArgs = { inherit inputs nixpkgs; };
+      specialArgs = { inherit inputs; };
     };
 
   darwinSystem = { host, user }:
     darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
-        (../hosts + "${user}")
+        (../hosts + "/${user}")
         home-manager.darwinModules.home-manager
         {
-          nixpkgs = nixpkgs;
           users.users."${user}".home = "/Users/${user}";
-          home-manager.useGlobalPkgs = true;
           home-manager.users."${user}" = homeManagerConfig;
           home-manager.extraSpecialArgs = { inherit inputs; };
         }
@@ -78,7 +76,7 @@ in
           home-manager.extraSpecialArgs = { inherit inputs; };
         }
       ];
-      specialArgs = { inherit inputs nixpkgs; };
+      specialArgs = { inherit inputs; };
     };
 
 }
