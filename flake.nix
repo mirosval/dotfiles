@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,11 +22,11 @@
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, darwin, agenix, secrets, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable, darwin, agenix, secrets, ... }:
     let
       stateVersion = "23.05";
       lib = import ./lib {
-        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager secrets agenix;
+        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager home-manager-unstable secrets agenix;
       };
     in
     {

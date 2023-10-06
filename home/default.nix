@@ -21,9 +21,9 @@
     config = {
       allowUnfree = true;
     };
-    overlays = [
-      (import ../overlays/libtmux.nix)
-    ];
+    overlays = if pkgs.stdenv.isDarwin then [
+      (import ../overlays/libtmux.nix {})
+    ] else [];
   };
   programs = {
     direnv.enable = true;

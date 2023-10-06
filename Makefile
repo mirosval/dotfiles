@@ -25,9 +25,9 @@ uninstall:
 switch:
 	nix --show-trace run . switch -- --flake .
 
-.PHONY: butters-switch
-butters-switch:
-	nixos-rebuild switch --show-trace --flake .#butters
+.PHONY: nixos-switch
+nixos-switch: guard-HOST
+	nixos-rebuild switch --show-trace --flake .#$(HOST)
 
 .PHONY: darwin-switch
 darwin-switch: guard-HOST

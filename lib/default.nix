@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, secrets, agenix }:
+{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, home-manager-unstable, secrets, agenix }:
 let
   homeManagerConfig = import ../home {
     pkgs = nixpkgs;
@@ -62,11 +62,14 @@ in
         {
           secrets.enable = true;
         }
-        home-manager.nixosModules.home-manager
+        home-manager-unstable.nixosModules.home-manager
         {
           users.users."${user}".home = "/home/${user}";
           home-manager.users."${user}" = homeManagerConfig;
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.extraSpecialArgs = { 
+            inherit inputs; 
+            pkgs = import nixpkgs-unstable { inherit system; };
+          };
         }
       ];
       specialArgs = { inherit inputs; };
