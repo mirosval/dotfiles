@@ -43,6 +43,10 @@ home-switch: guard-HOST
 update:
 	nix flake update
 
+.PHONY: update-secrets
+update-secrets:
+	nix flake lock --update-input secrets
+
 # Cleans up old nix generations to free up disk space
 .PHONY: gc
 gc:
