@@ -2,6 +2,15 @@ local legendary = require('legendary')
 local textcase = require('textcase')
 local todo = require('todo-comments')
 
+local format = function()
+  vim.lsp.buf.format({
+    filter = function(filter_client)
+      -- Remove tsserver from LSPs available for formatting
+      return filter_client.name ~= "tsserver"
+    end
+  })
+end
+
 legendary.setup({
   keymaps = {
     {'<leader>a', ':Legendary<CR>', description = 'Action runner'},
@@ -9,6 +18,7 @@ legendary.setup({
     {'<leader>ew', ':e %%<CR>', description = 'Edit file'},
     {'<leader>es', ':sp %%<CR>', description = 'Split horizontally'},
     {'<leader>ev', ':vsp %%<CR>', description = 'Split vertically'},
+    {'<leader>ff', format, description = 'Reformat file'},
     -- Tmux Navigator
     {'<C-h>', ':NavigatorLeft<CR>', description = 'Tmux select pane to the left', opts = { silent = true }},
     {'<C-j>', ':NavigatorDown<CR>', description = 'Tmux select pane to the bottom', opts = { silent = true }},
@@ -75,14 +85,7 @@ legendary.setup({
       clear = true,
       {
         'BufWritePre',
-        function()
-          vim.lsp.buf.format({
-            filter = function(filter_client)
-              -- Remove tsserver from LSPs available for formatting
-              return filter_client.name ~= "tsserver"
-            end
-          })
-        end
+        format
       }
     }
   }
