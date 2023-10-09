@@ -43,7 +43,10 @@ in
         {
           users.users."${user}".home = "/Users/${user}";
           home-manager.users."${user}" = homeManagerConfig;
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
+            pkgs = import nixpkgs { inherit system; };
+          };
         }
       ];
     };
@@ -66,8 +69,8 @@ in
         {
           users.users."${user}".home = "/home/${user}";
           home-manager.users."${user}" = homeManagerConfig;
-          home-manager.extraSpecialArgs = { 
-            inherit inputs; 
+          home-manager.extraSpecialArgs = {
+            inherit inputs;
             pkgs = import nixpkgs-unstable { inherit system; };
           };
         }
