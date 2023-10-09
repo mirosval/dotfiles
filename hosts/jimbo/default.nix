@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   services.nix-daemon.enable = true;
-  
+
   homebrew = {
     enable = true;
     brews = [ ];
@@ -23,7 +23,8 @@
 
   networking = {
     computerName = "Miroslavs Work MBP";
-    hostName = "jimbo";
+    hostName = "miroslavs-work-mbp";
+    localHostName = "miroslavs-work-mbp";
   };
 
   nix = {
@@ -40,7 +41,7 @@
       maxJobs = 10;
       speedFactor = 2;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      mandatoryFeatures = [];
+      mandatoryFeatures = [ ];
     }];
   };
 
