@@ -3,10 +3,10 @@
   containers.lan-dns = {
     autoStart = true;
     ephemeral = true;
-    macvlans = ["enp2s0"];
+    macvlans = [ "enp2s0" ];
     privateNetwork = false;
     #extraFlags = ["-U"]; # private user namespace
-    config = {config, pkgs, ...}: {
+    config = { config, pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         lshw
         dig
@@ -48,7 +48,7 @@
           forward-zone = [
             {
               name = ".";
-              forward-addr = "1.1.1.1";
+              forward-addr = "192.168.1.4"; # hosts/butters/services/blocky
             }
           ];
           rpz = {
@@ -64,7 +64,7 @@
         useHostResolvConf = false;
         firewall = {
           enable = true;
-          interfaces."mv-enp2s0".allowedUDPPorts = [53];
+          interfaces."mv-enp2s0".allowedUDPPorts = [ 53 ];
         };
       };
       systemd.network = {
