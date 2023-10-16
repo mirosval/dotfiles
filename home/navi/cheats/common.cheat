@@ -75,7 +75,12 @@ ffmpeg -i merged.mp4 -an -filter:v "setpts=0.1*PTS" out.mp4
 # Initialize new nix project from flake template
 nix flake --show-trace init -t "github:mirosval/dotfiles?dir=templates#<template>"
 
+# Generate nix fetcher call from URL
+nix shell nixpkgs#nurl --command nurl <url> <rev>
+
 $ template: ls -1 -F $HOME/.dotfiles/templates | grep '/$' | sed -e 's|/$||' | sort
+
+$ rev: master
 
 % systemd
 

@@ -7,6 +7,7 @@ require('plugs.legendary')
 require('plugs.dressing')
 require('plugs.lualine_setup')
 require('plugs.null_ls_setup')
+require('plugs.telekasten')
 require("nvim-surround").setup({})
 require("nvim-autopairs").setup {}
 require('Comment').setup()
@@ -15,4 +16,4 @@ require('nu').setup({})
 -- colorscheme
 vim.opt.background = "dark"
 vim.g.tokyonight_style = "night"
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd [[colorscheme tokyonight]]
