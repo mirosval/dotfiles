@@ -52,6 +52,7 @@ in
       cmp-treesitter
       cmp-vsnip
       comment-nvim
+      crates-nvim
       dressing-nvim
       git-blame-nvim
       gitsigns-nvim

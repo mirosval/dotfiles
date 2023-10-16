@@ -1,3 +1,4 @@
+require('plugs.crates')
 require('plugs.tree_sitter_setup')
 require('plugs.telescope_setup')
 require('plugs.tmux_setup')
@@ -11,6 +12,7 @@ require('plugs.telekasten')
 require("nvim-surround").setup({})
 require("nvim-autopairs").setup {}
 require('Comment').setup()
+require('ibl').setup()
 require('gitsigns').setup()
 require('nu').setup({})
 -- colorscheme

@@ -1,6 +1,7 @@
 local legendary = require('legendary')
 local textcase = require('textcase')
 local todo = require('todo-comments')
+local crates = require('crates')
 
 local format = function()
   vim.lsp.buf.format({
@@ -118,6 +119,16 @@ legendary.setup({
     { '<leader>nb', ':Telekasten show_backlinks<cr>',      description = 'Notes Telekasten show backlinks' },
     { '<leader>nI', ':Telekasten insert_img_link<cr>',     description = 'Notes Telekasten insert image link' },
     { '[[',         { i = ':Telekasten insert_link<cr>' }, description = 'Notes Telekasten insert image link' },
+    -- Crates.nvim
+  },
+  functions = {
+    { crates.upgrade_crate,                      description = 'Rust Crates Upgrade Crate' },
+    { crates.expand_plain_crate_to_inline_table, description = 'Rust Crates Expand crate to table' },
+    { crates.open_homepage,                      description = 'Rust Crates Open Homepage' },
+    { crates.open_repository,                    description = 'Rust Crates Open Repository' },
+    { crates.open_documentation,                 description = 'Rust Crates Open Documentation' },
+    { crates.open_crates_io,                     description = 'Rust Crates Open Crates.io' },
+    { crates.show_popup,                         description = 'Rust Crates Show Popup' },
   },
   autocmds = {
     {
