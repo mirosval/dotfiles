@@ -10,11 +10,12 @@ require('plugs.lualine_setup')
 require('plugs.null_ls_setup')
 require('plugs.telekasten')
 require("nvim-surround").setup({})
-require("nvim-autopairs").setup {}
+require("nvim-autopairs").setup({})
 require('Comment').setup()
 require('ibl').setup()
 require('gitsigns').setup()
 require('nu').setup({})
+require("auto-hlsearch").setup()
 -- colorscheme
 vim.opt.background = "dark"
 vim.g.tokyonight_style = "night"

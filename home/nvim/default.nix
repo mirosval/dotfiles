@@ -44,6 +44,7 @@ in
     plugins = with unstable.vimPlugins; [
       Navigator-nvim
       aerial-nvim
+      auto-hlsearch-nvim
       cmp-buffer
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
