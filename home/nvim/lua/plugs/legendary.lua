@@ -114,7 +114,7 @@ legendary.setup({
     { '<leader>ng', ':Telekasten search_notes<cr>',        description = 'Notes Telekasten search notes' },
     { '<leader>nd', ':Telekasten goto_today<cr>',          description = 'Notes Telekasten show todays note' },
     { '<leader>nz', ':Telekasten follow_link<cr>',         description = 'Notes Telekasten follow link' },
-    { '<leader>nn', ':Telekasten new_note<cr>',            description = 'Notes Telekasten new link' },
+    { '<leader>nn', ':Telekasten new_note<cr>',            description = 'Notes Telekasten new note' },
     { '<leader>nc', ':Telekasten show_calendar<cr>',       description = 'Notes Telekasten show calendar' },
     { '<leader>nb', ':Telekasten show_backlinks<cr>',      description = 'Notes Telekasten show backlinks' },
     { '<leader>nI', ':Telekasten insert_img_link<cr>',     description = 'Notes Telekasten insert image link' },
