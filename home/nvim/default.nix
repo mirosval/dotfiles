@@ -67,6 +67,7 @@ in
       nvim-lspconfig # LSP Client configurations
       nvim-nu # Nu scripting language support
       nvim-surround # Change both surrounding parentheses at once
+      nvim-ts-autotag # Auto-close HTML tags
       nvim-web-devicons # Eye candy
       plenary-nvim # Utility lua function
       renerocksai-calendar-vim # Calendar integration for Telekasten
@@ -86,6 +87,7 @@ in
         tree-sitter-dockerfile
         tree-sitter-hcl
         tree-sitter-json
+        tree-sitter-kotlin
         tree-sitter-lua
         tree-sitter-make
         tree-sitter-markdown

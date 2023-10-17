@@ -16,6 +16,7 @@ require('ibl').setup()
 require('gitsigns').setup()
 require('nu').setup({})
 require("auto-hlsearch").setup()
+require('nvim-ts-autotag').setup()
 -- colorscheme
 vim.opt.background = "dark"
 vim.g.tokyonight_style = "night"
