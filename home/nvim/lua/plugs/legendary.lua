@@ -14,7 +14,7 @@ end
 
 legendary.setup({
   keymaps = {
-    { '<leader>a',  ':Legendary<CR>', description = 'Action runner' },
+    { '<C-Space>',  ':Legendary<CR>', description = 'Action runner' },
     {
       '<leader>w',
       ':write<CR>',

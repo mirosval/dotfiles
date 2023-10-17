@@ -1,4 +1,4 @@
-require('plugs.crates')
+require('plugs.crates_setup')
 require('plugs.tree_sitter_setup')
 require('plugs.telescope_setup')
 require('plugs.tmux_setup')
