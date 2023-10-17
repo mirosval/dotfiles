@@ -42,42 +42,44 @@ in
     #package = unstable.neovim;
     defaultEditor = true;
     plugins = with unstable.vimPlugins; [
-      Navigator-nvim
-      aerial-nvim
-      auto-hlsearch-nvim
-      cmp-buffer
-      cmp-nvim-lsp
-      cmp-nvim-lsp-signature-help
-      cmp-nvim-lua
-      cmp-path
-      cmp-treesitter
-      cmp-vsnip
-      comment-nvim
-      crates-nvim
-      dressing-nvim
-      git-blame-nvim
-      gitsigns-nvim
-      indent-blankline-nvim
-      legendary-nvim
-      lualine-lsp-progress
-      lualine-nvim
-      none-ls-nvim
-      nvim-autopairs
-      nvim-cmp
-      nvim-lspconfig
-      nvim-nu
-      nvim-surround
-      nvim-web-devicons
-      plenary-nvim
-      renerocksai-calendar-vim
-      telekasten-nvim
-      text-case-nvim
-      todo-comments-nvim
-      tokyonight-nvim
-      vim-sneak
-      vim-vsnip
+      Navigator-nvim # Tmux window switching
+      aerial-nvim # Project outline
+      auto-hlsearch-nvim # Clear search highlighting on cursor movement
+      cmp-buffer # Code completion from current buffer
+      cmp-nvim-lsp # Code completion from LSP
+      cmp-nvim-lsp-signature-help # Help overlay for Code Completion
+      cmp-nvim-lua # Code completion for Neovim Lua API
+      cmp-path # Code completion for paths
+      cmp-treesitter # Code completion from treesitter nodes
+      cmp-vsnip # Code completion snippets integration
+      comment-nvim # Language-based comments toggle
+      crates-nvim # Rust Cargo.toml companion - updates and docs for dependencies
+      dressing-nvim # Makes native nvim UI look better
+      git-blame-nvim # Show git-blame in virtual text
+      gitsigns-nvim # Highlight code changes vs git
+      indent-blankline-nvim # Highlight leading whitespace for better visual block separation
+      legendary-nvim # Action dispatcher and key binding manager
+      lualine-lsp-progress # LSP status in the bottom status line
+      lualine-nvim # Status line config
+      none-ls-nvim # Integration of linters into the LSP stack
+      nvim-autopairs # Parentheses come in pairs
+      nvim-cmp # Code completion
+      nvim-lspconfig # LSP Client configurations
+      nvim-nu # Nu scripting language support
+      nvim-surround # Change both surrounding parentheses at once
+      nvim-web-devicons # Eye candy
+      plenary-nvim # Utility lua function
+      renerocksai-calendar-vim # Calendar integration for Telekasten
+      rust-tools-nvim # Rust enhancements beyond LSP
+      telekasten-nvim # Note taking
+      telescope-nvim # Fuzzy finder
+      text-case-nvim # Switch between word casing 
+      todo-comments-nvim # TODO comments special highlighting
+      tokyonight-nvim # Theme
+      vim-sneak # Faster movement
+      vim-vsnip # Code Snippets
 
-      rust-tools-nvim
+      # Syntax highlighting and parsing
       (nvim-treesitter.withPlugins (plugins: with plugins; [
         tree-sitter-bash
         tree-sitter-css
@@ -97,7 +99,6 @@ in
         tree-sitter-typescript
         tree-sitter-yaml
       ]))
-      telescope-nvim
     ];
     extraPackages = with unstable; [
       nodePackages.bash-language-server
