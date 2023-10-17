@@ -16,3 +16,19 @@ windows:
     panes:
       - nvim
       - blank
+  - window_name: notes
+    layout: main-vertical
+    options:
+      main-pane-width: 50%
+    shell_command_before: cd ~/notes
+    panes:
+      - nvim
+      - blank
+  - window_name: secrets
+    layout: main-vertical
+    options:
+      main-pane-width: 50%
+    shell_command_before: cd ~/secrets
+    panes:
+      - nvim
+      - blank
