@@ -12,19 +12,19 @@
         dig
         nmap
       ];
-      environment.etc."unbound/rpz.lan.zoricak.net".text = ''
-        $ORIGIN rpz.lan.zoricak.net.
-
-        butters                 IN AAAA ::1
-        butters.lan.zoricak.net IN AAAA ::1
-        butters                 IN CNAME butters.lan.zoricak.net.
-        cartman                 IN CNAME cartman.lan.zoricak.net.
-        dash                    IN CNAME butters.lan.zoricak.net.
-        grafana                 IN CNAME butters.lan.zoricak.net.
-        grafana.lan.zoricak.net IN CNAME butters.lan.zoricak.net.
-        nas                     IN CNAME cartman.lan.zoricak.net.
-        linkding                IN CNAME butters.lan.zoricak.net.
-      '';
+      # environment.etc."unbound/rpz.lan.zoricak.net".text = ''
+      #   $ORIGIN rpz.lan.zoricak.net.
+      #
+      #   butters                 IN AAAA ::1
+      #   butters.lan.zoricak.net IN AAAA ::1
+      #   butters                 IN CNAME butters.lan.zoricak.net.
+      #   cartman                 IN CNAME cartman.lan.zoricak.net.
+      #   dash                    IN CNAME butters.lan.zoricak.net.
+      #   grafana                 IN CNAME butters.lan.zoricak.net.
+      #   grafana.lan.zoricak.net IN CNAME butters.lan.zoricak.net.
+      #   nas                     IN CNAME cartman.lan.zoricak.net.
+      #   linkding                IN CNAME butters.lan.zoricak.net.
+      # '';
       services.unbound = {
         enable = true;
         resolveLocalQueries = false;
@@ -45,17 +45,11 @@
               ''"lan.zoricak.net." transparent''
               ''"168.192.in-addr.arpa." transparent''
             ];
-            # local-data = [
-            #   ''"butters.lan.zoricak.net. IN AAAA ::1"''
-            #   ''"grafana.lan.zoricak.net. IN AAAA ::1"''
-            #   ''"grafana.lan.zoricak.net. IN A butters.lan.zoricak.net."''
-            #   #   ''"butters.lan.zoricak.net. IN A 192.168.1.214"''
-            #   #   ''"cartman.lan.zoricak.net. IN A 192.168.1.252"''
-            #   #   ''"grafana.lan.zoricak.net. IN A 192.168.1.214"''
-            #   #   ''"grafana.lan.zoricak.net. IN AAAA ::1"''
-            #   #   ''"dash.lan.zoricak.net. IN A 192.168.1.214"''
-            #   #   ''"traefik.lan.zoricak.net. IN A 192.168.1.214"''
-            # ];
+            local-data = [
+              ''"grafana.lan.zoricak.net. IN A 192.168.1.214"''
+              ''"dash.lan.zoricak.net.    IN A 192.168.1.214"''
+              ''"traefik.lan.zoricak.net. IN A 192.168.1.214"''
+            ];
             private-domain = ''"lan.zoricak.net."'';
             domain-insecure = ''"lan.zoricak.net."'';
           };
@@ -79,11 +73,11 @@
               forward-addr = "192.168.1.4"; # hosts/butters/services/blocky
             }
           ];
-          rpz = {
-            name = "rpz.lan.zoricak.net";
-            zonefile = "/etc/unbound/rpz.lan.zoricak.net";
-            rpz-log = true;
-          };
+          # rpz = {
+          #   name = "rpz.lan.zoricak.net";
+          #   zonefile = "/etc/unbound/rpz.lan.zoricak.net";
+          #   rpz-log = true;
+          # };
         };
       };
       networking = {
