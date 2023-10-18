@@ -5,6 +5,13 @@
     ephemeral = true;
     macvlans = [ "enp2s0" ];
     privateNetwork = false;
+    extraVeths = {
+      # This is for promtail to be able to ship logs to host
+      veth1 = {
+        hostAddress = "192.168.2.1";
+        localAddress = "192.168.2.2";
+      };
+    };
     #extraFlags = ["-U"]; # private user namespace
     config = { config, pkgs, ... }: {
       environment.systemPackages = with pkgs; [
