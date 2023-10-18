@@ -40,6 +40,7 @@
       22 # SSH
       80 # HTTP (Traefik)
       443 # HTTPS (Traefik)
+      3100 # Loki
       4000 # DoH (blocky)
       8080 # Traefik management
     ];
