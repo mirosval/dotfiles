@@ -2,10 +2,10 @@
   services.traefik = {
     enable = true;
     staticConfigOptions = {
-      #api = {
-      #  insecure = true;
-      #  dashboard = true;
-      #};
+      api = {
+        insecure = true;
+        dashboard = true;
+      };
       entryPoints = {
         http = {
           address = ":80";
@@ -34,8 +34,15 @@
         rule = "Host(`dash`) || Host(`dash.home.arpa`)";
         service = "homer";
       };
+      http.routers.to-linkding = {
+        rule = "Host(`linkding`) || Host(`linkding.home.arpa`)";
+        service = "linkding";
+      };
       http.services.homer.loadBalancer.servers = [{
-          url = "http://localhost:8081";
+        url = "http://localhost:8081";
+      }];
+      http.services.linkding.loadBalancer.servers = [{
+        url = "http://localhost:8082";
       }];
     };
   };

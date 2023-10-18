@@ -1,9 +1,10 @@
 { config, pkgs, ... }: {
   imports = [
-    #./blocky
     ./blocky
+    ./grafana
     ./homer
     ./lan_dns
+    ./linkding
     ./traefik
   ];
 }
