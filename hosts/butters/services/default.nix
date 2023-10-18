@@ -5,6 +5,7 @@
     ./homer
     ./lan_dns
     ./linkding
+    ./prometheus
     ./traefik
   ];
 }
