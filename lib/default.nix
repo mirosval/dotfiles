@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, home-manager-unstable, secrets, agenix }:
+{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, home-manager-unstable, secrets, agenix, blocklist }:
 let
   homeManagerConfig = import ../home {
     pkgs = nixpkgs;
