@@ -346,11 +346,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1696852256,
-        "narHash": "sha256-kB9IBEKHphHcV32uadFEZVoxh73GpNWFWETOGcp4xRY=",
+        "lastModified": 1698087501,
+        "narHash": "sha256-Sj8i/7L+JcQB/1hrVjdmqF43HARPAmjSWcNGL8HOniw=",
         "ref": "main",
-        "rev": "9e6396116afd1665634d2b7b8c3956fbbb143199",
-        "revCount": 17,
+        "rev": "1744f7253127eaa9896451ef1939c168897e0e10",
+        "revCount": 21,
         "type": "git",
         "url": "https://github.com/mirosval/secrets.git"
       },

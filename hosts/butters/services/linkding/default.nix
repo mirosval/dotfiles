@@ -1,14 +1,17 @@
 { pkgs, lib, ... }:
 let
   port = "8082";
+  dataVolume = "/var/containers/linkding";
 in
 {
   system.activationScripts = {
     makeLinkdingContainerDir = lib.stringAfter [ "var" ] ''
-      mkdir -p /var/containers/linkding
+      mkdir -p ${dataVolume}
     '';
   };
+
   environment.etc."containers/linkding/env".source = ./env;
+
   virtualisation.oci-containers.containers = {
     linkding = {
       autoStart = true;
@@ -17,7 +20,7 @@ in
         "${port}:9090"
       ];
       volumes = [
-        "/var/containers/linkding:/etc/linkding/data"
+        "${dataVolume}:/etc/linkding/data"
       ];
       extraOptions = [
         "--name=linkding"
@@ -26,6 +29,8 @@ in
       ];
     };
   };
+
+  # Reverse proxy
   services.traefik.dynamicConfigOptions = {
     http.routers.linkding = {
       rule = "Host(`linkding`) || Host(`linkding.lan.zoricak.net`)";
@@ -34,5 +39,10 @@ in
     http.services.linkding.loadBalancer.servers = [{
       url = "http://localhost:${port}";
     }];
+  };
+
+  # Backups
+  services.restic.backups.cartman = {
+    paths = [ dataVolume ];
   };
 }

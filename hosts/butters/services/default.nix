@@ -8,6 +8,7 @@
     ./loki
     ./prometheus
     ./promtail
+    ./restic
     ./traefik
   ];
 }
