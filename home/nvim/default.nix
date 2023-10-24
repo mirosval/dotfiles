@@ -137,7 +137,7 @@ in
     nodePackages.pyright
     black
     mypy
-    rnix-lsp
+    nil
     nixpkgs-fmt
   ];
 
