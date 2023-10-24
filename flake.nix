@@ -36,30 +36,34 @@
         host = "jimbo";
         user = "mirosval";
       };
-      nixosConfigurations.jimmy = lib.raspberryImage {
-        system = "aarch64-linux";
-        host = "jimmy";
-        user = "miro";
+      nixosConfigurations = {
+        jimmy = lib.raspberryImage {
+          system = "aarch64-linux";
+          host = "jimmy";
+          user = "miro";
+        };
+        leon = lib.raspberryImage {
+          system = "aarch64-linux";
+          host = "leon";
+          user = "miro";
+        };
+        butters = lib.linuxSystem {
+          system = "x86_64-linux";
+          host = "butters";
+          user = "miro";
+        };
       };
-      nixosConfigurations.leon = lib.raspberryImage {
-        system = "aarch64-linux";
-        host = "leon";
-        user = "miro";
-      };
-      nixosConfigurations.butters = lib.linuxSystem {
-        system = "x86_64-linux";
-        host = "butters";
-        user = "miro";
-      };
-      darwinConfigurations.mirosval = lib.darwinSystem {
-        system = "aarch64-darwin";
-        host = "Miro Home MBP";
-        user = "mirosval";
-      };
-      darwinConfigurations.jimbo = lib.darwinSystem {
-        system = "aarch64-darwin";
-        host = "Miro Work MBP";
-        user = "mirosval";
+      darwinConfigurations = {
+        mirosval = lib.darwinSystem {
+          system = "aarch64-darwin";
+          host = "Miro Home MBP";
+          user = "mirosval";
+        };
+        jimbo = lib.darwinSystem {
+          system = "aarch64-darwin";
+          host = "Miro Work MBP";
+          user = "mirosval";
+        };
       };
     };
 }

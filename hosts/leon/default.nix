@@ -80,9 +80,9 @@
 
   networking.firewall = {
     enable = true;
-    trustedInterfaces = ["eth0"];
-    allowedUDPPorts = [];
-    allowedTCPPorts = [22];
+    trustedInterfaces = [ "eth0" ];
+    allowedUDPPorts = [ ];
+    allowedTCPPorts = [ 22 ];
   };
 
   system.stateVersion = "23.05"; # Did you read the comment?
@@ -100,7 +100,7 @@
         home = "/home/miro";
         name = "miro";
         group = "miro";
-        extraGroups = ["networkmanager" "wheel"];
+        extraGroups = [ "networkmanager" "wheel" ];
         isNormalUser = true;
         hashedPassword = "$6$3RLqWYW8IQCHGusk$B.gU3zxK0nsvzWSqb7jzXTmTTerQDndRZBJKHOpZ6j0aKdwVzQZiIPFiHp./C9ovZlV3OFo3wLQtKv48kLFtO/";
         openssh = {
@@ -110,14 +110,18 @@
         };
       };
     };
+    groups.miro = { };
+    groups.leon = { };
   };
 
   # Enable passwordless sudo.
-  security.sudo.extraRules= [
-    {  users = [ "miro" ];
+  security.sudo.extraRules = [
+    {
+      users = [ "miro" ];
       commands = [
-         { command = "ALL" ;
-           options= [ "NOPASSWD" ];
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
         }
       ];
     }

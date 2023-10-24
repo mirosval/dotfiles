@@ -6,9 +6,9 @@
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
-      let 
+      let
         pkgs = import nixpkgs {
-          system = system;
+          inherit system;
         };
       in
       {
@@ -18,7 +18,7 @@
             pkgs.nodejs
             pkgs.nodePackages.npm
           ];
-        }; 
+        };
       }
     );
 }

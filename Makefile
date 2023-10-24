@@ -47,6 +47,21 @@ update:
 update-secrets:
 	nix flake lock --update-input secrets
 
+.PHONY: update-blocklist
+update-blocklist:
+	nix flake lock --update-input blocklist
+
+.PHONY: update-mine
+update-mine: update-secrets update-blocklist
+
+.PHONY: check
+check:
+	nix flake check
+
+.PHONY: lint
+lint:
+	nix run nixpkgs#statix check
+
 # Cleans up old nix generations to free up disk space
 .PHONY: gc
 gc:

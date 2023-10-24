@@ -1,8 +1,8 @@
 { pkgs, inputs, ... }:
 let
   unstable = import inputs.nixpkgs-unstable {
-    system = pkgs.system;
-    config.allowUnfree = true;
+    inherit (pkgs) system;
+    config. allowUnfree = true;
     overlays = [
       (self: super:
         let
