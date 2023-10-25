@@ -3,6 +3,7 @@ _: {
     ./blocky
     ./grafana
     ./homer
+    ./immich
     ./lan_dns
     ./linkding
     ./loki

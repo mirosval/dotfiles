@@ -1,25 +1,30 @@
 { pkgs, config, ... }:
 let
-  backupHost = "cartman";
+  backupHost = "192.168.1.252";
   backupUser = "butters_backups";
   backupsPassword = config.secrets.butters.backups_password;
   backupsSshKey = config.secrets.butters.backups_ssh_key;
 in
 {
-  users.users.restic = {
-    isNormalUser = true;
-  };
-
-  security.wrappers.restic = {
-    source = "${pkgs.restic.out}/bin/restic";
-    owner = "restic";
-    group = "users";
-    permissions = "u=rwx,g=,o=";
-    capabilities = "cap_dac_read_search=+ep";
-  };
+  environment.systemPackages = with pkgs; [
+    restic
+  ];
+  #
+  # users.users.restic = {
+  #   isNormalUser = true;
+  # };
+  #
+  # security.wrappers.restic = {
+  #   source = "${pkgs.restic.out}/bin/restic";
+  #   owner = "restic";
+  #   group = "users";
+  #   permissions = "u=rwx,g=,o=";
+  #   capabilities = "cap_dac_read_search=+ep";
+  # };
 
   services.restic.backups.cartman = {
-    user = "restic";
+    # user = "restic";
+    # package = "${config.security.wrapperDir}/restic";
     repository = "sftp:${backupUser}@${backupHost}:butters/backups";
     passwordFile = backupsPassword;
     extraOptions = [
@@ -36,6 +41,13 @@ in
       OnCalendar = "hourly";
       Persistent = true;
     };
-    paths = [ ];
+    paths = [
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/group"
+      "/etc/machine-id"
+    ];
   };
 }

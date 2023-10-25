@@ -60,6 +60,7 @@ in
               ''"cartman.lan.zoricak.net.  IN A ${cartman_addr}"''
               ''"dash.lan.zoricak.net.     IN A ${butters_addr}"''
               ''"grafana.lan.zoricak.net.  IN A ${butters_addr}"''
+              ''"immich.lan.zoricak.net.  IN A ${butters_addr}"''
               ''"linkding.lan.zoricak.net. IN A ${butters_addr}"''
               ''"traefik.lan.zoricak.net.  IN A ${butters_addr}"''
             ];
