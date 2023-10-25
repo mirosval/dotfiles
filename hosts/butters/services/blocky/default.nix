@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+_:
 {
   containers.blocky = {
     autoStart = true;
     ephemeral = true;
     macvlans = [ "enp2s0" ];
     privateNetwork = false;
-    config = { config, pkgs, ... }: {
+    config = { pkgs, ... }: {
       environment.systemPackages = with pkgs; [
         lshw
         dig

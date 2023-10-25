@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 let
   port = "8082";
   dataVolume = "/var/containers/linkding";

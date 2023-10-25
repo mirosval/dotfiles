@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 let
   butters_addr = "192.168.1.214";
   cartman_addr = "192.168.1.252";
@@ -17,7 +17,7 @@ in
       };
     };
     #extraFlags = ["-U"]; # private user namespace
-    config = { config, pkgs, ... }: {
+    config = { pkgs, ... }: {
       imports = [
         inputs.blocklist.nixosModules.default
       ];

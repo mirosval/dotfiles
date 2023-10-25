@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   services.traefik = {
     enable = true;
     staticConfigOptions = {

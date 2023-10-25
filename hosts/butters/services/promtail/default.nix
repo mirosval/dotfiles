@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, ... }: {
   systemd.services.promtail = {
     description = "Promtail service for Loki";
     wantedBy = [ "multi-user.target" ];

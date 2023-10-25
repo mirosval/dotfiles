@@ -61,6 +61,7 @@ check:
 .PHONY: lint
 lint:
 	nix run nixpkgs#statix check
+	nix run nixpkgs#deadnix
 
 # Cleans up old nix generations to free up disk space
 .PHONY: gc

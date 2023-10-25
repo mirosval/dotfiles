@@ -1,7 +1,7 @@
 {
   description = "A collection of opinionated flakes";
 
-  outputs = { self }: {
+  outputs = _: {
 
     templates = {
 

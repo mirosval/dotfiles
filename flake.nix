@@ -23,11 +23,11 @@
     blocklist.url = "github:mirosval/unbound-blocklist";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable, darwin, agenix, secrets, blocklist, ... }:
+  outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable, darwin, agenix, secrets, blocklist, ... }:
     let
       stateVersion = "23.05";
       lib = import ./lib {
-        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager home-manager-unstable secrets agenix blocklist;
+        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager home-manager-unstable secrets agenix;
       };
     in
     {

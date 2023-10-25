@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ lib, ... }: {
   services.loki = {
     enable = true;
     configFile = ./config.yaml;

@@ -1,7 +1,7 @@
-self: super: {
+_: super: {
   python310 = super.python310.override {
-    packageOverrides = python-self: python-super: {
-      libtmux = python-super.libtmux.overrideAttrs (oldAttrs:{
+    packageOverrides = _: python-super: {
+      libtmux = python-super.libtmux.overrideAttrs (_: {
         disabledTests = [
           "test_capture_pane_start"
         ];

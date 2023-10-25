@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+_:
 {
   virtualisation.oci-containers.containers = {
     homer = {

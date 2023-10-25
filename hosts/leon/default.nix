@@ -1,7 +1,7 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   nixpkgs.overlays = [
-    (final: super: {
+    (_: super: {
       makeModulesClosure = x:
         super.makeModulesClosure (x // { allowMissing = true; });
     })

@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, home-manager-unstable, secrets, agenix, blocklist }:
+{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, home-manager-unstable, secrets, agenix }:
 let
   homeManagerConfig = import ../home {
     pkgs = nixpkgs;
@@ -6,7 +6,7 @@ let
   };
 in
 {
-  homeConfiguration = { system, host, user }:
+  homeConfiguration = { system, user, ... }:
     home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs { inherit system; };
       modules = [
@@ -21,7 +21,7 @@ in
       };
     };
 
-  raspberryImage = { system, host, user }:
+  raspberryImage = { system, host, ... }:
     nixpkgs-unstable.lib.nixosSystem {
       inherit system;
       modules = [
@@ -34,7 +34,7 @@ in
       specialArgs = { inherit inputs; };
     };
 
-  darwinSystem = { system, host, user }:
+  darwinSystem = { system, user, ... }:
     darwin.lib.darwinSystem {
       inherit system;
       modules = [

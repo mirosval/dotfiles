@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   services.nix-daemon.enable = true;
 
   homebrew = {

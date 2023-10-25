@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+_: {
   imports = [
     ./blocky
     ./grafana

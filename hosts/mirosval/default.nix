@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+_: {
   services.nix-daemon.enable = true;
-  
+
   homebrew = {
     enable = true;
     brews = [ ];
@@ -48,7 +48,7 @@
       maxJobs = 10;
       speedFactor = 2;
       supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      mandatoryFeatures = [];
+      mandatoryFeatures = [ ];
     }];
   };
 
