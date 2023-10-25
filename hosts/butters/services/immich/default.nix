@@ -2,7 +2,8 @@
 let
   immichVersion = "v1.82.1";
   dbBackupPath = "/var/containers/immich/backups";
-  uploadPath = "/var/containers/immich/upload";
+  uploadPath = "/mnt/immich";
+  externalLibraryRodina = "/mnt/photos_ro/rodina";
   modelCachePath = "/var/containers/immich/model_cache";
   typesensePath = "/var/containers/immich/typesense";
   port = "8083";
@@ -11,7 +12,6 @@ in
   # Create directories
   system.activationScripts = {
     makeImmichContainerDir = lib.stringAfter [ "var" ] ''
-      mkdir -p ${uploadPath}
       mkdir -p ${modelCachePath}
       mkdir -p ${typesensePath}
       mkdir -p ${dbBackupPath}
@@ -41,6 +41,7 @@ in
       cmd = [ "start.sh" "immich" ];
       volumes = [
         "${uploadPath}:/usr/src/app/upload"
+        "${externalLibraryRodina}:/mnt/media/rodina:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
       environment = {
@@ -64,9 +65,13 @@ in
       cmd = [ "start.sh" "microservices" ];
       volumes = [
         "${uploadPath}:/usr/src/app/upload"
+        "${externalLibraryRodina}:/mnt/media/rodina:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
-      environment = { };
+      environment = {
+        REDIS_HOSTNAME = "immich-redis";
+        TYPESENSE_HOST = "immich-typesense";
+      };
       environmentFiles = [
         config.secrets.butters.immich_env
       ];
