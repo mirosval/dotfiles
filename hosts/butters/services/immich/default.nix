@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }:
 let
   immichVersion = "v1.82.1";
+  dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
   uploadPath = "/mnt/immich";
   externalLibraryRodina = "/mnt/photos_ro/rodina";
@@ -131,6 +132,9 @@ in
       environmentFiles = [
         config.secrets.butters.immich_env
       ];
+      volumes = [
+        "${dbPath}:/var/lib/postgresql/data"
+      ];
       extraOptions = [ "--network=immich-bridge" ];
     };
 
@@ -150,7 +154,7 @@ in
       ];
     };
 
-    immich_db_dumper = {
+    immich-db-dumper = {
       image = "prodrigestivill/postgres-backup-local";
       environment = {
         SCHEDULE = "@hourly";
