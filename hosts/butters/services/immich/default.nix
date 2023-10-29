@@ -178,8 +178,9 @@ in
   # Reverse proxy
   services.traefik.dynamicConfigOptions = {
     http.routers.immich = {
-      rule = "Host(`immich`) || Host(`immich.lan.zoricak.net`)";
+      rule = "Host(`immich.doma.lol`)";
       service = "immich";
+      tls = { };
     };
     http.services.immich.loadBalancer.servers = [{
       url = "http://localhost:${port}";

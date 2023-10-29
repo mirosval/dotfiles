@@ -52,29 +52,29 @@ in
             ];
             do-ip6 = "yes";
             local-zone = [
-              ''"lan.zoricak.net." static''
+              ''"doma.lol." static''
               # ''"168.192.in-addr.arpa." nodefault''
             ];
             local-data = [
-              ''"butters.lan.zoricak.net.  IN A ${butters_addr}"''
-              ''"cartman.lan.zoricak.net.  IN A ${cartman_addr}"''
-              ''"dash.lan.zoricak.net.     IN A ${butters_addr}"''
-              ''"grafana.lan.zoricak.net.  IN A ${butters_addr}"''
-              ''"immich.lan.zoricak.net.  IN A ${butters_addr}"''
-              ''"linkding.lan.zoricak.net. IN A ${butters_addr}"''
-              ''"traefik.lan.zoricak.net.  IN A ${butters_addr}"''
+              ''"butters.doma.lol.  IN A ${butters_addr}"''
+              ''"cartman.doma.lol.  IN A ${cartman_addr}"''
+              ''"dash.doma.lol.     IN A ${butters_addr}"''
+              ''"grafana.doma.lol.  IN A ${butters_addr}"''
+              ''"immich.doma.lol.   IN A ${butters_addr}"''
+              ''"linkding.doma.lol. IN A ${butters_addr}"''
+              ''"traefik.doma.lol.  IN A ${butters_addr}"''
             ];
-            private-domain = ''"lan.zoricak.net."'';
-            domain-insecure = ''"lan.zoricak.net."'';
+            private-domain = ''"doma.lol."'';
+            domain-insecure = ''"doma.lol."'';
           };
           stub-zone = {
-            name = ''"lan.zoricak.net"'';
+            name = ''"doma.lol"'';
             stub-addr = "192.168.1.1";
             stub-first = "yes";
           };
           forward-zone = [
             # {
-            #   name = ''"lan.zoricak.net."'';
+            #   name = ''"doma.lol."'';
             #   forward-addr = "192.168.1.1";
             #   # forward-first = "yes";
             # }

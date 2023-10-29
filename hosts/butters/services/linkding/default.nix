@@ -33,8 +33,9 @@ in
   # Reverse proxy
   services.traefik.dynamicConfigOptions = {
     http.routers.linkding = {
-      rule = "Host(`linkding`) || Host(`linkding.lan.zoricak.net`)";
+      rule = "Host(`linkding.doma.lol`)";
       service = "linkding";
+      tls = { };
     };
     http.services.linkding.loadBalancer.servers = [{
       url = "http://localhost:${port}";
