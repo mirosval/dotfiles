@@ -4,7 +4,6 @@ _: {
     ./grafana
     ./homer
     ./immich
-    ./lan_dns
     ./linkding
     ./loki
     ./prometheus
