@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./blocky
+    ./dns
     ./grafana
     ./homer
     ./immich
