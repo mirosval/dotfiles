@@ -20,7 +20,7 @@
       {
         job_name = "unbound";
         static_configs = [{
-          targets = [ "192.168.2.2:9167" ];
+          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.unbound.port}" ];
         }];
       }
     ];
