@@ -21,6 +21,7 @@ let
     grafana = "butters";
     immich = "butters";
     linkding = "butters";
+    mealie = "butters";
     traefik = "butters";
   };
   # This converts the map of service -> hostname to DNS A records

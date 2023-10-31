@@ -5,6 +5,13 @@ let
       pageInfo.title = "doma.lol";
       appConfig = {
         statusCheck = true;
+        theme = "crayola";
+        preventWriteToDisk = true;
+        disableConfiguration = true;
+        hideComponents = {
+          hideSettings = true;
+          hideFooter = true;
+        };
       };
       sections = [
         {
@@ -19,6 +26,31 @@ let
               title = "Linkding";
               url = "https://linkding.doma.lol";
               icon = "hl-linkding";
+            }
+          ];
+        }
+        {
+          name = "Network";
+          items = [
+            {
+              title = "UniFi";
+              url = "http://192.168.1.1";
+              icon = "hl-unifi";
+            }
+            {
+              title = "Traefik";
+              url = "http://butters.doma.lol:8080";
+              icon = "hl-traefik";
+            }
+          ];
+        }
+        {
+          name = "Monitoring";
+          items = [
+            {
+              title = "Grafana";
+              url = "http://grafana.doma.lol";
+              icon = "hl-grafana";
             }
           ];
         }

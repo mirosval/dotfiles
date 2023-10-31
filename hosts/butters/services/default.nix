@@ -6,6 +6,7 @@ _: {
     ./immich
     ./linkding
     ./loki
+    ./mealie
     ./prometheus
     ./promtail
     ./restic
