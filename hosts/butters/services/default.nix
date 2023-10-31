@@ -1,8 +1,8 @@
 _: {
   imports = [
+    ./dashy
     ./dns
     ./grafana
-    ./homer
     ./immich
     ./linkding
     ./loki

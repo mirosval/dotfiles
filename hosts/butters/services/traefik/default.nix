@@ -62,19 +62,6 @@
           }
         ];
       };
-      http.routers.to-homer = {
-        rule = "Host(`dash.doma.lol`)";
-        service = "homer";
-        tls = {
-          domains = {
-            main = "doma.lol";
-            sans = [ "*.doma.lol" ];
-          };
-        };
-      };
-      http.services.homer.loadBalancer.servers = [{
-        url = "http://localhost:8081";
-      }];
     };
   };
 }

@@ -8,7 +8,7 @@ _: {
       enable = true;
       dockerCompat = true;
       defaultNetwork.settings = {
-        dns_enabled = false;
+        dns_enabled = true;
       };
     };
     oci-containers.backend = "podman";
