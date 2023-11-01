@@ -27,6 +27,11 @@ let
               url = "https://linkding.doma.lol";
               icon = "hl-linkding";
             }
+            {
+              title = "Mealie";
+              url = "https://mealie.doma.lol";
+              icon = "hl-mealie";
+            }
           ];
         }
         {
