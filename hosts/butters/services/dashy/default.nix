@@ -19,18 +19,27 @@ let
           items = [
             {
               title = "Immich";
+              description = "View and manage photos";
               url = "https://immich.doma.lol";
               icon = "hl-immich";
             }
             {
               title = "Linkding";
+              description = "Link Aggregator";
               url = "https://linkding.doma.lol";
               icon = "hl-linkding";
             }
             {
               title = "Mealie";
+              description = "Meal Planner";
               url = "https://mealie.doma.lol";
               icon = "hl-mealie";
+            }
+            {
+              title = "Jellyfin";
+              description = "Watch Movies and TV Shows";
+              url = "https://jellyfin.doma.lol";
+              icon = "hl-jellyfin";
             }
           ];
         }
@@ -39,11 +48,13 @@ let
           items = [
             {
               title = "UniFi";
+              description = "Network setup";
               url = "http://192.168.1.1";
               icon = "hl-unifi";
             }
             {
               title = "Traefik";
+              description = "Reverse Proxy";
               url = "http://butters.doma.lol:8080";
               icon = "hl-traefik";
             }
@@ -54,6 +65,7 @@ let
           items = [
             {
               title = "Grafana";
+              description = "Fancy Graphs";
               url = "http://grafana.doma.lol";
               icon = "hl-grafana";
             }

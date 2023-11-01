@@ -20,6 +20,7 @@ let
     dash = "butters";
     grafana = "butters";
     immich = "butters";
+    jellyfin = "butters";
     linkding = "butters";
     mealie = "butters";
     traefik = "butters";

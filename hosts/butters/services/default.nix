@@ -4,6 +4,7 @@ _: {
     ./dns
     ./grafana
     ./immich
+    ./jellyfin
     ./linkding
     ./loki
     ./mealie
