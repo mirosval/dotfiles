@@ -1,5 +1,6 @@
 { pkgs, config, lib, ... }:
 let
+  name = "mealie";
   mealieVersion = "v1.0.0-RC1.1";
   dbPath = "/var/containers/mealie/db";
   dbBackupPath = "/var/containers/mealie/db_dumps";
@@ -19,17 +20,17 @@ in
 
   # Create docker network
   systemd.services.init-mealie-network = {
-    description = "Create the network bridge for mealie.";
+    description = "Create the network bridge for ${name}.";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "oneshot";
     script = ''
       # Put a true at the end to prevent getting non-zero return code, which will
       # crash the whole service.
-      check=$(${pkgs.podman}/bin/podman network ls | grep "mealie-bridge" || true)
+      check=$(${pkgs.podman}/bin/podman network ls | grep "${name}-bridge" || true)
       if [ -z "$check" ];
-        then ${pkgs.podman}/bin/podman network create mealie-bridge
-        else echo "mealie-bridge already exists in podman"
+        then ${pkgs.podman}/bin/podman network create ${name}-bridge
+        else echo "${name}-bridge already exists in podman"
       fi
     '';
   };
@@ -92,14 +93,19 @@ in
     };
   };
 
+  # DNS
+  services.local_dns.service_map = {
+    ${name} = "butters";
+  };
+
   # Reverse proxy
   services.traefik.dynamicConfigOptions = {
-    http.routers.mealie = {
-      rule = "Host(`mealie.doma.lol`)";
-      service = "mealie";
+    http.routers.${name} = {
+      rule = "Host(`${name}.doma.lol`)";
+      service = name;
       tls = { };
     };
-    http.services.mealie.loadBalancer.servers = [{
+    http.services.${name}.loadBalancer.servers = [{
       url = "http://localhost:${port}";
     }];
   };

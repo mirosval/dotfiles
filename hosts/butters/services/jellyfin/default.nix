@@ -47,6 +47,11 @@ in
     7395
   ];
 
+  # DNS
+  services.local_dns.service_map = {
+    ${name} = "butters";
+  };
+
   # Reverse proxy
   services.traefik.dynamicConfigOptions = {
     http.routers.${name} = {

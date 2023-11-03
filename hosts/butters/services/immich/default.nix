@@ -1,5 +1,6 @@
 { pkgs, config, lib, ... }:
 let
+  name = "immich";
   immichVersion = "v1.84.0";
   dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
@@ -10,6 +11,11 @@ let
   port = "8083";
 in
 {
+  # Create DNS
+  services.local_dns.service_map = {
+    ${name} = "butters";
+  };
+
   # Create directories
   system.activationScripts = {
     makeImmichContainerDir = lib.stringAfter [ "var" ] ''
@@ -21,17 +27,17 @@ in
 
   # Create docker network
   systemd.services.init-immich-network = {
-    description = "Create the network bridge for immich.";
+    description = "Create the network bridge for ${name}.";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "oneshot";
     script = ''
       # Put a true at the end to prevent getting non-zero return code, which will
       # crash the whole service.
-      check=$(${pkgs.podman}/bin/podman network ls | grep "immich-bridge" || true)
+      check=$(${pkgs.podman}/bin/podman network ls | grep "${name}-bridge" || true)
       if [ -z "$check" ];
-        then ${pkgs.podman}/bin/podman network create immich-bridge
-        else echo "immich-bridge already exists in podman"
+        then ${pkgs.podman}/bin/podman network create ${name}-bridge
+        else echo "${name}-bridge already exists in podman"
       fi
     '';
   };
@@ -177,12 +183,12 @@ in
 
   # Reverse proxy
   services.traefik.dynamicConfigOptions = {
-    http.routers.immich = {
-      rule = "Host(`immich.doma.lol`)";
-      service = "immich";
+    http.routers.${name} = {
+      rule = "Host(`${name}.doma.lol`)";
+      service = name;
       tls = { };
     };
-    http.services.immich.loadBalancer.servers = [{
+    http.services.${name}.loadBalancer.servers = [{
       url = "http://localhost:${port}";
     }];
   };

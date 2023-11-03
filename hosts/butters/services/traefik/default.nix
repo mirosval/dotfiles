@@ -1,4 +1,8 @@
-{ config, ... }: {
+{ config, ... }:
+let
+  name = "traefik";
+in
+{
   security.acme = {
     acceptTerms = true;
     defaults.email = "admin@doma.lol";
@@ -10,6 +14,12 @@
       credentialsFile = config.secrets.butters.lets_encrypt;
     };
   };
+
+  # DNS
+  services.local_dns.service_map = {
+    ${name} = "butters";
+  };
+
   services.traefik = {
     enable = true;
     staticConfigOptions = {

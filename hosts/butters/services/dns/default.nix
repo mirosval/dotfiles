@@ -20,15 +20,8 @@ in
       };
     };
     service_map = {
-      butters = "butters";
-      cartman = "cartman";
-      dash = "butters";
-      grafana = "butters";
-      immich = "butters";
-      jellyfin = "butters";
-      linkding = "butters";
-      mealie = "butters";
-      traefik = "butters";
+      butters = "butters"; # map butters.doma.lol to butters_addr (or butters_ts_addr on tailscale)
+      cartman = "cartman"; # map cartman.doma.lol to cartman_addr (or cartman_ts_addr on tailscale)
     };
   };
 }

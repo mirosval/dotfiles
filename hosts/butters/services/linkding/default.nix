@@ -1,5 +1,6 @@
 { lib, ... }:
 let
+  name = "linkding";
   port = "8082";
   dataVolume = "/var/containers/linkding";
 in
@@ -30,14 +31,19 @@ in
     };
   };
 
+  # DNS
+  services.local_dns.service_map = {
+    ${name} = "butters";
+  };
+
   # Reverse proxy
   services.traefik.dynamicConfigOptions = {
-    http.routers.linkding = {
-      rule = "Host(`linkding.doma.lol`)";
-      service = "linkding";
+    http.routers.${name} = {
+      rule = "Host(`${name}.doma.lol`)";
+      service = name;
       tls = { };
     };
-    http.services.linkding.loadBalancer.servers = [{
+    http.services.${name}.loadBalancer.servers = [{
       url = "http://localhost:${port}";
     }];
   };
