@@ -47,6 +47,12 @@ let
           name = "Network";
           items = [
             {
+              title = "ISP";
+              description = "Router Settings";
+              url = "http://192.168.0.1";
+              icon = "hl-router";
+            }
+            {
               title = "UniFi";
               description = "Network setup";
               url = "http://192.168.1.1";
