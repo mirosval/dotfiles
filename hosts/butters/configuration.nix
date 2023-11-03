@@ -12,6 +12,7 @@
       ./virtualisation.nix
       ./networking.nix
       ./fs.nix
+      ./modules/dns.nix
     ];
 
   # Bootloader.

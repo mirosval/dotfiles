@@ -75,6 +75,12 @@ let
     });
 in
 {
+  # DNS Mapping
+  services.local_dns.service_map = {
+    dash = "butters";
+  };
+
+  # Container
   virtualisation.oci-containers.containers = {
     dashy = {
       autoStart = true;
@@ -88,6 +94,7 @@ in
     };
   };
 
+  # Reverse Proxy
   services.traefik.dynamicConfigOptions = {
     http.routers.dashy = {
       rule = "Host(`dash.doma.lol`)";
