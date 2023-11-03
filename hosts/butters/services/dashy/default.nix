@@ -41,6 +41,12 @@ let
               url = "https://jellyfin.doma.lol";
               icon = "hl-jellyfin";
             }
+            {
+              title = "Grist";
+              description = "Spreadsheets on steroids";
+              url = "https://grist.doma.lol";
+              icon = "hl-grist";
+            }
           ];
         }
         {

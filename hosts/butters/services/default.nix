@@ -3,6 +3,7 @@ _: {
     ./dashy
     ./dns
     ./grafana
+    ./grist
     ./immich
     ./jellyfin
     ./linkding
