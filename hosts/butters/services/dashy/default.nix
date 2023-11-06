@@ -41,12 +41,6 @@ let
               url = "https://jellyfin.doma.lol";
               icon = "hl-jellyfin";
             }
-            {
-              title = "Baserow";
-              description = "Spreadsheets on steroids";
-              url = "https://baserow.doma.lol";
-              icon = "hl-baserow";
-            }
           ];
         }
         {

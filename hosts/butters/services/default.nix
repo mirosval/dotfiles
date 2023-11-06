@@ -1,6 +1,5 @@
 _: {
   imports = [
-    ./baserow
     ./dashy
     ./dns
     ./grafana
