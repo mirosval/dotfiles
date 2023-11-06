@@ -8,6 +8,7 @@ _: {
     ./linkding
     ./loki
     ./mealie
+    ./paperless
     ./prometheus
     ./promtail
     ./restic
