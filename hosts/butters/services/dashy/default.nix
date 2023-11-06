@@ -42,10 +42,10 @@ let
               icon = "hl-jellyfin";
             }
             {
-              title = "Grist";
+              title = "Baserow";
               description = "Spreadsheets on steroids";
-              url = "https://grist.doma.lol";
-              icon = "hl-grist";
+              url = "https://baserow.doma.lol";
+              icon = "hl-baserow";
             }
           ];
         }

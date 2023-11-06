@@ -1,9 +1,9 @@
 _: {
   imports = [
+    ./baserow
     ./dashy
     ./dns
     ./grafana
-    ./grist
     ./immich
     ./jellyfin
     ./linkding
