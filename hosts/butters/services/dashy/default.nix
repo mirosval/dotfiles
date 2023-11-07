@@ -41,6 +41,12 @@ let
               url = "https://jellyfin.doma.lol";
               icon = "hl-jellyfin";
             }
+            {
+              title = "Paperless";
+              description = "Documents management";
+              url = "https://paperless.doma.lol";
+              icon = "hl-paperless-ngx";
+            }
           ];
         }
         {
