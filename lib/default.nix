@@ -34,11 +34,11 @@ in
       specialArgs = { inherit inputs; };
     };
 
-  darwinSystem = { system, user, ... }:
+  darwinSystem = { system, host, user }:
     darwin.lib.darwinSystem {
       inherit system;
       modules = [
-        (../hosts + "/${user}")
+        (../hosts + "/${host}")
         home-manager.darwinModules.home-manager
         {
           users.users."${user}".home = "/Users/${user}";

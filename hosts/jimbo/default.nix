@@ -16,7 +16,6 @@ _: {
       "raycast"
       "spotify"
       "the-unarchiver"
-      "tunnelblick"
       "visual-studio-code"
     ];
   };

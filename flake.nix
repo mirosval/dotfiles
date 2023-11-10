@@ -56,12 +56,12 @@
       darwinConfigurations = {
         mirosval = lib.darwinSystem {
           system = "aarch64-darwin";
-          host = "Miro Home MBP";
+          host = "mirosval";
           user = "mirosval";
         };
         jimbo = lib.darwinSystem {
           system = "aarch64-darwin";
-          host = "Miro Work MBP";
+          host = "jimbo";
           user = "mirosval";
         };
       };
