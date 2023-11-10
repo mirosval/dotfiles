@@ -16,11 +16,20 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # This pattern is because the repo is private
-    # it relies on git being configured with gh auth setup-git
-    secrets.url = "git+https://github.com/mirosval/secrets.git?ref=main";
-    agenix.url = "github:ryantm/agenix";
-    blocklist.url = "github:mirosval/unbound-blocklist";
+    secrets = {
+      # This pattern is because the repo is private
+      # it relies on git being configured with gh auth setup-git
+      url = "git+https://github.com/mirosval/secrets.git?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    blocklist = {
+      url = "github:mirosval/unbound-blocklist";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable, darwin, agenix, secrets, ... }:

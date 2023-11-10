@@ -39,7 +39,7 @@ in
 {
   programs.neovim = {
     enable = true;
-    #package = unstable.neovim;
+    package = unstable.neovim-unwrapped;
     defaultEditor = true;
     plugins = with unstable.vimPlugins; [
       Navigator-nvim # Tmux window switching
