@@ -1,8 +1,10 @@
 { lib, ... }:
 let
   name = "linkding";
+  version = "1.22.3";
   port = "8082";
   dataVolume = "/var/containers/linkding";
+  domain = "${name}.doma.lol";
 in
 {
   system.activationScripts = {
@@ -16,7 +18,7 @@ in
   virtualisation.oci-containers.containers = {
     linkding = {
       autoStart = true;
-      image = "sissbruecker/linkding:latest";
+      image = "sissbruecker/linkding:${version}";
       ports = [
         "${port}:9090"
       ];
@@ -39,7 +41,7 @@ in
   # Reverse proxy
   services.traefik.dynamicConfigOptions = {
     http.routers.${name} = {
-      rule = "Host(`${name}.doma.lol`)";
+      rule = "Host(`${domain}`)";
       service = name;
       tls = { };
     };
