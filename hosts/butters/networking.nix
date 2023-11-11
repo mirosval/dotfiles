@@ -25,14 +25,21 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  services.resolved = {
+    enable = true;
+    domains = [
+      "doma.lol"
+    ];
+  };
+
   networking = {
     hostName = "butters"; # Define your hostname.
     networkmanager.enable = false;
     useNetworkd = true;
     nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
+      "127.0.0.1"
     ];
+
     firewall = {
       enable = true;
       trustedInterfaces = [ "tailscale0" ];

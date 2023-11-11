@@ -86,6 +86,7 @@ in
             tls-cert-bundle = "/etc/ssl/certs/ca-certificates.crt";
             module-config = ''"respip validator iterator"'';
             interface = [
+              "127.0.0.1"
               "enp2s0"
               "tailscale0"
             ];
