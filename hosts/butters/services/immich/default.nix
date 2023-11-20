@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 let
   name = "immich";
-  immichVersion = "v1.84.0";
+  immichVersion = "v1.87.0";
   dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
   uploadPath = "/mnt/immich";
