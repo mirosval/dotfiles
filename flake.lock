@@ -53,11 +53,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1699248293,
-        "narHash": "sha256-nQLMVCmZNnVNA5kgnEbk236MlaTN9yEhuNMArFy7x1E=",
+        "lastModified": 1700457929,
+        "narHash": "sha256-qWgC8rUuuHcFmr0rdqkwGMaxwpUxqmm/zWE7Tz7Rwoc=",
         "owner": "mirosval",
         "repo": "unbound-blocklist",
-        "rev": "ee7c6aafd1465db325eed32af7b3a8ff50798a23",
+        "rev": "19174fa0da0ea527523a851ae8415fa767faba74",
         "type": "github"
       },
       "original": {
