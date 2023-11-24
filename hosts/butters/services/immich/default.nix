@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 let
   name = "immich";
-  immichVersion = "v1.87.0";
+  immichVersion = "v1.88.2";
   dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
   uploadPath = "/mnt/immich";
@@ -46,6 +46,9 @@ in
     immich-server = {
       image = "ghcr.io/immich-app/immich-server:${immichVersion}";
       cmd = [ "start.sh" "immich" ];
+      ports = [
+        "${port}:3001"
+      ];
       volumes = [
         "${uploadPath}:/usr/src/app/upload"
         "${externalLibraryRodina}:/mnt/media/rodina:ro"
@@ -103,14 +106,6 @@ in
       extraOptions = [ "--network=immich-bridge" ];
     };
 
-    immich-web = {
-      image = "ghcr.io/immich-app/immich-web:${immichVersion}";
-      environmentFiles = [
-        config.secrets.butters.immich_env
-      ];
-      extraOptions = [ "--network=immich-bridge" ];
-    };
-
     immich-typesense = {
       image = "typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd";
       volumes = [
@@ -142,22 +137,6 @@ in
         "${dbPath}:/var/lib/postgresql/data"
       ];
       extraOptions = [ "--network=immich-bridge" ];
-    };
-
-    immich-proxy = {
-      image = "ghcr.io/immich-app/immich-proxy:${immichVersion}";
-      environment = {
-        IMMICH_SERVER_URL = "http://immich-server:3001";
-        IMMICH_WEB_URL = "http://immich-web:3000";
-      };
-      extraOptions = [ "--network=immich-bridge" ];
-      ports = [
-        "${port}:8080"
-      ];
-      dependsOn = [
-        "immich-server"
-        "immich-web"
-      ];
     };
 
     immich-db-dumper = {
