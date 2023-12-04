@@ -12,7 +12,7 @@ in
     cacert
 
     # fonts
-    (nerdfonts.override { fonts = [ "Hasklig" ]; })
+    (unstable.nerdfonts.override { fonts = [ "Hasklig" "Monaspace" ]; })
 
     # tools
     dig

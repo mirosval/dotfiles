@@ -8,7 +8,8 @@ Highlights:
 
 * [Nix](https://nixos.org/), [nix-darwin](https://github.com/LnL7/nix-darwin) and [home-manager](https://github.com/nix-community/home-manager)
 * [Alacritty](https://github.com/jwilm/alacritty)
-* [Hasklig](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hasklig)
+* ~~[Hasklig](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hasklig)~~
+* [Monaspace Ne](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Monaspace)
 * Tmux + Neovim integration (navigate using `ctrl-hjkl` between tmux/nvim panels)
 * [Karabiner](https://pqrs.org/osx/karabiner/) and [Hammerspoon](https://www.hammerspoon.org/) (map `caps-lock` to `esc`, move/resize windows, quick shortcuts)
 
