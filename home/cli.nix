@@ -32,7 +32,7 @@ in
     zsh-syntax-highlighting
 
     # nix
-    nix-du
+    # nix-du
 
     # silly
     cowsay

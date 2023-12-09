@@ -9,7 +9,7 @@
       };
       font =
         let
-          font = "MonaspiceNe Nerd Font";
+          font = "MonaspiceAr Nerd Font";
           #font = "Hasklug Nerd Font";
         in
         {
@@ -20,7 +20,7 @@
           };
           bold = {
             family = font;
-            style = "Bold";
+            style = "Medium";
           };
           italic = {
             family = font;
@@ -28,7 +28,7 @@
           };
           bold_italic = {
             family = font;
-            style = "Bold Italic";
+            style = "Medium Italic";
           };
         };
       # TokyoNight Alacritty Colors
