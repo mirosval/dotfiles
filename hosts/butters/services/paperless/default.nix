@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 let
   name = "paperless";
-  version = "1.17.4";
+  version = "2.1.2";
   dbPath = "/var/containers/paperless/db";
   dbBackupPath = "/var/containers/paperless/db_dumps";
   redisPath = "/var/containers/paperless/redis";
