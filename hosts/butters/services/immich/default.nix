@@ -1,13 +1,12 @@
 { pkgs, config, lib, ... }:
 let
   name = "immich";
-  immichVersion = "v1.90.2";
+  immichVersion = "v1.91.4";
   dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
   uploadPath = "/mnt/immich";
   externalLibraryRodina = "/mnt/photos_ro/rodina";
   modelCachePath = "/var/containers/immich/model_cache";
-  typesensePath = "/var/containers/immich/typesense";
   port = "8083";
 in
 {
@@ -20,7 +19,6 @@ in
   system.activationScripts = {
     makeImmichContainerDir = lib.stringAfter [ "var" ] ''
       mkdir -p ${modelCachePath}
-      mkdir -p ${typesensePath}
       mkdir -p ${dbBackupPath}
     '';
   };
@@ -56,7 +54,6 @@ in
       ];
       environment = {
         UPLOAD_LOCATION = "/usr/src/app/upload";
-        TYPESENSE_HOST = "immich-typesense";
         REDIS_HOSTNAME = "immich-redis";
       };
       environmentFiles = [
@@ -66,7 +63,6 @@ in
       dependsOn = [
         "immich-redis"
         "immich-postgres"
-        "immich-typesense"
       ];
     };
 
@@ -80,7 +76,6 @@ in
       ];
       environment = {
         REDIS_HOSTNAME = "immich-redis";
-        TYPESENSE_HOST = "immich-typesense";
       };
       environmentFiles = [
         config.secrets.butters.immich_env
@@ -89,7 +84,6 @@ in
       dependsOn = [
         "immich-redis"
         "immich-postgres"
-        "immich-typesense"
       ];
     };
 
@@ -106,29 +100,13 @@ in
       extraOptions = [ "--network=immich-bridge" ];
     };
 
-    immich-typesense = {
-      image = "typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd";
-      volumes = [
-        "${typesensePath}:/data"
-      ];
-      environment = {
-        TYPESENSE_DATA_DIR = "/data";
-        # remove this to get debug messages
-        GLOG_minloglevel = "1";
-      };
-      environmentFiles = [
-        config.secrets.butters.immich_env
-      ];
-      extraOptions = [ "--network=immich-bridge" ];
-    };
-
     immich-redis = {
       image = "redis:6.2-alpine@sha256:70a7a5b641117670beae0d80658430853896b5ef269ccf00d1827427e3263fa3";
       extraOptions = [ "--network=immich-bridge" ];
     };
 
     immich-postgres = {
-      image = "postgres:14-alpine@sha256:28407a9961e76f2d285dc6991e8e48893503cc3836a4755bbc2d40bcc272a441";
+      image = "tensorchord/pgvecto-rs:pg14-v0.1.11";
       environment = { };
       environmentFiles = [
         config.secrets.butters.immich_env
