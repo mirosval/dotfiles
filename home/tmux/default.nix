@@ -7,10 +7,13 @@
     historyLimit = 50000;
     keyMode = "vi";
     mouse = true;
+    terminal = "tmux-256color";
     # tmuxp.enable = true;
     extraConfig = ''
       set -g default-terminal "tmux-256color"
-      set-option -sa terminal-overrides ',alacritty:Tc'
+      set -ga terminal-overrides ",*256col*:Tc"
+      set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
+      set-environment -g COLORTERM "truecolor"
       set -g pane-base-index 1
 
       # Fix copy-paste
