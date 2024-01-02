@@ -11,6 +11,7 @@ _: {
       "fork"
       "google-chrome"
       "hammerspoon"
+      "jetbrains-toolbox"
       "quicklook-csv"
       "quicklook-json"
       "raycast"

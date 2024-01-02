@@ -54,5 +54,8 @@ _:
 
   programs.gh = {
     enable = true;
+    settings = {
+      version = "1"; # this should prevent conflicts between the config written by gh and nix
+    };
   };
 }

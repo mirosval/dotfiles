@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 {
   programs.tmux = {
     enable = true;
@@ -77,13 +77,13 @@
     tmuxp
     fzf
   ] ++ (
-    if pkgs.stdenv.isDarwin then 
+    if pkgs.stdenv.isDarwin then
       [
         pkgs.reattach-to-user-namespace
         pam-reattach # Touch ID in tmux
-      ] 
-    else 
-      []
+      ]
+    else
+      [ ]
   );
 
   xdg.configFile = {
