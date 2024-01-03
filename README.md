@@ -23,6 +23,7 @@ Highlights:
 ```shell
 make install
 make darwin-switch
+make post-setup
 ```
 
 ## Usage

@@ -21,6 +21,11 @@ install:
 uninstall:
 	/nix/nix-installer uninstall
 
+.PHONY: post-setup
+post-setup:
+	# Set up allowed signers file
+	./scripts/setup_allowed_signers.sh
+
 .PHONY: switch
 switch:
 	nix --show-trace run . switch -- --flake .

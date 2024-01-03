@@ -21,10 +21,12 @@
     config = {
       allowUnfree = true;
     };
-    overlays = if pkgs.stdenv.isDarwin then [
-      (import ../overlays/libtmux.nix {})
-    ] else [];
+    overlays =
+      if pkgs.stdenv.isDarwin then [
+        (import ../overlays/libtmux.nix { })
+      ] else [ ];
   };
+
   programs = {
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
@@ -34,6 +36,14 @@
       enable = true;
       serverAliveInterval = 60;
       matchBlocks = {
+        "github.com" = {
+          identityFile = "/Users/mirosval/.ssh/id_ed25519";
+          extraOptions = {
+            "AddKeysToAgent" = "yes";
+            "UseKeychain" = "yes";
+            "IgnoreUnknown" = "UseKeychain";
+          };
+        };
         builder = {
           hostname = "127.0.0.1";
           user = "root";

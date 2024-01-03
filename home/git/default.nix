@@ -3,7 +3,7 @@ _:
   programs.git = {
     enable = true;
     userName = "Miroslav Zoricak";
-    userEmail = "miroslav.zoricak@gmail.com";
+    userEmail = "1315417+mirosval@users.noreply.github.com";
 
     delta = {
       enable = true;
@@ -17,6 +17,9 @@ _:
       pull.ff = "only";
       push.autoSetupRemote = "true";
       init.defaultBranch = "main";
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
     };
 
     ignores = [

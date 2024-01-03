@@ -8,6 +8,13 @@ brew bundle dump --force --describe
 # Displays the current status of a git repository aaaaaa
 git status
 
+# Populate allowed_signers file
+echo "<email> <key>" > ~/.ssh/allowed_signers
+
+$ email: git config --get user.email
+$ keypath: git config --get user.signingkey
+$ key: cat <keypath>
+
 % gh
 
 # Opens a new PR
