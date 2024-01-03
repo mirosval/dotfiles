@@ -53,42 +53,89 @@ _: {
 
   system.defaults = {
     NSGlobalDomain = {
+      # Show file extensions in Finder
       AppleShowAllExtensions = true;
 
+      # Enable keyboard controls in all dialogs
+      AppleKeyboardUIMode = 3;
+
+      # Always expand save panel
+      NSNavPanelExpandedStateForSaveMode = true;
+      NSNavPanelExpandedStateForSaveMode2 = true;
+
+      # Disable Spell-check
+      NSAutomaticSpellingCorrectionEnabled = false;
+
+      # Disable quote substitution
+      NSAutomaticQuoteSubstitutionEnabled = false;
+
+      # Disable period substitution
+      NSAutomaticPeriodSubstitutionEnabled = false;
+
+      # Disable dash substitution
+      NSAutomaticDashSubstitutionEnabled = false;
+
+      # Disable automatic capitalization
+      NSAutomaticCapitalizationEnabled = false;
+
+      # Keyboard key repeat frequency
       # 120, 90, 60, 30, 12, 6, 2
       KeyRepeat = 2;
 
+      # Delay before the keyboard key repeat freq kicks in
       # 120, 94, 68, 35, 25, 15
       InitialKeyRepeat = 15;
     };
 
     dock = {
+      # Hide the dock
       autohide = true;
+      # Recent applications section
       show-recents = false;
+      # Animations of app launches
       launchanim = false;
+      # Icon size
       tilesize = 43;
     };
 
     finder = {
+      # Show file extensions in Finder
       AppleShowAllExtensions = true;
+      # Show files as a list
       FXPreferredViewStyle = "Nlsv";
+      # Disable warnings when changing file extensions
       FXEnableExtensionChangeWarning = false;
     };
 
     trackpad = {
+      # Light touch trackpad
       ActuationStrength = 0;
       FirstClickThreshold = 0;
       SecondClickThreshold = 0;
     };
 
     CustomUserPreferences = {
+      "com.apple.finder" = {
+        # Show folders first in Finder
+        "_FXSortFoldersFirst" = true;
+      };
+
+      "com.apple.menuextra.clock" = {
+        # Status bar time format
+        DateFormat = ''"EEE d MMM HH:mm:ss"'';
+      };
+
       "com.apple.AppleMultitouchTrackpad" = {
+        # Use tree-finger swipe to go back and forth in (browser) history
         TrackpadThreeFingerHorizSwipeGesture = 1;
+        # Disable 2 fingers from the right widgets view
         TrackpadTwoFingerFromRightEdgeSwipeGesture = 0;
       };
 
       "com.apple.driver.AppleBluetoothMultitouch.trackpad" = {
+        # Use tree-finger swipe to go back and forth in (browser) history
         TrackpadThreeFingerHorizSwipeGesture = 1;
+        # Disable 2 fingers from the right widgets view
         TrackpadTwoFingerFromRightEdgeSwipeGesture = 0;
       };
     };
