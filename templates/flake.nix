@@ -20,6 +20,11 @@
         description = "Basic Next.js project with Typescript and Tailwind";
       };
 
+      minimal = {
+        path = ./minimal;
+        description = "Minimal, just a basic devshell";
+      };
+
     };
   };
 }
