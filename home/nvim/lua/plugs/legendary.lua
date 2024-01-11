@@ -22,8 +22,8 @@ legendary.setup({
       'Save file (for use with a custom keyboard combo)'
     },
     { '<leader>ew', ':e %%<CR>',      description = 'Edit file' },
-    { '<leader>es', ':sp %%<CR>',     description = 'Split horizontally' },
-    { '<leader>ev', ':vsp %%<CR>',    description = 'Split vertically' },
+    { '<leader>es', ':split<CR>',     description = 'Split horizontally' },
+    { '<leader>ev', ':vsplit<CR>',    description = 'Split vertically' },
     { '<leader>ff', format,           description = 'Reformat file' },
     -- Tmux Navigator
     {
@@ -73,6 +73,22 @@ legendary.setup({
     { 'K',          vim.lsp.buf.hover,                    description = 'LSP Hover' },
     { 'gd',         vim.lsp.buf.definition,               description = 'LSP Goto Definition' },
     { '<leader>o',  ':AerialToggle!<CR>',                 description = 'Aerial' },
+    {
+      'gldv',
+      function()
+        vim.cmd('vsplit')
+        vim.lsp.buf.definition()
+      end,
+      description = 'LSP Go to definition in vertical split'
+    },
+    {
+      'gldx',
+      function()
+        vim.cmd('split')
+        vim.lsp.buf.definition()
+      end,
+      description = 'LSP Go to definition in horizontal split'
+    },
     -- Text case
     {
       'gas',
