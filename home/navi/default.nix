@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs) system;
+  };
+in
 {
-  home.packages = with pkgs; [
-    navi
+  home.packages = [
+    unstable.navi
   ];
   xdg.configFile = {
     "navi/config.yaml".source = ./config.yaml;
