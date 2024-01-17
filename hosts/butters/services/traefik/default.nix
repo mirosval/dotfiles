@@ -5,7 +5,10 @@ in
 {
   security.acme = {
     acceptTerms = true;
-    defaults.email = "admin@doma.lol";
+    defaults = {
+      email = "admin@doma.lol";
+      dnsResolver = "1.1.1.1:53";
+    };
     certs."doma.lol" = {
       domain = "doma.lol";
       group = "traefik";

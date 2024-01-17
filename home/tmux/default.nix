@@ -1,4 +1,22 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+    overlays = [
+      (final: prev: {
+        tmuxp = prev.tmuxp.overrideAttrs (old: {
+          version = "1.34.0";
+          src = prev.fetchPypi {
+            pname = old.pname;
+            version = "1.34.0";
+            hash = "sha256-G93YtgXo4li+tLWKgJFaxx4Ax4sK4F+vK6M3WTXIeiU=";
+          };
+        });
+      })
+    ];
+  };
+in
 {
   programs.tmux = {
     enable = true;
@@ -74,7 +92,7 @@
 
 
   home.packages = with pkgs; [
-    tmuxp
+    unstable.tmuxp
     fzf
   ] ++ (
     if pkgs.stdenv.isDarwin then

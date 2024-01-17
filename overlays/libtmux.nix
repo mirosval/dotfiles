@@ -1,5 +1,5 @@
 _: super: {
-  python310 = super.python310.override {
+  python311 = super.python311.override {
     packageOverrides = _: python-super: {
       libtmux = python-super.libtmux.overrideAttrs (_: {
         disabledTests = [
