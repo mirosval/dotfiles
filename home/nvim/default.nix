@@ -132,13 +132,15 @@ in
   };
 
   home.packages = with unstable; [
-    python3Packages.isort
-    python3Packages.flake8
-    nodePackages.pyright
     black
+    eslint_d
     mypy
     nil
     nixpkgs-fmt
+    nodePackages.pyright
+    python3Packages.flake8
+    python3Packages.isort
+    stylua
   ];
 
   xdg.configFile = {
