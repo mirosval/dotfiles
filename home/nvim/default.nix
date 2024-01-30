@@ -65,6 +65,7 @@ in
       nvim-autopairs # Parentheses come in pairs
       nvim-cmp # Code completion
       nvim-lspconfig # LSP Client configurations
+      nvim-metals # Scala LSP
       nvim-nu # Nu scripting language support
       nvim-surround # Change both surrounding parentheses at once
       nvim-ts-autotag # Auto-close HTML tags
@@ -133,7 +134,9 @@ in
 
   home.packages = with unstable; [
     black
+    coursier
     eslint_d
+    metals
     mypy
     nil
     nixpkgs-fmt
