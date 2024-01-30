@@ -98,3 +98,10 @@ journalctl --follow -exu <unit>
 systemctl cat <unit>
 
 $ unit: systemctl list-units --no-pager --full --quiet
+
+% teleport
+
+# Login to K8S
+tsh kube login <env>
+
+$ env: tsh kube ls --quiet
