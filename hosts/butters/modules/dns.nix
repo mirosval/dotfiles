@@ -93,7 +93,9 @@ in
             interface-view = "tailscale0 tailscale";
             access-control = [
               "127.0.0.0/8 allow" # Local
-              "192.168.1.0/24 allow" # LAN
+              "10.42.0.0/24 allow" # LAN
+              "10.41.0.0/24 allow" # LAN
+              "10.40.0.0/24 allow" # LAN
               "100.0.0.0/8 allow" # Tailscale
             ];
             access-control-view = "100.0.0.0/8 tailscale";
