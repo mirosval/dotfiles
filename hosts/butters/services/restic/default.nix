@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  backupHost = "192.168.1.252";
+  backupHost = "10.42.0.3";
   backupUser = "butters_backups";
   backupsPassword = config.secrets.butters.backups_password;
   backupsSshKey = config.secrets.butters.backups_ssh_key;

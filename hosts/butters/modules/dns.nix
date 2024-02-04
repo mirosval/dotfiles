@@ -132,7 +132,7 @@ in
           };
           stub-zone = {
             name = ''"${cfg.local_domain}"'';
-            stub-addr = "192.168.1.1";
+            stub-addr = "10.42.0.1";
             stub-first = "yes";
           };
           forward-zone = [

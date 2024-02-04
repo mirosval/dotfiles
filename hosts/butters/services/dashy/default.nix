@@ -61,7 +61,7 @@ let
             {
               title = "UniFi";
               description = "Network setup";
-              url = "http://192.168.1.1";
+              url = "http://10.42.0.1";
               icon = "hl-unifi";
             }
             {
