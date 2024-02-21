@@ -72,7 +72,7 @@ in
       nvim-web-devicons # Eye candy
       plenary-nvim # Utility lua function
       renerocksai-calendar-vim # Calendar integration for Telekasten
-      rust-tools-nvim # Rust enhancements beyond LSP
+      rustaceanvim # Rust enhancements beyond LSP
       telekasten-nvim # Note taking
       telescope-nvim # Fuzzy finder
       text-case-nvim # Switch between word casing 
