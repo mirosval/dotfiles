@@ -30,6 +30,8 @@ in
     extraConfig = ''
       set -g default-terminal "tmux-256color"
       set-option -sa terminal-features ',*:RGB'
+      set -ga terminal-overrides ",*256col*:Tc"
+      set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q'
       set-environment -g COLORTERM "truecolor"
       set -g pane-base-index 1
 
