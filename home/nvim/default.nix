@@ -55,11 +55,11 @@ in
       comment-nvim # Language-based comments toggle
       crates-nvim # Rust Cargo.toml companion - updates and docs for dependencies
       dressing-nvim # Makes native nvim UI look better
+      fidget-nvim # LSP Progress spinner
       git-blame-nvim # Show git-blame in virtual text
       gitsigns-nvim # Highlight code changes vs git
       indent-blankline-nvim # Highlight leading whitespace for better visual block separation
       legendary-nvim # Action dispatcher and key binding manager
-      lualine-lsp-progress # LSP status in the bottom status line
       lualine-nvim # Status line config
       none-ls-nvim # Integration of linters into the LSP stack
       nvim-autopairs # Parentheses come in pairs
