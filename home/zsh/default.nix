@@ -6,6 +6,7 @@
     enableAutosuggestions = true;
     # enableSyntaxHighlighting = true;
     syntaxHighlighting.enable = true;
+    autosuggestion.enable = true;
     shellAliases = import ./aliases.nix;
     initExtraBeforeCompInit = ''
       ${builtins.readFile ./session_variables.zsh}
