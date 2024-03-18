@@ -3,8 +3,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    enableAutosuggestions = true;
+    # enableSyntaxHighlighting = true;
     syntaxHighlighting.enable = true;
-    autosuggestions.enable = true;
     shellAliases = import ./aliases.nix;
     initExtraBeforeCompInit = ''
       ${builtins.readFile ./session_variables.zsh}
