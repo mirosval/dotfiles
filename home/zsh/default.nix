@@ -4,7 +4,8 @@
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    autosuggestion.enable = true;
+    enableAutosuggestions = true;
+    # autosuggestion.enable = true;
     shellAliases = import ./aliases.nix;
     initExtraBeforeCompInit = ''
       ${builtins.readFile ./session_variables.zsh}
