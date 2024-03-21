@@ -10,7 +10,9 @@ end
 
 -- Completion Plugin Setup
 local cmp = require("cmp")
+local compare = require("cmp.config.compare")
 cmp.setup({
+  preselect = cmp.PreselectMode.None,
   -- Enable LSP snippets
   snippet = {
     expand = function(args)
@@ -64,14 +66,27 @@ cmp.setup({
   },
   -- Installed sources:
   sources = cmp.config.sources({
-    { name = "nvim_lsp" },              -- from language server
-    { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
-    { name = "nvim_lua" },              -- complete neovim's Lua runtime API such vim.lsp.*
-    { name = "vsnip" },                 -- nvim-cmp source for vim-vsnip
-    { name = "path" },                  -- file paths
+    { name = "nvim_lsp",                priority = 1 }, -- from language server
+    { name = "nvim_lsp_signature_help", priority = 2 }, -- display function signatures with current parameter emphasized
+    { name = "nvim_lua",                priority = 3 }, -- complete neovim's Lua runtime API such vim.lsp.*
+    { name = "vsnip",                   priority = 4 }, -- nvim-cmp source for vim-vsnip
+    { name = "path",                    priority = 5 }, -- file paths
   }, {
     { name = "buffer" },
   }),
+  sorting = {
+    priority_weight = 2,
+    comparators = {
+      compare.offset,
+      compare.exact,
+      compare.score,
+      compare.recently_used,
+      compare.locality,
+      compare.sort_text,
+      compare.length,
+      compare.order,
+    },
+  },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
