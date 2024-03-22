@@ -26,6 +26,7 @@ in
     # terminal
     bat
     unstable.tailscale
+    unstable.difftastic
     tree
     unstable.eza
     visidata

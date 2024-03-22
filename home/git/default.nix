@@ -5,13 +5,6 @@ _:
     userName = "Miroslav Zoricak";
     userEmail = "1315417+mirosval@users.noreply.github.com";
 
-    delta = {
-      enable = true;
-      options = {
-        features = "side-by-side line-numbers decorations";
-      };
-    };
-
     extraConfig = {
       github.user = "mirosval";
       pull.ff = "only";
@@ -20,6 +13,7 @@ _:
       commit.gpgsign = true;
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
+      diff.external = "difft";
     };
 
     ignores = [
