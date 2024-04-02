@@ -26,10 +26,21 @@ let
               hash = "sha256-4XeDd+myM+wtHUsr3s1H9+GAwIjK8fAqBbFnBCeatPo=";
             };
           };
+          gitlinker-nvim = super.vimUtils.buildVimPlugin
+            {
+              pname = "gitlinker-nvim";
+              version = "2024-04-02";
+              src = pkgs.fetchFromGitHub {
+                owner = "linrongbin16";
+                repo = "gitlinker.nvim";
+                rev = "839215b322b15b662c08a010534e8de00dae38a6";
+                hash = "sha256-BtvbqV8bD4iiRLBCZdp76eAPy73aHJ9CggBf+0R6tWQ=";
+              };
+            };
         in
         {
           vimPlugins = super.vimPlugins // {
-            inherit none-ls-nvim renerocksai-calendar-vim;
+            inherit none-ls-nvim renerocksai-calendar-vim gitlinker-nvim;
           };
         }
       )
@@ -57,6 +68,7 @@ in
       dressing-nvim # Makes native nvim UI look better
       fidget-nvim # LSP Progress spinner
       git-blame-nvim # Show git-blame in virtual text
+      gitlinker-nvim # Copy links to the selected code in GH
       gitsigns-nvim # Highlight code changes vs git
       indent-blankline-nvim # Highlight leading whitespace for better visual block separation
       legendary-nvim # Action dispatcher and key binding manager
