@@ -28,7 +28,7 @@ windows:
     layout: main-vertical
     options:
       main-pane-width: 50%
-    shell_command_before: cd ~/secrets
+    shell_command_before: cd ~/.secrets
     panes:
       - nvim
       - blank
