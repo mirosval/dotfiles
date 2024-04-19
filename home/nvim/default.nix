@@ -80,6 +80,7 @@ in
       nvim-metals # Scala LSP
       nvim-nu # Nu scripting language support
       nvim-surround # Change both surrounding parentheses at once
+      nvim-treesitter-context # Shows context at the top of the editor, like vscode
       nvim-ts-autotag # Auto-close HTML tags
       nvim-web-devicons # Eye candy
       plenary-nvim # Utility lua function
