@@ -63,7 +63,6 @@ in
       cmp-path # Code completion for paths
       cmp-treesitter # Code completion from treesitter nodes
       cmp-vsnip # Code completion snippets integration
-      comment-nvim # Language-based comments toggle
       crates-nvim # Rust Cargo.toml companion - updates and docs for dependencies
       dressing-nvim # Makes native nvim UI look better
       fidget-nvim # LSP Progress spinner
