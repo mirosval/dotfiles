@@ -100,6 +100,7 @@ in
         tree-sitter-dockerfile
         tree-sitter-hcl
         tree-sitter-json
+        tree-sitter-just
         tree-sitter-kotlin
         tree-sitter-lua
         tree-sitter-make
