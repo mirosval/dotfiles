@@ -62,7 +62,7 @@
           { index = 17; color = "0xdb4b4b"; }
         ];
       };
-      key_bindings = [
+      keyboard.bindings = [
         {
           key = "F";
           mods = "Command|Control";
