@@ -56,7 +56,7 @@ in
       inherit system;
       modules = [
         ({ config, ... }: {
-          config.system.stateVersion = "23.11";
+          config.system.stateVersion = "24.05";
         })
         (../hosts + "/${host}/configuration.nix")
         (../hosts + "/${host}/services")
