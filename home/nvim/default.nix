@@ -153,7 +153,7 @@ in
     mypy
     nil
     nixpkgs-fmt
-    nodePackages.pyright
+    pyright
     python3Packages.flake8
     python3Packages.isort
     stylua
