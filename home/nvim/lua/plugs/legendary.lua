@@ -13,6 +13,10 @@ local format = function()
   })
 end
 
+local function find_related()
+  require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") })
+end
+
 legendary.setup({
   keymaps = {
     {
@@ -88,8 +92,9 @@ legendary.setup({
     {
       "<leader>fw",
       ":Telescope lsp_dynamic_workspace_symbols<CR>",
-      description = "Search LSP Dynamic Workspace Symbols",
+      description = "Search LSP Workspace Symbols",
     },
+    { "<leader>fr", find_related,                         description = "Find related files" },
     { "gd",         ":Telescope lsp_definitions<CR>",     description = "Search LSP Definitions" },
     { "gr",         ":Telescope lsp_references<CR>",      description = "Search LSP References" },
     { "gi",         ":Telescope lsp_implementations<CR>", description = "Search LSP Implementations" },
