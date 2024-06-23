@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 let
   name = "immich";
-  immichVersion = "v1.101.0";
+  immichVersion = "v1.106.4";
   dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
   uploadPath = "/mnt/immich";
@@ -43,7 +43,6 @@ in
   virtualisation.oci-containers.containers = {
     immich-server = {
       image = "ghcr.io/immich-app/immich-server:${immichVersion}";
-      cmd = [ "start.sh" "immich" ];
       ports = [
         "${port}:3001"
       ];
@@ -54,27 +53,6 @@ in
       ];
       environment = {
         UPLOAD_LOCATION = "/usr/src/app/upload";
-        REDIS_HOSTNAME = "immich-redis";
-      };
-      environmentFiles = [
-        config.secrets.butters.immich_env
-      ];
-      extraOptions = [ "--network=immich-bridge" ];
-      dependsOn = [
-        "immich-redis"
-        "immich-postgres"
-      ];
-    };
-
-    immich-microservices = {
-      image = "ghcr.io/immich-app/immich-server:${immichVersion}";
-      cmd = [ "start.sh" "microservices" ];
-      volumes = [
-        "${uploadPath}:/usr/src/app/upload"
-        "${externalLibraryRodina}:/mnt/media/rodina:ro"
-        "/etc/localtime:/etc/localtime:ro"
-      ];
-      environment = {
         REDIS_HOSTNAME = "immich-redis";
       };
       environmentFiles = [
