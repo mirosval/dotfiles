@@ -18,6 +18,7 @@ require("auto-hlsearch").setup()
 require("nvim-ts-autotag").setup()
 require("fidget").setup()
 require("gitlinker").setup()
+require("textcase").setup()
 -- colorscheme
 vim.opt.background = "dark"
 vim.g.tokyonight_style = "night"
