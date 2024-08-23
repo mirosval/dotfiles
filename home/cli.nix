@@ -25,11 +25,11 @@ in
 
     # terminal
     bat
-    unstable.tailscale
-    unstable.difftastic
     tree
+    unstable.difftastic
     unstable.eza
-    visidata
+    unstable.srgn
+    unstable.tailscale
     zsh-syntax-highlighting
 
     # nix
