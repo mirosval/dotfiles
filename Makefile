@@ -71,7 +71,7 @@ lint:
 # Cleans up old nix generations to free up disk space
 .PHONY: gc
 gc:
-	nix-collect-garbage -d
+	sudo nix-collect-garbage -d
 
 # Opens an image showing the disk space consumed by nix
 du: du.png
