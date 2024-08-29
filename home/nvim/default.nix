@@ -6,16 +6,16 @@ let
     overlays = [
       (self: super:
         let
-          none-ls-nvim = super.vimUtils.buildVimPlugin {
-            pname = "none-ls.nvim";
-            version = "2023-10-01";
-            src = pkgs.fetchFromGitHub {
-              owner = "nvimtools";
-              repo = "none-ls.nvim";
-              rev = "f39f627bbdfb33cc4ae4a95b4708e7dba7b9aafc";
-              sha256 = "1qh9bdxhs0c5mxyyv3dkmiyr03qi8g4rsbjcgzkprk4v5pz04g1v";
-            };
-          };
+          # none-ls-nvim = super.vimUtils.buildVimPlugin {
+          #   pname = "none-ls.nvim";
+          #   version = "2023-10-01";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "nvimtools";
+          #     repo = "none-ls.nvim";
+          #     rev = "f39f627bbdfb33cc4ae4a95b4708e7dba7b9aafc";
+          #     sha256 = "1qh9bdxhs0c5mxyyv3dkmiyr03qi8g4rsbjcgzkprk4v5pz04g1v";
+          #   };
+          # };
           renerocksai-calendar-vim = super.vimUtils.buildVimPlugin {
             pname = "calendar-vim";
             version = "2021-11-27";
@@ -40,7 +40,7 @@ let
         in
         {
           vimPlugins = super.vimPlugins // {
-            inherit none-ls-nvim renerocksai-calendar-vim gitlinker-nvim;
+            inherit renerocksai-calendar-vim gitlinker-nvim;
           };
         }
       )
