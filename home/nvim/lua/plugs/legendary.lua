@@ -85,6 +85,15 @@ legendary.setup({
         silent = true,
       },
     },
+    -- rustaceanvim
+    {
+      "gu",
+      ":RustLsp parentModule<CR>",
+      description = "Go to the parent Rust mod",
+      opts = {
+        silent = true,
+      },
+    },
     -- Telescope
     { "<C-p>",      ":Telescope find_files<CR>",           description = "Search file names" },
     { "<leader>fg", ":Telescope live_grep<CR>",            description = "Search inside files" },
