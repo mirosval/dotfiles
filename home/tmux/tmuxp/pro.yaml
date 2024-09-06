@@ -3,25 +3,24 @@ windows:
   - window_name: blog
     layout: main-vertical
     options:
-      main-pane-width: 50%
+      main-pane-width: 80%
     shell_command_before: cd ~/Projekty/blog
     panes:
       - nvim
       - blank
-  - window_name: valibuk
+  - window_name: lw-front
     layout: main-vertical
     options:
-      main-pane-width: 50%
-    shell_command_before: cd ~/Projekty/valibuk
+      main-pane-width: 80%
+    shell_command_before: cd ~/Projekty/linkweaver/frontend
     panes:
       - nvim
-      - make dev
-      - make expand
-  - window_name: e3e
+      - blank
+  - window_name: lw-back
     layout: main-vertical
     options:
-      main-pane-width: 50%
-    shell_command_before: cd ~/Projekty/e3e
+      main-pane-width: 80%
+    shell_command_before: cd ~/Projekty/linkweaver/backend
     panes:
       - nvim
-      - make dev
+      - blank

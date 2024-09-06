@@ -3,7 +3,7 @@ windows:
   - window_name: dotfiles
     layout: main-vertical
     options:
-      main-pane-width: 50%
+      main-pane-width: 80%
     shell_command_before: cd ~/.dotfiles
     panes:
       - nvim
@@ -11,7 +11,7 @@ windows:
   - window_name: blog
     layout: main-vertical
     options:
-      main-pane-width: 50%
+      main-pane-width: 80%
     shell_command_before: cd ~/Projekty/blog
     panes:
       - nvim
@@ -19,7 +19,7 @@ windows:
   - window_name: notes
     layout: main-vertical
     options:
-      main-pane-width: 50%
+      main-pane-width: 80%
     shell_command_before: cd ~/notes
     panes:
       - nvim
@@ -27,7 +27,7 @@ windows:
   - window_name: secrets
     layout: main-vertical
     options:
-      main-pane-width: 50%
+      main-pane-width: 80%
     shell_command_before: cd ~/.secrets
     panes:
       - nvim
