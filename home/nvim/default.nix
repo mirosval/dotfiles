@@ -55,6 +55,7 @@ in
     plugins = with unstable.vimPlugins; [
       Navigator-nvim # Tmux window switching
       aerial-nvim # Project outline
+      avante-nvim # AI Coding completions
       auto-hlsearch-nvim # Clear search highlighting on cursor movement
       cmp-buffer # Code completion from current buffer
       cmp-nvim-lsp # Code completion from LSP

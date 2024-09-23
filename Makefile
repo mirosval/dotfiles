@@ -21,6 +21,14 @@ install:
 uninstall:
 	/nix/nix-installer uninstall
 
+.PHONY: uninstall-darwin
+uninstall-darwin:
+	# https://github.com/DeterminateSystems/nix-installer?tab=readme-ov-file#using-macos-after-removing-nix-while-nix-darwin-was-still-installed-network-requests-fail
+	sudo rm /Library/LaunchDaemons/org.nixos.activate-system.plist
+	sudo launchctl bootout system/org.nixos.activate-system
+	/nix/nix-installer uninstall
+	sudo rm /etc/ssl/certs/ca-certificates.crt
+
 .PHONY: post-setup
 post-setup:
 	# Set up allowed signers file

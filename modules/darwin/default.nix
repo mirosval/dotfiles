@@ -51,6 +51,7 @@ _: {
       IdentityFile /Users/mirosval/.dotfiles/builders/linux-aarch64/keys/id_ed25519
   '';
 
+  system.stateVersion = 5;
   system.defaults = {
     NSGlobalDomain = {
       # Show file extensions in Finder
