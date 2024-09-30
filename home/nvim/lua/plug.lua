@@ -9,6 +9,7 @@ require("plugs.dressing")
 require("plugs.lualine_setup")
 require("plugs.null_ls_setup")
 require("plugs.telekasten")
+require("plugs.avante")
 require("nvim-surround").setup({})
 require("nvim-autopairs").setup({})
 require("ibl").setup()
@@ -19,7 +20,6 @@ require("nvim-ts-autotag").setup()
 require("fidget").setup()
 require("gitlinker").setup()
 require("textcase").setup()
-require("avante").setup()
 -- colorscheme
 vim.opt.background = "dark"
 vim.g.tokyonight_style = "night"
