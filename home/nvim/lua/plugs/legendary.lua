@@ -94,6 +94,15 @@ legendary.setup({
         silent = true,
       },
     },
+    -- bacon
+    {
+      "gb",
+      ":BaconLoad<CR>:w<CR>:BaconNext<CR>",
+      description = "Bacon Next",
+      opts = {
+        silent = true,
+      },
+    },
     -- Telescope
     { "<C-p>",      ":Telescope find_files<CR>",           description = "Search file names" },
     { "<leader>fg", ":Telescope live_grep<CR>",            description = "Search inside files" },

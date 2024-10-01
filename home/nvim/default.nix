@@ -75,6 +75,7 @@ in
       lualine-nvim # Status line config
       none-ls-nvim # Integration of linters into the LSP stack
       nvim-autopairs # Parentheses come in pairs
+      nvim-bacon # Rust error navigation
       nvim-cmp # Code completion
       nvim-lspconfig # LSP Client configurations
       nvim-metals # Scala LSP
