@@ -1,7 +1,7 @@
 local lsp = {}
 
 function lsp.setup()
-  require("lspconfig").tsserver.setup({})
+  require("lspconfig").ts_ls.setup({})
   require("lspconfig").pyright.setup({})
   require("lspconfig").nil_ls.setup({})
   require("lspconfig").jsonls.setup({})
