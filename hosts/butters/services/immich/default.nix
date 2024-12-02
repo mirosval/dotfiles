@@ -44,7 +44,7 @@ in
     immich-server = {
       image = "ghcr.io/immich-app/immich-server:${immichVersion}";
       ports = [
-        "${port}:3001"
+        "${port}:2283"
       ];
       volumes = [
         "${uploadPath}:/usr/src/app/upload"
