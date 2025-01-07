@@ -16,6 +16,8 @@ in
     terminal = "tmux-256color";
     # tmuxp.enable = true;
     extraConfig = ''
+      set -g default-shell /bin/zsh
+      set -g default-command "reattach-to-user-namespace -l zsh"
       set -g default-terminal "tmux-256color"
       set-option -sa terminal-features ',alacritty:RGB'
       set -ga terminal-overrides ",*256col*:Tc"
