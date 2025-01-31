@@ -1,7 +1,7 @@
 { lib, ... }:
 let
   name = "actual";
-  version = "24.2.0";
+  version = "25.1.0";
   port = "5006";
   dataVolume = "/var/containers/actual";
   domain = "${name}.doma.lol";
