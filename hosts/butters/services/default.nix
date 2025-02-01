@@ -9,6 +9,7 @@ _: {
     ./linkding
     ./loki
     ./mealie
+    ./ocular
     ./paperless
     ./prometheus
     ./promtail
