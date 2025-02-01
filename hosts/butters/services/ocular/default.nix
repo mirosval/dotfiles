@@ -38,6 +38,7 @@ in
   virtualisation.oci-containers.containers = {
     genesis = {
       image = "ghcr.io/simonwep/genesis:${genesisVersion}";
+      cmd = [ "start" ];
       volumes = [
         "${dataVolume}:/app/.data"
       ];
