@@ -306,11 +306,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1699305540,
-        "narHash": "sha256-KQMl82GnTl7CVgQYco9uQq+X1mhcL9Qr7dVhk3tmMcQ=",
+        "lastModified": 1738433557,
+        "narHash": "sha256-nSXdig+E0bjlZs9Q1xPEHwO2xT1RJzIsGjbreedOpLQ=",
         "ref": "main",
-        "rev": "c2c4145d436114741245955a6481ca5aeb1cbea2",
-        "revCount": 40,
+        "rev": "8df79e8adeeec76fa128b064256cf993423aa698",
+        "revCount": 41,
         "type": "git",
         "url": "https://github.com/mirosval/secrets.git"
       },
