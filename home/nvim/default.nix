@@ -55,8 +55,8 @@ in
     plugins = with unstable.vimPlugins; [
       Navigator-nvim # Tmux window switching
       aerial-nvim # Project outline
-      avante-nvim # AI Coding completions
       auto-hlsearch-nvim # Clear search highlighting on cursor movement
+      avante-nvim # AI Coding completions
       cmp-buffer # Code completion from current buffer
       cmp-nvim-lsp # Code completion from LSP
       cmp-nvim-lsp-signature-help # Help overlay for Code Completion
@@ -64,6 +64,7 @@ in
       cmp-path # Code completion for paths
       cmp-treesitter # Code completion from treesitter nodes
       cmp-vsnip # Code completion snippets integration
+      copilot-vim # Github copilot
       crates-nvim # Rust Cargo.toml companion - updates and docs for dependencies
       dressing-nvim # Makes native nvim UI look better
       fidget-nvim # LSP Progress spinner
