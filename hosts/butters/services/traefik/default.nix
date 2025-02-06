@@ -48,6 +48,10 @@ in
             main = "doma.lol";
             sans = [ "*.doma.lol" ];
           }];
+          transport.respondingTimeouts = {
+            readTimeout = 0;
+            writeTimeout = 0;
+          };
         };
       };
       log = {
