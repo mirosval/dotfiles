@@ -40,7 +40,7 @@ in
           transport.respondingTimeouts = {
             readTimeout = 0;
             writeTimeout = 0;
-          }
+          };
         };
         https = {
           address = ":443";
