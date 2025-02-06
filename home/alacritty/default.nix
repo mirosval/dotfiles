@@ -6,6 +6,7 @@
       window = {
         decorations = if pkgs.stdenv.isDarwin then "buttonless" else "None";
         startup_mode = if pkgs.stdenv.isDarwin then "SimpleFullscreen" else "Fullscreen";
+        option_as_alt = "Both";
       };
       font =
         let
