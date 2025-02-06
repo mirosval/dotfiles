@@ -8,5 +8,6 @@
     mkdir -p /var/lib/loki/boltdb-shipper-cache
     mkdir -p /var/lib/loki/chunks
     mkdir -p /var/lib/loki/compactor
+    mkdir -p /var/lib/loki/rules
   '';
 }
