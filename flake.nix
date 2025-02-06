@@ -1,5 +1,7 @@
 {
   description = "Miro's dotfiles";
+  
+
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
@@ -13,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     darwin = {
-      url = "github:lnl7/nix-darwin-24.11";
+      url = "github:lnl7/nix-darwin/nix-darwin-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets = {
