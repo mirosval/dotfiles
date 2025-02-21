@@ -24,3 +24,19 @@ windows:
     panes:
       - nvim
       - blank
+  - window_name: monies-back
+    layout: main-vertical
+    options:
+      main-pane-width: 80%
+    shell_command_before: cd ~/Projekty/monies/backend
+    panes:
+      - nvim
+      - blank
+  - window_name: monies-front
+    layout: main-vertical
+    options:
+      main-pane-width: 80%
+    shell_command_before: cd ~/Projekty/monies/frontend
+    panes:
+      - nvim
+      - blank
