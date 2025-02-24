@@ -4,6 +4,13 @@ let
     inherit (pkgs) system;
     config.allowUnfree = true;
   };
+  darwin_cmds = 
+      if pkgs.stdenv.isDarwin 
+      then ''
+        set -g default-shell /bin/zsh
+        set -g default-command "reattach-to-user-namespace -l zsh"
+      '' 
+      else "";
 in
 {
   programs.tmux = {
@@ -15,9 +22,7 @@ in
     mouse = true;
     terminal = "tmux-256color";
     # tmuxp.enable = true;
-    extraConfig = ''
-      set -g default-shell /bin/zsh
-      set -g default-command "reattach-to-user-namespace -l zsh"
+    extraConfig = darwin_cmds + ''
       set -g default-terminal "tmux-256color"
       set-option -sa terminal-features ',alacritty:RGB'
       set -ga terminal-overrides ",*256col*:Tc"
