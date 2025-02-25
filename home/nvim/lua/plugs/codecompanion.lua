@@ -9,7 +9,7 @@ require("codecompanion").setup({
         },
         schema = {
           model = {
-            default = "anthropic/claude-3.5-sonnet",
+            default = "anthropic/claude-3.7-sonnet",
           },
         },
       })
