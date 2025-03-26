@@ -22,6 +22,9 @@ in
     jq
     sd
     tokei
+    unstable.colima
+    unstable.docker
+    unstable.docker-buildx
     wget
 
     # terminal
