@@ -24,6 +24,14 @@ windows:
     panes:
       - nvim
       - blank
+  - window_name: lw-ext
+    layout: main-vertical
+    options:
+      main-pane-width: 80%
+    shell_command_before: cd ~/Projekty/linkweaver/extension
+    panes:
+      - nvim
+      - blank
   - window_name: monies-back
     layout: main-vertical
     options:
@@ -37,6 +45,14 @@ windows:
     options:
       main-pane-width: 80%
     shell_command_before: cd ~/Projekty/monies/frontend
+    panes:
+      - nvim
+      - blank
+  - window_name: eu-gear
+    layout: main-vertical
+    options:
+      main-pane-width: 80%
+    shell_command_before: cd ~/Projekty/european-gear
     panes:
       - nvim
       - blank
