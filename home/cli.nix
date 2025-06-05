@@ -42,5 +42,8 @@ in
     # silly
     cowsay
     neofetch
+
+    # AI
+    unstable.goose-cli
   ];
 }

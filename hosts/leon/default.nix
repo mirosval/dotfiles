@@ -48,7 +48,6 @@
       enable = true;
       filter = "bcm2711-rpi-4*.dtb";
     };
-    pulseaudio.enable = true;
   };
 
   services.xserver = {
@@ -56,8 +55,6 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
-
-  sound.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
