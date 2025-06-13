@@ -17,6 +17,14 @@ vim.g.rustaceanvim = {
             enable = true,
           },
         },
+        files = {
+          excludeDirs = {
+            ".cargo",
+            ".direnv", -- Prevent Rust Analyzer from getting stuck on "Roots Scanned"
+            ".git",
+            "target",
+          },
+        },
       },
     },
   },

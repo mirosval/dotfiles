@@ -1,4 +1,4 @@
 [toolchain]
 channel = "stable"
-components = [ "rust-analyzer" ]
+components = [ "rust-src", "rust-analyzer" ]
 profile = "default"
