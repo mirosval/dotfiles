@@ -1,0 +1,53 @@
+{ lib, ... }:
+let
+  name = "gitea";
+  port = "8097";
+  dataVolume = "/var/containers/gitea";
+  domain = "${name}.doma.lol";
+in
+{
+  system.activationScripts = {
+    makeGiteaContainerDir = lib.stringAfter [ "var" ] ''
+      mkdir -p ${dataVolume}
+    '';
+  };
+
+  services.gitea = {
+    enable = true;
+    lfs.enable = true;
+    stateDir = dataVolume;
+
+    settings = {
+      server = {
+        HTTP_PORT = lib.strings.toInt port;
+        ROOT_URL = "https://${domain}:${port}/";
+        DOMAIN = domain;
+      };
+      service = {
+        DISABLE_REGISTRATION = false;
+      };
+    };
+  };
+
+  # DNS
+  services.local_dns.service_map = {
+    ${name} = "butters";
+  };
+
+  # Reverse proxy
+  services.traefik.dynamicConfigOptions = {
+    http.routers.${name} = {
+      rule = "Host(`${domain}`)";
+      service = name;
+      tls = { };
+    };
+    http.services.${name}.loadBalancer.servers = [{
+      url = "http://localhost:${port}";
+    }];
+  };
+
+  # Backups
+  services.restic.backups.cartman = {
+    paths = [ dataVolume ];
+  };
+}

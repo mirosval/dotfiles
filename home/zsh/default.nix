@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -7,7 +7,7 @@
     # enableAutosuggestions = true;
     autosuggestion.enable = true;
     shellAliases = import ./aliases.nix;
-    initExtraBeforeCompInit = ''
+    initContent = lib.mkOrder 550 ''
       ${builtins.readFile ./session_variables.zsh}
       ${builtins.readFile ./functions.zsh}
       ${builtins.readFile ./navi.zsh}

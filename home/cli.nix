@@ -16,6 +16,7 @@ in
     unstable.nerd-fonts.monaspace
 
     # tools
+    bonk
     dig
     ffmpeg
     graphviz
