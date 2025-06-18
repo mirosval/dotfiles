@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, pkgs, ... }:
 let
   name = "gitea";
   port = "8097";
@@ -20,13 +20,31 @@ in
     settings = {
       server = {
         HTTP_PORT = lib.strings.toInt port;
-        ROOT_URL = "https://${domain}:${port}/";
+        ROOT_URL = "https://${domain}/";
         DOMAIN = domain;
       };
       service = {
         DISABLE_REGISTRATION = false;
       };
     };
+  };
+
+  services.gitea-actions-runner.instances.nix-runner = {
+    enable = true;
+    labels = ["native:host"];
+    hostPackages = with pkgs; [
+      bash
+      cargo
+      coreutils
+      curl
+      gawk
+      gitMinimal
+      gnused
+      wget
+    ];
+    name = config.networking.hostName;
+    url = "https://${domain}";
+    tokenFile = config.secrets.butters.gitea_runner;
   };
 
   # DNS
