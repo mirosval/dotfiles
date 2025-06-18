@@ -7,7 +7,6 @@ _: {
     ./grafana
     ./immich
     ./jellyfin
-    ./k3s
     ./linkding
     ./loki
     ./mealie
