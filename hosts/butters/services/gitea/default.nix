@@ -41,6 +41,8 @@ in
       gitMinimal
       gnused
       wget
+      node
+      nix
     ];
     name = config.networking.hostName;
     url = "https://${domain}";
