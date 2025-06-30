@@ -3,11 +3,20 @@ let
   name = "dazzle";
   port = "5007";
   domain = "${name}.doma.lol";
+  giteauid = 63182;
 in
 {
+  users.users.gitea-runner = {
+    uid = giteauid;
+    gid = giteauid;
+    home = "/var/lib/gitea-runner";
+  };
+
   system.activationScripts = {
     makeDazzleContainerDir = lib.stringAfter [ "var" ] ''
       mkdir -p /tmp/podman-deploy
+      chown gitea-runner:gitea-runner /tmp/podman-deploy
+      chmod u+rwX /tmp/podman-deploy
     '';
   };
 
