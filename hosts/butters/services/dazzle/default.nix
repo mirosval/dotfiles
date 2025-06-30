@@ -8,8 +8,10 @@ in
 {
   users.users.gitea-runner = {
     uid = giteauid;
+  };
+
+  users.groups.gitea-runner = {
     gid = giteauid;
-    home = "/var/lib/gitea-runner";
   };
 
   system.activationScripts = {
