@@ -10,6 +10,8 @@ in
     uid = giteauid;
     group = "gitea-runner";
     isSystemUser = true;
+    home = "/home/gitea-runner";
+    homeMode = "744";
   };
 
   users.groups.gitea-runner = {
@@ -18,9 +20,9 @@ in
 
   system.activationScripts = {
     makeDazzleContainerDir = lib.stringAfter [ "var" ] ''
-      mkdir -p /tmp/podman-deploy
-      chown gitea-runner:gitea-runner /tmp/podman-deploy
-      chmod u+rwX /tmp/podman-deploy
+      mkdir -p /home/gitea-runner/podman-deploy
+      chown gitea-runner:gitea-runner /home/gitea-runner/podman-deploy
+      chmod u+rwX /home/gitea-runner/podman-deploy
     '';
   };
 
