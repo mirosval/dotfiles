@@ -16,5 +16,6 @@ _: {
     ./promtail
     ./restic
     ./traefik
+    ./weather
   ];
 }

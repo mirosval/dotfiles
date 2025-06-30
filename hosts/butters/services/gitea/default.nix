@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   name = "gitea";
   port = "8097";
@@ -31,7 +36,7 @@ in
 
   services.gitea-actions-runner.instances.nix-runner = {
     enable = true;
-    labels = ["native:host"];
+    labels = [ "native:host" ];
     hostPackages = with pkgs; [
       bash
       cargo
@@ -49,6 +54,12 @@ in
     name = config.networking.hostName;
     url = "https://${domain}";
     tokenFile = config.secrets.butters.gitea_runner;
+    settings = {
+      container.options = "-v /etc/podman-deploy:/etc/podman-deploy";
+      container.valid_volumes = [
+        "/etc/podman-deploy"
+      ];
+    };
   };
 
   # DNS
@@ -63,9 +74,11 @@ in
       service = name;
       tls = { };
     };
-    http.services.${name}.loadBalancer.servers = [{
-      url = "http://localhost:${port}";
-    }];
+    http.services.${name}.loadBalancer.servers = [
+      {
+        url = "http://localhost:${port}";
+      }
+    ];
   };
 
   # Backups
