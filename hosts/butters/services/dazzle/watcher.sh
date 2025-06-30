@@ -11,7 +11,7 @@ CONTAINER_NAME="$1"
 HOST_PORT="$2"
 
 # Path to the deployment JSON file, based on container name
-WATCH_FILE="/etc/podman-deploy/${CONTAINER_NAME}.json"
+WATCH_FILE="/var/podman-deploy/${CONTAINER_NAME}.json"
 LAST_HASH=""
 
 log() {

@@ -6,8 +6,8 @@ let
 in
 {
   system.activationScripts = {
-    makeWeatherContainerDir = lib.stringAfter [ "var" ] ''
-      mkdir -p /etc/podman-deploy
+    makeDazzleContainerDir = lib.stringAfter [ "var" ] ''
+      mkdir -p /var/podman-deploy
     '';
   };
 
