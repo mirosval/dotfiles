@@ -32,10 +32,16 @@ restart_container() {
     return 1
   fi
 
-  log "Starting new container with image: $IMAGE"
+  CONTAINER_PORT=$(jq -r '.port' "$WATCH_FILE")
+  if [ -z "$CONTAINER_PORT" ] || [ "$CONTAINER_PORT" == "null" ]; then
+    log "Error: 'port' field is missing or null in ${WATCH_FILE}"
+    return 1
+  fi
+
+  log "Starting new container with image: $IMAGE and port $CONTAINER_PORT"
   # Run the container, mapping the provided host port to container's port 80,
   # and ensure it restarts automatically.
-  podman run -d --name "$CONTAINER_NAME" -p "${HOST_PORT}:80" --restart=always "$IMAGE"
+  podman run -d --name "$CONTAINER_NAME" -p "${HOST_PORT}:${CONTAINER_PORT}" --restart=always "$IMAGE"
 }
 
 log "Watching ${WATCH_FILE} for changes..."

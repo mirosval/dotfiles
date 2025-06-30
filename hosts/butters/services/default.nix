@@ -2,6 +2,7 @@ _: {
   imports = [
     ./actual
     ./dashy
+    ./dazzle
     ./dns
     ./gitea
     ./grafana
@@ -16,6 +17,5 @@ _: {
     ./promtail
     ./restic
     ./traefik
-    ./weather
   ];
 }
