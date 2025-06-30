@@ -8,6 +8,7 @@ in
 {
   users.users.gitea-runner = {
     uid = giteauid;
+    group = "gitea-runner";
     isSystemUser = true;
   };
 
