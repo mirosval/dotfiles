@@ -10,6 +10,7 @@ in
     uid = giteauid;
     group = "gitea-runner";
     isSystemUser = true;
+    createHome = true;
     home = "/home/gitea-runner";
     homeMode = "744";
   };
