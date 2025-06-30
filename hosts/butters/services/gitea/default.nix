@@ -41,8 +41,10 @@ in
       gitMinimal
       gnused
       wget
-      node
+      nodejs
       nix
+      podman
+      skopeo
     ];
     name = config.networking.hostName;
     url = "https://${domain}";

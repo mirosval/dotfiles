@@ -1,6 +1,4 @@
 _: {
-  services.nix-daemon.enable = true;
-
   nixpkgs.overlays = [
     (self: super: {
       karabiner-elements = super.karabiner-elements.overrideAttrs (old: {
@@ -45,7 +43,7 @@ _: {
   };
 
   security = {
-    pam.enableSudoTouchIdAuth = true;
+    pam.services.sudo_local.touchIdAuth = true;
   };
 
   services = {
@@ -64,6 +62,7 @@ _: {
   '';
 
   system.stateVersion = 5;
+  system.primaryUser = "mirosval";
   system.defaults = {
     NSGlobalDomain = {
       # Show file extensions in Finder
