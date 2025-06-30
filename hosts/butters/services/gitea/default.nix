@@ -45,11 +45,12 @@ in
       gawk
       gitMinimal
       gnused
-      wget
-      nodejs
+      jq
       nix
+      nodejs
       podman
       skopeo
+      wget
     ];
     name = config.networking.hostName;
     url = "https://${domain}";

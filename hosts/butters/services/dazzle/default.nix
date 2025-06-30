@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  name = "weather";
+  name = "dazzle";
   port = "5007";
   domain = "${name}.doma.lol";
 in
@@ -11,7 +11,7 @@ in
     '';
   };
 
-  systemd.services.weather-watcher = {
+  systemd.services.dazzle-watcher = {
     description = "Watcher for the weather service";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
