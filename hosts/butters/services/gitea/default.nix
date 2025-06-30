@@ -56,9 +56,9 @@ in
     url = "https://${domain}";
     tokenFile = config.secrets.butters.gitea_runner;
     settings = {
-      container.options = "-v /run/podman-deploy:/run/podman-deploy";
+      container.options = "-v /tmp/podman-deploy:/tmp/podman-deploy";
       container.valid_volumes = [
-        "/run/podman-deploy"
+        "/tmp/podman-deploy"
       ];
     };
   };
