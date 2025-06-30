@@ -7,7 +7,7 @@ in
 {
   system.activationScripts = {
     makeDazzleContainerDir = lib.stringAfter [ "var" ] ''
-      mkdir -p /var/podman-deploy
+      mkdir -p /var/lib/podman-deploy
     '';
   };
 
