@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
   name = "weather";
   port = "5007";
@@ -18,6 +18,11 @@ in
       ExecStart = "${./watcher.sh} ${name} ${port}";
       Restart = "always";
     };
+    path = with pkgs; [
+      bash
+      jq
+      podman
+    ];
   };
 
   # DNS
