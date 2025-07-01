@@ -28,7 +28,7 @@ if [[ -z "$LOCAL_DIGEST" || "$REMOTE_DIGEST" != "$LOCAL_DIGEST" ]]; then
 
     podman pull "$IMAGE"
     podman rm -f "$CONTAINER" 2>/dev/null || true
-    podman run -d --name "$CONTAINER" -p "$PORT" "$IMAGE"
+    podman run -d --replace --name "$CONTAINER" -p "$PORT" "$IMAGE"
 
     if [[ -n "$OLD_IMAGE_ID" ]]; then
         podman rmi "$OLD_IMAGE_ID" || true
