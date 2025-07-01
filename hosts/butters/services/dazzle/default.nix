@@ -5,7 +5,7 @@ let
   containerPort = "3000";
   ports = "${port}:${containerPort}";
   domain = "${name}.doma.lol";
-  image = "gitea.domal.lol/miro/${name}:latest";
+  image = "gitea.doma.lol/miro/${name}:latest";
 in
 {
   systemd.timers.dazzle-watcher = {
