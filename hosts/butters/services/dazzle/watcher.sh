@@ -34,5 +34,19 @@ if [[ -z "$LOCAL_DIGEST" || "$REMOTE_DIGEST" != "$LOCAL_DIGEST" ]]; then
         podman rmi "$OLD_IMAGE_ID" || true
     fi
 else
-    echo "Image is up to date. No action taken."
+    echo "Image is up to date."
+
+    # === CHECK IF CONTAINER EXISTS ===
+    if podman container exists "$CONTAINER"; then
+        # === CHECK IF CONTAINER IS RUNNING ===
+        if ! podman inspect -f '{{.State.Running}}' "$CONTAINER" | grep -q true; then
+            echo "Container '$CONTAINER' is not running. Starting it..."
+            podman start "$CONTAINER"
+        else
+            echo "Container '$CONTAINER' is already running."
+        fi
+    else
+        echo "Container '$CONTAINER' does not exist. Creating it..."
+        podman run -d --replace --restart=always --name "$CONTAINER" -p "$PORT" "$IMAGE"
+    fi
 fi
