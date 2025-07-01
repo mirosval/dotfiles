@@ -3,7 +3,9 @@ let
   name = "dazzle";
   port = "5007";
   containerPort = "3000";
+  ports = "${port}:${containerPort}";
   domain = "${name}.doma.lol";
+  image = "${domain}/miro/${name}:latest";
 in
 {
   systemd.timers.dazzle-watcher = {
@@ -19,7 +21,7 @@ in
     description = "Watcher for the weather service";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${./watcher.sh} ${domain}/miro/${name}:latest ${name} ${port}:${containerPort}";
+      ExecStart = "${./watcher.sh} ${image} ${name} ${ports}";
       Type = "oneshot";
     };
     path = with pkgs; [
