@@ -1,43 +1,32 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   name = "dazzle";
   port = "5007";
+  containerPort = "3000";
   domain = "${name}.doma.lol";
-  giteauid = 63182;
 in
 {
-  users.users.gitea-runner = {
-    uid = giteauid;
-    group = "gitea-runner";
-    isSystemUser = true;
-    createHome = true;
-    home = "/home/gitea-runner";
-    homeMode = "744";
-  };
-
-  users.groups.gitea-runner = {
-    gid = giteauid;
-  };
-
-  system.activationScripts = {
-    makeDazzleContainerDir = lib.stringAfter [ "var" ] ''
-      mkdir -p /home/gitea-runner/podman-deploy
-      chown gitea-runner:gitea-runner /home/gitea-runner/podman-deploy
-      chmod u+rwX /home/gitea-runner/podman-deploy
-    '';
+  systemd.timers.dazzle-watcher = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "1min";
+      OnUnitActiveSec = "5min";
+      Unit = "dazzle-watcher.service";
+    };
   };
 
   systemd.services.dazzle-watcher = {
     description = "Watcher for the weather service";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${./watcher.sh} ${name} ${port}";
-      Restart = "always";
+      ExecStart = "${./watcher.sh} ${domain}/miro/${name}:latest ${name} ${port}:${containerPort}";
+      Type = "oneshot";
     };
     path = with pkgs; [
       bash
       jq
       podman
+      skopeo
     ];
   };
 

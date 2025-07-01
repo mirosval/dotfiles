@@ -1,61 +1,38 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Check for required arguments: container name and host port
-if [ "$#" -lt 2 ]; then
-  echo "Usage: $0 <container-name> <host-port>"
-  exit 1
+# === USAGE ===
+if [[ $# -ne 3 ]]; then
+    echo "Usage: $0 <image> <container-name> <port-mapping>"
+    echo "Example: $0 nginx:latest my-nginx 8080:80"
+    exit 1
 fi
 
-CONTAINER_NAME="$1"
-HOST_PORT="$2"
+IMAGE="$1"
+CONTAINER="$2"
+PORT="$3"
 
-# Path to the deployment JSON file, based on container name
-WATCH_FILE="/var/podman-deploy/${CONTAINER_NAME}.json"
-LAST_HASH=""
+# === CHECK DEPENDENCIES ===
+command -v podman >/dev/null || { echo "podman not found"; exit 1; }
+command -v skopeo >/dev/null || { echo "skopeo not found"; exit 1; }
 
-log() {
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*"
-}
+# === GET DIGESTS ===
+REMOTE_DIGEST=$(skopeo inspect "docker://${IMAGE}" --format '{{.Digest}}')
+LOCAL_DIGEST=$(podman image inspect "$IMAGE" --format '{{.Digest}}' 2>/dev/null || echo "")
 
-restart_container() {
-  log "Restarting container ${CONTAINER_NAME}"
-  
-  # Stop and remove any existing container with this name
-  podman stop "${CONTAINER_NAME}" || true
-  podman rm "${CONTAINER_NAME}" || true
+# === IF NO LOCAL IMAGE OR DIGESTS DIFFER, UPDATE ===
+if [[ -z "$LOCAL_DIGEST" || "$REMOTE_DIGEST" != "$LOCAL_DIGEST" ]]; then
+    echo "Updating container '$CONTAINER' with new image: $IMAGE"
 
-  # Parse image name from the JSON file; it must have an "image" field
-  IMAGE=$(jq -r '.image' "$WATCH_FILE")
-  if [ -z "$IMAGE" ] || [ "$IMAGE" == "null" ]; then
-    log "Error: 'image' field is missing or null in ${WATCH_FILE}"
-    return 1
-  fi
+    OLD_IMAGE_ID=$(podman image inspect "$IMAGE" --format '{{.Id}}' 2>/dev/null || echo "")
 
-  CONTAINER_PORT=$(jq -r '.port' "$WATCH_FILE")
-  if [ -z "$CONTAINER_PORT" ] || [ "$CONTAINER_PORT" == "null" ]; then
-    log "Error: 'port' field is missing or null in ${WATCH_FILE}"
-    return 1
-  fi
+    podman pull "$IMAGE"
+    podman rm -f "$CONTAINER" 2>/dev/null || true
+    podman run -d --name "$CONTAINER" -p "$PORT" "$IMAGE"
 
-  log "Starting new container with image: $IMAGE and port $CONTAINER_PORT"
-  # Run the container, mapping the provided host port to container's port 80,
-  # and ensure it restarts automatically.
-  podman run -d --name "$CONTAINER_NAME" -p "${HOST_PORT}:${CONTAINER_PORT}" --restart=always "$IMAGE"
-}
-
-log "Watching ${WATCH_FILE} for changes..."
-
-while true; do
-  if [ -f "$WATCH_FILE" ]; then
-    CURRENT_HASH=$(sha256sum "$WATCH_FILE" | awk '{print $1}')
-    if [ "$CURRENT_HASH" != "$LAST_HASH" ]; then
-      log "Detected change in ${WATCH_FILE}"
-      LAST_HASH="$CURRENT_HASH"
-      restart_container
+    if [[ -n "$OLD_IMAGE_ID" ]]; then
+        podman rmi "$OLD_IMAGE_ID" || true
     fi
-  else
-    log "Waiting for ${WATCH_FILE} to appear..."
-  fi
-  sleep 5
-done
+else
+    echo "Image is up to date. No action taken."
+fi
