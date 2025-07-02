@@ -31,7 +31,7 @@ if [[ -z "$LOCAL_DIGEST" || "$REMOTE_DIGEST" != "$LOCAL_DIGEST" ]]; then
     podman run -d --replace --restart=always --name "$CONTAINER" -p "$PORT" "$IMAGE"
 
     if [[ -n "$OLD_IMAGE_ID" ]]; then
-        podman rmi "$OLD_IMAGE_ID" || true
+        timeout 5s podman rmi -f "$OLD_IMAGE_ID" || true
     fi
 else
     echo "Image is up to date."
