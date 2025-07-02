@@ -50,3 +50,5 @@ else
         podman run -d --replace --restart=always --name "$CONTAINER" -p "$PORT" "$IMAGE"
     fi
 fi
+
+echo "Done"

@@ -23,7 +23,6 @@ in
     serviceConfig = {
       ExecStart = "${./watcher.sh} ${image} ${name} ${ports}";
       Type = "oneshot";
-      RemainAfterExit = true;
     };
     path = with pkgs; [
       bash
