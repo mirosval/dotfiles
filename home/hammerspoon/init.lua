@@ -37,13 +37,13 @@ focus("d", "Spotify")
 focus("g", "Fork")
 -- Keyboard row 3
 focus("z", "Zoom.us")
-focus("x", "Discord")
+focus("x", "Cursor")
 focus("c", "Calendar")
 focus("v", "Visual Studio Code")
 focus("b", "Firefox")
 -- Keyboard row 3, right hand
 focus("m", "Messages")
-focus("n", "Logseq")
+focus("n", "Finder")
 
 hs.loadSpoon("MiroWindowsManager")
 
