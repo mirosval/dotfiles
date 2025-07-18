@@ -28,4 +28,6 @@ _: {
     hostName = "miroslavs-work-mbp";
     localHostName = "miroslavs-work-mbp";
   };
+
+  ids.gids.nixbld = 30000;
 }
