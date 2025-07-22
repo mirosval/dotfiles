@@ -21,19 +21,23 @@ in
     ffmpeg
     graphviz
     jq
-    unstable.jujutsu
     sd
     tokei
     unstable.colima
     unstable.docker
     unstable.docker-buildx
+    unstable.jujutsu
     wget
 
     # terminal
     bat
     tree
+    unstable.bandwhich
+    unstable.bottom
     unstable.difftastic
     unstable.eza
+    unstable.procs
+    unstable.rink
     unstable.srgn
     unstable.tailscale
     zsh-syntax-highlighting
