@@ -21,6 +21,7 @@ in
     ffmpeg
     graphviz
     jq
+    unstable.jujutsu
     sd
     tokei
     unstable.colima

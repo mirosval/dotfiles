@@ -25,6 +25,9 @@ gh pr create --web
 # Opens logs of a container
 docker logs -f <container>
 
+# Kill all docker containers
+docker ps -q | xargs docker kill
+
 $ container: docker ps --- --column 1
 
 % kill
