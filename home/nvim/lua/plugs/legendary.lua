@@ -1,7 +1,7 @@
 local legendary = require("legendary")
 local filters = require("legendary.filters")
---local textcase = require("textcase")
 --local todo = require("todo-comments")
+local textcase = require("textcase")
 local crates = require("crates")
 
 local format = function()
@@ -163,38 +163,38 @@ legendary.setup({
       end,
       description = "Erase search highlighting",
       mode = { "n" }
-    }
-    -- Text case
-    --    {
-    --      "gas",
-    --      { n = textcase.operator("to_snake_case"), v = textcase.visual("to_snake_case") },
-    --      description = "To Snake Case",
-    --    },
-    --    {
-    --      "gad",
-    --      { n = textcase.operator("to_dash_case"), v = textcase.visual("to_dash_case") },
-    --      description = "To Dash Case",
-    --    },
-    --    {
-    --      "gaca",
-    --      { n = textcase.operator("to_camel_case"), v = textcase.visual("to_camel_case") },
-    --      description = "To Camel Case",
-    --    },
-    --    {
-    --      "gaco",
-    --      { n = textcase.operator("to_constant_case"), v = textcase.visual("to_constant_case") },
-    --      description = "To Constant Case",
-    --    },
-    --    {
-    --      "gal",
-    --      { n = textcase.operator("to_lower_case"), v = textcase.visual("to_lower_case") },
-    --      description = "To Lower Case",
-    --    },
-    --    {
-    --      "gau",
-    --      { n = textcase.operator("to_upper_case"), v = textcase.visual("to_upper_case") },
-    --      description = "To Upper Case",
-    --    },
+    },
+    --    Text case
+    {
+      "gas",
+      { n = textcase.operator("to_snake_case"), v = textcase.visual("to_snake_case") },
+      description = "To Snake Case",
+    },
+    {
+      "gad",
+      { n = textcase.operator("to_dash_case"), v = textcase.visual("to_dash_case") },
+      description = "To Dash Case",
+    },
+    {
+      "gaca",
+      { n = textcase.operator("to_camel_case"), v = textcase.visual("to_camel_case") },
+      description = "To Camel Case",
+    },
+    {
+      "gaco",
+      { n = textcase.operator("to_constant_case"), v = textcase.visual("to_constant_case") },
+      description = "To Constant Case",
+    },
+    {
+      "gal",
+      { n = textcase.operator("to_lower_case"), v = textcase.visual("to_lower_case") },
+      description = "To Lower Case",
+    },
+    {
+      "gau",
+      { n = textcase.operator("to_upper_case"), v = textcase.visual("to_upper_case") },
+      description = "To Upper Case",
+    },
   },
   functions = {
     { crates.upgrade_crate,                      description = "Rust Crates Upgrade Crate" },
