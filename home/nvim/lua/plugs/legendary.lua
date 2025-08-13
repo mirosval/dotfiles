@@ -1,7 +1,7 @@
 local legendary = require("legendary")
 local filters = require("legendary.filters")
-local textcase = require("textcase")
-local todo = require("todo-comments")
+--local textcase = require("textcase")
+--local todo = require("todo-comments")
 local crates = require("crates")
 
 local format = function()
@@ -157,56 +157,36 @@ legendary.setup({
       mode = { "n", "v" },
     },
     -- Text case
-    {
-      "gas",
-      { n = textcase.operator("to_snake_case"), v = textcase.visual("to_snake_case") },
-      description = "To Snake Case",
-    },
-    {
-      "gad",
-      { n = textcase.operator("to_dash_case"), v = textcase.visual("to_dash_case") },
-      description = "To Dash Case",
-    },
-    {
-      "gaca",
-      { n = textcase.operator("to_camel_case"), v = textcase.visual("to_camel_case") },
-      description = "To Camel Case",
-    },
-    {
-      "gaco",
-      { n = textcase.operator("to_constant_case"), v = textcase.visual("to_constant_case") },
-      description = "To Constant Case",
-    },
-    {
-      "gal",
-      { n = textcase.operator("to_lower_case"), v = textcase.visual("to_lower_case") },
-      description = "To Lower Case",
-    },
-    {
-      "gau",
-      { n = textcase.operator("to_upper_case"), v = textcase.visual("to_upper_case") },
-      description = "To Upper Case",
-    },
-    -- TODO Comments
-    { "]t",         todo.jump_next,                           description = "Next TODO" },
-    { "[t",         todo.jump_prev,                           description = "Prev TODO" },
-    { "<leader>t",  ":TodoTelescope<cr>",                     description = "TODO Telescope" },
-    -- Telekasten
-    { "<leader>n",  ":Telekasten panel<cr>",                  description = "Notes Telekasten command palette" },
-    { "<leader>nf", ":Telekasten find_notes<cr>",             description = "Notes Telekasten find note" },
-    { "<leader>ng", ":Telekasten search_notes<cr>",           description = "Notes Telekasten search notes" },
-    { "<leader>nd", ":Telekasten goto_today<cr>",             description = "Notes Telekasten show todays note" },
-    { "<leader>nz", ":Telekasten follow_link<cr>",            description = "Notes Telekasten follow link" },
-    { "<leader>nn", ":Telekasten new_note<cr>",               description = "Notes Telekasten new note" },
-    { "<leader>nc", ":Telekasten show_calendar<cr>",          description = "Notes Telekasten show calendar" },
-    { "<leader>nb", ":Telekasten show_backlinks<cr>",         description = "Notes Telekasten show backlinks" },
-    { "<leader>nI", ":Telekasten insert_img_link<cr>",        description = "Notes Telekasten insert image link" },
-    { "[[",         { i = ":Telekasten insert_link<cr>" },    description = "Notes Telekasten insert image link" },
-    -- Crates.nvim
-    -- CodeCompanion
-    { "<leader>aa", "<cmd>CodeCompanionActions<cr>",          description = "CodeCompanion Action Panel" },
-    { "<leader>at", "<cmd>CodeCompanionChat Toggle<cr>",      description = "Toggle CodeCompanion Chat" },
-    { "gg",         { v = "<cmd>CodeCompanionChat Add<cr>" }, description = "Toggle CodeCompanion Chat" },
+--    {
+--      "gas",
+--      { n = textcase.operator("to_snake_case"), v = textcase.visual("to_snake_case") },
+--      description = "To Snake Case",
+--    },
+--    {
+--      "gad",
+--      { n = textcase.operator("to_dash_case"), v = textcase.visual("to_dash_case") },
+--      description = "To Dash Case",
+--    },
+--    {
+--      "gaca",
+--      { n = textcase.operator("to_camel_case"), v = textcase.visual("to_camel_case") },
+--      description = "To Camel Case",
+--    },
+--    {
+--      "gaco",
+--      { n = textcase.operator("to_constant_case"), v = textcase.visual("to_constant_case") },
+--      description = "To Constant Case",
+--    },
+--    {
+--      "gal",
+--      { n = textcase.operator("to_lower_case"), v = textcase.visual("to_lower_case") },
+--      description = "To Lower Case",
+--    },
+--    {
+--      "gau",
+--      { n = textcase.operator("to_upper_case"), v = textcase.visual("to_upper_case") },
+--      description = "To Upper Case",
+--    },
   },
   functions = {
     { crates.upgrade_crate,                      description = "Rust Crates Upgrade Crate" },

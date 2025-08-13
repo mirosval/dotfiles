@@ -2,9 +2,10 @@
 let
   unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
-    config. allowUnfree = true;
+    config.allowUnfree = true;
     overlays = [
-      (self: super:
+      (
+        self: super:
         let
           # none-ls-nvim = super.vimUtils.buildVimPlugin {
           #   pname = "none-ls.nvim";
@@ -26,17 +27,16 @@ let
               hash = "sha256-4XeDd+myM+wtHUsr3s1H9+GAwIjK8fAqBbFnBCeatPo=";
             };
           };
-          gitlinker-nvim = super.vimUtils.buildVimPlugin
-            {
-              pname = "gitlinker-nvim";
-              version = "2024-04-02";
-              src = pkgs.fetchFromGitHub {
-                owner = "linrongbin16";
-                repo = "gitlinker.nvim";
-                rev = "839215b322b15b662c08a010534e8de00dae38a6";
-                hash = "sha256-BtvbqV8bD4iiRLBCZdp76eAPy73aHJ9CggBf+0R6tWQ=";
-              };
+          gitlinker-nvim = super.vimUtils.buildVimPlugin {
+            pname = "gitlinker-nvim";
+            version = "2024-04-02";
+            src = pkgs.fetchFromGitHub {
+              owner = "linrongbin16";
+              repo = "gitlinker.nvim";
+              rev = "839215b322b15b662c08a010534e8de00dae38a6";
+              hash = "sha256-BtvbqV8bD4iiRLBCZdp76eAPy73aHJ9CggBf+0R6tWQ=";
             };
+          };
         in
         {
           vimPlugins = super.vimPlugins // {
@@ -54,9 +54,9 @@ in
     defaultEditor = true;
     plugins = with unstable.vimPlugins; [
       Navigator-nvim # Tmux window switching
-      aerial-nvim # Project outline
-      auto-hlsearch-nvim # Clear search highlighting on cursor movement
-      avante-nvim # AI Coding completions
+      # aerial-nvim # Project outline
+      # auto-hlsearch-nvim # Clear search highlighting on cursor movement
+      # avante-nvim # AI Coding completions
       cmp-buffer # Code completion from current buffer
       cmp-nvim-lsp # Code completion from LSP
       cmp-nvim-lsp-signature-help # Help overlay for Code Completion
@@ -64,60 +64,62 @@ in
       cmp-path # Code completion for paths
       cmp-treesitter # Code completion from treesitter nodes
       cmp-vsnip # Code completion snippets integration
-      codecompanion-nvim # AI Coding completions
+      # codecompanion-nvim # AI Coding completions
       crates-nvim # Rust Cargo.toml companion - updates and docs for dependencies
       dressing-nvim # Makes native nvim UI look better
       fidget-nvim # LSP Progress spinner
       git-blame-nvim # Show git-blame in virtual text
       gitlinker-nvim # Copy links to the selected code in GH
       gitsigns-nvim # Highlight code changes vs git
-      indent-blankline-nvim # Highlight leading whitespace for better visual block separation
+      # indent-blankline-nvim # Highlight leading whitespace for better visual block separation
       legendary-nvim # Action dispatcher and key binding manager
       lualine-nvim # Status line config
+      mini-nvim # Collection of minimal, independent, and fast Lua modules
       none-ls-nvim # Integration of linters into the LSP stack
-      nvim-autopairs # Parentheses come in pairs
+      # nvim-autopairs # Parentheses come in pairs
       nvim-bacon # Rust error navigation
       nvim-cmp # Code completion
       nvim-lspconfig # LSP Client configurations
       nvim-metals # Scala LSP
-      nvim-nu # Nu scripting language support
-      nvim-surround # Change both surrounding parentheses at once
+      # nvim-nu # Nu scripting language support
+      # nvim-surround # Change both surrounding parentheses at once
       nvim-treesitter-context # Shows context at the top of the editor, like vscode
       nvim-ts-autotag # Auto-close HTML tags
       nvim-web-devicons # Eye candy
       plenary-nvim # Utility lua function
-      renerocksai-calendar-vim # Calendar integration for Telekasten
+      # renerocksai-calendar-vim # Calendar integration for Telekasten
       rustaceanvim # Rust enhancements beyond LSP
-      telekasten-nvim # Note taking
+      # telekasten-nvim # Note taking
       telescope-nvim # Fuzzy finder
-      text-case-nvim # Switch between word casing 
-      todo-comments-nvim # TODO comments special highlighting
+      text-case-nvim # Switch between word casing
+      # todo-comments-nvim # TODO comments special highlighting
       tokyonight-nvim # Theme
       vim-sneak # Faster movement
       vim-vsnip # Code Snippets
 
       # Syntax highlighting and parsing
-      (nvim-treesitter.withPlugins (plugins: with plugins; [
-        tree-sitter-bash
-        tree-sitter-css
-        tree-sitter-dockerfile
-        tree-sitter-hcl
-        tree-sitter-json
-        tree-sitter-just
-        tree-sitter-kotlin
-        tree-sitter-lua
-        tree-sitter-make
-        tree-sitter-markdown
-        tree-sitter-nix
-        tree-sitter-python
-        tree-sitter-regex
-        tree-sitter-rust
-        tree-sitter-sql
-        tree-sitter-toml
-        tree-sitter-tsx
-        tree-sitter-typescript
-        tree-sitter-yaml
-      ]))
+      (nvim-treesitter.withPlugins (
+        plugins: with plugins; [
+          tree-sitter-bash
+          tree-sitter-css
+          tree-sitter-dockerfile
+          tree-sitter-hcl
+          tree-sitter-json
+          tree-sitter-just
+          tree-sitter-lua
+          tree-sitter-make
+          tree-sitter-markdown
+          tree-sitter-nix
+          tree-sitter-python
+          tree-sitter-regex
+          tree-sitter-rust
+          tree-sitter-sql
+          tree-sitter-toml
+          tree-sitter-tsx
+          tree-sitter-typescript
+          tree-sitter-yaml
+        ]
+      ))
     ];
     extraPackages = with unstable; [
       nodePackages.bash-language-server
