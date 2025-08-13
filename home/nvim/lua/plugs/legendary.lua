@@ -1,6 +1,5 @@
 local legendary = require("legendary")
 local filters = require("legendary.filters")
---local todo = require("todo-comments")
 local textcase = require("textcase")
 local crates = require("crates")
 
