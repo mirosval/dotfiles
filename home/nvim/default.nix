@@ -17,16 +17,16 @@ let
           #     sha256 = "1qh9bdxhs0c5mxyyv3dkmiyr03qi8g4rsbjcgzkprk4v5pz04g1v";
           #   };
           # };
-          renerocksai-calendar-vim = super.vimUtils.buildVimPlugin {
-            pname = "calendar-vim";
-            version = "2021-11-27";
-            src = pkgs.fetchFromGitHub {
-              owner = "renerocksai";
-              repo = "calendar-vim";
-              rev = "a7e73e02c92566bf427b2a1d6a61a8f23542cc21";
-              hash = "sha256-4XeDd+myM+wtHUsr3s1H9+GAwIjK8fAqBbFnBCeatPo=";
-            };
-          };
+          # renerocksai-calendar-vim = super.vimUtils.buildVimPlugin {
+          #   pname = "calendar-vim";
+          #   version = "2021-11-27";
+          #   src = pkgs.fetchFromGitHub {
+          #     owner = "renerocksai";
+          #     repo = "calendar-vim";
+          #     rev = "a7e73e02c92566bf427b2a1d6a61a8f23542cc21";
+          #     hash = "sha256-4XeDd+myM+wtHUsr3s1H9+GAwIjK8fAqBbFnBCeatPo=";
+          #   };
+          # };
           gitlinker-nvim = super.vimUtils.buildVimPlugin {
             pname = "gitlinker-nvim";
             version = "2024-04-02";
@@ -40,7 +40,10 @@ let
         in
         {
           vimPlugins = super.vimPlugins // {
-            inherit renerocksai-calendar-vim gitlinker-nvim;
+            inherit
+              #renerocksai-calendar-vim
+              gitlinker-nvim
+              ;
           };
         }
       )

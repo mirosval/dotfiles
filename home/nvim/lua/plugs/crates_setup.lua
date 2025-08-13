@@ -1,10 +1,13 @@
 require('crates').setup({
-  src = {
-    cmp = {
-      enable = true,
+  completion = {
+    crates = {
+      enabled = true,
     },
   },
-  null_ls = {
-    enable = true,
+  lsp = {
+    enabled = true,
+    actions = true,
+    completion = true,
+    hover = true,
   },
 })

@@ -1,6 +1,6 @@
 {
   description = "Miro's dotfiles";
-  
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -32,11 +32,31 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable, darwin, agenix, secrets, ... }:
+  outputs =
+    inputs@{
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      home-manager-unstable,
+      darwin,
+      agenix,
+      secrets,
+      ...
+    }:
     let
       stateVersion = "24.05";
       lib = import ./lib {
-        inherit nixpkgs nixpkgs-unstable stateVersion inputs darwin home-manager home-manager-unstable secrets agenix;
+        inherit
+          nixpkgs
+          nixpkgs-unstable
+          stateVersion
+          inputs
+          darwin
+          home-manager
+          home-manager-unstable
+          secrets
+          agenix
+          ;
       };
     in
     {

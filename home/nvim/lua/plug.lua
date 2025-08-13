@@ -7,7 +7,7 @@ require("plugs.tmux_setup")
 require("plugs.legendary")
 require("plugs.dressing")
 require("plugs.lualine_setup")
-require("plugs.null_ls_setup")
+-- require("plugs.null_ls_setup") -- null-ls is deprecated, disabled
 -- require("plugs.telekasten")
 -- require("plugs.avante")
 -- require("plugs.codecompanion")
