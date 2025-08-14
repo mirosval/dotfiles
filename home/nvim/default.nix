@@ -47,7 +47,7 @@ in
       git-blame-nvim # Show git-blame in virtual text
       gitlinker-nvim # Copy links to the selected code in GH
       gitsigns-nvim # Highlight code changes vs git
-      legendary-nvim # Action dispatcher and key binding manager
+      which-key-nvim # Key binding helper and manager
       lualine-nvim # Status line config
       mini-nvim # Collection of minimal, independent, and fast Lua modules
       # none-ls-nvim # Integration of linters into the LSP stack
