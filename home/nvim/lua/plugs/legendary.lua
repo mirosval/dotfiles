@@ -164,6 +164,21 @@ legendary.setup({
       mode = { "n" }
     },
     --    Text case
+    -- Copy current file & position to clipboard
+    {
+      "<leader>cc",
+      function()
+        local s, e = vim.fn.line("'<"), vim.fn.line("'>")
+        if s == 0 then
+          s = vim.fn.line('.')
+          e = vim.fn.line('.')
+        end
+        vim.fn.setreg('+', string.format("%s:%s%s", vim.fn.expand('%:p'), s, s == e and '' or '-' .. e))
+      end,
+      description = "Copy current file path and position to clipboard",
+      mode = { "n", "v" },
+    },
+    -- Text case
     {
       "gas",
       { n = textcase.operator("to_snake_case"), v = textcase.visual("to_snake_case") },
