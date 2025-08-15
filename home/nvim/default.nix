@@ -138,6 +138,10 @@ in
       source = ./lua;
       recursive = true;
     };
+    "nvim/lsp" = {
+      source = ./lsp;
+      recursive = true;
+    };
     "nvim/init.lua".source = ./init.lua;
   };
 }

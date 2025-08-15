@@ -3,6 +3,7 @@ local lsp = {}
 function lsp.setup()
   vim.lsp.enable({
     'lua',
+    'nil_ls',
     'pyright',
     'ts',
   })
@@ -21,7 +22,7 @@ function lsp.setup()
   })
 
   -- Diagnostics
-  vim.diagnostic.config({ 
+  vim.diagnostic.config({
     virtual_text = true,
     virtual_lines = true,
   })
