@@ -12,7 +12,7 @@ o.writebackup = false
 -- noselect: Do not select, force to select one from the menu
 -- shortness: avoid showing extra messages when using completion
 -- updatetime: set updatetime for CursorHold
-o.completeopt = { 'menuone', 'noselect', 'noinsert' }
+o.completeopt = { 'fuzzy', 'menu', 'menuone', 'noselect', 'popup' }
 o.shortmess = vim.opt.shortmess + { c = true }
 vim.api.nvim_set_option('updatetime', 300)
 

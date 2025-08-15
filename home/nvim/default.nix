@@ -34,13 +34,7 @@ in
     defaultEditor = true;
     plugins = with unstable.vimPlugins; [
       Navigator-nvim # Tmux window switching
-      # cmp-buffer # Code completion from current buffer
-      # cmp-nvim-lsp # Code completion from LSP
-      # cmp-nvim-lsp-signature-help # Help overlay for Code Completion
-      # cmp-nvim-lua # Code completion for Neovim Lua API
-      # cmp-path # Code completion for paths
-      # cmp-treesitter # Code completion from treesitter nodes
-      # cmp-vsnip # Code completion snippets integration
+      blink-cmp # Autocomplete
       crates-nvim # Rust Cargo.toml companion - updates and docs for dependencies
       dressing-nvim # Makes native nvim UI look better
       fidget-nvim # LSP Progress spinner
@@ -50,11 +44,7 @@ in
       which-key-nvim # Key binding helper and manager
       lualine-nvim # Status line config
       mini-nvim # Collection of minimal, independent, and fast Lua modules
-      # none-ls-nvim # Integration of linters into the LSP stack
       nvim-bacon # Rust error navigation
-      # nvim-cmp # Code completion
-      # nvim-lspconfig # LSP Client configurations
-      # nvim-metals # Scala LSP
       nvim-treesitter-context # Shows context at the top of the editor, like vscode
       nvim-ts-autotag # Auto-close HTML tags
       nvim-web-devicons # Eye candy
