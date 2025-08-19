@@ -4,6 +4,7 @@ local g = vim.g
 o.swapfile = false
 o.backup = false
 o.writebackup = false
+o.undofile = true
 
 -- disabled, managed by blink-cmp
 -- o.completeopt = { 'fuzzy', 'menu', 'menuone', 'noselect', 'popup' }
@@ -14,13 +15,15 @@ o.autoread = true
 o.clipboard:append('unnamed')
 o.scrolloff = 15
 
--- TODO: enable mouse?
+-- mouse
+o.mouse = 'a'
 
 -- search
-o.ignorecase = true -- case insensitive searching
-o.smartcase = true  -- case sensitive if expression contaisn a capital letter
-o.hlsearch = true   -- highlight search results
-o.incsearch = true  -- set incremental search like modern browsers
+o.ignorecase = true    -- case insensitive searching
+o.smartcase = true     -- case sensitive if expression contaisn a capital letter
+o.hlsearch = true      -- highlight search results
+o.incsearch = true     -- set incremental search like modern browsers
+o.inccommand = 'split' -- preview substitutions
 
 -- split in the correct direction
 o.splitright = true
@@ -29,6 +32,9 @@ o.splitbelow = true
 -- appearance
 o.number = true
 o.relativenumber = true
+o.showmode = false -- it's already in the status
+o.signcolumn = 'yes'
+o.cursorline = true
 
 -- tabs and spaces
 o.shiftwidth = 2  -- indent using > number of visual spaces per tab
@@ -38,7 +44,10 @@ o.expandtab = true
 o.smarttab = true
 o.autoindent = true
 o.copyindent = true
+o.breakindent = true
 o.shiftround = true
+o.list = true
+o.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- keymaps
 g.mapleader = "\\"
@@ -49,3 +58,5 @@ o.foldlevel = 99
 o.foldlevelstart = 99
 
 vim.o.winborder = 'rounded'
+
+g.have_nerd_font = true
