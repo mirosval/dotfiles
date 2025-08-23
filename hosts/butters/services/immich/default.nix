@@ -1,7 +1,12 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   name = "immich";
-  immichVersion = "v1.134.0";
+  immichVersion = "v1.139.2";
   dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
   uploadPath = "/mnt/immich";
@@ -123,9 +128,11 @@ in
       service = name;
       tls = { };
     };
-    http.services.${name}.loadBalancer.servers = [{
-      url = "http://localhost:${port}";
-    }];
+    http.services.${name}.loadBalancer.servers = [
+      {
+        url = "http://localhost:${port}";
+      }
+    ];
   };
 
   # Backups
