@@ -34,6 +34,7 @@ in
     tree
     unstable.bandwhich
     unstable.bottom
+    unstable.btop
     unstable.difftastic
     unstable.eza
     unstable.procs
