@@ -6,7 +6,7 @@
 }:
 let
   name = "immich";
-  immichVersion = "v1.139.2";
+  immichVersion = "v1.139.3";
   dbPath = "/var/containers/immich/db";
   dbBackupPath = "/var/containers/immich/backups";
   uploadPath = "/mnt/immich";
