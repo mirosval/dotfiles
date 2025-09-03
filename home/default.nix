@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.stateVersion = "24.05";
   imports = [
     ./alacritty
@@ -22,9 +23,12 @@
       allowUnfree = true;
     };
     overlays =
-      if pkgs.stdenv.isDarwin then [
-        (import ../overlays/libtmux.nix { })
-      ] else [ ];
+      if pkgs.stdenv.isDarwin then
+        [
+          (import ../overlays/libtmux.nix { })
+        ]
+      else
+        [ ];
   };
 
   programs = {
@@ -34,7 +38,6 @@
 
     ssh = {
       enable = true;
-      serverAliveInterval = 60;
       matchBlocks = {
         "github.com" = {
           identityFile = "/Users/mirosval/.ssh/id_ed25519";
@@ -53,6 +56,7 @@
             "StrictHostKeyChecking" = "accept-new";
             "PreferredAuthentications" = "publickey";
           };
+          serverAliveInterval = 60;
         };
         butters = {
           hostname = "butters";
