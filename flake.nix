@@ -70,16 +70,25 @@
           system = "aarch64-linux";
           host = "jimmy";
           user = "miro";
+          stateVersion = "24.05";
         };
         leon = lib.raspberryImage {
           system = "aarch64-linux";
           host = "leon";
           user = "miro";
+          stateVersion = "24.05";
         };
         butters = lib.linuxSystem {
           system = "x86_64-linux";
           host = "butters";
           user = "miro";
+          stateVersion = "24.05";
+        };
+        homelab-01 = lib.linuxSystem {
+          system = "x86_64-linux";
+          host = "homelab-01";
+          user = "miro";
+          stateVersion = "25.05";
         };
       };
       darwinConfigurations = {

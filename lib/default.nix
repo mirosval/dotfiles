@@ -1,4 +1,14 @@
-{ nixpkgs, nixpkgs-unstable, stateVersion, inputs, darwin, home-manager, home-manager-unstable, secrets, agenix }:
+{
+  nixpkgs,
+  nixpkgs-unstable,
+  stateVersion,
+  inputs,
+  darwin,
+  home-manager,
+  home-manager-unstable,
+  secrets,
+  agenix,
+}:
 let
   homeManagerConfig = import ../home {
     pkgs = nixpkgs;
@@ -6,7 +16,8 @@ let
   };
 in
 {
-  homeConfiguration = { system, user, ... }:
+  homeConfiguration =
+    { system, user, ... }:
     home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs { inherit system; };
       modules = [
@@ -21,20 +32,29 @@ in
       };
     };
 
-  raspberryImage = { system, host, ... }:
+  raspberryImage =
+    { system, host, ... }:
     nixpkgs-unstable.lib.nixosSystem {
       inherit system;
       modules = [
         "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-        ({ config, ... }: {
-          config.system.stateVersion = stateVersion;
-        })
+        (
+          { config, ... }:
+          {
+            config.system.stateVersion = stateVersion;
+          }
+        )
         (../hosts + "/${host}")
       ];
       specialArgs = { inherit inputs; };
     };
 
-  darwinSystem = { system, host, user }:
+  darwinSystem =
+    {
+      system,
+      host,
+      user,
+    }:
     darwin.lib.darwinSystem {
       inherit system;
       modules = [
@@ -51,13 +71,22 @@ in
       ];
     };
 
-  linuxSystem = { system, host, user }:
+  linuxSystem =
+    {
+      system,
+      host,
+      user,
+      stateVersion,
+    }:
     nixpkgs-unstable.lib.nixosSystem {
       inherit system;
       modules = [
-        ({ config, ... }: {
-          config.system.stateVersion = "24.05";
-        })
+        (
+          { config, ... }:
+          {
+            config.system.stateVersion = stateVersion;
+          }
+        )
         (../hosts + "/${host}/configuration.nix")
         (../hosts + "/${host}/services")
         agenix.nixosModules.default
