@@ -138,3 +138,7 @@ jimmy-image:
 .PHONY: leon-image
 leon-image:
 	nix build -vv .#nixosConfigurations.leon.config.system.build.sdImage
+
+.PHONY: homelab-manifests
+homelab-manifests:
+	nix run .#nixidy -- build .#homelab

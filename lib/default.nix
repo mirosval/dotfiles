@@ -8,6 +8,7 @@
   home-manager-unstable,
   secrets,
   agenix,
+  nixidy,
 }:
 let
   homeManagerConfig = import ../home {
