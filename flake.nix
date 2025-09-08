@@ -30,8 +30,6 @@
       url = "github:mirosval/unbound-blocklist";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixidy.url = "github:arnarg/nixidy";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
@@ -60,7 +58,6 @@
           home-manager-unstable
           secrets
           agenix
-          nixidy
           ;
       };
     in
@@ -70,6 +67,7 @@
         host = "jimbo";
         user = "mirosval";
       };
+
       nixosConfigurations = {
         jimmy = lib.raspberryImage {
           system = "aarch64-linux";
@@ -96,6 +94,7 @@
           stateVersion = "25.05";
         };
       };
+
       darwinConfigurations = {
         mirosval = lib.darwinSystem {
           system = "aarch64-darwin";
@@ -108,25 +107,9 @@
           user = "mirosval";
         };
       };
-    }
-    // (flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        nixidyEnvs = nixidy.lib.mkEnvs {
-          inherit pkgs;
-          envs = {
-            homelab.modules = [ ./homelab/nixidy ];
-          };
-        };
 
-        packages.nixidy = nixidy.packages.${system}.default;
-
-        devShells.default = pkgs.mkShell {
-          buildInputs = [ nixidy.packages.${system}.default ];
-        };
-      }
-    ));
+      lib = {
+        home = import ./home;
+      };
+    };
 }
