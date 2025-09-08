@@ -118,7 +118,7 @@
         nixidyEnvs = nixidy.lib.mkEnvs {
           inherit pkgs;
           envs = {
-            homelab.modules = [ ./homelab ];
+            homelab.modules = [ ./homelab/nixidy ];
           };
         };
 
