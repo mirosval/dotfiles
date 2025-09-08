@@ -41,8 +41,6 @@
       darwin,
       agenix,
       secrets,
-      nixidy,
-      flake-utils,
       ...
     }:
     let
