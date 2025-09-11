@@ -85,12 +85,6 @@
           user = "miro";
           stateVersion = "24.05";
         };
-        homelab-01 = lib.linuxSystem {
-          system = "x86_64-linux";
-          host = "homelab-01";
-          user = "miro";
-          stateVersion = "25.05";
-        };
       };
 
       darwinConfigurations = {

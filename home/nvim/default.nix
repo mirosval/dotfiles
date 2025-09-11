@@ -84,7 +84,7 @@ in
       nodePackages.bash-language-server
       shellcheck
 
-      nodePackages.dockerfile-language-server-nodejs
+      nodePackages.dockerfile-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript-language-server
       nodePackages.yaml-language-server
