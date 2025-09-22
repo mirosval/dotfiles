@@ -11,6 +11,6 @@ mkcd ()
 # Create jj bookmark from the commit description
 jjbk ()
 {
-    name=$(jj show --template "description" --no-pager | awk -F':' '{t=tolower($2); gsub(/[^a-z0-9]+/,"-",t); sub(/^-|-$/,"",t); print $1"/"t}')
+    name=$(jj show --template "description" --no-pager | awk -F':' 'NR==1{t=tolower($2); gsub(/[^a-z0-9]+/,"-",t); sub(/^-|-$/,"",t); print $1"/"t}')
     jj bookmark create $name
 }
