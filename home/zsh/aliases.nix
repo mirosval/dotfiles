@@ -58,6 +58,7 @@
   jr = "jj rebase -d master";
   jp = "jj log --no-pager";
   jst = "jj st --no-pager";
+  jd = "jj diff --tool=difft";
 
   # tmuxp
   tl = "tmuxp load --yes";

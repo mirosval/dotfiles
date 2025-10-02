@@ -9,8 +9,25 @@ mkcd ()
 }
 
 # Create jj bookmark from the commit description
-jjbk ()
+jjbk() {
+    name=$(jj show --template "description" --no-patch --no-pager | \
+        awk -F':' 'NR==1{
+            t=tolower($2)
+            gsub(/[^a-z0-9]+/,"-",t)
+            sub(/^-|-$/,"",t)
+            print $1 "/" t
+        }')
+
+    if [[ -z $name ]]; then
+        print -u2 "Error: there was no description to generate bookmark from"
+        return 1
+    fi
+
+    jj bookmark create --revision @ "$name"
+}
+
+# Push current revision to GH and open browser with the PR link from GH
+jjpr ()
 {
-    name=$(jj show --template "description" --no-pager | awk -F':' 'NR==1{t=tolower($2); gsub(/[^a-z0-9]+/,"-",t); sub(/^-|-$/,"",t); print $1"/"t}')
-    jj bookmark create $name
+    jj git push --allow-new | awk '/https:\/\/github.com\/.*\/pull\/new/ {print $2; exit}' | xargs open
 }
