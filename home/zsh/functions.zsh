@@ -29,5 +29,5 @@ jjbk() {
 # Push current revision to GH and open browser with the PR link from GH
 jjpr ()
 {
-    jj git push --allow-new | awk '/https:\/\/github.com\/.*\/pull\/new/ {print $2; exit}' | xargs open
+    jj git push --allow-new 2>&1 | awk '/https:\/\/github.com\/.*\/pull\/new/ {print $2; exit}' | xargs open
 }
