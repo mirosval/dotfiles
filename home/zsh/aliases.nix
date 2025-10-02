@@ -59,6 +59,7 @@
   jp = "jj log --no-pager";
   jst = "jj st --no-pager";
   jd = "jj diff --tool=difft";
+  jgf = "jj git fetch";
 
   # tmuxp
   tl = "tmuxp load --yes";
