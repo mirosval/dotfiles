@@ -43,6 +43,7 @@ in
       gitsigns-nvim # Highlight code changes vs git
       which-key-nvim # Key binding helper and manager
       lualine-nvim # Status line config
+      nvim-autopairs # Parentheses come in pairs
       mini-nvim # Collection of minimal, independent, and fast Lua modules
       nvim-bacon # Rust error navigation
       nvim-treesitter-context # Shows context at the top of the editor, like vscode
