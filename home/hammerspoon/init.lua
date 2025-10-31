@@ -28,7 +28,7 @@ focus("q", "GraphiQL")
 focus("w", "Lens")
 focus("e", "IntelliJ IDEA")
 focus("r", "Zen")
-focus("t", "Terminal")
+focus("t", "Wezterm")
 -- Keyboard row 2
 focus("a", "Alacritty")
 focus("s", "Slack")

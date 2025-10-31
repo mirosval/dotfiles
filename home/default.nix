@@ -35,6 +35,7 @@
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
     home-manager.enable = true;
+    wezterm.enable = true;
 
     ssh = {
       enable = true;

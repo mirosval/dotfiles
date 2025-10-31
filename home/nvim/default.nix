@@ -85,7 +85,7 @@ in
       nodePackages.bash-language-server
       shellcheck
 
-      nodePackages.dockerfile-language-server-nodejs
+      dockerfile-language-server
       nodePackages.vscode-langservers-extracted
       nodePackages.typescript-language-server
       nodePackages.yaml-language-server
@@ -101,7 +101,7 @@ in
       terraform-lsp
 
       # TOML
-      taplo-cli
+      taplo
 
       yamllint
     ];

@@ -16,16 +16,6 @@
       url = "github:lnl7/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    secrets = {
-      # This pattern is because the repo is private
-      # it relies on git being configured with gh auth setup-git
-      url = "git+https://github.com/mirosval/secrets.git?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     blocklist = {
       url = "github:mirosval/unbound-blocklist";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,8 +29,6 @@
       home-manager,
       home-manager-unstable,
       darwin,
-      agenix,
-      secrets,
       ...
     }:
     let
@@ -54,8 +42,6 @@
           darwin
           home-manager
           home-manager-unstable
-          secrets
-          agenix
           ;
       };
     in
@@ -76,12 +62,6 @@
         leon = lib.raspberryImage {
           system = "aarch64-linux";
           host = "leon";
-          user = "miro";
-          stateVersion = "24.05";
-        };
-        butters = lib.linuxSystem {
-          system = "x86_64-linux";
-          host = "butters";
           user = "miro";
           stateVersion = "24.05";
         };

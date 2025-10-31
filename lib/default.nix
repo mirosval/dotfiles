@@ -6,8 +6,6 @@
   darwin,
   home-manager,
   home-manager-unstable,
-  secrets,
-  agenix,
 }:
 let
   homeManagerConfig = import ../home {
@@ -89,11 +87,6 @@ in
         )
         (../hosts + "/${host}/configuration.nix")
         (../hosts + "/${host}/services")
-        agenix.nixosModules.default
-        secrets.nixosModules.secrets
-        {
-          secrets.enable = true;
-        }
         home-manager-unstable.nixosModules.home-manager
         {
           users.users."${user}".home = "/home/${user}";
