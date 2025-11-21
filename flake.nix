@@ -20,6 +20,9 @@
       url = "github:mirosval/unbound-blocklist";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cargo-hawk = {
+      url = "github:mirosval/cargo-hawk";
+    };
   };
 
   outputs =
@@ -29,6 +32,7 @@
       home-manager,
       home-manager-unstable,
       darwin,
+      cargo-hawk,
       ...
     }:
     let
@@ -42,6 +46,7 @@
           darwin
           home-manager
           home-manager-unstable
+          cargo-hawk
           ;
       };
     in

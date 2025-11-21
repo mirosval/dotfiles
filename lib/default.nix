@@ -6,6 +6,7 @@
   darwin,
   home-manager,
   home-manager-unstable,
+  cargo-hawk,
 }:
 let
   homeManagerConfig = import ../home {

@@ -138,3 +138,9 @@ jimmy-image:
 .PHONY: leon-image
 leon-image:
 	nix build -vv .#nixosConfigurations.leon.config.system.build.sdImage
+
+.PHONY: mv-out-of-way
+mv-out-of-way:
+	mv /etc/zshenv /etc/zshenv.before-nix-darwin
+	mv /etc/bashrc /etc/bashrc.before-nix-darwin
+	mv /etc/zshrc /etc/zshrc.before-nix-darwin

@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 let
   unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
@@ -54,5 +58,8 @@ in
     # AI
     unstable.goose-cli
     unstable.claude-code
+
+    # Mine
+    inputs.cargo-hawk.packages.${pkgs.system}.default
   ];
 }
