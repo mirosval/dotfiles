@@ -28,11 +28,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1763667881,
-        "narHash": "sha256-/vxq+CjvuS2FGPObZEOQwSU0mTmhg0qzL4cddPNkOX8=",
+        "lastModified": 1764615269,
+        "narHash": "sha256-b1SyoFoZC3N56rC6cvFGDU/yEyCZCrtnr9XJUGhAHmk=",
         "owner": "mirosval",
         "repo": "cargo-hawk",
-        "rev": "a4446979d9ace5035f8283eeff308b89200bbe61",
+        "rev": "06ecdd4554b85c50375d0e52ee265167f933d71e",
         "type": "github"
       },
       "original": {

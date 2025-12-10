@@ -60,6 +60,7 @@
   jst = "jj st --no-pager";
   jd = "jj diff --tool=difft";
   jgf = "jj git fetch";
+  jgp = "jj git push";
 
   # tmuxp
   tl = "tmuxp load --yes";
