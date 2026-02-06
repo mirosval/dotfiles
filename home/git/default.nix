@@ -1,11 +1,10 @@
-_:
-{
+_: {
   programs.git = {
     enable = true;
-    userName = "Miroslav Zoricak";
-    userEmail = "1315417+mirosval@users.noreply.github.com";
 
-    extraConfig = {
+    settings = {
+      user.name = "Miroslav Zoricak";
+      user.email = "1315417+mirosval@users.noreply.github.com";
       github.user = "mirosval";
       pull.ff = "only";
       push.autoSetupRemote = "true";

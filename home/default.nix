@@ -39,6 +39,7 @@
 
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
         "github.com" = {
           identityFile = "/Users/mirosval/.ssh/id_ed25519";
