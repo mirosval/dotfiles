@@ -44,6 +44,7 @@ in
     unstable.eza
     unstable.procs
     unstable.rink
+    unstable.skim
     unstable.srgn
     unstable.tailscale
     zsh-syntax-highlighting
