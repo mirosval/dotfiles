@@ -3,6 +3,7 @@
   home.stateVersion = "24.05";
   imports = [
     ./alacritty
+    ./claude
     ./cli.nix
     ./direnv
     ./fd

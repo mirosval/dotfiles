@@ -59,7 +59,6 @@ in
 
     # AI
     unstable.goose-cli
-    unstable.claude-code
     unstable.codex
 
     # Mine
