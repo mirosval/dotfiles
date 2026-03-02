@@ -87,7 +87,11 @@ in
   home.packages =
     with pkgs;
     [
-      unstable.tmuxp
+      (unstable.tmuxp.overridePythonAttrs (old: {
+        pythonRelaxDeps = [
+          "libtmux"
+        ];
+      }))
       fzf
     ]
     ++ (

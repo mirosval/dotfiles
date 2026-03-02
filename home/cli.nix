@@ -22,6 +22,7 @@ in
     # tools
     bonk
     dig
+    dust
     ffmpeg
     graphviz
     jq
@@ -59,6 +60,7 @@ in
     # AI
     unstable.goose-cli
     unstable.claude-code
+    unstable.codex
 
     # Mine
     inputs.cargo-hawk.packages.${pkgs.system}.default
