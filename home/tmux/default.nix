@@ -25,6 +25,7 @@ in
     extraConfig = darwin_cmds + ''
       set -g default-terminal "screen-256color"
       set -g pane-base-index 1
+      set -g renumber-windows on
 
       # Fix copy-paste
       # Don't copy on mouse release
