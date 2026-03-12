@@ -5,11 +5,13 @@
     ./alacritty
     ./claude
     ./cli.nix
+    ./delta
     ./direnv
     ./fd
     ./fzf
     ./git
     ./hammerspoon
+    ./jujutsu
     ./karabiner
     ./navi
     ./nvim

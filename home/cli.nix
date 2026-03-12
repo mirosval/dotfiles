@@ -31,7 +31,6 @@ in
     unstable.colima
     unstable.docker
     unstable.docker-buildx
-    unstable.jujutsu
     unstable.trippy
     wget
 

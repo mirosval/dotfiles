@@ -1,8 +1,9 @@
 {
   zshconfig = "code ~/.zshrc";
 
-  l = "eza -lah";
-  lg = "eza -lah --git";
+  l = "eza -lah --icons --group-directories-first";
+  lg = "eza -lah --icons --group-directories-first --git";
+  lsz = "eza -lah --icons --group-directories-first --total-size";
 
   v = "nvim . && clear";
 
@@ -58,7 +59,7 @@
   jr = "jj rebase -d master";
   jp = "jj log --no-pager";
   jst = "jj st --no-pager";
-  jd = "jj diff --tool=difft";
+  jd = "jj diff";
   jgf = "jj git fetch";
   jgp = "jj git push";
 
