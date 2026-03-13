@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 let
   unstable = import inputs.nixpkgs-unstable {
     inherit (pkgs) system;
@@ -35,17 +40,31 @@ in
             hooks = [
               {
                 type = "command";
-                command = "/Users/mirosval/.claude/hooks/rtk-rewrite.sh";
+                command = "${config.home.homeDirectory}/.claude/hooks/rtk-rewrite.sh";
               }
             ];
           }
         ];
+      };
+      fileSuggestion = {
+        type = "command";
+        command = "${config.home.homeDirectory}/.claude/scripts/file-suggestions.sh";
       };
     };
     skills = {
       rust = ./skills/rust;
     };
   };
+
+  home.file.".claude/scripts/file-suggestions.sh" = {
+    executable = true;
+    text = ''
+      #!/bin/bash
+      query=$(cat | jq -r '.query')
+      fd --type f --hidden --follow --no-require-git | sk --filter "$query" | head -20
+    '';
+  };
+
   home.packages = [
     rtk # rtk compresses command output for commonly called commands to save tokens
   ];
