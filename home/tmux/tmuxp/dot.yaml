@@ -24,6 +24,14 @@ windows:
     panes:
       - nvim
       - blank
+  - window_name: homelab
+    layout: main-vertical
+    options:
+      main-pane-width: 80%
+    shell_command_before: cd ~/Projekty/homelab
+    panes:
+      - nvim
+      - blank
   - window_name: secrets
     layout: main-vertical
     options:
