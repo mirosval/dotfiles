@@ -8,7 +8,6 @@
     ./delta
     ./direnv
     ./fd
-    ./fzf
     ./git
     ./hammerspoon
     ./jujutsu
@@ -16,6 +15,7 @@
     ./navi
     ./nvim
     ./rg
+    ./skim
     ./starship
     ./tmux
     ./zoxide

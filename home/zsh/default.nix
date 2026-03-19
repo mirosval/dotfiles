@@ -4,10 +4,10 @@
     enable = true;
     enableCompletion = true;
     syntaxHighlighting.enable = true;
-    # enableAutosuggestions = true;
     autosuggestion.enable = true;
     shellAliases = import ./aliases.nix;
     initContent = lib.mkOrder 550 ''
+      ulimit -n 100000
       ${builtins.readFile ./session_variables.zsh}
       ${builtins.readFile ./functions.zsh}
       ${builtins.readFile ./navi.zsh}
