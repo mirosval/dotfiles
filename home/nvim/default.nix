@@ -82,13 +82,13 @@ in
       ))
     ];
     extraPackages = with unstable; [
-      nodePackages.bash-language-server
       shellcheck
 
+      bash-language-server
       dockerfile-language-server
-      nodePackages.vscode-langservers-extracted
-      nodePackages.typescript-language-server
-      nodePackages.yaml-language-server
+      vscode-langservers-extracted
+      typescript-language-server
+      yaml-language-server
 
       luaformatter
       lua-language-server

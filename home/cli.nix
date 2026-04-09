@@ -56,7 +56,6 @@ in
     neofetch
 
     # AI
-    unstable.goose-cli
     unstable.codex
 
     # Mine
