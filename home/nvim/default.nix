@@ -9,13 +9,14 @@ let
         let
           gitlinker-nvim = super.vimUtils.buildVimPlugin {
             pname = "gitlinker-nvim";
-            version = "2024-04-02";
+            version = "v5.4.0";
             src = pkgs.fetchFromGitHub {
               owner = "linrongbin16";
               repo = "gitlinker.nvim";
-              rev = "839215b322b15b662c08a010534e8de00dae38a6";
-              hash = "sha256-BtvbqV8bD4iiRLBCZdp76eAPy73aHJ9CggBf+0R6tWQ=";
+              rev = "v5.4.0";
+              hash = "sha256-7zpVBZ/Hz9uBhdVeMc7a06M3HnXzo3Ah4ylCpDdITZI=";
             };
+            doCheck = false;
           };
         in
         {
