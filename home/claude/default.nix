@@ -21,6 +21,20 @@ let
     cargoHash = "sha256-ygkLwspnSh4sk0jcWFCzJGVtzZ+bTelMqfMT9Jm1lMI=";
     doCheck = false;
   };
+  claude-tmux = pkgs.rustPlatform.buildRustPackage {
+    pname = "claude-tmux";
+    version = "0.4.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "nielsgroen";
+      repo = "claude-tmux";
+      rev = "99a09f2359086e7fafa182d00daf1f3f2b82ff28";
+      hash = "sha256-2hibrO+t3MhBO7hEfxjcATUu5W3AWQJG1O7x9Xd9oRM=";
+    };
+    cargoHash = "sha256-w/imkvK9GNJmEN1+P8/7mF/DOFwjAZlrQvTrEPiIUDA=";
+    buildInputs = [ pkgs.openssl ];
+    nativeBuildInputs = [ pkgs.pkg-config ];
+    doCheck = false;
+  };
 in
 {
   programs.claude-code = {
@@ -67,5 +81,6 @@ in
 
   home.packages = [
     rtk # rtk compresses command output for commonly called commands to save tokens
+    claude-tmux
   ];
 }

@@ -41,6 +41,9 @@ in
       # session switching
       bind s display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
+      # claude-tmux: manage Claude Code sessions (Ctrl-b Ctrl-c)
+      bind-key C-c display-popup -E -w 80% -h 80% "claude-tmux"
+
       set -g @tmux_power_theme '#483D8B'
       # TokyoNight colors for Tmux
 

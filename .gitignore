@@ -4,3 +4,4 @@ config/nvim/.netrwhist
 Brewfile.lock.json
 result
 du.png
+.claude/settings.local.json
