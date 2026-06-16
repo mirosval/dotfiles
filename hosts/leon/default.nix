@@ -14,6 +14,8 @@
     }}/raspberry-pi/4"
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking = {
     hostName = "leon";
     interfaces.eth0 = {

@@ -40,6 +40,7 @@ in
         (
           { config, ... }:
           {
+            config.boot.zfs.forceImportRoot = false;
             config.system.stateVersion = stateVersion;
           }
         )

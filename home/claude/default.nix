@@ -5,21 +5,10 @@
   ...
 }:
 let
+  system = pkgs.stdenv.hostPlatform.system;
   unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system;
+    inherit system;
     config.allowUnfree = true;
-  };
-  rtk = pkgs.rustPlatform.buildRustPackage {
-    pname = "rtk";
-    version = "0.27.2";
-    src = pkgs.fetchFromGitHub {
-      owner = "rtk-ai";
-      repo = "rtk";
-      rev = "v0.27.2";
-      hash = "sha256-95vOlmFKgAuGpGQfLTsNdVBVbOQJRuFLzYbrCVwj/iY=";
-    };
-    cargoHash = "sha256-ygkLwspnSh4sk0jcWFCzJGVtzZ+bTelMqfMT9Jm1lMI=";
-    doCheck = false;
   };
   claude-tmux = pkgs.rustPlatform.buildRustPackage {
     pname = "claude-tmux";
@@ -80,7 +69,7 @@ in
   };
 
   home.packages = [
-    rtk # rtk compresses command output for commonly called commands to save tokens
+    unstable.rtk # rtk compresses command output for commonly called commands to save tokens
     claude-tmux
   ];
 }

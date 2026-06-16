@@ -1,7 +1,8 @@
 { pkgs, inputs, ... }:
 let
+  system = pkgs.stdenv.hostPlatform.system;
   unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system;
+    inherit system;
     config.allowUnfree = true;
     overlays = [
       (
@@ -33,6 +34,8 @@ in
     enable = true;
     package = unstable.neovim-unwrapped;
     defaultEditor = true;
+    withRuby = false;
+    withPython3 = false;
     plugins = with unstable.vimPlugins; [
       Navigator-nvim # Tmux window switching
       blink-cmp # Autocomplete

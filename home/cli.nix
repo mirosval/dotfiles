@@ -4,8 +4,9 @@
   ...
 }:
 let
+  system = pkgs.stdenv.hostPlatform.system;
   unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system;
+    inherit system;
     config.allowUnfree = true;
   };
 in
@@ -51,14 +52,10 @@ in
     # nix
     # nix-du
 
-    # silly
-    cowsay
-    neofetch
-
     # AI
     unstable.codex
 
     # Mine
-    inputs.cargo-hawk.packages.${pkgs.system}.default
+    inputs.cargo-hawk.packages.${system}.default
   ];
 }

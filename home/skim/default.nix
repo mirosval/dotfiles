@@ -1,7 +1,8 @@
 { pkgs, inputs, ... }:
 let
+  system = pkgs.stdenv.hostPlatform.system;
   unstable = import inputs.nixpkgs-unstable {
-    inherit (pkgs) system;
+    inherit system;
     config.allowUnfree = true;
   };
 in
