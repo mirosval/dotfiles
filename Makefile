@@ -43,7 +43,7 @@ nixos-switch: guard-HOST
 	nixos-rebuild switch --show-trace --flake .#$(HOST)
 
 .PHONY: darwin-switch
-darwin-switch: guard-HOST
+darwin-switch: guard-HOST mv-out-of-way
 	nix --show-trace $(ENSURE_FLAKES) build .#darwinConfigurations.$(HOST).system
 	result/sw/bin/darwin-rebuild switch --flake .#$(HOST)
 
