@@ -16,6 +16,11 @@
       url = "github:lnl7/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+    wrapper-modules.url = "github:Birdeehub/nix-wrapper-modules";
+    import-tree.url = "github:vic/import-tree";
     blocklist = {
       url = "github:mirosval/unbound-blocklist";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,70 +28,8 @@
     cargo-hawk = {
       url = "github:mirosval/cargo-hawk";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs =
-    inputs@{
-      nixpkgs,
-      nixpkgs-unstable,
-      home-manager,
-      home-manager-unstable,
-      darwin,
-      cargo-hawk,
-      ...
-    }:
-    let
-      stateVersion = "24.05";
-      lib = import ./lib {
-        inherit
-          nixpkgs
-          nixpkgs-unstable
-          stateVersion
-          inputs
-          darwin
-          home-manager
-          home-manager-unstable
-          cargo-hawk
-          ;
-      };
-    in
-    {
-      homeConfigurations.jimbo = lib.homeConfiguration {
-        system = "aarch64-darwin";
-        host = "jimbo";
-        user = "mirosval";
-      };
-
-      nixosConfigurations = {
-        jimmy = lib.raspberryImage {
-          system = "aarch64-linux";
-          host = "jimmy";
-          user = "miro";
-          stateVersion = "24.05";
-        };
-        leon = lib.raspberryImage {
-          system = "aarch64-linux";
-          host = "leon";
-          user = "miro";
-          stateVersion = "24.05";
-        };
-      };
-
-      darwinConfigurations = {
-        mirosval = lib.darwinSystem {
-          system = "aarch64-darwin";
-          host = "mirosval";
-          user = "mirosval";
-        };
-        jimbo = lib.darwinSystem {
-          system = "aarch64-darwin";
-          host = "jimbo";
-          user = "mirosval";
-        };
-      };
-
-      lib = {
-        home = import ./home;
-      };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
