@@ -2,6 +2,9 @@
   flake.nixosConfigurations.stan = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.stanConfiguration
+      self.nixosModules.steam
+      self.nixosModules.fonts
+      self.nixosModules.niri
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
