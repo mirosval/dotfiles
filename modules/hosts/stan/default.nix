@@ -5,6 +5,7 @@
       self.nixosModules.steam
       self.nixosModules.fonts
       self.nixosModules.niri
+      self.nixosModules.noctalia-shell
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
