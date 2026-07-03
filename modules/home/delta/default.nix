@@ -1,13 +1,8 @@
 { ... }: {
-  homeModules.delta = { pkgs, inputs, ... }:
-  let
-    system = pkgs.stdenv.hostPlatform.system;
-    unstable = import inputs.nixpkgs-unstable { inherit system; config.allowUnfree = true; };
-  in
-  {
+  homeModules.delta = { pkgs-unstable, ... }: {
     programs.delta = {
       enable = true;
-      package = unstable.delta;
+      package = pkgs-unstable.delta;
       options = {
         navigate = true;
         line-numbers = true;

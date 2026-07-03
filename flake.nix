@@ -8,10 +8,6 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
     darwin = {
       url = "github:lnl7/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +15,6 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
-    wrapper-modules.url = "github:Birdeehub/nix-wrapper-modules";
     import-tree.url = "github:vic/import-tree";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };

@@ -1,14 +1,16 @@
 { ... }: {
-  homeModules.tmux = { pkgs, inputs, ... }:
+  homeModules.tmux = { pkgs, pkgs-unstable, ... }:
   let
-    system = pkgs.stdenv.hostPlatform.system;
-    unstable = import inputs.nixpkgs-unstable { inherit system; config.allowUnfree = true; };
     darwin_cmds =
       if pkgs.stdenv.isDarwin then
         ''
           set -g default-shell /bin/zsh
           set -g default-command "reattach-to-user-namespace -l zsh"
           set-option -a terminal-features 'xterm-256color:RGB'
+
+          # Copy to clipboard (darwin only — needs reattach-to-user-namespace)
+          bind   -T copy-mode-vi y   send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X clear-selection
+          bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X clear-selection
         ''
       else
         "";
@@ -33,10 +35,6 @@
         bind   -T copy-mode-vi v   send -X begin-selection
         # Toggle selection mode
         bind   -T copy-mode-vi C-v send -X rectangle-toggle
-        # Copy to clipboard
-        bind   -T copy-mode-vi y   send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X clear-selection
-        bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe "reattach-to-user-namespace pbcopy" \; send -X clear-selection
-
         # session switching
         bind s display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
@@ -88,7 +86,7 @@
     home.packages =
       with pkgs;
       [
-        unstable.tmuxp
+        pkgs-unstable.tmuxp
         fzf
       ]
       ++ (

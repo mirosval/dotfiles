@@ -1,29 +1,21 @@
 { ... }: {
-  homeModules.nvim = { pkgs, inputs, ... }:
+  homeModules.nvim = { pkgs, pkgs-unstable, ... }:
   let
-    system = pkgs.stdenv.hostPlatform.system;
-    unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [
-        (self: super:
-          let
-            gitlinker-nvim = super.vimUtils.buildVimPlugin {
-              pname = "gitlinker-nvim";
-              version = "v5.4.0";
-              src = pkgs.fetchFromGitHub {
-                owner = "linrongbin16";
-                repo = "gitlinker.nvim";
-                rev = "v5.4.0";
-                hash = "sha256-7zpVBZ/Hz9uBhdVeMc7a06M3HnXzo3Ah4ylCpDdITZI=";
-              };
-              doCheck = false;
-            };
-          in
-          { vimPlugins = super.vimPlugins // { inherit gitlinker-nvim; }; }
-        )
-      ];
-    };
+    unstable = pkgs-unstable.extend (self: super: {
+      vimPlugins = super.vimPlugins // {
+        gitlinker-nvim = super.vimUtils.buildVimPlugin {
+          pname = "gitlinker-nvim";
+          version = "v5.4.0";
+          src = pkgs.fetchFromGitHub {
+            owner = "linrongbin16";
+            repo = "gitlinker.nvim";
+            rev = "v5.4.0";
+            hash = "sha256-7zpVBZ/Hz9uBhdVeMc7a06M3HnXzo3Ah4ylCpDdITZI=";
+          };
+          doCheck = false;
+        };
+      };
+    });
   in
   {
     programs.neovim = {
@@ -59,7 +51,7 @@
       ];
     };
     home.packages = with unstable; [
-      black coursier eslint_d metals mypy nil
+      black coursier eslint_d metals mypy
       nixpkgs-fmt pyright python3Packages.flake8
       python3Packages.isort stylua
     ];

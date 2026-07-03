@@ -1,11 +1,6 @@
 { ... }: {
-  homeModules.claude = { pkgs, inputs, config, ... }:
+  homeModules.claude = { pkgs, pkgs-unstable, config, ... }:
   let
-    system = pkgs.stdenv.hostPlatform.system;
-    unstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
     claude-tmux = pkgs.rustPlatform.buildRustPackage {
       pname = "claude-tmux";
       version = "0.4.0";
@@ -24,7 +19,7 @@
   {
     programs.claude-code = {
       enable = true;
-      package = unstable.claude-code;
+      package = pkgs-unstable.claude-code;
       settings = {
         env.ENABLE_LSP_TOOL = "1";
         enabledPlugins."rust-analyzer-lsp@claude-plugins-official" = true;
@@ -53,7 +48,7 @@
       '';
     };
     home.packages = [
-      unstable.rtk
+      pkgs-unstable.rtk
       claude-tmux
     ];
   };

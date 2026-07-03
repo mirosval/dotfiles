@@ -1,5 +1,5 @@
 { ... }: {
-  homeModules.base = _: {
+  homeModules.base = { config, ... }: {
     programs.home-manager.enable = true;
     programs.wezterm.enable = true;
     programs.ssh = {
@@ -7,7 +7,7 @@
       enableDefaultConfig = false;
       settings = {
         "github.com" = {
-          IdentityFile = "/Users/mirosval/.ssh/id_ed25519";
+          IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";
           AddKeysToAgent = "yes";
           UseKeychain = "yes";
           IgnoreUnknown = "UseKeychain";
@@ -16,7 +16,7 @@
           HostName = "127.0.0.1";
           User = "root";
           Port = 3022;
-          IdentityFile = "/Users/mirosval/.dotfiles/builders/linux-aarch64/keys/id_ed25519";
+          IdentityFile = "${config.home.homeDirectory}/.dotfiles/builders/linux-aarch64/keys/id_ed25519";
           StrictHostKeyChecking = "accept-new";
           PreferredAuthentications = "publickey";
           ServerAliveInterval = 60;
