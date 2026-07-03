@@ -16,12 +16,12 @@
   # Each home/*/default.nix contributes one key to homeModules.
   # home.nix composes them all into homeConfig for host modules to consume.
   options.homeModules = lib.mkOption {
-    type = lib.types.lazyAttrsOf lib.types.raw;
+    type = lib.types.lazyAttrsOf lib.types.deferredModule;
     default = {};
   };
 
   options.homeConfig = lib.mkOption {
-    type = lib.types.raw;
+    type = lib.types.deferredModule;
     default = {};
   };
 

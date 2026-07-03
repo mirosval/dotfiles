@@ -1,11 +1,4 @@
-{ inputs, config, ... }:
-let
-  pkgs-unstable = import inputs.nixpkgs-unstable {
-    system = "aarch64-darwin";
-    config.allowUnfree = true;
-  };
-in
-{
+{ inputs, config, ... }: {
   flake.darwinConfigurations.jimbo = inputs.darwin.lib.darwinSystem {
     system = "aarch64-darwin";
     modules = [
@@ -24,7 +17,6 @@ in
         # Disabled: macOS 26.x is unsupported by Homebrew
         home-manager.useGlobalPkgs = true;
         home-manager.users.mirosval = config.homeConfig;
-        home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
       }
     ];
   };
