@@ -20,13 +20,7 @@
     packages = lib.optionalAttrs pkgs.stdenv.isLinux {
       noctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
         inherit pkgs;
-        settings = {
-          bar = {
-            density = "compact";
-            position = "right";
-          };
-          colorSchemes.predefinedScheme = "Monochrome";
-        };
+        settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
       };
     };
   };
