@@ -21,13 +21,6 @@
     };
     wrapper-modules.url = "github:Birdeehub/nix-wrapper-modules";
     import-tree.url = "github:vic/import-tree";
-    blocklist = {
-      url = "github:mirosval/unbound-blocklist";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    cargo-hawk = {
-      url = "github:mirosval/cargo-hawk";
-    };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
