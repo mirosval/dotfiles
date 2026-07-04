@@ -22,17 +22,22 @@
           input.keyboard.xkb.layout = "us";
 
           spawn-at-startup = [
-            (lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.noctalia)
+            # (lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.noctalia)
+            noctaliaExe
           ];
 
           binds = {
             "Mod+Return".spawn = config.terminal;
+            "Mod+Space".spawn-sh = "${noctaliaExe} ipc call launcher toggle";
+            "Mod+Comma".spawn-sh = "${noctaliaExe} ipc call settings toggle";
 
             "Mod+Q".close-window = _: { };
             "Mod+F".maximize-column = _: { };
             "Mod+G".fullscreen-window = _: { };
             "Mod+Shift+F".toggle-window-floating = _: { };
             "Mod+C".center-column = _: { };
+            "Mod+U".show-hotkey-overlay = _: { };
+            "Mod+O".toggle-overview = _: { };
 
             "Mod+H".focus-column-left = _: { };
             "Mod+L".focus-column-right = _: { };
@@ -74,8 +79,13 @@
             "Mod+S".spawn-sh = "${noctaliaExe} ipc call launcher toggle";
             "Mod+V".spawn-sh = "${config.pkgs.alsa-utils}/bin/amixer sset Capture toggle";
 
-            "XF86AudioRaiseVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
-            "XF86AudioLowerVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
+            # "XF86AudioRaiseVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+";
+            # "XF86AudioLowerVolume".spawn-sh = "wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-";
+            "XF86AudioRaiseVolume".spawn-sh = "${noctaliaExe} ipc call volume increase";
+            "XF86AudioLowerVolume".spawn-sh = "${noctaliaExe} ipc call volume decrease";
+            "XF86AudioMute".spawn-sh = "${noctaliaExe} ipc call volume muteOutput";
+            "XF86MonBrightnessUp".spawn-sh = "${noctaliaExe} ipc call brightness increase";
+            "XF86MonBrightnessDown".spawn-sh = "${noctaliaExe} ipc call brightness decrease";
 
             "Mod+Ctrl+H".set-column-width = "-5%";
             "Mod+Ctrl+L".set-column-width = "+5%";
@@ -102,8 +112,6 @@
                 '';
               }
             );
-
-            "Mod+d".spawn = "fuzzel";
           };
 
           layout = {
@@ -125,13 +133,22 @@
               "w1" = settings;
               "w2" = settings;
               "w3" = settings;
-              "w4" = settings;
-              "w5" = settings;
-              "w6" = settings;
-              "w7" = settings;
-              "w8" = settings;
-              "w9" = settings;
+              # "w4" = settings;
+              # "w5" = settings;
+              # "w6" = settings;
+              # "w7" = settings;
+              # "w8" = settings;
+              # "w9" = settings;
             };
+
+          window-rule = {
+            geometry-corner-radius = 10;
+            clip-to-geometry = true;
+          };
+
+          debug = {
+            honor-xdg-activation-with-invalid-serial = _: { };
+          };
         };
     };
 

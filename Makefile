@@ -144,3 +144,7 @@ mv-out-of-way:
 	mv /etc/zshenv /etc/zshenv.before-nix-darwin
 	mv /etc/bashrc /etc/bashrc.before-nix-darwin
 	mv /etc/zshrc /etc/zshrc.before-nix-darwin
+
+.PHONY: dump-noctalia-settings
+dump-noctalia-settings:
+	noctalia-shell ipc call state all > ./modules/nixos/noctalia.json
