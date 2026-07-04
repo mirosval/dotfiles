@@ -109,6 +109,7 @@
       neovim
       git
       gh
+      gnumake
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
