@@ -25,6 +25,12 @@
     default = {};
   };
 
+  # wrapper-modules settings modules, composed into perSystem packages.
+  options.flake.wrappersModules = lib.mkOption {
+    type = lib.types.lazyAttrsOf lib.types.raw;
+    default = {};
+  };
+
   config = {
     systems = [ "aarch64-darwin" "aarch64-linux" "x86_64-linux" ];
 
