@@ -1,6 +1,8 @@
 { ... }: {
-  homeModules.claude = { pkgs, pkgs-unstable, config, ... }:
+  homeModules.claude = { pkgs, pkgs-unstable, config, lib, ... }:
   let
+    skillNames = builtins.attrNames
+      (lib.filterAttrs (_: type: type == "directory") (builtins.readDir ./skills));
     claude-tmux = pkgs.rustPlatform.buildRustPackage {
       pname = "claude-tmux";
       version = "0.4.0";
@@ -37,7 +39,7 @@
           command = "${config.home.homeDirectory}/.claude/scripts/file-suggestions.sh";
         };
       };
-      skills.rust = ./skills/rust;
+      skills = lib.genAttrs skillNames (name: ./skills + "/${name}");
     };
     home.file.".claude/scripts/file-suggestions.sh" = {
       executable = true;

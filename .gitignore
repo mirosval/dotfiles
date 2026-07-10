@@ -5,3 +5,4 @@ Brewfile.lock.json
 result
 du.png
 .claude/settings.local.json
+.claude/handoffs/
