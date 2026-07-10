@@ -24,6 +24,7 @@ jjbk() {
     fi
 
     jj bookmark create --revision @ "$name"
+    jj bookmark track "$name" --remote=origin
 }
 
 # Push current revision to GH and open browser with the PR link from GH
