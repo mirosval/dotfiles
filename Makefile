@@ -148,3 +148,7 @@ mv-out-of-way:
 .PHONY: dump-noctalia-settings
 dump-noctalia-settings:
 	noctalia-shell ipc call state all > ./modules/nixos/noctalia.json
+
+.PHONY: nvim
+nvim:
+	nix flake run .#neovim

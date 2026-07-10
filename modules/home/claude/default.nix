@@ -30,7 +30,7 @@
             matcher = "Bash";
             hooks = [{
               type = "command";
-              command = "${config.home.homeDirectory}/.claude/hooks/rtk-rewrite.sh";
+              command = "${pkgs-unstable.rtk}/bin/rtk hook claude";
             }];
           }
         ];
