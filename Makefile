@@ -151,4 +151,4 @@ dump-noctalia-settings:
 
 .PHONY: nvim
 nvim:
-	nix flake run .#neovim
+	nix run .#neovim

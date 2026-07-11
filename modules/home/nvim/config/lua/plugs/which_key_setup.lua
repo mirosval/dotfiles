@@ -17,6 +17,10 @@ local function find_related()
   require("telescope.builtin").find_files({ cwd = vim.fn.expand("%:p:h") })
 end
 
+local function find_files_then_grep()
+  require("plugs.fd_skim_grep_picker").picker()
+end
+
 -- Setup which-key with configuration
 wk.setup({
   preset = "modern", -- Use modern preset for better defaults
@@ -61,6 +65,7 @@ wk.add({
   { "<leader>fd", ":Telescope lsp_document_symbols<CR>",          desc = "Search LSP Document Symbols" },
   { "<leader>fw", ":Telescope lsp_dynamic_workspace_symbols<CR>", desc = "Search LSP Workspace Symbols" },
   { "<leader>fr", find_related,                                   desc = "Find related files" },
+  { "<leader>ft", find_files_then_grep,                           desc = "Find files, then grep (comma to scope)" },
 
   -- LSP group
   { "g",          group = "Go to" },
