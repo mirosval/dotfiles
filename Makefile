@@ -79,6 +79,7 @@ lint:
 # Cleans up old nix generations to free up disk space
 .PHONY: gc
 gc:
+	./result/sw/bin/nix-collect-garbage -d
 	sudo nix-collect-garbage -d
 
 # Opens an image showing the disk space consumed by nix
@@ -86,7 +87,7 @@ du: du.png
 	open du.png
 
 du.png:
-	nix-du -s=500MB | dot -Tpng > du.png
+	nix run nixpkgs#nix-du -- -s=500MB | dot -Tpng > du.png
 
 # Raspberry PI builders based on https://github.com/JamesGuthrie/nix-docker-builder-macos
 
