@@ -141,9 +141,9 @@ leon-image:
 
 .PHONY: mv-out-of-way
 mv-out-of-way:
-	mv /etc/zshenv /etc/zshenv.before-nix-darwin
-	mv /etc/bashrc /etc/bashrc.before-nix-darwin
-	mv /etc/zshrc /etc/zshrc.before-nix-darwin
+	[ ! -e /etc/zshenv ] || mv /etc/zshenv /etc/zshenv.before-nix-darwin
+	[ ! -e /etc/bashrc ] || mv /etc/bashrc /etc/bashrc.before-nix-darwin
+	[ ! -e /etc/zshrc ] || mv /etc/zshrc /etc/zshrc.before-nix-darwin
 
 .PHONY: dump-noctalia-settings
 dump-noctalia-settings:
