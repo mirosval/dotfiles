@@ -19,7 +19,7 @@
         {
           xwayland-satellite.path = lib.getExe config.pkgs.xwayland-satellite;
 
-          input.keyboard.xkb.layout = "us";
+          input.keyboard.xkb.layout = "us,sk";
 
           spawn-at-startup = [
             # (lib.getExe self.packages.${config.pkgs.stdenv.hostPlatform.system}.noctalia)
@@ -159,7 +159,7 @@
     };
     services.greetd = {
       enable = true;
-      settings.default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd niri-session";
+      settings.default_session.command = "${pkgs.tuigreet}/bin/tuigreet --cmd niri-session";
     };
   };
 
