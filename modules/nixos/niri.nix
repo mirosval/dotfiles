@@ -9,7 +9,7 @@
     {
       options.terminal = lib.mkOption {
         type = lib.types.str;
-        default = "alacritty";
+        default = "wezterm";
       };
 
       config.settings =
