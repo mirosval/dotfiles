@@ -4,6 +4,7 @@
     services.llama-cpp = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.llama;
+      host = "0.0.0.0";
       port = 8083;
       # settings.model-preset = (pkgs.formats.ini { }).generate "models-preset.ini" {
       modelsPreset = {
