@@ -6,15 +6,23 @@
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.llama;
       host = "0.0.0.0";
       port = 8083;
+      extraFlags = [
+        "--ctx-size"
+        "65536"
+        "--n-gpu-layers"
+        "99"
+        "--flash-attn"
+        "on"
+      ];
       # settings.model-preset = (pkgs.formats.ini { }).generate "models-preset.ini" {
       modelsPreset = {
         "Qwen3" = {
           hf-repo = "unsloth/Qwen3.6-35B-A3B-GGUF";
-          hf-file = "Qwen3.6-35B-A3B-UD-Q2_K_XL.gguf";
+          hf-file = "Qwen3.6-35B-A3B-UD-IQ3_S.gguf";
           alias = "unsloth/Qwen3.6-35B-A3B";
           temp = "1.0";
           top-p = "0.95";
-          top-k = "40";
+          top-k = "20";
         };
       };
     };
