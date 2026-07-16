@@ -60,3 +60,7 @@ o.foldlevelstart = 99
 vim.o.winborder = 'rounded'
 
 g.have_nerd_font = true
+
+-- markdown
+g.markdown_minlines = 500
+g.markdown_fenced_languages = { 'html', 'python', 'css', 'bash=sh', 'shell', 'rust', 'typescript', 'proto' }
