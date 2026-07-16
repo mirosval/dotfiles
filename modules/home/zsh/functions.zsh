@@ -30,5 +30,9 @@ jjbk() {
 # Push current revision to GH and open browser with the PR link from GH
 jjpr ()
 {
-    jj git push --allow-new 2>&1 | awk '/https:\/\/github.com\/.*\/pull\/new/ {print $2; exit}' | xargs open
+    local bm
+    bm=$(jj log --no-graph -r @ -T 'local_bookmarks.map(|b| b.name()).join(" ")')
+    jj git push --bookmark "$bm" 2>&1 \
+        | awk 'match($0, /https:\/\/github\.com\/[^ ]*\/pull\/new\/[^ ]*/){print substr($0,RSTART,RLENGTH); exit}' \
+        | xargs open
 }

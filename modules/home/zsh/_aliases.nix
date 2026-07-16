@@ -62,6 +62,8 @@
   jd = "jj diff";
   jgf = "jj git fetch";
   jgp = "jj git push";
+  jba = "jj bookmark advance";
+  jwu = "jj workspace update-stale";
 
   # tmuxp
   tl = "tmuxp load --yes";
