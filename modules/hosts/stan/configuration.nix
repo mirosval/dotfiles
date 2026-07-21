@@ -52,7 +52,7 @@
 
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
-    services.xserver.enable = true;
+    services.xserver.enable = false;
 
     # Enable the KDE Plasma Desktop Environment.
     services.displayManager.sddm.enable = true;
@@ -96,6 +96,11 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "video"
+        "seat"
+        "audio"
+        "libvirtd"
+        "gamemode"
       ];
     };
 
@@ -104,6 +109,9 @@
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
+
+    # AMD GPU
+    nixpkgs.config.rocmSupport = true;
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
@@ -115,7 +123,13 @@
       gh
       gnumake
       fuzzel
+      mangohud
     ];
+    environment.sessionVariables = {
+      # AMD_VULKAN_ICD = "RADV";
+      # PROTON_USE_NTSYNC = "1";
+      # ENABLE_GAMESCOPE_WSI = "1";
+    };
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.

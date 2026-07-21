@@ -10,8 +10,8 @@
       self.nixosModules.stanConfiguration
       self.nixosModules.steam
       self.nixosModules.fonts
-      self.nixosModules.niri
-      self.nixosModules.noctalia
+      # self.nixosModules.niri
+      # self.nixosModules.noctalia
       self.nixosModules.llama
       inputs.home-manager.nixosModules.home-manager
       {

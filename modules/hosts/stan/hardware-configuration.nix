@@ -16,6 +16,7 @@
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
 
+      boot.consoleLogLevel = 0;
       boot.initrd.availableKernelModules = [
         "nvme"
         "xhci_pci"
@@ -24,8 +25,26 @@
         "usb_storage"
         "sd_mod"
       ];
-      boot.initrd.kernelModules = [ ];
-      boot.kernelModules = [ "kvm-amd" ];
+      boot.initrd.kernelModules = [
+        "amdgpu"
+      ];
+      boot.initrd.verbose = false;
+      boot.plymouth.enable = true;
+      boot.kernelModules = [
+        "kvm-amd"
+        "ntsync"
+      ];
+      boot.kernelParams = [
+        "quiet"
+        "udev.log_level=3"
+        "amdgpu.lockup_timeout=5000,10000,10000,5000"
+        "amdgpu.sched_hw_submission=4"
+      ];
+      boot.kernel.sysctl = {
+        "kernel.split_lock_mitigate" = 0;
+        "kernel.nmi_watchdog" = 0;
+        "kernel.sched_bore" = "1";
+      };
       boot.extraModulePackages = [ ];
 
       fileSystems."/" = {
@@ -45,6 +64,11 @@
       swapDevices = [ ];
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+      hardware.enableRedistributableFirmware = true;
       hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+      hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
     };
 }
