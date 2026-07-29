@@ -14,6 +14,10 @@ vim.api.nvim_set_option('updatetime', 300)
 o.autoread = true
 o.clipboard:append('unnamed')
 o.scrolloff = 15
+o.confirm = true
+
+-- default timeout for mapped key sequences; kickstart.nvim sets this to 300 for snappier which-key popups
+o.timeoutlen = 1000
 
 -- mouse
 o.mouse = 'a'
@@ -64,3 +68,10 @@ g.have_nerd_font = true
 -- markdown
 g.markdown_minlines = 500
 g.markdown_fenced_languages = { 'html', 'python', 'css', 'bash=sh', 'shell', 'rust', 'typescript', 'proto' }
+
+-- highlight yanked text
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function() vim.hl.on_yank() end,
+})

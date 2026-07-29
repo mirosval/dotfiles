@@ -9,6 +9,7 @@ with pkgs.vimPlugins;
   git-blame-nvim
   gitlinker-nvim
   gitsigns-nvim
+  guess-indent-nvim
   which-key-nvim
   lualine-nvim
   nvim-autopairs

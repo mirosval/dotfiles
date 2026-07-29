@@ -13,8 +13,16 @@ function lsp.setup()
 
   -- Diagnostics
   vim.diagnostic.config({
-    -- virtual_text = true,
-    virtual_lines = true,
+    virtual_text = false,
+    virtual_lines = false,
+    severity_sort = true,
+    float = { border = "rounded", source = "if_many" },
+    underline = { severity = { min = vim.diagnostic.severity.WARN } },
+    jump = {
+      on_jump = function(_, bufnr)
+        vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+      end,
+    },
   })
 end
 

@@ -105,9 +105,6 @@ wk.add({
     desc = "Go to definition in horizontal split"
   },
 
-  -- Aerial
-  { "<leader>o", ":AerialToggle!<CR>",                desc = "Toggle Aerial outline" },
-
   -- GitLink
   { "gl",        group = "Git link" },
   { "gllc",      function() vim.cmd("GitLink") end,   desc = "Copy GH link to clipboard", mode = { "n", "v" } },

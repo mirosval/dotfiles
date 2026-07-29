@@ -1,3 +1,6 @@
+-- faster startup via cached compiled lua modules
+vim.loader.enable()
+
 -- general vim options
 require("opts")
 -- load/install plugins
