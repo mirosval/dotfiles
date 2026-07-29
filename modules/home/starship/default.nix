@@ -13,6 +13,10 @@
           charging_symbol = "⚡️";
           discharging_symbol = "💀";
         };
+        claude_context.display = {
+          threshold = "0";
+          hidden = "false";
+        };
       };
     };
   };

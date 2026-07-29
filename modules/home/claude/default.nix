@@ -39,6 +39,10 @@
             type = "command";
             command = "${config.home.homeDirectory}/.claude/scripts/file-suggestions.sh";
           };
+          statusLine = {
+            type = "command";
+            command = "starship statusline claude-code";
+          };
         };
         skills = lib.genAttrs skillNames (name: ./skills + "/${name}");
       };
