@@ -5,6 +5,9 @@
       enableZshIntegration = true;
       settings = {
         add_newline = false;
+        profiles = {
+          claude-code = "$claude_model$claude_context$claude_cost";
+        };
         battery = {
           full_symbol = "🔋";
           charging_symbol = "⚡️";
