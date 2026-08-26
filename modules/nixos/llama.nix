@@ -90,63 +90,45 @@
           hf-repo = "unsloth/Qwen3.8-27B-GGUF";
           hf-file = "Qwen3.8-27B-UD-Q4_K_M.gguf";
           alias = "unsloth/Qwen3.8-27B-Q4";
-          # Disable "fit" to prevent layers from being loaded into the CPU due to an automatic calculation error
+          "ngl" = "99";
+          "ctx-size" = "64096";
+          "cache-type-k" = "q4_0";
+          "cache-type-v" = "q4_0";
+          "fa" = "on";
           "fit" = "off";
-          "ctx-size" = "73728";
-          "context-shift" = "1";
-
-          # Native Model MTP (Speculative Decoding)
-          "spec-type" = "ngram-mod,draft-mtp";
+          "parallel" = "1";
+          "spec-type" = "draft-mtp";
           "spec-draft-n-max" = "2";
-
-          # KV Quantization (q4_1 allows us to fit 73k context in 16GB VRAM)
-          "cache-type-k" = "q4_1";
-          "cache-type-v" = "q4_1";
-
-          # Thinking / Reasoning Budget Params
-          "chat-template-kwargs" = ''{"preserve_thinking": true, "reasoning_effort":"medium"}'';
+          "spec-draft-type-k" = "q4_0";
+          "spec-draft-type-v" = "q4_0";
+          "chat-template-kwargs" = ''{"preserve_thinking": true, "reasoning_effort": "medium"}'';
           "reasoning-budget" = "5000";
-
-          # Reduced batch sizes to prevent VRAM spikes during massive prefills
-          "batch-size" = "1024";
-          "ubatch-size" = "512";
-
-          # Official / Recommended Quant Sampler Tuning
-          "temp" = "0.4";
-          "top-p" = "0.90";
-          "top-k" = "15";
-          "min-p" = "0.02";
+          "temp" = "1.0";
+          "top-p" = "0.95";
+          "top-k" = "20";
+          "min-p" = "0.0";
         };
         "Qwen38Q3" = {
           hf-repo = "unsloth/Qwen3.8-27B-GGUF";
           hf-file = "Qwen3.8-27B-UD-IQ3_S.gguf";
           alias = "unsloth/Qwen3.8-27B-IQ3";
-          # Disable "fit" to prevent layers from being loaded into the CPU due to an automatic calculation error
+          "ngl" = "99";
+          "ctx-size" = "64096";
+          "cache-type-k" = "q4_0";
+          "cache-type-v" = "q4_0";
+          "fa" = "on";
           "fit" = "off";
-          "ctx-size" = "16000";
-          "context-shift" = "1";
-
-          # Native Model MTP (Speculative Decoding)
-          "spec-type" = "ngram-mod,draft-mtp";
+          "parallel" = "1";
+          "spec-type" = "draft-mtp";
           "spec-draft-n-max" = "2";
-
-          # KV Quantization (q4_1 allows us to fit 73k context in 16GB VRAM)
-          "cache-type-k" = "q4_1";
-          "cache-type-v" = "q4_1";
-
-          # Thinking / Reasoning Budget Params
-          "chat-template-kwargs" = ''{"preserve_thinking": true, "reasoning_effort":"medium"}'';
+          "spec-draft-type-k" = "q4_0";
+          "spec-draft-type-v" = "q4_0";
+          "chat-template-kwargs" = ''{"preserve_thinking": true, "reasoning_effort": "medium"}'';
           "reasoning-budget" = "5000";
-
-          # Reduced batch sizes to prevent VRAM spikes during massive prefills
-          "batch-size" = "1024";
-          "ubatch-size" = "512";
-
-          # Official / Recommended Quant Sampler Tuning
-          "temp" = "0.4";
-          "top-p" = "0.90";
-          "top-k" = "15";
-          "min-p" = "0.02";
+          "temp" = "1.0";
+          "top-p" = "0.95";
+          "top-k" = "20";
+          "min-p" = "0.0";
         };
         "Qwen38Q2" = {
           hf-repo = "unsloth/Qwen3.8-27B-GGUF";
@@ -164,6 +146,8 @@
           "spec-draft-n-max" = "2";
           "spec-draft-type-k" = "q4_0";
           "spec-draft-type-v" = "q4_0";
+          "chat-template-kwargs" = ''{"preserve_thinking": true, "reasoning_effort": "medium"}'';
+          "reasoning-budget" = "5000";
           "temp" = "1.0";
           "top-p" = "0.95";
           "top-k" = "20";
