@@ -10,6 +10,7 @@
       self.nixosModules.stanConfiguration
       self.nixosModules.steam
       self.nixosModules.fonts
+      self.nixosModules.kde
       # self.nixosModules.niri
       # self.nixosModules.noctalia
       self.nixosModules.llama
