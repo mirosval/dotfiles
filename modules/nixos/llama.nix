@@ -1,5 +1,11 @@
 # Models stored in /var/cache/private/llama-cpp
-{ self, inputs, ... }: {
+{
+  self,
+  inputs,
+  withSystem,
+  ...
+}:
+{
   flake.nixosModules.llama = { pkgs, ... }: {
     networking.firewall.allowedTCPPorts = [ 8083 ];
     services.llama-cpp = {
@@ -167,12 +173,21 @@
     };
   };
 
-  homeModules.llama-cpp-rocm = { pkgs-unstable, ... }: {
-    home.packages = [
-      pkgs-unstable.llama-cpp-rocm
-      pkgs-unstable.nvtopPackages.amd
-    ];
-  };
+  homeModules.llama-cpp-rocm = withSystem "x86_64-linux" (
+    { system, ... }:
+    let
+      unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+    {
+      home.packages = [
+        unstable.llama-cpp-rocm
+        unstable.nvtopPackages.amd
+      ];
+    }
+  );
 
   perSystem =
     { system, ... }:
