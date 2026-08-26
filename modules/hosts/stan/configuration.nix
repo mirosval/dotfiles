@@ -101,6 +101,7 @@
         "audio"
         "libvirtd"
         "gamemode"
+        "uinput"
       ];
     };
 
