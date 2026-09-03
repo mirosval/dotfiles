@@ -107,4 +107,4 @@ $ unit: systemctl list-units --no-pager --full --quiet
 # Login to K8S
 tsh kube login <env>
 
-$ env: tsh kube ls --quiet
+$ env: tsh kube ls -f json | jq -r '.[].kube_cluster_name'
