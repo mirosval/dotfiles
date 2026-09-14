@@ -31,7 +31,7 @@ Ask to confirm the summary, allow the opportunity to refine or correct the summa
 
 ### Save the handoff
 
-Create a markdown document in the project root under `./claude/handoffs/[YYYY-MM-DD]-short-description.md`, make sure `./claude/handoffs` is in .gitignore to avoid committing it, add it to .gitignore (create `.gitignore` if it doesn't exist).
+Create a markdown document in the user's home directory under `~/handoffs/[project-name]/[YYYY-MM-DD]-short-description.md`.
 
 Format the document appropriately to the nature of the session, include the following items where relevant:
 

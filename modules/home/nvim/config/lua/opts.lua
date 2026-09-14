@@ -67,7 +67,7 @@ g.have_nerd_font = true
 
 -- markdown
 g.markdown_minlines = 500
-g.markdown_fenced_languages = { 'html', 'python', 'css', 'bash=sh', 'shell', 'rust', 'typescript', 'proto' }
+g.markdown_fenced_languages = { 'html', 'python', 'css', 'bash=sh', 'shell=sh', 'rust', 'typescript', 'proto' }
 
 -- highlight yanked text
 vim.api.nvim_create_autocmd('TextYankPost', {
