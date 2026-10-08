@@ -1,7 +1,8 @@
 { ... }: {
-  homeModules.starship = _: {
+  homeModules.starship = { pkgs-unstable, ... }: {
     programs.starship = {
       enable = true;
+      package = pkgs-unstable.starship;
       enableZshIntegration = true;
       settings = {
         add_newline = false;
