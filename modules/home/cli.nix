@@ -21,6 +21,7 @@
       pkgs-unstable.eza
       pkgs-unstable.nerd-fonts.hasklug
       pkgs-unstable.nerd-fonts.monaspace
+      pkgs-unstable.nvd
       pkgs-unstable.pi-coding-agent
       pkgs-unstable.procs
       pkgs-unstable.rink
