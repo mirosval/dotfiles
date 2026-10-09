@@ -4,6 +4,7 @@
       enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
+      autocd = true;
       autosuggestion.enable = true;
       shellAliases = import ./_aliases.nix;
       initContent = lib.mkOrder 550 ''
