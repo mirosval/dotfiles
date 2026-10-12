@@ -8,51 +8,27 @@ windows:
     panes:
       - nvim
       - blank
-  - window_name: lw-front
+  - window_name: lw
     layout: main-vertical
     options:
       main-pane-width: 80%
-    shell_command_before: cd ~/Projekty/linkweaver/frontend
+    shell_command_before: cd ~/Projekty/linkweaver/
     panes:
       - nvim
       - blank
-  - window_name: lw-back
+  - window_name: monies
     layout: main-vertical
     options:
       main-pane-width: 80%
-    shell_command_before: cd ~/Projekty/linkweaver/backend
+    shell_command_before: cd ~/Projekty/monies/
     panes:
       - nvim
       - blank
-  - window_name: lw-ext
+  - window_name: wled-gradients
     layout: main-vertical
     options:
       main-pane-width: 80%
-    shell_command_before: cd ~/Projekty/linkweaver/extension
-    panes:
-      - nvim
-      - blank
-  - window_name: monies-back
-    layout: main-vertical
-    options:
-      main-pane-width: 80%
-    shell_command_before: cd ~/Projekty/monies/backend
-    panes:
-      - nvim
-      - blank
-  - window_name: monies-front
-    layout: main-vertical
-    options:
-      main-pane-width: 80%
-    shell_command_before: cd ~/Projekty/monies/frontend
-    panes:
-      - nvim
-      - blank
-  - window_name: eu-gear
-    layout: main-vertical
-    options:
-      main-pane-width: 80%
-    shell_command_before: cd ~/Projekty/european-gear
+    shell_command_before: cd ~/Projekty/wled-sunrise/
     panes:
       - nvim
       - blank
