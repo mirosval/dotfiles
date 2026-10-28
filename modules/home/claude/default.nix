@@ -33,6 +33,7 @@
         settings = {
           env.ENABLE_LSP_TOOL = "1";
           env.CLAUDE_CODE_NO_FLICKER = "1"; # Full screen renderer
+          env.CLAUDE_CODE_CERT_STORE = "bundled,system";
           enabledPlugins."rust-analyzer-lsp@claude-plugins-official" = true;
           hooks.PreToolUse = [ ];
           fileSuggestion = {
