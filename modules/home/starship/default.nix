@@ -5,8 +5,8 @@
       package = pkgs-unstable.starship;
       enableZshIntegration = true;
       settings = {
-        format = "$username$hostname$kubernetes$directory$vcs$nodejs$python$rust$scala$terraform$nix_shell$aws$direnv$battery$time$status$shell$character";
-        add_newline = true;
+        format = "$username$hostname$kubernetes$directory$vcs$nodejs$python$rust$scala$terraform$nix_shell$aws$direnv$battery$time$status$shell\n$character";
+        add_newline = false;
         profiles = {
           claude-code = "$claude_model$claude_context$claude_cost";
         };
