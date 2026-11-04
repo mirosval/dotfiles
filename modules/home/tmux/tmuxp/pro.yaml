@@ -3,7 +3,7 @@ windows:
   - window_name: blog
     layout: main-vertical
     options:
-      main-pane-width: 80%
+      main-pane-width: 70%
     shell_command_before: cd ~/Projekty/blog
     panes:
       - nvim
@@ -11,7 +11,7 @@ windows:
   - window_name: lw
     layout: main-vertical
     options:
-      main-pane-width: 80%
+      main-pane-width: 70%
     shell_command_before: cd ~/Projekty/linkweaver/
     panes:
       - nvim
@@ -19,7 +19,7 @@ windows:
   - window_name: monies
     layout: main-vertical
     options:
-      main-pane-width: 80%
+      main-pane-width: 70%
     shell_command_before: cd ~/Projekty/monies/
     panes:
       - nvim
@@ -27,7 +27,7 @@ windows:
   - window_name: wled-gradients
     layout: main-vertical
     options:
-      main-pane-width: 80%
+      main-pane-width: 70%
     shell_command_before: cd ~/Projekty/wled-sunrise/
     panes:
       - nvim
