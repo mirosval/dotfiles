@@ -11,12 +11,18 @@ mkcd ()
 # Create jj bookmark from the commit description
 jjbk() {
     name=$(jj show --template "description" --no-patch --no-pager | \
-        awk -F':' 'NR==1{
-            t=tolower($2)
-            gsub(/[^a-z0-9]+/,"-",t)
-            sub(/^-|-$/,"",t)
-            print $1 "/" t
-        }')
+        awk 'function slug(s) {
+                gsub(/[^A-Za-z0-9]+/, "-", s)
+                gsub(/^-+|-+$/, "", s)
+                return s
+            }
+            NR==1 {
+                i = index($0, ":")
+                if (i == 0) exit
+                type = slug(substr($0, 1, i - 1))
+                summary = slug(tolower(substr($0, i + 1)))
+                if (type != "" && summary != "") print type "/" summary
+            }')
 
     if [[ -z $name ]]; then
         print -u2 "Error: there was no description to generate bookmark from"
