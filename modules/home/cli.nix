@@ -13,6 +13,7 @@
       pkgs-unstable.bandwhich
       pkgs-unstable.bottom
       pkgs-unstable.btop
+      pkgs-unstable.cargo-clean-all
       pkgs-unstable.codex
       pkgs-unstable.colima
       pkgs-unstable.difftastic

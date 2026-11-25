@@ -67,11 +67,16 @@ jjbk() {
 
 ### jjpr
 
-Pushes the current revision to GitHub (`--allow-new` to create the remote branch if needed) and opens the PR creation URL in the browser.
+Pushes the bookmark on `@` to GitHub and opens the PR creation URL in the browser. It only works when `@` itself carries the bookmark (not an empty change on top of it), and only on the first push: GitHub prints the `pull/new` URL only when the push creates the branch.
 
 ```zsh
-jjpr() {
-    jj git push --allow-new 2>&1 | awk '/https:\/\/github.com\/.*\/pull\/new/ {print $2; exit}' | xargs open
+jjpr ()
+{
+    local bm
+    bm=$(jj log --no-graph -r @ -T 'local_bookmarks.map(|b| b.name()).join(" ")')
+    jj git push --bookmark "$bm" 2>&1 \
+        | awk 'match($0, /https:\/\/github\.com\/[^ ]*\/pull\/new\/[^ ]*/){print substr($0,RSTART,RLENGTH); exit}' \
+        | xargs open
 }
 ```
 
