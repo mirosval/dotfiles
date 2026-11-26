@@ -19,7 +19,10 @@ with pkgs.vimPlugins;
   nvim-ts-autotag
   nvim-web-devicons
   plenary-nvim
-  rustaceanvim
+  # rustaceanvim 9.2.2 integration tests fail in the nix sandbox; skip them
+  (pkgs.neovimUtils.buildNeovimPlugin {
+    luaAttr = pkgs.luajitPackages.rustaceanvim.overrideAttrs { doCheck = false; };
+  })
   telescope-nvim
   text-case-nvim
   tokyonight-nvim
